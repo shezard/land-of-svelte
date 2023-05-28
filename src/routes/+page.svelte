@@ -41,7 +41,7 @@
 			<Wall position={tile.position} texture={tile.texture} />
 		{/if}
 		{#if tile.type == 'floor'}
-			<Floor position={tile.position} />
+			<Floor position={tile.position} texture={tile.texture} />
 		{/if}
 	{/each}
 
