@@ -32,14 +32,13 @@
 <svelte:window on:keypress={keyPress} />
 
 <SC.Canvas
-	antialias
 	background={new THREE.Color('skyblue')}
 	fog={new THREE.FogExp2('skyblue', 0.002)}
 	shadows
 >
 	{#each $tiles as tile}
 		{#if tile.type == 'wall'}
-			<Wall position={tile.position} />
+			<Wall position={tile.position} texture={tile.texture} />
 		{/if}
 		{#if tile.type == 'floor'}
 			<Floor position={tile.position} />
