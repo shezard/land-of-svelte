@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 type PlayerPosition = [number, number, number, number];
 
 const createPosition = () => {
-	const { subscribe, update } = writable([0, 0, 10, 0] as PlayerPosition);
+	const { subscribe, update } = writable([0, 0, 9, 0] as PlayerPosition);
 
 	return {
 		subscribe,

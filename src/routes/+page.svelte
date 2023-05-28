@@ -2,7 +2,10 @@
 	import * as THREE from 'three';
 	import * as SC from 'svelte-cubed';
 
-	import { position } from '../lib/player';
+	import { position } from '$lib/player';
+	import { tiles } from '$lib/map';
+	import Wall from '../components/Wall.svelte';
+	import Floor from '../components/Floor.svelte';
 
 	const keyPress = (e) => {
 		if (e.key === 'z') {
@@ -34,26 +37,14 @@
 	fog={new THREE.FogExp2('skyblue', 0.002)}
 	shadows
 >
-	<SC.Mesh
-		geometry={new THREE.BoxGeometry()}
-		material={new THREE.MeshStandardMaterial({ color: 0xff0000 })}
-		castShadow
-	/>
-
-	<SC.Mesh
-		geometry={new THREE.BoxGeometry()}
-		material={new THREE.MeshStandardMaterial({ color: 0xff0000 })}
-		position={[5, 0, 0]}
-		castShadow
-	/>
-
-	<SC.Mesh
-		geometry={new THREE.BoxGeometry(100, 100, 1)}
-		material={new THREE.MeshStandardMaterial({ color: 0xffffff })}
-		position={[0, -1, 0]}
-		rotation={[-Math.PI * 0.5, 0, 0]}
-		receiveShadow
-	/>
+	{#each $tiles as tile}
+		{#if tile.type == 'wall'}
+			<Wall position={tile.position} />
+		{/if}
+		{#if tile.type == 'floor'}
+			<Floor position={tile.position} />
+		{/if}
+	{/each}
 
 	<SC.AmbientLight intensity={0.5} />
 	<SC.DirectionalLight intensity={0.5} position={[-2, 3, 2]} shadow={{ mapSize: [2048, 2048] }} />
