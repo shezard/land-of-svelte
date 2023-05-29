@@ -1,19 +1,20 @@
 <script lang="ts">
+	import { collisions } from '$lib/map';
 	import { position } from '$lib/player';
 	import Scene from '../components/Scene.svelte';
 
 	const keyPress = (e) => {
 		if (e.key === 'z') {
-			position.moveForward();
+			position.moveForward($collisions);
 		}
 		if (e.key === 'q') {
-			position.moveLeft();
+			position.moveLeft($collisions);
 		}
 		if (e.key === 's') {
-			position.moveBackward();
+			position.moveBackward($collisions);
 		}
 		if (e.key === 'd') {
-			position.moveRight();
+			position.moveRight($collisions);
 		}
 		if (e.key === 'a') {
 			position.rotateLeft();

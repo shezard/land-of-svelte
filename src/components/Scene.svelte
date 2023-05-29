@@ -43,19 +43,21 @@
 		fog={new THREE.FogExp2('skyblue', 0.002)}
 		shadows
 	>
-		{#each $tiles as tile}
-			{#if tile.type == 'wall'}
-				<Wall position={tile.position} texture={textures[tile.texture]} />
-			{/if}
-			{#if tile.type == 'floor'}
-				<Floor position={tile.position} texture={textures[tile.texture]} />
-			{/if}
+		{#each $tiles as tileX, x}
+			{#each tileX as tile, y}
+				{#if tile == 1}
+					<Wall position={[x, y]} texture={textures['textures/wall-0.png']} />
+				{/if}
+				{#if tile == 0}
+					<Floor position={[x, y]} texture={textures['textures/floor-0.png']} />
+				{/if}
+			{/each}
 		{/each}
 
 		<SC.AmbientLight intensity={0.5} />
 		<SC.DirectionalLight
 			intensity={0.5}
-			position={[-2, 3, 2]}
+			position={[2, 5, 2]}
 			shadow={{ mapSize: [2048, 2048] }}
 		/>
 		<SC.PerspectiveCamera

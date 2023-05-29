@@ -1,53 +1,47 @@
 import { writable } from 'svelte/store';
 
+import level0 from '$lib/maps/level-0.json';
+
 export type Position2d = [number, number];
 
-type Tile = {
-	type: 'wall' | 'floor';
-	position: Position2d;
-	texture: string;
+export type Map2d = number[][];
+
+const swapXY = function (width: number, height: number, map: Map2d): Map2d {
+
+    const swappedMap = [] as Map2d;
+    for(let y = 0 ; y < height ; y++) {
+        for(let x = 0 ; x < width ; x++) {
+            if(!swappedMap[y]) {
+                swappedMap[y] = [];
+            }
+            swappedMap[y][x] = map[x][y];
+        }
+    }
+	return swappedMap;
 };
 
 const createTiles = function () {
-	const tiles = [];
-
-	for (let i = 0; i < 100; i++) {
-		tiles.push({
-			type: 'floor' as const,
-			position: [i % 10, Math.floor(i / 10)] as Position2d,
-			texture: 'textures/floor-0.png'
-		});
-	}
-
-	tiles.push({
-		type: 'wall' as const,
-		position: [0, 0] as Position2d,
-		texture: 'textures/wall-0.png'
-	});
-
-	tiles.push({
-		type: 'wall' as const,
-		position: [0, 5] as Position2d,
-		texture: 'textures/wall-0.png'
-	});
-
-	tiles.push({
-		type: 'wall' as const,
-		position: [2, 5] as Position2d,
-		texture: 'textures/wall-0.png'
-	});
-
-	tiles.push({
-		type: 'wall' as const,
-		position: [3, 5] as Position2d,
-		texture: 'textures/wall-0.png'
-	});
-
-	const { subscribe } = writable<Tile[]>(tiles);
+	const { subscribe, set } = writable<Map2d>(
+		swapXY(level0.width, level0.height, level0.textureMap)
+	);
 
 	return {
-		subscribe
+		subscribe,
+		set
 	};
 };
 
 export const tiles = createTiles();
+
+const createCollisions = () => {
+	const { subscribe, set } = writable<Map2d>(
+		swapXY(level0.width, level0.height, level0.collisionMap)
+	);
+
+	return {
+		subscribe,
+		set
+	};
+};
+
+export const collisions = createCollisions();
