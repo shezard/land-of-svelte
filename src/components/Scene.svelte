@@ -8,6 +8,7 @@
 
 	import Wall from './Wall.svelte';
 	import Floor from './Floor.svelte';
+	import Torch from './Torch.svelte';
 </script>
 
 <SC.Canvas
@@ -27,7 +28,9 @@
 	{/each}
 
 	<SC.AmbientLight color={0xddffff} intensity={0.5} />
-	<SC.DirectionalLight intensity={0.5} position={[0, 0.05, 10]} shadow={true} />
+
+	<Torch position={[2, 10]} />
+
 	<SC.PerspectiveCamera
 		position={[
 			$position.x - Math.sin($position.t) * 0.5,

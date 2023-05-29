@@ -4,7 +4,6 @@
 	import Scene from './Scene.svelte';
 	import Menu from './Menu.svelte';
 	import Loader from './Loader.svelte';
-
 </script>
 
 {#if $game == 'loading'}
