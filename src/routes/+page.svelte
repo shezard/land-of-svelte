@@ -48,14 +48,14 @@
 	<SC.AmbientLight intensity={0.5} />
 	<SC.DirectionalLight intensity={0.5} position={[-2, 3, 2]} shadow={{ mapSize: [2048, 2048] }} />
 	<SC.PerspectiveCamera
-		position={[$position[0], $position[1], $position[2]]}
-		target={[$position[0] + Math.sin($position[3]), 0, $position[2] - Math.cos($position[3])]}
+		position={[$position.x, 0, $position.y]}
+		target={[$position.x + Math.sin($position.t), 0, $position.y - Math.cos($position.t)]}
 	/>
 	<SC.OrbitControls
 		target={[
-			$position[0] + Math.sin($position[3]) / 2,
+			$position.x + Math.sin($position.t) / 2,
 			0,
-			$position[2] - Math.cos($position[3]) / 2
+			$position.y - Math.cos($position.t) / 2
 		]}
 	/>
 </SC.Canvas>

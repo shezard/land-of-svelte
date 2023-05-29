@@ -1,45 +1,45 @@
 import { writable } from 'svelte/store';
 
-type PlayerPosition = [number, number, number, number];
+type PlayerPosition = {x:number, y:number, t:number};
 
 const createPosition = () => {
-	const { subscribe, update } = writable([0, 0, 9, 0] as PlayerPosition);
+	const { subscribe, update } = writable({x:0, y:9, t:0} as PlayerPosition);
 
 	return {
 		subscribe,
 		moveForward: () =>
-			update(([x, y, z, theta]) => {
-				x += Math.sin(theta);
-				z -= Math.cos(theta);
-				return [x, y, z, theta];
+			update(({x, y, t}) => {
+				x += Math.sin(t);
+				y -= Math.cos(t);
+				return {x, y, t};
 			}),
 		moveBackward: () =>
-			update(([x, y, z, theta]) => {
-				x -= Math.sin(theta);
-				z += Math.cos(theta);
-				return [x, y, z, theta];
+			update(({x, y, t}) => {
+				x -= Math.sin(t);
+				y += Math.cos(t);
+				return {x, y, t};
 			}),
 		moveLeft: () =>
-			update(([x, y, z, theta]) => {
-				x -= Math.cos(theta);
-				z -= Math.sin(theta);
-				return [x, y, z, theta];
+			update(({x, y, t}) => {
+				x -= Math.cos(t);
+				y -= Math.sin(t);
+				return {x, y, t};
 			}),
 		moveRight: () =>
-			update(([x, y, z, theta]) => {
-				x += Math.cos(theta);
-				z += Math.sin(theta);
-				return [x, y, z, theta];
+			update(({x, y, t}) => {
+				x += Math.cos(t);
+				y += Math.sin(t);
+				return {x, y, t};
 			}),
 		rotateLeft: () =>
-			update(([x, y, z, theta]) => {
-				theta -= Math.PI / 2;
-				return [x, y, z, theta];
+			update(({x, y, t}) => {
+				t -= Math.PI / 2;
+				return {x, y, t};
 			}),
 		rotateRight: () =>
-			update(([x, y, z, theta]) => {
-				theta += Math.PI / 2;
-				return [x, y, z, theta];
+			update(({x, y, t}) => {
+				t += Math.PI / 2;
+				return {x, y, t};
 			})
 	};
 };
