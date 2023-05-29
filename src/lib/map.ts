@@ -44,3 +44,16 @@ const createCollisions = () => {
 };
 
 export const collisions = createCollisions();
+
+const createLights = () => {
+	const { subscribe, set } = writable<Map2d>(
+		swapXY(level0.width, level0.height, level0.lightMap)
+	);
+
+	return {
+		subscribe,
+		set
+	};
+};
+
+export const lights = createLights();
