@@ -15,7 +15,7 @@ const createTiles = function () {
 		tiles.push({
 			type: 'floor' as const,
 			position: [i % 10, Math.floor(i / 10)] as Position2d,
-            texture: 'textures/floor-0.png'
+			texture: 'textures/floor-0.png'
 		});
 	}
 

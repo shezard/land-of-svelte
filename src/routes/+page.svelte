@@ -1,11 +1,6 @@
 <script lang="ts">
-	import * as THREE from 'three';
-	import * as SC from 'svelte-cubed';
-
 	import { position } from '$lib/player';
-	import { tiles } from '$lib/map';
-	import Wall from '../components/Wall.svelte';
-	import Floor from '../components/Floor.svelte';
+	import Scene from '../components/Scene.svelte';
 
 	const keyPress = (e) => {
 		if (e.key === 'z') {
@@ -31,31 +26,4 @@
 
 <svelte:window on:keypress={keyPress} />
 
-<SC.Canvas
-	background={new THREE.Color('skyblue')}
-	fog={new THREE.FogExp2('skyblue', 0.002)}
-	shadows
->
-	{#each $tiles as tile}
-		{#if tile.type == 'wall'}
-			<Wall position={tile.position} texture={tile.texture} />
-		{/if}
-		{#if tile.type == 'floor'}
-			<Floor position={tile.position} texture={tile.texture} />
-		{/if}
-	{/each}
-
-	<SC.AmbientLight intensity={0.5} />
-	<SC.DirectionalLight intensity={0.5} position={[-2, 3, 2]} shadow={{ mapSize: [2048, 2048] }} />
-	<SC.PerspectiveCamera
-		position={[$position.x, 0, $position.y]}
-		target={[$position.x + Math.sin($position.t), 0, $position.y - Math.cos($position.t)]}
-	/>
-	<SC.OrbitControls
-		target={[
-			$position.x + Math.sin($position.t) / 2,
-			0,
-			$position.y - Math.cos($position.t) / 2
-		]}
-	/>
-</SC.Canvas>
+<Scene />
