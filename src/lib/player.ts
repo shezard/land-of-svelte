@@ -4,14 +4,14 @@ import type { Map2d } from './map';
 type PlayerPosition = { x: number; y: number; t: number };
 
 const createPosition = () => {
-	const { subscribe, update } = writable({ x: 2, y: 9, t: 0 } as PlayerPosition);
+	const { subscribe, update } = writable({ x: 2, y: 10, t: 0 } as PlayerPosition);
 
 	return {
 		subscribe,
 		moveForward: (collisions: Map2d) =>
 			update(({ x, y, t }) => {
-				const offsetX = +Math.sin(t);
-				const offsetY = -Math.cos(t);
+				const offsetX = Math.round(+Math.sin(t));
+				const offsetY = Math.round(-Math.cos(t));
 
 				if (collisions[x + offsetX][y + offsetY]) {
 					return { x, y, t };
@@ -20,8 +20,8 @@ const createPosition = () => {
 			}),
 		moveBackward: (collisions: Map2d) =>
 			update(({ x, y, t }) => {
-				const offsetX = -Math.sin(t);
-				const offsetY = +Math.cos(t);
+				const offsetX = Math.round(-Math.sin(t));
+				const offsetY = Math.round(+Math.cos(t));
 
 				if (collisions[x + offsetX][y + offsetY]) {
 					return { x, y, t };
@@ -30,8 +30,9 @@ const createPosition = () => {
 			}),
 		moveLeft: (collisions: Map2d) =>
 			update(({ x, y, t }) => {
-				const offsetX = -Math.cos(t);
-				const offsetY = -Math.sin(t);
+				const offsetX = Math.round(-Math.cos(t));
+				const offsetY = Math.round(-Math.sin(t));
+                console.log(offsetX, offsetY);
 
 				if (collisions[x + offsetX][y + offsetY]) {
 					return { x, y, t };
@@ -40,8 +41,8 @@ const createPosition = () => {
 			}),
 		moveRight: (collisions: Map2d) =>
 			update(({ x, y, t }) => {
-				const offsetX = +Math.cos(t);
-				const offsetY = +Math.sin(t);
+				const offsetX = Math.round(+Math.cos(t));
+				const offsetY = Math.round(+Math.sin(t));
 
 				if (collisions[x + offsetX][y + offsetY]) {
 					return { x, y, t };
