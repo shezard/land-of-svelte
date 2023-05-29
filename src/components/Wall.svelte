@@ -14,4 +14,5 @@
 	})}
 	position={[position[0], 0, position[1]]}
 	castShadow
+	receiveShadow
 />

@@ -1,13 +1,22 @@
 import { writable } from 'svelte/store';
 
-type GameState = 'loading' | 'running';
+type GameState = 'loading' | 'menu' | 'running';
 
 const createGame = () => {
-	const { subscribe, set } = writable<GameState>('loading');
+	const { subscribe, set, update } = writable<GameState>('loading');
 
 	return {
 		subscribe,
-		set
+		set,
+		toggleMenu: () =>
+			update((state: GameState) => {
+				if (state === 'menu') {
+					state = 'running';
+				} else if (state === 'running') {
+					state = 'menu';
+				}
+				return state;
+			})
 	};
 };
 

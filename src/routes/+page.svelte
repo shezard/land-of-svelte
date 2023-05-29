@@ -1,9 +1,16 @@
 <script lang="ts">
+	import { game } from '$lib/game';
 	import { collisions } from '$lib/map';
 	import { position } from '$lib/player';
-	import Scene from '../components/Scene.svelte';
+	import Game from '../components/Game.svelte';
 
-	const keyPress = (e) => {
+	const keyUp = (e: KeyboardEvent) => {
+		if (e.key === 'Escape') {
+			game.toggleMenu();
+		}
+	};
+
+	const keyPress = (e: KeyboardEvent) => {
 		if (e.key === 'z') {
 			position.moveForward($collisions);
 		}
@@ -25,6 +32,6 @@
 	};
 </script>
 
-<svelte:window on:keypress={keyPress} />
+<svelte:window on:keypress={keyPress} on:keyup={keyUp} />
 
-<Scene />
+<Game />
