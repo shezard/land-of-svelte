@@ -11,6 +11,10 @@
 	};
 
 	const keyPress = (e: KeyboardEvent) => {
+		if ($game !== 'running') {
+			return;
+		}
+
 		if (e.key === 'z') {
 			position.moveForward($collisions);
 		}

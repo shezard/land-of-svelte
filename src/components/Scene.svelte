@@ -4,15 +4,10 @@
 
 	import { position } from '$lib/player';
 	import { collisions, tiles } from '$lib/map';
+	import { textures } from '$lib/textures';
 
 	import Wall from './Wall.svelte';
 	import Floor from './Floor.svelte';
-
-	type TextureMap = {
-		[index: string]: THREE.Texture;
-	};
-
-	export let textures = {} as TextureMap;
 </script>
 
 <SC.Canvas
@@ -23,16 +18,16 @@
 	{#each $collisions as collisionX, x}
 		{#each collisionX as collision, y}
 			{#if collision == 1}
-				<Wall position={[x, y]} texture={textures['wall-' + $tiles[x][y] + '.png']} />
+				<Wall position={[x, y]} texture={$textures['wall-' + $tiles[x][y] + '.png']} />
 			{/if}
 			{#if collision == 0}
-				<Floor position={[x, y]} texture={textures['floor-' + $tiles[x][y] + '.png']} />
+				<Floor position={[x, y]} texture={$textures['floor-' + $tiles[x][y] + '.png']} />
 			{/if}
 		{/each}
 	{/each}
 
 	<SC.AmbientLight color={0xddffff} intensity={0.5} />
-	<SC.DirectionalLight intensity={0.5} position={[2, 0, 10]} target={[0, 0, 0]} shadow={true} />
+	<SC.DirectionalLight intensity={0.5} position={[0, 0.05, 10]} shadow={true} />
 	<SC.PerspectiveCamera
 		position={[
 			$position.x - Math.sin($position.t) * 0.5,
