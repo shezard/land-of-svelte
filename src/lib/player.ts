@@ -32,7 +32,6 @@ const createPosition = () => {
 			update(({ x, y, t }) => {
 				const offsetX = Math.round(-Math.cos(t));
 				const offsetY = Math.round(-Math.sin(t));
-				console.log(offsetX, offsetY);
 
 				if (collisions[x + offsetX][y + offsetY]) {
 					return { x, y, t };
