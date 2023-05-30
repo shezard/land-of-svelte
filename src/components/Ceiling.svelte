@@ -1,18 +1,16 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import * as SC from 'svelte-cubed';
-	import type { Position2d } from '$lib/levels';
+    import {levels} from '$lib/levels';
 
-	export let position: Position2d;
 	export let texture: THREE.Texture;
 </script>
 
 <SC.Mesh
-	geometry={new THREE.BoxGeometry()}
+	geometry={new THREE.BoxGeometry($levels[0].width, 1, $levels[0].height)}
 	material={new THREE.MeshLambertMaterial({
 		map: texture
 	})}
-	position={[position[0], 0, position[1]]}
-	castShadow
+	position={[$levels[0].width / 2, 1, $levels[0].height / 2]}
 	receiveShadow
 />

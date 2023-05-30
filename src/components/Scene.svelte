@@ -4,24 +4,25 @@
 
 	import { position } from '$lib/player';
 	import { textures } from '$lib/textures';
-	import { collisions, tiles, lights } from '$lib/map';
+	import { levels } from '$lib/levels';
 
 	import Wall from './Wall.svelte';
 	import Floor from './Floor.svelte';
 	import Torch from './Torch.svelte';
 	import Map2d from './Map2d.svelte';
+	import Ceiling from './Ceiling.svelte';
 
 	const getLightDirection = function (x: number, y: number) {
-		if ($collisions[x + 1][y]) {
+		if ($levels[0].collisionMap[x + 1][y]) {
 			return 0;
 		}
-		if ($collisions[x][y + 1]) {
+		if ($levels[0].collisionMap[x][y + 1]) {
 			return Math.PI / 2;
 		}
-		if ($collisions[x - 1][y]) {
+		if ($levels[0].collisionMap[x - 1][y]) {
 			return Math.PI;
 		}
-		if ($collisions[x][y - 1]) {
+		if ($levels[0].collisionMap[x][y - 1]) {
 			return Math.PI / 2 + Math.PI;
 		}
 	};
@@ -32,18 +33,23 @@
 	fog={new THREE.FogExp2('skyblue', 0.002)}
 	shadows
 >
-	<Map2d map2d={$collisions} let:x let:y let:item>
+    {#if $levels[0].ceiling}
+        <Ceiling texture={$textures['floor-' + $levels[0].ceiling + '.png']} />
+    {:else}
+        <SC.AmbientLight color={0xddffff} intensity={0.5} />
+    {/if}
+
+	<Map2d map2d={$levels[0].collisionMap} let:x let:y let:item>
 		{#if item == 1}
-			<Wall position={[x, y]} texture={$textures['wall-' + $tiles[x][y] + '.png']} />
+			<Wall position={[x, y]} texture={$textures['wall-' + $levels[0].textureMap[x][y] + '.png']} />
 		{/if}
 		{#if item == 0}
-			<Floor position={[x, y]} texture={$textures['floor-' + $tiles[x][y] + '.png']} />
+			<Floor position={[x, y]} texture={$textures['floor-' + $levels[0].textureMap[x][y] + '.png']} />
 		{/if}
 	</Map2d>
 
-	<SC.AmbientLight color={0xddffff} intensity={0.5} />
 
-	<Map2d map2d={$lights} let:x let:y let:item>
+	<Map2d map2d={$levels[0].lightMap} let:x let:y let:item>
 		{#if item}
 			<Torch position={[x, y]} direction={getLightDirection(x, y)} />
 		{/if}

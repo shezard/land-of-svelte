@@ -33,5 +33,5 @@
 </script>
 
 <div class="container grid justify-items-center items-center h-screen">
-    Loading ... {loadedTextureCount} / {texturesToLoad.length}
+	Loading ... {loadedTextureCount} / {texturesToLoad.length}
 </div>

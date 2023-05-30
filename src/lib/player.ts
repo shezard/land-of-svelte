@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { Map2d } from './map';
+import type { Map2d } from './levels';
 
 type PlayerPosition = { x: number; y: number; t: number };
 

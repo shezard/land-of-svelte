@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import * as SC from 'svelte-cubed';
-	import type { Position2d } from '$lib/map';
+	import type { Position2d } from '$lib/levels';
 
 	export let position: Position2d;
 	export let texture: THREE.Texture;

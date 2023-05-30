@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { game } from '$lib/game';
-	import { collisions } from '$lib/map';
+	import { levels } from '$lib/levels';
 	import { position } from '$lib/player';
 	import Game from '../components/Game.svelte';
 
@@ -16,16 +16,16 @@
 		}
 
 		if (e.key === 'z') {
-			position.moveForward($collisions);
+			position.moveForward($levels[0].collisionMap);
 		}
 		if (e.key === 'q') {
-			position.moveLeft($collisions);
+			position.moveLeft($levels[0].collisionMap);
 		}
 		if (e.key === 's') {
-			position.moveBackward($collisions);
+			position.moveBackward($levels[0].collisionMap);
 		}
 		if (e.key === 'd') {
-			position.moveRight($collisions);
+			position.moveRight($levels[0].collisionMap);
 		}
 		if (e.key === 'a') {
 			position.rotateLeft();
