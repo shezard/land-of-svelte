@@ -16,16 +16,16 @@
 		}
 
 		if (e.key === 'z') {
-			position.moveForward($levels[0].collisionMap);
+			position.moveForward($levels[0]);
 		}
 		if (e.key === 'q') {
-			position.moveLeft($levels[0].collisionMap);
+			position.moveLeft($levels[0]);
 		}
 		if (e.key === 's') {
-			position.moveBackward($levels[0].collisionMap);
+			position.moveBackward($levels[0]);
 		}
 		if (e.key === 'd') {
-			position.moveRight($levels[0].collisionMap);
+			position.moveRight($levels[0]);
 		}
 		if (e.key === 'a') {
 			position.rotateLeft();

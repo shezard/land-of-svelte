@@ -11,8 +11,9 @@
 	import Torch from './Torch.svelte';
 	import Map2d from './Map2d.svelte';
 	import Ceiling from './Ceiling.svelte';
+	import Button from './Button.svelte';
 
-	const getLightDirection = function (x: number, y: number) {
+	const getClosestWall = function (x: number, y: number) {
 		if ($levels[0].collisionMap[x + 1][y]) {
 			return 0;
 		}
@@ -33,27 +34,42 @@
 	fog={new THREE.FogExp2('skyblue', 0.002)}
 	shadows
 >
-    {#if $levels[0].ceiling}
-        <Ceiling texture={$textures['floor-' + $levels[0].ceiling + '.png']} />
-    {:else}
-        <SC.AmbientLight color={0xddffff} intensity={0.5} />
-    {/if}
+	{#if $levels[0].ceiling}
+		<Ceiling texture={$textures['floor-' + $levels[0].ceiling + '.png']} />
+	{:else}
+		<SC.AmbientLight color={0xddffff} intensity={0.5} />
+	{/if}
 
 	<Map2d map2d={$levels[0].collisionMap} let:x let:y let:item>
 		{#if item == 1}
-			<Wall position={[x, y]} texture={$textures['wall-' + $levels[0].textureMap[x][y] + '.png']} />
+			<Wall
+				position={[x, y]}
+				texture={$textures['wall-' + $levels[0].textureMap[x][y] + '.png']}
+			/>
 		{/if}
 		{#if item == 0}
-			<Floor position={[x, y]} texture={$textures['floor-' + $levels[0].textureMap[x][y] + '.png']} />
+			<Floor
+				position={[x, y]}
+				texture={$textures['floor-' + $levels[0].textureMap[x][y] + '.png']}
+			/>
 		{/if}
 	</Map2d>
-
 
 	<Map2d map2d={$levels[0].lightMap} let:x let:y let:item>
 		{#if item}
-			<Torch position={[x, y]} direction={getLightDirection(x, y)} />
+			<Torch position={[x, y]} direction={getClosestWall(x, y)} />
 		{/if}
 	</Map2d>
+
+	{#each $levels[0].items as item}
+		{#if item.type == 'door'}
+			<Wall position={[item.x, item.y]} texture={$textures[item.texture + '.png']} />
+		{/if}
+
+		{#if item.type == 'button'}
+			<Button position={[item.x, item.y]} direction={getClosestWall(item.x, item.y)} />
+		{/if}
+	{/each}
 
 	<SC.PerspectiveCamera
 		position={[

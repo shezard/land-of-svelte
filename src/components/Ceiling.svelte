@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import * as SC from 'svelte-cubed';
-    import {levels} from '$lib/levels';
+	import { levels } from '$lib/levels';
 
 	export let texture: THREE.Texture;
 </script>
