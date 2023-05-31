@@ -1,5 +1,11 @@
 import type { Writable } from 'svelte/store';
-import type { Level } from './levels';
+import type { Item, Level } from './levels';
+
+const removeItem = function(items: Item[], itemId : number) : Item[] {
+    return items.filter((item) => {
+        return item.id != itemId
+    });
+}
 
 export const scripts = {
 	level0: [
@@ -8,7 +14,7 @@ export const scripts = {
 			action: 'click',
 			doAction: (levels: Writable<Level[]>) => {
 				levels.update((levels: Level[]) => {
-					levels[0].items = levels[0].items.slice(1);
+					levels[0].items = removeItem(levels[0].items, 0);
 					return levels;
 				});
 			}
