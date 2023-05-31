@@ -4,8 +4,6 @@
 
 	import type { Position2d } from '$lib/levels';
 
-	import { levels } from '$lib/levels';
-
 	export let position: Position2d;
 
 	export let direction = Math.PI / 2;

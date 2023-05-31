@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 
 import level0 from '$lib/maps/level-0.json';
 
@@ -45,3 +45,12 @@ const swappedLevels = [level0].map((level) => {
 }) as Level[];
 
 export const levels = writable<Level[]>(swappedLevels);
+
+export const currentLevelNumber = writable(0);
+
+export const currentLevel = derived(
+	[levels, currentLevelNumber],
+	([$levels, $currentLevelNumber]) => {
+		return $levels[$currentLevelNumber];
+	}
+);

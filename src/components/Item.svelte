@@ -6,7 +6,7 @@
 
 	import { textures } from '$lib/textures';
 	import { getClosestWall } from '$lib/helpers';
-	import { levels, type Item } from '$lib/levels';
+	import { currentLevel, levels, type Item } from '$lib/levels';
 	import { scripts } from '$lib/scripts';
 
 	export let item: Item;
@@ -44,6 +44,6 @@
 	<Button
 		on:click={handleClick(item)}
 		position={[item.x, item.y]}
-		direction={getClosestWall($levels[0], item.x, item.y)}
+		direction={getClosestWall($currentLevel, item.x, item.y)}
 	/>
 {/if}

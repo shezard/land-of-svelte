@@ -3,7 +3,7 @@
 
 	import { position } from '$lib/player';
 	import { textures } from '$lib/textures';
-	import { levels } from '$lib/levels';
+	import { currentLevel } from '$lib/levels';
 
 	import Wall from './Wall.svelte';
 	import Floor from './Floor.svelte';
@@ -16,34 +16,34 @@
 
 <div class="container w-screen h-screen">
 	<T.Canvas>
-		{#if $levels[0].ceiling}
-			<Ceiling texture={$textures['floor-' + $levels[0].ceiling + '.png']} />
+		{#if $currentLevel.ceiling}
+			<Ceiling texture={$textures['floor-' + $currentLevel.ceiling + '.png']} />
 		{:else}
 			<T.AmbientLight color={0xddffff} intensity={0.5} />
 		{/if}
 
-		<Map2d map2d={$levels[0].collisionMap} let:x let:y let:item>
+		<Map2d map2d={$currentLevel.collisionMap} let:x let:y let:item>
 			{#if item == 1}
 				<Wall
 					position={[x, y]}
-					texture={$textures['wall-' + $levels[0].textureMap[x][y] + '.png']}
+					texture={$textures['wall-' + $currentLevel.textureMap[x][y] + '.png']}
 				/>
 			{/if}
 			{#if item == 0}
 				<Floor
 					position={[x, y]}
-					texture={$textures['floor-' + $levels[0].textureMap[x][y] + '.png']}
+					texture={$textures['floor-' + $currentLevel.textureMap[x][y] + '.png']}
 				/>
 			{/if}
 		</Map2d>
 
-		<Map2d map2d={$levels[0].lightMap} let:x let:y let:item>
+		<Map2d map2d={$currentLevel.lightMap} let:x let:y let:item>
 			{#if item}
-				<Torch position={[x, y]} direction={getClosestWall($levels[0], x, y)} />
+				<Torch position={[x, y]} direction={getClosestWall($currentLevel, x, y)} />
 			{/if}
 		</Map2d>
 
-		{#each $levels[0].items as item}
+		{#each $currentLevel.items as item}
 			<Item {item} />
 		{/each}
 
