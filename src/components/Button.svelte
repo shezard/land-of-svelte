@@ -11,13 +11,6 @@
 	export let direction = Math.PI / 2;
 
 	export let color = 0x444444;
-
-	const toggleButton = () => {
-		levels.update((levels) => {
-			levels[0].items = levels[0].items.slice(1);
-			return levels;
-		});
-	};
 </script>
 
 <T.Mesh
@@ -31,5 +24,5 @@
 		z: position[1] + 0.45 * Math.sin(direction)
 	}}
 	interactive
-	on:click={toggleButton}
+	on:click
 />

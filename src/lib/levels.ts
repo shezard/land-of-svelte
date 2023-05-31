@@ -6,6 +6,7 @@ export type Position2d = [number, number];
 export type Map2d = number[][];
 
 export type Item = {
+	id: number;
 	type: 'door' | 'button';
 	collision: boolean;
 	texture?: string;
@@ -41,6 +42,6 @@ const swappedLevels = [level0].map((level) => {
 	level.textureMap = swapXY(level.width, level.height, level.textureMap);
 	level.lightMap = swapXY(level.width, level.height, level.lightMap);
 	return level;
-});
+}) as Level[];
 
 export const levels = writable<Level[]>(swappedLevels);

@@ -10,22 +10,8 @@
 	import Torch from './Torch.svelte';
 	import Map2d from './Map2d.svelte';
 	import Ceiling from './Ceiling.svelte';
-	import Button from './Button.svelte';
-
-	const getClosestWall = function (x: number, y: number) {
-		if ($levels[0].collisionMap[x + 1][y]) {
-			return 0;
-		}
-		if ($levels[0].collisionMap[x][y + 1]) {
-			return Math.PI / 2;
-		}
-		if ($levels[0].collisionMap[x - 1][y]) {
-			return Math.PI;
-		}
-		if ($levels[0].collisionMap[x][y - 1]) {
-			return Math.PI / 2 + Math.PI;
-		}
-	};
+	import Item from './Item.svelte';
+	import { getClosestWall } from '$lib/helpers';
 </script>
 
 <div class="container w-screen h-screen">
@@ -53,18 +39,12 @@
 
 		<Map2d map2d={$levels[0].lightMap} let:x let:y let:item>
 			{#if item}
-				<Torch position={[x, y]} direction={getClosestWall(x, y)} />
+				<Torch position={[x, y]} direction={getClosestWall($levels[0], x, y)} />
 			{/if}
 		</Map2d>
 
 		{#each $levels[0].items as item}
-			{#if item.type == 'door'}
-				<Wall position={[item.x, item.y]} texture={$textures[item.texture + '.png']} />
-			{/if}
-
-			{#if item.type == 'button'}
-				<Button position={[item.x, item.y]} direction={getClosestWall(item.x, item.y)} />
-			{/if}
+			<Item {item} />
 		{/each}
 
 		<T.PerspectiveCamera
