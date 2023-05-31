@@ -4,7 +4,7 @@
 
 	import type { Position2d } from '$lib/levels';
 
-    import { levels } from '$lib/levels';
+	import { levels } from '$lib/levels';
 
 	export let position: Position2d;
 
@@ -13,10 +13,10 @@
 	export let color = 0x444444;
 
 	const toggleButton = () => {
-        levels.update((levels) => {
-            levels[0].items = levels[0].items.slice(1)
-            return levels;
-        })
+		levels.update((levels) => {
+			levels[0].items = levels[0].items.slice(1);
+			return levels;
+		});
 	};
 </script>
 
