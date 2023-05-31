@@ -46,6 +46,7 @@
 	],
 	"items": [
 		{
+            "id" : 0,
 			"type": "door",
 			"collision": true,
 			"texture": "door-0",
@@ -53,6 +54,7 @@
 			"y": 8
 		},
 		{
+            "id": 1,
 			"type": "button",
 			"collision": false,
 			"x": 1,

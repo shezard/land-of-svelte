@@ -1,8 +1,10 @@
 <script lang="ts">
 	import * as THREE from 'three';
-	import * as SC from 'svelte-cubed';
+	import * as T from '@threlte/core';
 
 	import type { Position2d } from '$lib/levels';
+
+    import { levels } from '$lib/levels';
 
 	export let position: Position2d;
 
@@ -10,20 +12,24 @@
 
 	export let color = 0x444444;
 
-    const toggleButton = () => {
-        console.log('ok ok ok');
-    }
+	const toggleButton = () => {
+        levels.update((levels) => {
+            levels[0].items = levels[0].items.slice(1)
+            return levels;
+        })
+	};
 </script>
 
-<SC.Mesh
+<T.Mesh
 	geometry={new THREE.BoxGeometry(0.05, 0.05, 0.025)}
 	material={new THREE.MeshLambertMaterial({
 		color
 	})}
-	position={[
-		position[0] + 0.45 * Math.cos(direction),
-		0,
-		position[1] + 0.45 * Math.sin(direction)
-	]}
-    on:click={toggleButton}
+	position={{
+		x: position[0] + 0.45 * Math.cos(direction),
+		y: 0,
+		z: position[1] + 0.45 * Math.sin(direction)
+	}}
+	interactive
+	on:click={toggleButton}
 />
