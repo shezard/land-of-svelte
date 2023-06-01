@@ -8,6 +8,7 @@
 	import { getClosestWall } from '$lib/helpers';
 	import { currentLevel, currentLevelNumber, levels, type Item } from '$lib/levels';
 	import { scripts } from '$lib/scripts';
+	import { position } from '$lib/player';
 
 	export let item: Item;
 
@@ -17,7 +18,7 @@
 				return scripts.itemId === item.id && scripts.action === 'click';
 			})
 			.map((script) => {
-				script.doAction(levels, currentLevelNumber);
+				script.doAction(levels, currentLevelNumber, position);
 			});
 	};
 </script>

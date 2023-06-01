@@ -1,7 +1,7 @@
-import { writable } from 'svelte/store';
+import { writable, type Writable } from 'svelte/store';
 import type { Level, Item } from './levels';
 
-type PlayerPosition = { x: number; y: number; t: number };
+export type PlayerPosition = { x: number; y: number; t: number };
 
 const hasCollision = (items: Item[], x: number, y: number): boolean => {
 	let collide = false;
@@ -14,10 +14,12 @@ const hasCollision = (items: Item[], x: number, y: number): boolean => {
 };
 
 const createPosition = () => {
-	const { subscribe, update } = writable({ x: 2, y: 10, t: 0 } as PlayerPosition);
+	const { subscribe, set, update } = writable<PlayerPosition>({ x: 2, y: 10, t: 0 });
 
 	return {
 		subscribe,
+        set,
+        update,
 		moveForward: (level: Level) =>
 			update(({ x, y, t }) => {
 				const offsetX = Math.round(+Math.sin(t));
