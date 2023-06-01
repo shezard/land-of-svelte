@@ -6,18 +6,18 @@
 
 	import { textures } from '$lib/textures';
 	import { getClosestWall } from '$lib/helpers';
-	import { currentLevel, levels, type Item } from '$lib/levels';
+	import { currentLevel, currentLevelNumber, levels, type Item } from '$lib/levels';
 	import { scripts } from '$lib/scripts';
 
 	export let item: Item;
 
 	const handleClick = (item: Item) => () => {
-		scripts.level0
+		scripts[$currentLevelNumber]
 			.filter((scripts) => {
 				return scripts.itemId === item.id && scripts.action === 'click';
 			})
 			.map((script) => {
-				script.doAction(levels);
+				script.doAction(levels, currentLevelNumber);
 			});
 	};
 </script>

@@ -1,4 +1,4 @@
 # TODO
 
--   handle level switching + current level
+-   improve level switching (add ladder)
 -   extract box

@@ -1,6 +1,7 @@
 import { derived, writable } from 'svelte/store';
 
 import level0 from '$lib/maps/level-0.json';
+import level1 from '$lib/maps/level-1.json';
 
 export type Position2d = [number, number];
 export type Map2d = number[][];
@@ -8,7 +9,7 @@ export type Map2d = number[][];
 export type Item = {
 	id: number;
 	type: 'door' | 'button';
-	collision: boolean;
+	collision?: boolean;
 	texture?: string;
 	x: number;
 	y: number;
@@ -37,7 +38,7 @@ const swapXY = function (width: number, height: number, map: Map2d): Map2d {
 	return swappedMap;
 };
 
-const swappedLevels = [level0].map((level) => {
+const swappedLevels = [level0, level1].map((level) => {
 	level.collisionMap = swapXY(level.width, level.height, level.collisionMap);
 	level.textureMap = swapXY(level.width, level.height, level.textureMap);
 	level.lightMap = swapXY(level.width, level.height, level.lightMap);
