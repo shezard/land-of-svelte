@@ -21,7 +21,8 @@
 <T.Mesh
 	geometry={new THREE.BoxGeometry(wx, wz, wy)}
 	material={new THREE.MeshLambertMaterial({
-		map: $textures[texture + '.png']
+		map: $textures[texture + '.png'],
+		transparent: true
 	})}
 	position={{ x: x, y: z, z: y }}
 	{receiveShadow}

@@ -9,6 +9,7 @@
 
 	let loadedTextureCount = 0;
 	const texturesToLoad = [
+		'ladder-0.png',
 		'door-0.png',
 		'floor-0.png',
 		'floor-1.png',

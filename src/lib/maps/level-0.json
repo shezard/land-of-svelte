@@ -64,7 +64,7 @@
 			"id": 2,
 			"type": "ladder",
 			"collision": false,
-			"texture": "door-0",
+			"texture": "ladder-0",
 			"x": 1,
 			"y": 2
 		}
