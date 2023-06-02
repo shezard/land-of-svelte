@@ -5,13 +5,17 @@
 	import { scripts } from '$lib/scripts';
 	import Game from '../components/Game.svelte';
 
-    const doWalk = () => {
-        scripts[$currentLevelNumber].filter((script) => {
-                return script.action === 'walk' && script.x === $position.x && script.y === $position.y
-            }).map((script) => {
-                script.doAction(levels, currentLevelNumber, position);
-            });
-    }
+	const doWalk = () => {
+		scripts[$currentLevelNumber]
+			.filter((script) => {
+				return (
+					script.action === 'walk' && script.x === $position.x && script.y === $position.y
+				);
+			})
+			.map((script) => {
+				script.doAction(levels, currentLevelNumber, position);
+			});
+	};
 
 	const keyUp = (e: KeyboardEvent) => {
 		if (e.key === 'Escape') {
@@ -26,19 +30,19 @@
 
 		if (e.key === 'z') {
 			position.moveForward($currentLevel);
-            doWalk();
+			doWalk();
 		}
 		if (e.key === 'q') {
 			position.moveLeft($currentLevel);
-            doWalk();
+			doWalk();
 		}
 		if (e.key === 's') {
 			position.moveBackward($currentLevel);
-            doWalk();
+			doWalk();
 		}
 		if (e.key === 'd') {
 			position.moveRight($currentLevel);
-            doWalk();
+			doWalk();
 		}
 		if (e.key === 'a') {
 			position.rotateLeft();

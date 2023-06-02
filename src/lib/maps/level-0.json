@@ -59,6 +59,14 @@
 			"collision": false,
 			"x": 1,
 			"y": 10
+		},
+		{
+			"id": 2,
+			"type": "ladder",
+			"collision": false,
+			"texture": "door-0",
+			"x": 1,
+			"y": 2
 		}
 	]
 }

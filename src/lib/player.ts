@@ -18,8 +18,8 @@ const createPosition = () => {
 
 	return {
 		subscribe,
-        set,
-        update,
+		set,
+		update,
 		moveForward: (level: Level) =>
 			update(({ x, y, t }) => {
 				const offsetX = Math.round(+Math.sin(t));

@@ -1,4 +1,5 @@
 # TODO
 
--   improve level switching (add ladder)
--   extract box
+-   add ladder texture
+-   improve level switching (preload other level)
+-   continue item refactor  => improve box (interactivity ?)

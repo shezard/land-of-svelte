@@ -8,11 +8,12 @@ export type Map2d = number[][];
 
 export type Item = {
 	id: number;
-	type: 'door' | 'button';
+	type: 'door' | 'button' | 'ladder';
 	collision?: boolean;
 	texture?: string;
 	x: number;
 	y: number;
+	z?: number;
 };
 
 export type Level = {

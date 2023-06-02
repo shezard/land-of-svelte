@@ -3,6 +3,7 @@
 	import * as THREE from 'three';
 
 	import Button from './Button.svelte';
+	import Box from './Box.svelte';
 
 	import { textures } from '$lib/textures';
 	import { getClosestWall } from '$lib/helpers';
@@ -33,7 +34,7 @@
 		})}
 		position={{
 			x: item.x,
-			y: 0,
+			y: item.z ?? 0,
 			z: item.y
 		}}
 		castShadow
@@ -46,5 +47,16 @@
 		on:click={handleClick(item)}
 		position={[item.x, item.y]}
 		direction={getClosestWall($currentLevel, item.x, item.y)}
+	/>
+{/if}
+
+{#if item.type == 'ladder'}
+	<Box
+		x={item.x + Math.cos(getClosestWall($currentLevel, item.x, item.y)) * 0.5}
+		y={item.y}
+		wx={0.1}
+		wy={0.3}
+		texture={item.texture}
+		castShadow
 	/>
 {/if}

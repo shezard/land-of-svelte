@@ -13,4 +13,6 @@ export const getClosestWall = function (level: Level, x: number, y: number) {
 	if (level.collisionMap[x][y - 1]) {
 		return Math.PI / 2 + Math.PI;
 	}
+
+	return NaN;
 };
