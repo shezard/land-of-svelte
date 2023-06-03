@@ -22,6 +22,8 @@
 				script.doAction(levels, currentLevelNumber, position);
 			});
 	};
+
+    $: closestWallDirection = getClosestWall($currentLevel, item.x, item.y);
 </script>
 
 {#if item.type == 'door'}
@@ -46,16 +48,16 @@
 	<Button
 		on:click={handleClick(item)}
 		position={[item.x, item.y]}
-		direction={getClosestWall($currentLevel, item.x, item.y)}
+		direction={closestWallDirection}
 	/>
 {/if}
 
 {#if item.type == 'ladder'}
 	<Box
-		x={item.x + Math.cos(getClosestWall($currentLevel, item.x, item.y)) * 0.5}
-		y={item.y}
-		wx={0.1}
-		wy={0.3}
+		x={item.x + Math.cos(closestWallDirection) * 0.5}
+		y={item.y + Math.sin(closestWallDirection) * 0.5}
+		wx={0.1 + Math.abs(0.2 * Math.sin(closestWallDirection))}
+		wy={0.1 + Math.abs(0.2 * Math.cos(closestWallDirection))}
 		texture={item.texture}
 		castShadow
 	/>
