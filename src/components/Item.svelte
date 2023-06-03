@@ -23,13 +23,11 @@
 			});
 	};
 
-    $: closestWallDirection = getClosestWall($currentLevel, item.x, item.y);
+	$: closestWallDirection = getClosestWall($currentLevel, item.x, item.y);
 </script>
 
 {#if item.type == 'door'}
 	<T.Mesh
-		interactive
-		on:click={handleClick(item)}
 		geometry={new THREE.BoxGeometry()}
 		material={new THREE.MeshLambertMaterial({
 			map: $textures[item.texture + '.png']

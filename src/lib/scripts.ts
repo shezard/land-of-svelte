@@ -8,6 +8,48 @@ const removeItem = function (items: Item[], itemId: number): Item[] {
 	});
 };
 
+const getItem = function (levels: Level[], levelId: number, itemId: number): Item | null {
+	const items = levels[levelId].items;
+
+	let itemFound = null;
+	items.forEach((item) => {
+		if (item.id === itemId) {
+			itemFound = item;
+		}
+	});
+
+	return itemFound;
+};
+
+const setItem = function (levels: Level[], item: Item, levelId: number, itemId: number): Level[] {
+	const items = levels[levelId].items;
+
+	items.forEach((oldItem) => {
+		if (oldItem.id === itemId) {
+			oldItem = item;
+		}
+	});
+
+	return levels;
+};
+
+const animate = (cb: (t: number) => void, duration: number) => {
+	let t = 0;
+	const start = Date.now();
+
+	const step = () => {
+		requestAnimationFrame(() => {
+			t = (Date.now() - start) / 1e3;
+			cb(Math.min(t, 1));
+			if (t < duration) {
+				step();
+			}
+		});
+	};
+
+	step();
+};
+
 export const scripts = [
 	[
 		{
@@ -18,10 +60,17 @@ export const scripts = [
 				currentLevelNumber: Writable<number>,
 				playerPosition: Writable<PlayerPosition>
 			) => {
-				levels.update((levels: Level[]) => {
-					levels[0].items = removeItem(levels[0].items, 0);
-					return levels;
-				});
+				animate((t) => {
+					levels.update((levels: Level[]) => {
+						const item = getItem(levels, 0, 0);
+						if (item) {
+							item.z = t;
+							item.collision = false;
+							levels = setItem(levels, item, 0, 0);
+						}
+						return levels;
+					});
+				}, 1000);
 			}
 		},
 		{
