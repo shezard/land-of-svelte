@@ -34,6 +34,8 @@
 	});
 </script>
 
-<div class="container grid justify-items-center items-center h-screen">
+<div
+	class="container grid justify-items-center items-center h-screen text-3xl text-white bg-stone-800"
+>
 	Loading ... {loadedTextureCount} / {texturesToLoad.length}
 </div>

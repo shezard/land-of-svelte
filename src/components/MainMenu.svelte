@@ -11,29 +11,29 @@
 	};
 </script>
 
-<div class="container grid justify-items-center items-center h-screen">
-	<div class="cursor-default">
-		<div class="text-2xl">Land Of Svelte</div>
+<div class="text-3xl text-white">Land Of Svelte</div>
 
-		<div class="cursor-pointer action" on:click={runGame} on:keypress={runGame}>
-			{#if $running === 'fresh'}
-				New Game
-			{:else}
-				Continue
-			{/if}
-		</div>
+<div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
+	{#if $running === 'fresh'}
+		New Game
+	{:else}
+		Continue
+	{/if}
+</div>
 
-		<div class="cursor-pointer action" on:click={showControlMenu} on:keypress={showControlMenu}>
-			Controls
-		</div>
-	</div>
+<div
+	class="text-2xl text-white cursor-pointer action"
+	on:click={showControlMenu}
+	on:keypress={showControlMenu}
+>
+	Controls
 </div>
 
 <style>
 	.action::before {
 		content: ' ';
 		display: inline-block;
-		width: 20px;
+		width: 2rem;
 	}
 	.action:hover::before {
 		content: '☞';

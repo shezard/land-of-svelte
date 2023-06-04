@@ -11,14 +11,25 @@
 
 {#if $game == 'loading'}
 	<Loader />
-{:else if $game == 'mainMenu'}
-	<MainMenu />
-{:else if $game == 'controlMenu'}
-	<ControlMenu />
-{:else if $game == 'running'}
+{:else}
 	<div class="container w-screen h-screen">
-		<Canvas>
-			<Scene />
-		</Canvas>
+		{#if $game != 'running'}
+			<div
+				class="grid justify-items-center items-center absolute w-full h-full z-10 backdrop-blur-sm"
+			>
+				<div class="cursor-default">
+					{#if $game == 'mainMenu'}
+						<MainMenu />
+					{:else if $game == 'controlMenu'}
+						<ControlMenu />
+					{/if}
+				</div>
+			</div>
+		{/if}
+		<div class="absolute z-0 w-full h-full">
+			<Canvas>
+				<Scene />
+			</Canvas>
+		</div>
 	</div>
 {/if}
