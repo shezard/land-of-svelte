@@ -10,6 +10,7 @@ export type Item = {
 	id: number;
 	type: 'door' | 'button' | 'ladder';
 	collision?: boolean;
+	direction?: number;
 	texture?: string;
 	x: number;
 	y: number;

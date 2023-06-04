@@ -64,7 +64,7 @@ export const scripts = [
 					levels.update((levels: Level[]) => {
 						const item = getItem(levels, 0, 0);
 						if (item) {
-							item.z = t;
+							item.z = t * 1.01;
 							item.collision = false;
 							levels = setItem(levels, item, 0, 0);
 						}

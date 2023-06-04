@@ -2,7 +2,6 @@
 	import * as T from '@threlte/core';
 	import * as THREE from 'three';
 
-	import Button from './Button.svelte';
 	import Box from './Box.svelte';
 
 	import { textures } from '$lib/textures';
@@ -23,7 +22,10 @@
 			});
 	};
 
-	$: closestWallDirection = getClosestWall($currentLevel, item.x, item.y);
+	$: closestWallDirection =
+		item.direction !== undefined
+			? item.direction
+			: getClosestWall($currentLevel, item.x, item.y);
 </script>
 
 {#if item.type == 'door'}
@@ -43,10 +45,14 @@
 {/if}
 
 {#if item.type == 'button'}
-	<Button
+	<Box
+		x={item.x + 0.45 * Math.cos(closestWallDirection)}
+		y={item.y + 0.45 * Math.sin(closestWallDirection)}
+		wx={0.025 + Math.abs(0.025 * Math.sin(closestWallDirection))}
+		wy={0.025 + Math.abs(0.025 * Math.cos(closestWallDirection))}
+		wz={0.05}
 		on:click={handleClick(item)}
-		position={[item.x, item.y]}
-		direction={closestWallDirection}
+		interactive
 	/>
 {/if}
 

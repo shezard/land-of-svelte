@@ -58,7 +58,8 @@
 			"type": "button",
 			"collision": false,
 			"x": 1,
-			"y": 10
+			"y": 9,
+			"direction": 4.7123
 		},
 		{
 			"id": 2,

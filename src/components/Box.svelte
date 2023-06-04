@@ -16,6 +16,7 @@
 
 	export let receiveShadow = false;
 	export let castShadow = false;
+	export let interactive = false;
 </script>
 
 <T.Mesh
@@ -27,4 +28,6 @@
 	position={{ x: x, y: z, z: y }}
 	{receiveShadow}
 	{castShadow}
+	{interactive}
+	on:click
 />
