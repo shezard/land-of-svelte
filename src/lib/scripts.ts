@@ -55,7 +55,9 @@ export const scripts = [
 						const item = getItem(levels, 0, 0);
 						if (item) {
 							item.z = t * 1.01;
-							item.collision = false;
+							if (item.z > 1) {
+								item.collision = false;
+							}
 							levels = setItem(levels, item, 0, 0);
 						}
 						return levels;

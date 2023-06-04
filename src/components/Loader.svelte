@@ -8,17 +8,12 @@
 	const textureLoader = new THREE.TextureLoader();
 
 	let loadedTextureCount = 0;
-	const texturesToLoad = [
-		'ladder-0.png',
-		'door-0.png',
-		'floor-0.png',
-		'floor-1.png',
-		'wall-0.png',
-		'wall-1.png',
-		'wall-2.png',
-		'wall-3.png',
-		'wall-4.png'
-	];
+
+	const texturesToLoad = Object.keys(import.meta.glob('../../static/textures/*-*.png')).map(
+		(name) => {
+			return name.replace('../../static/textures/', '');
+		}
+	);
 
 	onMount(() => {
 		texturesToLoad.map((texture) => {
