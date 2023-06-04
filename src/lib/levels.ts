@@ -8,10 +8,11 @@ export type Map2d = number[][];
 
 export type Item = {
 	id: number;
-	type: 'door' | 'button' | 'ladder';
+	type: 'door' | 'button' | 'ladder' | 'ai';
 	collision?: boolean;
 	direction?: number;
 	texture?: string;
+	color?: string;
 	x: number;
 	y: number;
 	z?: number;

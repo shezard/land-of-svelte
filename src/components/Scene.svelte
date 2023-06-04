@@ -12,6 +12,9 @@
 	import Map2d from './Map2d.svelte';
 	import Ceiling from './Ceiling.svelte';
 	import Item from './Item.svelte';
+	import { gameTick } from '$lib/game';
+
+	gameTick();
 </script>
 
 {#if $currentLevel.ceiling}

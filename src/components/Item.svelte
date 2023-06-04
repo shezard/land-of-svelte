@@ -66,3 +66,13 @@
 		castShadow
 	/>
 {/if}
+
+{#if item.type == 'ai'}
+	<Box
+		x={item.x}
+		y={item.y}
+		wx={Math.abs(Math.cos($position.t))}
+		wy={Math.abs(Math.sin($position.t))}
+		texture={item.texture}
+	/>
+{/if}
