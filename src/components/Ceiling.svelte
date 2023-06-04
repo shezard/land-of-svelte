@@ -4,6 +4,9 @@
 	import { currentLevel } from '$lib/levels';
 
 	export let texture: THREE.Texture;
+	texture.wrapS = THREE.RepeatWrapping;
+	texture.wrapT = THREE.RepeatWrapping;
+	texture.repeat.set($currentLevel.width, $currentLevel.height);
 </script>
 
 <T.Mesh

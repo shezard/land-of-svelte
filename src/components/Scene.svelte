@@ -22,17 +22,13 @@
 			<T.AmbientLight color={0xddffff} intensity={0.5} />
 		{/if}
 
+		<Floor texture={$textures['floor-' + $currentLevel.ceiling + '.png']} />
+
 		<Map2d map2d={$currentLevel.collisionMap} let:x let:y let:item>
 			{#if item == 1}
 				<Wall
 					position={[x, y]}
 					texture={$textures['wall-' + $currentLevel.textureMap[x][y] + '.png']}
-				/>
-			{/if}
-			{#if item == 0}
-				<Floor
-					position={[x, y]}
-					texture={$textures['floor-' + $currentLevel.textureMap[x][y] + '.png']}
 				/>
 			{/if}
 		</Map2d>

@@ -1,6 +1,7 @@
 {
 	"width": 12,
 	"height": 12,
+	"floor": 0,
 	"ceiling": 1,
 	"collisionMap": [
 		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
