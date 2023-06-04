@@ -2,6 +2,8 @@ import { writable } from 'svelte/store';
 
 type GameState = 'loading' | 'menu' | 'running';
 
+type RunningState = 'fresh' | 'continue';
+
 const createGame = () => {
 	const { subscribe, set, update } = writable<GameState>('loading');
 
@@ -21,3 +23,5 @@ const createGame = () => {
 };
 
 export const game = createGame();
+
+export const running = writable<RunningState>('fresh');

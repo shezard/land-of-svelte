@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { game } from '$lib/game';
+	import { game, running } from '$lib/game';
 	import { currentLevelNumber, currentLevel, levels } from '$lib/levels';
 	import { position } from '$lib/player';
 	import { scripts } from '$lib/scripts';
@@ -18,7 +18,7 @@
 	};
 
 	const keyUp = (e: KeyboardEvent) => {
-		if (e.key === 'Escape') {
+		if (e.key === 'Escape' && $running === 'continue') {
 			game.toggleMenu();
 		}
 	};

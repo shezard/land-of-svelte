@@ -25,7 +25,7 @@
 			const loadedTexture = textureLoader.load('textures/' + texture, () => {
 				loadedTextureCount++;
 				if (loadedTextureCount === texturesToLoad.length) {
-					game.set('running');
+					game.set('menu');
 				}
 			});
 			loadedTexture.magFilter = THREE.NearestFilter;
