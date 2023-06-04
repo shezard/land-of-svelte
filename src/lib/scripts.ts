@@ -70,7 +70,7 @@ export const scripts = [
 						}
 						return levels;
 					});
-				}, 1000);
+				}, 1);
 			}
 		},
 		{
