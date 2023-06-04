@@ -20,6 +20,7 @@ export type Item = {
 export type Level = {
 	width: number;
 	height: number;
+	floor: number;
 	ceiling?: number;
 	collisionMap: Map2d;
 	textureMap: Map2d;
