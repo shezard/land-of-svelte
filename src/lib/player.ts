@@ -1,4 +1,4 @@
-import { writable, type Writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 import type { Level, Item } from './levels';
 
 export type PlayerPosition = { x: number; y: number; t: number };

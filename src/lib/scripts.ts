@@ -2,12 +2,6 @@ import type { Writable } from 'svelte/store';
 import type { Item, Level } from './levels';
 import type { PlayerPosition } from './player';
 
-const removeItem = function (items: Item[], itemId: number): Item[] {
-	return items.filter((item) => {
-		return item.id != itemId;
-	});
-};
-
 const getItem = function (levels: Level[], levelId: number, itemId: number): Item | null {
 	const items = levels[levelId].items;
 
@@ -55,11 +49,7 @@ export const scripts = [
 		{
 			itemId: 1,
 			action: 'click',
-			doAction: (
-				levels: Writable<Level[]>,
-				currentLevelNumber: Writable<number>,
-				playerPosition: Writable<PlayerPosition>
-			) => {
+			doAction: (levels: Writable<Level[]>) => {
 				animate((t) => {
 					levels.update((levels: Level[]) => {
 						const item = getItem(levels, 0, 0);
@@ -80,9 +70,13 @@ export const scripts = [
 			doAction: (
 				levels: Writable<Level[]>,
 				currentLevelNumber: Writable<number>,
-				playerPosition: Writable<PlayerPosition>
+				position: Writable<PlayerPosition>
 			) => {
 				currentLevelNumber.set(1);
+				position.update((position: PlayerPosition) => {
+					position.t = Math.PI / 2;
+					return position;
+				});
 			}
 		}
 	]
