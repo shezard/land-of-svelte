@@ -1,7 +1,12 @@
 import { writable } from 'svelte/store';
-import type { Level, Item } from './levels';
+import type { Item } from './levels';
+import type { Level } from './Level';
 
-export type PlayerPosition = { x: number; y: number; t: number };
+export interface PlayerPosition {
+	x: number;
+	y: number;
+	t: number;
+}
 
 const hasCollision = (items: Item[], x: number, y: number): boolean => {
 	let collide = false;

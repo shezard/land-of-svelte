@@ -1,13 +1,13 @@
 import { writable } from 'svelte/store';
 
-type Keyboard = {
+interface Keyboard {
 	forward: string;
 	backward: string;
 	left: string;
 	right: string;
 	rotateLeft: string;
 	rotateRight: string;
-};
+}
 
 export const keyboard = writable<Keyboard>({
 	forward: 'z',

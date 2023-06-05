@@ -4,9 +4,9 @@
 	import { game } from '$lib/game';
 
 	import Scene from './Scene.svelte';
-	import MainMenu from './MainMenu.svelte';
-	import ControlMenu from './ControlMenu.svelte';
-	import Loader from './Loader.svelte';
+	import MainMenu from './Menu/Main.svelte';
+	import ControlMenu from './Menu/Control.svelte';
+	import Loader from './Menu/Loader.svelte';
 </script>
 
 {#if $game == 'loading'}

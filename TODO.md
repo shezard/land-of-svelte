@@ -1,4 +1,4 @@
 # TODO
 
--   Better setItem / getItem / overall level encapsulation
+-   Fix Eslint errors
 -   improve level switching (preload other level)

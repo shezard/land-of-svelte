@@ -1,8 +1,6 @@
 import { writable } from 'svelte/store';
 
-type TextureMap = {
-	[index: string]: THREE.Texture;
-};
+type TextureMap = Record<string, THREE.Texture>;
 
 const createTextures = () => {
 	const { subscribe, set, update } = writable<TextureMap>({});

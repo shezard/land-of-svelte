@@ -1,8 +1,7 @@
 import { writable } from 'svelte/store';
-import { levels, type Level, currentLevelNumber } from './levels';
-import { makeAstar } from './grid';
+import { levels, currentLevelNumber } from './levels';
 import { position, type PlayerPosition } from './player';
-import { setItem } from './helpers';
+import type { Level } from './Level';
 
 type GameState = 'loading' | 'mainMenu' | 'controlMenu' | 'running';
 
@@ -27,29 +26,7 @@ const advance = () => {
 
 	levels.update((levels: Level[]) => {
 		const $currentLevel = levels[$currentLevelNumber];
-		const grid = makeAstar($currentLevel);
-
-		$currentLevel.items
-			.filter((item) => {
-				return item.type === 'ai';
-			})
-			.map((item) => {
-				const nextPosition = grid.search(
-					[item.x, item.y],
-					[$playerPosition.x, $playerPosition.y],
-					{
-						rightAngle: true
-					}
-				);
-
-				if (nextPosition && nextPosition.length > 2) {
-					item.x = nextPosition[1][0];
-					item.y = nextPosition[1][1];
-
-					levels = setItem(levels, item, $currentLevelNumber, item.id);
-				}
-			});
-
+		levels[$currentLevelNumber] = $currentLevel.advance($playerPosition);
 		return levels;
 	});
 };

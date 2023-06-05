@@ -32,7 +32,7 @@
 	<T.Mesh
 		geometry={new THREE.BoxGeometry()}
 		material={new THREE.MeshLambertMaterial({
-			map: $textures[item.texture + '.png']
+			map: $textures[`${item.texture}.png`]
 		})}
 		position={{
 			x: item.x,

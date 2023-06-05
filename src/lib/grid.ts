@@ -1,6 +1,5 @@
 import { Grid, Astar } from 'fast-astar';
-
-import type { Level } from './levels';
+import type { Level } from './Level';
 
 export const makeAstar = (currentLevel: Level) => {
 	const grid = new Grid({

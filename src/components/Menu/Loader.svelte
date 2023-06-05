@@ -9,9 +9,9 @@
 
 	let loadedTextureCount = 0;
 
-	const texturesToLoad = Object.keys(import.meta.glob('../../static/textures/*-*.png')).map(
+	const texturesToLoad = Object.keys(import.meta.glob('../../../static/textures/*-*.png')).map(
 		(name) => {
-			return name.replace('../../static/textures/', '');
+			return name.replace('../../../static/textures/', '');
 		}
 	);
 
