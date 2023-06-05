@@ -1,31 +1,7 @@
 import type { Writable } from 'svelte/store';
-import type { Item, Level } from './levels';
+import type { Level } from './levels';
 import type { PlayerPosition } from './player';
-
-const getItem = function (levels: Level[], levelId: number, itemId: number): Item | null {
-	const items = levels[levelId].items;
-
-	let itemFound = null;
-	items.forEach((item) => {
-		if (item.id === itemId) {
-			itemFound = item;
-		}
-	});
-
-	return itemFound;
-};
-
-const setItem = function (levels: Level[], item: Item, levelId: number, itemId: number): Level[] {
-	const items = levels[levelId].items;
-
-	items.forEach((oldItem) => {
-		if (oldItem.id === itemId) {
-			oldItem = item;
-		}
-	});
-
-	return levels;
-};
+import { getItem, setItem } from './helpers';
 
 const animate = (cb: (t: number) => void, duration: number) => {
 	let t = 0;
