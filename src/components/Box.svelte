@@ -2,9 +2,7 @@
 	import * as THREE from 'three';
 	import * as T from '@threlte/core';
 
-	import { textures } from '$lib/textures';
-
-	export let texture: string;
+	export let texture: THREE.Texture | null;
 
 	export let x = 0;
 	export let y = 0;
@@ -22,7 +20,7 @@
 <T.Mesh
 	geometry={new THREE.BoxGeometry(wx, wz, wy)}
 	material={new THREE.MeshLambertMaterial({
-		map: $textures[texture + '.png'],
+		map: texture,
 		transparent: true
 	})}
 	position={{ x: x, y: z, z: y }}

@@ -54,6 +54,7 @@
 		wy={0.025 + Math.abs(0.025 * Math.cos(closestWallDirection))}
 		wz={0.05}
 		on:click={handleClick(item)}
+		{texture}
 		interactive
 	/>
 {/if}
@@ -64,7 +65,7 @@
 		y={item.y + Math.sin(closestWallDirection) * 0.5}
 		wx={0.1 + Math.abs(0.2 * Math.sin(closestWallDirection))}
 		wy={0.1 + Math.abs(0.2 * Math.cos(closestWallDirection))}
-		texture={item.texture}
+		{texture}
 		castShadow
 	/>
 {/if}
@@ -75,6 +76,6 @@
 		y={item.y}
 		wx={Math.abs(Math.cos($position.t))}
 		wy={Math.abs(Math.sin($position.t))}
-		texture={item.texture}
+		{texture}
 	/>
 {/if}
