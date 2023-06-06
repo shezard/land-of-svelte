@@ -1,6 +1,17 @@
 import { makeAstar } from './grid';
 import type { Item, Map2d } from './levels';
-import type { PlayerPosition } from './player';
+import type { OrientedPosition } from './player';
+
+export interface LevelProp {
+	width: number;
+	height: number;
+	floor: number;
+	collisionMap: Map2d;
+	textureMap: Map2d;
+	lightMap: Map2d;
+	items: Item[];
+	ceiling: number | undefined;
+}
 
 export class Level {
 	width: number;
@@ -12,7 +23,7 @@ export class Level {
 	items: Item[];
 	ceiling: number | undefined;
 
-	constructor(level: Level) {
+	constructor(level: LevelProp) {
 		this.width = level.width;
 		this.height = level.height;
 		this.floor = level.floor;
@@ -23,7 +34,7 @@ export class Level {
 		this.ceiling = level.ceiling;
 	}
 
-	advance($playerPosition: PlayerPosition): this {
+	advance($playerPosition: OrientedPosition): this {
 		const grid = makeAstar(this);
 
 		this.items

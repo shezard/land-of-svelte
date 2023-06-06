@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import type { Item } from './levels';
 import type { Level } from './Level';
 
-export interface PlayerPosition {
+export interface OrientedPosition {
 	x: number;
 	y: number;
 	t: number;
@@ -19,7 +19,7 @@ const hasCollision = (items: Item[], x: number, y: number): boolean => {
 };
 
 const createPosition = () => {
-	const { subscribe, set, update } = writable<PlayerPosition>({ x: 2, y: 10, t: 0 });
+	const { subscribe, set, update } = writable<OrientedPosition>({ x: 2, y: 10, t: 0 });
 
 	return {
 		subscribe,

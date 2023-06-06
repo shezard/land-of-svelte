@@ -2,7 +2,7 @@ import { derived, writable } from 'svelte/store';
 
 import level0 from '$lib/maps/level-0.json';
 import level1 from '$lib/maps/level-1.json';
-import { Level } from './Level';
+import { Level, type LevelProp } from './Level';
 
 export type Position2d = [number, number];
 export type Map2d = number[][];
@@ -19,17 +19,6 @@ export interface Item {
 	z?: number;
 }
 
-// export type Level = {
-// 	width: number;
-// 	height: number;
-// 	floor: number;
-// 	ceiling?: number;
-// 	collisionMap: Map2d;
-// 	textureMap: Map2d;
-// 	lightMap: Map2d;
-// 	items: Item[];
-// };
-
 const swapXY = function (width: number, height: number, map: Map2d): Map2d {
 	const swappedMap = [] as Map2d;
 	for (let y = 0; y < height; y++) {
@@ -43,12 +32,14 @@ const swapXY = function (width: number, height: number, map: Map2d): Map2d {
 	return swappedMap;
 };
 
-const swappedLevels = [new Level(level0), new Level(level1)].map((level) => {
-	level.collisionMap = swapXY(level.width, level.height, level.collisionMap);
-	level.textureMap = swapXY(level.width, level.height, level.textureMap);
-	level.lightMap = swapXY(level.width, level.height, level.lightMap);
-	return level;
-});
+const swappedLevels = [new Level(level0 as LevelProp), new Level(level1 as LevelProp)].map(
+	(level) => {
+		level.collisionMap = swapXY(level.width, level.height, level.collisionMap);
+		level.textureMap = swapXY(level.width, level.height, level.textureMap);
+		level.lightMap = swapXY(level.width, level.height, level.lightMap);
+		return level;
+	}
+);
 
 export const levels = writable<Level[]>(swappedLevels);
 

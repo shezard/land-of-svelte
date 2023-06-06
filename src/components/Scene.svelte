@@ -15,10 +15,6 @@
 	import { gameTick } from '$lib/game';
 
 	gameTick();
-
-	const { renderer } = T.useThrelte();
-
-	console.log(renderer);
 </script>
 
 {#if $currentLevel.ceiling}

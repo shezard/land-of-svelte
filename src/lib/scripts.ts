@@ -1,6 +1,6 @@
 import type { Writable } from 'svelte/store';
 import type { Level } from './Level';
-import type { PlayerPosition } from './player';
+import type { OrientedPosition } from './player';
 
 const animate = (cb: (t: number) => void, duration: number) => {
 	let t = 0;
@@ -48,10 +48,10 @@ export const scripts = [
 			doAction: (
 				levels: Writable<Level[]>,
 				currentLevelNumber: Writable<number>,
-				position: Writable<PlayerPosition>
+				position: Writable<OrientedPosition>
 			) => {
 				currentLevelNumber.set(1);
-				position.update((position: PlayerPosition) => {
+				position.update((position: OrientedPosition) => {
 					position.t = Math.PI / 2;
 					return position;
 				});
@@ -66,10 +66,10 @@ export const scripts = [
 			doAction: (
 				levels: Writable<Level[]>,
 				currentLevelNumber: Writable<number>,
-				position: Writable<PlayerPosition>
+				position: Writable<OrientedPosition>
 			) => {
 				currentLevelNumber.set(0);
-				position.update((position: PlayerPosition) => {
+				position.update((position: OrientedPosition) => {
 					position.t = Math.PI / 2;
 					return position;
 				});

@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { levels, currentLevelNumber } from './levels';
-import { position, type PlayerPosition } from './player';
+import { position, type OrientedPosition } from './player';
 import type { Level } from './Level';
 
 type GameState = 'loading' | 'mainMenu' | 'controlMenu' | 'running';
@@ -12,7 +12,7 @@ export const game = writable<GameState>('loading');
 export const running = writable<RunningState>('fresh');
 
 const advance = () => {
-	let $playerPosition: PlayerPosition;
+	let $playerPosition: OrientedPosition;
 
 	position.subscribe((playerPosition) => {
 		$playerPosition = playerPosition;
