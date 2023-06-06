@@ -26,13 +26,15 @@
 		item.direction !== undefined
 			? item.direction
 			: getClosestWall($currentLevel, item.x, item.y);
+
+	let texture = item.texture ? $textures[`${item.texture}.png`] : null;
 </script>
 
 {#if item.type == 'door'}
 	<T.Mesh
 		geometry={new THREE.BoxGeometry()}
 		material={new THREE.MeshLambertMaterial({
-			map: $textures[`${item.texture}.png`]
+			map: texture
 		})}
 		position={{
 			x: item.x,

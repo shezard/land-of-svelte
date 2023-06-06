@@ -27,7 +27,7 @@
 			</div>
 		{/if}
 		<div class="absolute z-0 w-full h-full">
-			<Canvas>
+			<Canvas rendererParameters={{ antialias: false }}>
 				<Scene />
 			</Canvas>
 		</div>

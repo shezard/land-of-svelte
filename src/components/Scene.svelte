@@ -15,6 +15,10 @@
 	import { gameTick } from '$lib/game';
 
 	gameTick();
+
+	const { renderer } = T.useThrelte();
+
+	console.log(renderer);
 </script>
 
 {#if $currentLevel.ceiling}
@@ -27,13 +31,16 @@
 
 <Map2d map2d={$currentLevel.collisionMap} let:x let:y let:item>
 	{#if item == 1}
-		<Wall position={[x, y]} texture={$textures[`wall-${$currentLevel.textureMap[x][y]}.png`]} />
+		<Wall
+			position={[x, y]}
+			texture={$textures[`wall-${$currentLevel.textureMap[Number(x)][Number(y)]}.png`]}
+		/>
 	{/if}
 </Map2d>
 
 <Map2d map2d={$currentLevel.lightMap} let:x let:y let:item>
 	{#if item}
-		<Torch position={[x, y]} direction={getClosestWall($currentLevel, x, y)} />
+		<Torch position={[x, y]} direction={getClosestWall($currentLevel, Number(x), Number(y))} />
 	{/if}
 </Map2d>
 

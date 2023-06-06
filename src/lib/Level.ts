@@ -39,7 +39,7 @@ export class Level {
 					}
 				);
 
-				if (nextPosition && nextPosition.length > 2) {
+				if (nextPosition !== undefined && nextPosition.length > 2) {
 					item.x = nextPosition[1][0];
 					item.y = nextPosition[1][1];
 
