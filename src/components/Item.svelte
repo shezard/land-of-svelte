@@ -8,6 +8,7 @@
 	import { getClosestWall } from '$lib/helpers';
 	import { scripts } from '$lib/scripts';
 	import { currentLevel, store } from '$lib/store';
+	import type { Item } from '..';
 
 	export let item: Item;
 

@@ -1,10 +1,23 @@
-type GameState = 'loading' | 'mainMenu' | 'controlMenu' | 'running';
-type RunningState = 'fresh' | 'continue';
+import type { Level } from '$lib/Level';
+import type { Player } from '$lib/Player';
 
-type Position2d = [number, number];
-type Map2d = number[][];
+export type GameState = GameState;
+export type RunningState = 'fresh' | 'continue';
 
-interface LevelProp {
+export type Position2d = [number, number];
+export type Map2d = number[][];
+
+export interface Store {
+	game: {
+		state: 'loading' | 'mainMenu' | 'controlMenu' | 'running';
+		running: 'fresh' | 'continue';
+	};
+	levels: Level[];
+	currentLevelNumber: number;
+	player: Player;
+}
+
+export interface LevelProp {
 	width: number;
 	height: number;
 	floor: number;
@@ -15,7 +28,7 @@ interface LevelProp {
 	ceiling: number | undefined;
 }
 
-interface Item {
+export interface Item {
 	id: number;
 	type: 'door' | 'button' | 'ladder' | 'ai';
 	collision?: boolean;
@@ -28,13 +41,13 @@ interface Item {
 	z?: number;
 }
 
-interface OrientedPosition {
+export interface OrientedPosition {
 	x: number;
 	y: number;
 	t: number;
 }
 
-interface Stats {
+export interface Stats {
 	hp: number;
 	ac: number;
 	hit: number;

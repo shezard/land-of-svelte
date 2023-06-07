@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { game, running } from '$lib/game';
 	import { keyboard } from '$lib/keyboard';
-	import { currentLevel, store, type Store } from '$lib/store';
+	import { currentLevel, store } from '$lib/store';
 	import { scripts } from '$lib/scripts';
 	import Game from '../components/Game.svelte';
+	import type { Store } from '..';
 
 	const doWalk = () => {
 		scripts[$store.currentLevelNumber]

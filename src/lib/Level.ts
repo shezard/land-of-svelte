@@ -1,3 +1,4 @@
+import type { Item, LevelProp, Map2d, OrientedPosition, Stats } from '..';
 import { makeAstar } from './grid';
 
 export class Level {

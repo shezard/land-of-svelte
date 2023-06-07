@@ -1,5 +1,5 @@
 import type { Writable } from 'svelte/store';
-import type { Store } from './store';
+import type { Store } from '..';
 
 const animate = (cb: (t: number) => void, duration: number) => {
 	let t = 0;

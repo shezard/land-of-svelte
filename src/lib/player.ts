@@ -1,3 +1,4 @@
+import type { Item, OrientedPosition, Stats } from '..';
 import type { Level } from './Level';
 
 const hasCollision = (items: Item[], x: number, y: number): boolean => {

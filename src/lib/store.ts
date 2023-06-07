@@ -5,16 +5,7 @@ import level1 from '$lib/maps/level-1.json';
 
 import { Level } from './Level';
 import { Player } from './Player';
-
-export interface Store {
-	game: {
-		state: 'loading' | 'mainMenu' | 'controlMenu' | 'running';
-		running: 'fresh' | 'continue';
-	};
-	levels: Level[];
-	currentLevelNumber: number;
-	player: Player;
-}
+import type { LevelProp, Map2d, Store } from '..';
 
 const swapXY = function (width: number, height: number, map: Map2d): Map2d {
 	const swappedMap = [] as Map2d;

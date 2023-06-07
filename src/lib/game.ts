@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
-import { store, type Store } from './store';
+import { store } from './store';
+import type { Store, GameState, RunningState } from '..';
 
 export const game = writable<GameState>('loading');
 export const running = writable<RunningState>('fresh');

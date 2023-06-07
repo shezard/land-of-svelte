@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Map2d } from '..';
+
 	export let map2d: Map2d;
 </script>
 
