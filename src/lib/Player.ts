@@ -1,16 +1,6 @@
 import type { Item, OrientedPosition, Stats } from '..';
 import type { Level } from './Level';
 
-const hasCollision = (items: Item[], x: number, y: number): boolean => {
-	let collide = false;
-	items.forEach((item) => {
-		if (item.collision && item.x == x && item.y == y) {
-			collide = true;
-		}
-	});
-	return collide;
-};
-
 export class Player {
 	position: OrientedPosition;
 	stats: Stats;
@@ -25,8 +15,7 @@ export class Player {
 		const offsetY = Math.round(-Math.cos(this.position.t));
 
 		if (
-			level.collisionMap[this.position.x + offsetX][this.position.y + offsetY] ||
-			hasCollision(level.items, this.position.x + offsetX, this.position.y + offsetY)
+			this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)
 		) {
 			return;
 		}
@@ -40,8 +29,7 @@ export class Player {
 		const offsetY = Math.round(+Math.cos(this.position.t));
 
 		if (
-			level.collisionMap[this.position.x + offsetX][this.position.y + offsetY] ||
-			hasCollision(level.items, this.position.x + offsetX, this.position.y + offsetY)
+			this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)
 		) {
 			return;
 		}
@@ -55,8 +43,7 @@ export class Player {
 		const offsetY = Math.round(-Math.sin(this.position.t));
 
 		if (
-			level.collisionMap[this.position.x + offsetX][this.position.y + offsetY] ||
-			hasCollision(level.items, this.position.x + offsetX, this.position.y + offsetY)
+			this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)
 		) {
 			return;
 		}
@@ -69,8 +56,7 @@ export class Player {
 		const offsetX = Math.round(+Math.cos(this.position.t));
 		const offsetY = Math.round(+Math.sin(this.position.t));
 		if (
-			level.collisionMap[this.position.x + offsetX][this.position.y + offsetY] ||
-			hasCollision(level.items, this.position.x + offsetX, this.position.y + offsetY)
+			this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)
 		) {
 			return;
 		}
@@ -86,4 +72,20 @@ export class Player {
 	rotateRight() {
 		this.position.t += Math.PI / 2;
 	}
+
+    hasCollision (level: Level, x: number, y: number): boolean {
+
+        if(level.collisionMap[x][y]) {
+            return true;
+        }
+
+        let collide = false;
+        level.items.forEach((item) => {
+            if (item.collision && item.x == x && item.y == y) {
+                collide = true;
+            }
+        });
+
+        return collide;
+    };
 }

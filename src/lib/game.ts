@@ -8,10 +8,7 @@ export const running = writable<RunningState>('fresh');
 const advance = () => {
 	store.update((store: Store) => {
 		const $currentLevel = store.levels[store.currentLevelNumber];
-		store.levels[store.currentLevelNumber] = $currentLevel.advance(
-			store.player.position,
-			store.player.stats
-		);
+		store.levels[store.currentLevelNumber] = $currentLevel.advance(store);
 		return store;
 	});
 };

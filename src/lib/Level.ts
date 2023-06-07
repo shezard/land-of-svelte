@@ -1,4 +1,4 @@
-import type { Item, LevelProp, Map2d, OrientedPosition, Stats } from '..';
+import type { Item, LevelProp, Map2d, Store } from '..';
 import { makeAstar } from './grid';
 
 export class Level {
@@ -22,7 +22,7 @@ export class Level {
 		this.ceiling = level.ceiling;
 	}
 
-	advance($playerPosition: OrientedPosition, $playerStats: Stats): this {
+	advance(store: Store): this {
 		const grid = makeAstar(this);
 
 		this.items
@@ -32,7 +32,7 @@ export class Level {
 			.map((item) => {
 				const nextPosition = grid.search(
 					[item.x, item.y],
-					[$playerPosition.x, $playerPosition.y],
+					[store.player.position.x, store.player.position.y],
 					{
 						rightAngle: true
 					}
@@ -46,7 +46,7 @@ export class Level {
 				}
 
 				if (nextPosition !== undefined && nextPosition.length == 2) {
-					console.log('attack', $playerStats, item.stats);
+					console.log('attack', store.player.stats, item.stats);
 				}
 			});
 
