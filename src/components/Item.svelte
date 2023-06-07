@@ -6,9 +6,8 @@
 
 	import { textures } from '$lib/textures';
 	import { getClosestWall } from '$lib/helpers';
-	import { currentLevel } from '$lib/levels';
 	import { scripts } from '$lib/scripts';
-	import { store } from '$lib/store';
+	import { currentLevel, store } from '$lib/store';
 
 	export let item: Item;
 

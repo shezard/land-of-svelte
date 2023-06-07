@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import * as T from '@threlte/core';
-	import { currentLevel } from '$lib/levels';
+	import { currentLevel } from '$lib/store';
 
 	export let texture: THREE.Texture;
 	texture.wrapS = THREE.RepeatWrapping;

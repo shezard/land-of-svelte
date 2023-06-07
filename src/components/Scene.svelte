@@ -2,7 +2,6 @@
 	import * as T from '@threlte/core';
 
 	import { textures } from '$lib/textures';
-	import { currentLevel } from '$lib/levels';
 	import { getClosestWall } from '$lib/helpers';
 
 	import Wall from './Wall.svelte';
@@ -12,7 +11,7 @@
 	import Ceiling from './Ceiling.svelte';
 	import Item from './Item.svelte';
 	import { gameTick } from '$lib/game';
-	import { store } from '$lib/store';
+	import { currentLevel, store } from '$lib/store';
 
 	gameTick();
 </script>

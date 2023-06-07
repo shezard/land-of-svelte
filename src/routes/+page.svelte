@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { game, running } from '$lib/game';
 	import { keyboard } from '$lib/keyboard';
-	import { currentLevel } from '$lib/levels';
-	import { store, type Store } from '$lib/store';
+	import { currentLevel, store, type Store } from '$lib/store';
 	import { scripts } from '$lib/scripts';
 	import Game from '../components/Game.svelte';
 

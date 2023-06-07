@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 
 import level0 from '$lib/maps/level-0.json';
 import level1 from '$lib/maps/level-1.json';
@@ -60,3 +60,7 @@ const createStore = () => {
 };
 
 export const store = createStore();
+
+export const currentLevel = derived(store, (store) => {
+	return store.levels[store.currentLevelNumber];
+});
