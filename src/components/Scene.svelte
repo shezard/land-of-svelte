@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as T from '@threlte/core';
 
-	import { position } from '$lib/player';
 	import { textures } from '$lib/textures';
 	import { currentLevel } from '$lib/levels';
 	import { getClosestWall } from '$lib/helpers';
@@ -13,6 +12,7 @@
 	import Ceiling from './Ceiling.svelte';
 	import Item from './Item.svelte';
 	import { gameTick } from '$lib/game';
+	import { store } from '$lib/store';
 
 	gameTick();
 </script>
@@ -46,21 +46,21 @@
 
 <T.PerspectiveCamera
 	position={{
-		x: $position.x - Math.sin($position.t) * 0.5,
+		x: $store.player.position.x - Math.sin($store.player.position.t) * 0.5,
 		y: 0,
-		z: $position.y + Math.cos($position.t) * 0.5
+		z: $store.player.position.y + Math.cos($store.player.position.t) * 0.5
 	}}
 	lookAt={{
-		x: $position.x + Math.sin($position.t),
+		x: $store.player.position.x + Math.sin($store.player.position.t),
 		y: 0,
-		z: $position.y - Math.cos($position.t)
+		z: $store.player.position.y - Math.cos($store.player.position.t)
 	}}
 >
 	<T.OrbitControls
 		target={{
-			x: $position.x,
+			x: $store.player.position.x,
 			y: 0,
-			z: $position.y
+			z: $store.player.position.y
 		}}
 	/>
 </T.PerspectiveCamera>

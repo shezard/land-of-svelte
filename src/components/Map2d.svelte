@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { Map2d } from '$lib/levels';
-
 	export let map2d: Map2d;
 </script>
 

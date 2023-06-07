@@ -1,17 +1,4 @@
 import { makeAstar } from './grid';
-import type { Item, Map2d } from './levels';
-import type { OrientedPosition, Stats } from './player';
-
-export interface LevelProp {
-	width: number;
-	height: number;
-	floor: number;
-	collisionMap: Map2d;
-	textureMap: Map2d;
-	lightMap: Map2d;
-	items: Item[];
-	ceiling: number | undefined;
-}
 
 export class Level {
 	width: number;

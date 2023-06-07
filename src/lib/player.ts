@@ -1,12 +1,4 @@
-import { writable } from 'svelte/store';
-import type { Item } from './levels';
 import type { Level } from './Level';
-
-export interface OrientedPosition {
-	x: number;
-	y: number;
-	t: number;
-}
 
 const hasCollision = (items: Item[], x: number, y: number): boolean => {
 	let collide = false;
@@ -18,88 +10,79 @@ const hasCollision = (items: Item[], x: number, y: number): boolean => {
 	return collide;
 };
 
-const createPosition = () => {
-	const { subscribe, set, update } = writable<OrientedPosition>({ x: 2, y: 10, t: 0 });
+export class Player {
+	position: OrientedPosition;
+	stats: Stats;
 
-	return {
-		subscribe,
-		set,
-		update,
-		moveForward: (level: Level) =>
-			update(({ x, y, t }) => {
-				const offsetX = Math.round(+Math.sin(t));
-				const offsetY = Math.round(-Math.cos(t));
+	constructor(position: OrientedPosition, stats: Stats) {
+		this.position = position;
+		this.stats = stats;
+	}
 
-				if (
-					level.collisionMap[x + offsetX][y + offsetY] ||
-					hasCollision(level.items, x + offsetX, y + offsetY)
-				) {
-					return { x, y, t };
-				}
-				return { x: x + offsetX, y: y + offsetY, t };
-			}),
-		moveBackward: (level: Level) =>
-			update(({ x, y, t }) => {
-				const offsetX = Math.round(-Math.sin(t));
-				const offsetY = Math.round(+Math.cos(t));
+	moveForward(level: Level) {
+		const offsetX = Math.round(+Math.sin(this.position.t));
+		const offsetY = Math.round(-Math.cos(this.position.t));
 
-				if (
-					level.collisionMap[x + offsetX][y + offsetY] ||
-					hasCollision(level.items, x + offsetX, y + offsetY)
-				) {
-					return { x, y, t };
-				}
-				return { x: x + offsetX, y: y + offsetY, t };
-			}),
-		moveLeft: (level: Level) =>
-			update(({ x, y, t }) => {
-				const offsetX = Math.round(-Math.cos(t));
-				const offsetY = Math.round(-Math.sin(t));
+		if (
+			level.collisionMap[this.position.x + offsetX][this.position.y + offsetY] ||
+			hasCollision(level.items, this.position.x + offsetX, this.position.y + offsetY)
+		) {
+			return;
+		}
 
-				if (
-					level.collisionMap[x + offsetX][y + offsetY] ||
-					hasCollision(level.items, x + offsetX, y + offsetY)
-				) {
-					return { x, y, t };
-				}
-				return { x: x + offsetX, y: y + offsetY, t };
-			}),
-		moveRight: (level: Level) =>
-			update(({ x, y, t }) => {
-				const offsetX = Math.round(+Math.cos(t));
-				const offsetY = Math.round(+Math.sin(t));
+		this.position.x += offsetX;
+		this.position.y += offsetY;
+	}
 
-				if (
-					level.collisionMap[x + offsetX][y + offsetY] ||
-					hasCollision(level.items, x + offsetX, y + offsetY)
-				) {
-					return { x, y, t };
-				}
-				return { x: x + offsetX, y: y + offsetY, t };
-			}),
-		rotateLeft: () =>
-			update(({ x, y, t }) => {
-				t -= Math.PI / 2;
-				return { x, y, t };
-			}),
-		rotateRight: () =>
-			update(({ x, y, t }) => {
-				t += Math.PI / 2;
-				return { x, y, t };
-			})
-	};
-};
+	moveBackward(level: Level) {
+		const offsetX = Math.round(-Math.sin(this.position.t));
+		const offsetY = Math.round(+Math.cos(this.position.t));
 
-export const position = createPosition();
+		if (
+			level.collisionMap[this.position.x + offsetX][this.position.y + offsetY] ||
+			hasCollision(level.items, this.position.x + offsetX, this.position.y + offsetY)
+		) {
+			return;
+		}
 
-export interface Stats {
-	hp: number;
-	hit: number;
-	ac: number;
+		this.position.x += offsetX;
+		this.position.y += offsetY;
+	}
+
+	moveLeft(level: Level) {
+		const offsetX = Math.round(-Math.cos(this.position.t));
+		const offsetY = Math.round(-Math.sin(this.position.t));
+
+		if (
+			level.collisionMap[this.position.x + offsetX][this.position.y + offsetY] ||
+			hasCollision(level.items, this.position.x + offsetX, this.position.y + offsetY)
+		) {
+			return;
+		}
+
+		this.position.x += offsetX;
+		this.position.y += offsetY;
+	}
+
+	moveRight(level: Level) {
+		const offsetX = Math.round(+Math.cos(this.position.t));
+		const offsetY = Math.round(+Math.sin(this.position.t));
+		if (
+			level.collisionMap[this.position.x + offsetX][this.position.y + offsetY] ||
+			hasCollision(level.items, this.position.x + offsetX, this.position.y + offsetY)
+		) {
+			return;
+		}
+
+		this.position.x += offsetX;
+		this.position.y += offsetY;
+	}
+
+	rotateLeft() {
+		this.position.t -= Math.PI / 2;
+	}
+
+	rotateRight() {
+		this.position.t += Math.PI / 2;
+	}
 }
-
-export const stats = writable<Stats>({
-	hp: 10,
-	hit: 5,
-	ac: 12
-});

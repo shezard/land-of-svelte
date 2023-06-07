@@ -2,8 +2,6 @@
 	import * as THREE from 'three';
 	import * as T from '@threlte/core';
 
-	import type { Position2d } from '$lib/levels';
-
 	export let position: Position2d;
 
 	export let direction = Math.PI / 2;

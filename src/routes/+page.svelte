@@ -1,20 +1,22 @@
 <script lang="ts">
 	import { game, running } from '$lib/game';
 	import { keyboard } from '$lib/keyboard';
-	import { currentLevelNumber, currentLevel, levels } from '$lib/levels';
-	import { position } from '$lib/player';
+	import { currentLevel } from '$lib/levels';
+	import { store, type Store } from '$lib/store';
 	import { scripts } from '$lib/scripts';
 	import Game from '../components/Game.svelte';
 
 	const doWalk = () => {
-		scripts[$currentLevelNumber]
+		scripts[$store.currentLevelNumber]
 			.filter((script) => {
 				return (
-					script.action === 'walk' && script.x === $position.x && script.y === $position.y
+					script.action === 'walk' &&
+					script.x === $store.player.position.x &&
+					script.y === $store.player.position.y
 				);
 			})
 			.map((script) => {
-				script.doAction(levels, currentLevelNumber, position);
+				script.doAction(store);
 			});
 	};
 
@@ -40,26 +42,44 @@
 		}
 
 		if (e.key === $keyboard.forward) {
-			position.moveForward($currentLevel);
+			store.update((store: Store) => {
+				store.player.moveForward($currentLevel);
+				return store;
+			});
 			doWalk();
 		}
 		if (e.key === $keyboard.left) {
-			position.moveLeft($currentLevel);
+			store.update((store: Store) => {
+				store.player.moveLeft($currentLevel);
+				return store;
+			});
 			doWalk();
 		}
 		if (e.key === $keyboard.backward) {
-			position.moveBackward($currentLevel);
+			store.update((store: Store) => {
+				store.player.moveBackward($currentLevel);
+				return store;
+			});
 			doWalk();
 		}
 		if (e.key === $keyboard.right) {
-			position.moveRight($currentLevel);
+			store.update((store: Store) => {
+				store.player.moveRight($currentLevel);
+				return store;
+			});
 			doWalk();
 		}
 		if (e.key === $keyboard.rotateLeft) {
-			position.rotateLeft();
+			store.update((store: Store) => {
+				store.player.rotateLeft();
+				return store;
+			});
 		}
 		if (e.key === $keyboard.rotateRight) {
-			position.rotateRight();
+			store.update((store: Store) => {
+				store.player.rotateRight();
+				return store;
+			});
 		}
 	};
 </script>

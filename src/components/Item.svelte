@@ -6,19 +6,19 @@
 
 	import { textures } from '$lib/textures';
 	import { getClosestWall } from '$lib/helpers';
-	import { currentLevel, currentLevelNumber, levels, type Item } from '$lib/levels';
+	import { currentLevel } from '$lib/levels';
 	import { scripts } from '$lib/scripts';
-	import { position } from '$lib/player';
+	import { store } from '$lib/store';
 
 	export let item: Item;
 
 	const handleClick = (item: Item) => () => {
-		scripts[$currentLevelNumber]
+		scripts[$store.currentLevelNumber]
 			.filter((scripts) => {
 				return scripts.itemId === item.id && scripts.action === 'click';
 			})
 			.map((script) => {
-				script.doAction(levels, currentLevelNumber, position);
+				script.doAction(store);
 			});
 	};
 
@@ -74,8 +74,8 @@
 	<Box
 		x={item.x}
 		y={item.y}
-		wx={Math.abs(Math.cos($position.t))}
-		wy={Math.abs(Math.sin($position.t))}
+		wx={Math.abs(Math.cos($store.player.position.t))}
+		wy={Math.abs(Math.sin($store.player.position.t))}
 		{texture}
 	/>
 {/if}

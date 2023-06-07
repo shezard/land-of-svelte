@@ -1,39 +1,17 @@
 import { writable } from 'svelte/store';
-import { levels, currentLevelNumber } from './levels';
-import { position, type OrientedPosition, type Stats, stats } from './player';
-import type { Level } from './Level';
-
-type GameState = 'loading' | 'mainMenu' | 'controlMenu' | 'running';
-
-type RunningState = 'fresh' | 'continue';
+import { store, type Store } from './store';
 
 export const game = writable<GameState>('loading');
-
 export const running = writable<RunningState>('fresh');
 
 const advance = () => {
-	let $playerPosition: OrientedPosition;
-
-	position.subscribe((playerPosition) => {
-		$playerPosition = playerPosition;
-	});
-
-	let $playerStats: Stats;
-
-	stats.subscribe((playerStats) => {
-		$playerStats = playerStats;
-	});
-
-	let $currentLevelNumber: number;
-
-	currentLevelNumber.subscribe((currentLevelNumber) => {
-		$currentLevelNumber = currentLevelNumber;
-	});
-
-	levels.update((levels: Level[]) => {
-		const $currentLevel = levels[$currentLevelNumber];
-		levels[$currentLevelNumber] = $currentLevel.advance($playerPosition, $playerStats);
-		return levels;
+	store.update((store: Store) => {
+		const $currentLevel = store.levels[store.currentLevelNumber];
+		store.levels[store.currentLevelNumber] = $currentLevel.advance(
+			store.player.position,
+			store.player.stats
+		);
+		return store;
 	});
 };
 
