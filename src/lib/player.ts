@@ -91,3 +91,15 @@ const createPosition = () => {
 };
 
 export const position = createPosition();
+
+export interface Stats {
+	hp: number;
+	hit: number;
+	ac: number;
+}
+
+export const stats = writable<Stats>({
+	hp: 10,
+	hit: 5,
+	ac: 12
+});

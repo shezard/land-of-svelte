@@ -1,6 +1,6 @@
 import { makeAstar } from './grid';
 import type { Item, Map2d } from './levels';
-import type { OrientedPosition } from './player';
+import type { OrientedPosition, Stats } from './player';
 
 export interface LevelProp {
 	width: number;
@@ -34,7 +34,7 @@ export class Level {
 		this.ceiling = level.ceiling;
 	}
 
-	advance($playerPosition: OrientedPosition): this {
+	advance($playerPosition: OrientedPosition, $playerStats: Stats): this {
 		const grid = makeAstar(this);
 
 		this.items
@@ -55,6 +55,10 @@ export class Level {
 					item.y = nextPosition[1][1];
 
 					this.replaceItem(item);
+				}
+
+				if (nextPosition !== undefined && nextPosition.length == 2) {
+					console.log('attack', $playerStats, item.stats);
 				}
 			});
 

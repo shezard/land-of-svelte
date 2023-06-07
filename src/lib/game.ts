@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { levels, currentLevelNumber } from './levels';
-import { position, type OrientedPosition } from './player';
+import { position, type OrientedPosition, type Stats, stats } from './player';
 import type { Level } from './Level';
 
 type GameState = 'loading' | 'mainMenu' | 'controlMenu' | 'running';
@@ -18,6 +18,12 @@ const advance = () => {
 		$playerPosition = playerPosition;
 	});
 
+	let $playerStats: Stats;
+
+	stats.subscribe((playerStats) => {
+		$playerStats = playerStats;
+	});
+
 	let $currentLevelNumber: number;
 
 	currentLevelNumber.subscribe((currentLevelNumber) => {
@@ -26,7 +32,7 @@ const advance = () => {
 
 	levels.update((levels: Level[]) => {
 		const $currentLevel = levels[$currentLevelNumber];
-		levels[$currentLevelNumber] = $currentLevel.advance($playerPosition);
+		levels[$currentLevelNumber] = $currentLevel.advance($playerPosition, $playerStats);
 		return levels;
 	});
 };

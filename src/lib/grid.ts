@@ -16,7 +16,7 @@ export const makeAstar = (currentLevel: Level) => {
 	}
 
 	currentLevel.items.map((item) => {
-		grid.set([item.x, item.y], 'value', Number(item.collision));
+		grid.set([item.x, item.y], 'value', Number(item.collision) as 0 | 1);
 	});
 
 	return new Astar(grid);
