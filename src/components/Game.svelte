@@ -7,6 +7,7 @@
 	import MainMenu from './Menu/Main.svelte';
 	import ControlMenu from './Menu/Control.svelte';
 	import Loader from './Menu/Loader.svelte';
+	import UI from './UI.svelte';
 </script>
 
 {#if $game == 'loading'}
@@ -25,6 +26,8 @@
 					{/if}
 				</div>
 			</div>
+		{:else}
+			<UI />
 		{/if}
 		<div class="absolute z-0 w-full h-full">
 			<Canvas rendererParameters={{ antialias: false }}>

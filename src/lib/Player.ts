@@ -1,4 +1,4 @@
-import type { Item, OrientedPosition, Stats } from '..';
+import type { OrientedPosition, Stats } from '..';
 import type { Level } from './Level';
 
 export class Player {
@@ -14,9 +14,7 @@ export class Player {
 		const offsetX = Math.round(+Math.sin(this.position.t));
 		const offsetY = Math.round(-Math.cos(this.position.t));
 
-		if (
-			this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)
-		) {
+		if (this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)) {
 			return;
 		}
 
@@ -28,9 +26,7 @@ export class Player {
 		const offsetX = Math.round(-Math.sin(this.position.t));
 		const offsetY = Math.round(+Math.cos(this.position.t));
 
-		if (
-			this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)
-		) {
+		if (this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)) {
 			return;
 		}
 
@@ -42,9 +38,7 @@ export class Player {
 		const offsetX = Math.round(-Math.cos(this.position.t));
 		const offsetY = Math.round(-Math.sin(this.position.t));
 
-		if (
-			this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)
-		) {
+		if (this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)) {
 			return;
 		}
 
@@ -55,9 +49,7 @@ export class Player {
 	moveRight(level: Level) {
 		const offsetX = Math.round(+Math.cos(this.position.t));
 		const offsetY = Math.round(+Math.sin(this.position.t));
-		if (
-			this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)
-		) {
+		if (this.hasCollision(level, this.position.x + offsetX, this.position.y + offsetY)) {
 			return;
 		}
 
@@ -73,19 +65,18 @@ export class Player {
 		this.position.t += Math.PI / 2;
 	}
 
-    hasCollision (level: Level, x: number, y: number): boolean {
+	hasCollision(level: Level, x: number, y: number): boolean {
+		if (level.collisionMap[x][y]) {
+			return true;
+		}
 
-        if(level.collisionMap[x][y]) {
-            return true;
-        }
+		let collide = false;
+		level.items.forEach((item) => {
+			if (item.collision && item.x == x && item.y == y) {
+				collide = true;
+			}
+		});
 
-        let collide = false;
-        level.items.forEach((item) => {
-            if (item.collision && item.x == x && item.y == y) {
-                collide = true;
-            }
-        });
-
-        return collide;
-    };
+		return collide;
+	}
 }

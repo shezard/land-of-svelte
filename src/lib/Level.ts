@@ -1,4 +1,5 @@
 import type { Item, LevelProp, Map2d, Store } from '..';
+import { fight } from './fight';
 import { makeAstar } from './grid';
 
 export class Level {
@@ -22,7 +23,7 @@ export class Level {
 		this.ceiling = level.ceiling;
 	}
 
-	advance(store: Store): this {
+	advance(store: Store): Store {
 		const grid = makeAstar(this);
 
 		this.items
@@ -46,11 +47,13 @@ export class Level {
 				}
 
 				if (nextPosition !== undefined && nextPosition.length == 2) {
-					console.log('attack', store.player.stats, item.stats);
+					store.player.stats = fight(item.stats, store.player.stats);
 				}
 			});
 
-		return this;
+		store.levels[store.currentLevelNumber] = this;
+
+		return store;
 	}
 
 	getItem(itemId: number): Item | null {
