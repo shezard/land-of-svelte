@@ -5,7 +5,8 @@ export const fight = function (
 	emitter: Stats,
 	receiver: Stats,
 	onMiss: () => void,
-	onDamage: (damage: number) => void
+	onDamage: (damage: number) => void,
+	onDeath: () => void
 ): Stats {
 	const newStats: Stats = { ...receiver };
 
@@ -22,6 +23,10 @@ export const fight = function (
 		newStats.hp -= damage;
 		onDamage(damage);
 	}
+
+    if(newStats.hp <= 0) {
+        onDeath();
+    }
 
 	return newStats;
 };

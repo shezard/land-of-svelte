@@ -64,17 +64,17 @@ export class Level {
 							logs.push(`You took ${damage} dmg`);
 							return logs;
 						});
-					}
+					},
+                    () => {
+                        logs.update((logs) => {
+                            logs.push('Death!');
+                            return logs;
+                        });
+                        store.game.running = 'gameOver';
+                    }
 				);
-				if (newPlayerStats.hp >= 0) {
-					store.player.stats = newPlayerStats;
-				} else {
-					logs.update((logs) => {
-						logs.push('Death!');
-						return logs;
-					});
-					store.game.running = 'gameOver';
-				}
+
+				store.player.stats = newPlayerStats;
 			}
 		});
 
