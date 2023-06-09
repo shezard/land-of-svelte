@@ -1,10 +1,20 @@
 <script lang="ts">
 	import { lastLogs } from '$lib/logs';
 	import { store } from '$lib/store';
+
+	const attack = () => {
+		$store.player.attack();
+	};
 </script>
 
 <div class="grid absolute w-full h-[100px] z-10 bottom-0 border-4 border-dark">
 	<div class="border-4 border-light text-2xl flex">
+		<div
+			class="sprite w-[100px] h-[100px] cursor-pointer"
+			on:click={attack}
+			on:keypress={attack}
+		/>
+		<div class="w-20" />
 		<div>
 			AC : {$store.player.stats.ac} <br />
 			Hit : {$store.player.stats.hit} <br />
@@ -39,5 +49,12 @@
 
 	.logs {
 		background-color: #9a9a8e;
+	}
+
+	.sprite {
+		background: url('textures/swords.png') top left no-repeat;
+		background-position: 0px 0px;
+		background-size: 500px;
+		image-rendering: pixelated;
 	}
 </style>

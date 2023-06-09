@@ -30,6 +30,18 @@ export class Level {
 		}) as AI[];
 	}
 
+	getAiAt(x: number, y: number): AI | undefined {
+		return this.getAis().find((ai: AI) => {
+			return ai.x === x && ai.y === y;
+		});
+	}
+
+	removeAiAt(x: number, y: number): void {
+		this.items = this.items.filter((item: Item) => {
+			return !(item.x === x && item.y === y && item.type === 'ai');
+		});
+	}
+
 	advance(store: Store): Store {
 		const grid = makeAstar(this);
 
@@ -55,7 +67,7 @@ export class Level {
 					store.player.stats,
 					() => {
 						logs.update((logs) => {
-							logs.push(`You dodge a hit`);
+							logs.push(`You dodged a hit`);
 							return logs;
 						});
 					},
@@ -65,13 +77,13 @@ export class Level {
 							return logs;
 						});
 					},
-                    () => {
-                        logs.update((logs) => {
-                            logs.push('Death!');
-                            return logs;
-                        });
-                        store.game.running = 'gameOver';
-                    }
+					() => {
+						logs.update((logs) => {
+							logs.push('Death!');
+							return logs;
+						});
+						store.game.running = 'gameOver';
+					}
 				);
 
 				store.player.stats = newPlayerStats;

@@ -68,3 +68,8 @@ export interface Stats {
 	pArmor: number;
 	pAttack: number;
 }
+
+export interface Inventory {
+	mainHand: null | 'sword';
+	offHand: null;
+}

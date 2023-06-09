@@ -1,13 +1,18 @@
-import type { OrientedPosition, Stats } from '..';
+import type { Inventory, OrientedPosition, Stats, Store } from '..';
 import type { Level } from './Level';
+import { fight } from './fight';
+import { logs } from './logs';
+import { store } from './store';
 
 export class Player {
 	position: OrientedPosition;
 	stats: Stats;
+	inventory: Inventory;
 
-	constructor(position: OrientedPosition, stats: Stats) {
+	constructor(position: OrientedPosition, stats: Stats, inventory: Inventory) {
 		this.position = position;
 		this.stats = stats;
+		this.inventory = inventory;
 	}
 
 	moveForward(level: Level) {
@@ -78,5 +83,53 @@ export class Player {
 		});
 
 		return collide;
+	}
+
+	attack(): void {
+		const offsetX = Math.round(+Math.sin(this.position.t));
+		const offsetY = Math.round(-Math.cos(this.position.t));
+
+		store.update((store: Store) => {
+			const ai = store.levels[store.currentLevelNumber].getAiAt(
+				this.position.x + offsetX,
+				this.position.y + offsetY
+			);
+			if (!ai) {
+				return store;
+			}
+			const newAiStats = fight(
+				store.player.stats,
+				ai.stats,
+				() => {
+					logs.update((logs) => {
+						logs.push(`You missed a hit`);
+						return logs;
+					});
+				},
+				(damage) => {
+					logs.update((logs) => {
+						logs.push(`You hit for ${damage} dmg`);
+						return logs;
+					});
+				},
+				() => {
+					logs.update((logs) => {
+						logs.push('You killed an ennemy');
+						return logs;
+					});
+				}
+			);
+
+			ai.stats = newAiStats;
+
+			if (ai.stats.hp === 0) {
+				store.levels[store.currentLevelNumber].removeAiAt(
+					this.position.x + offsetX,
+					this.position.y + offsetY
+				);
+			}
+
+			return store;
+		});
 	}
 }

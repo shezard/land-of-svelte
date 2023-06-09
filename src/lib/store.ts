@@ -45,6 +45,10 @@ const createStore = () => {
 				hit: 0,
 				pArmor: 0,
 				pAttack: 1
+			},
+			{
+				mainHand: 'sword',
+				offHand: null
 			}
 		)
 	});

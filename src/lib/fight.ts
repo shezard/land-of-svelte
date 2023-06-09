@@ -24,9 +24,9 @@ export const fight = function (
 		onDamage(damage);
 	}
 
-    if(newStats.hp <= 0) {
-        onDeath();
-    }
+	if (newStats.hp <= 0) {
+		onDeath();
+	}
 
 	return newStats;
 };
