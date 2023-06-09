@@ -50,7 +50,22 @@ export class Level {
 			}
 
 			if (nextPosition !== undefined && nextPosition.length == 2) {
-				const newPlayerStats = fight(item.stats, store.player.stats);
+				const newPlayerStats = fight(
+					item.stats,
+					store.player.stats,
+					() => {
+						logs.update((logs) => {
+							logs.push(`You dodge a hit`);
+							return logs;
+						});
+					},
+					(damage) => {
+						logs.update((logs) => {
+							logs.push(`You took ${damage} dmg`);
+							return logs;
+						});
+					}
+				);
 				if (newPlayerStats.hp >= 0) {
 					store.player.stats = newPlayerStats;
 				} else {

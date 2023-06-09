@@ -77,7 +77,14 @@
 			"collision": true,
 			"texture": "orc-1",
 			"x": 2,
-			"y": 5
+			"y": 5,
+			"stats": {
+				"hp": 5,
+				"ac": 0,
+				"hit": 0,
+				"pArmor": 0,
+				"pAttack": 1
+			}
 		}
 	]
 }

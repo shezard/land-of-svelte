@@ -41,8 +41,10 @@ const createStore = () => {
 			{ x: 2, y: 10, t: 0 },
 			{
 				hp: 10,
-				hit: 5,
-				ac: 12
+				ac: 3,
+				hit: 0,
+				pArmor: 0,
+				pAttack: 1
 			}
 		)
 	});

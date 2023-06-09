@@ -65,4 +65,6 @@ export interface Stats {
 	hp: number;
 	ac: number;
 	hit: number;
+	pArmor: number;
+	pAttack: number;
 }
