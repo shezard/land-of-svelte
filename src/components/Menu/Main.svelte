@@ -1,20 +1,27 @@
-<script>
-	import { game, running } from '$lib/game';
+<script lang="ts">
+	import { store } from '$lib/store';
+	import type { Store } from '../..';
 
 	const runGame = () => {
-		game.set('running');
-		running.set('continue');
+		store.update((store: Store) => {
+			store.game.state = 'running';
+			store.game.running = 'continue';
+			return store;
+		});
 	};
 
 	const showControlMenu = () => {
-		game.set('controlMenu');
+		store.update((store: Store) => {
+			store.game.state = 'controlMenu';
+			return store;
+		});
 	};
 </script>
 
 <div class="text-3xl text-white">Land Of Svelte</div>
 
 <div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
-	{#if $running === 'fresh'}
+	{#if $store.game.running === 'fresh'}
 		New Game
 	{:else}
 		Continue

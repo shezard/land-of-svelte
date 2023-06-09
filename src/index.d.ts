@@ -10,7 +10,7 @@ export type Map2d = number[][];
 export interface Store {
 	game: {
 		state: 'loading' | 'mainMenu' | 'controlMenu' | 'running';
-		running: 'fresh' | 'continue';
+		running: 'fresh' | 'continue' | 'gameOver';
 	};
 	levels: Level[];
 	currentLevelNumber: number;
@@ -28,18 +28,32 @@ export interface LevelProp {
 	ceiling: number | undefined;
 }
 
-export interface Item {
+export interface Doodad {
 	id: number;
-	type: 'door' | 'button' | 'ladder' | 'ai';
+	type: 'door' | 'button' | 'ladder';
 	collision?: boolean;
 	direction?: number;
 	texture?: string;
 	color?: string;
-	stats?: Stats;
 	x: number;
 	y: number;
 	z?: number;
 }
+
+export interface AI {
+	id: number;
+	type: 'ai';
+	collision?: boolean;
+	direction?: number;
+	texture?: string;
+	color?: string;
+	stats: Stats;
+	x: number;
+	y: number;
+	z?: number;
+}
+
+export type Item = Doodad | AI;
 
 export interface OrientedPosition {
 	x: number;

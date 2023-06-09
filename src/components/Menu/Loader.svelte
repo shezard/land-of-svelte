@@ -2,8 +2,9 @@
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
 
-	import { game } from '$lib/game';
+	import { store } from '$lib/store';
 	import { textures } from '$lib/textures';
+	import type { Store } from '../..';
 
 	const textureLoader = new THREE.TextureLoader();
 
@@ -20,7 +21,10 @@
 			const loadedTexture = textureLoader.load('textures/' + texture, () => {
 				loadedTextureCount++;
 				if (loadedTextureCount === texturesToLoad.length) {
-					game.set('mainMenu');
+					store.update((store: Store) => {
+						store.game.state = 'mainMenu';
+						return store;
+					});
 				}
 			});
 			loadedTexture.magFilter = THREE.NearestFilter;

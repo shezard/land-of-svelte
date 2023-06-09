@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { game, running } from '$lib/game';
 	import { keyboard } from '$lib/keyboard';
 	import { currentLevel, store } from '$lib/store';
 	import { scripts } from '$lib/scripts';
@@ -25,19 +24,31 @@
 			return;
 		}
 
-		if (($running === 'continue' && $game === 'running') || $game === 'controlMenu') {
-			game.set('mainMenu');
+		if (
+			($store.game.running === 'continue' && $store.game.state === 'running') ||
+			$store.game.state === 'controlMenu'
+		) {
+			store.update((store: Store) => {
+				store.game.state = 'mainMenu';
+				return store;
+			});
 			return;
 		}
 
-		if ($running === 'continue' && $game === 'mainMenu') {
-			game.set('running');
+		if (
+			($store.game.running === 'continue' || $store.game.running === 'gameOver') &&
+			$store.game.state === 'mainMenu'
+		) {
+			store.update((store: Store) => {
+				store.game.state = 'running';
+				return store;
+			});
 			return;
 		}
 	};
 
 	const keyPress = (e: KeyboardEvent) => {
-		if ($game !== 'running') {
+		if ($store.game.state !== 'running' || $store.game.running === 'gameOver') {
 			return;
 		}
 

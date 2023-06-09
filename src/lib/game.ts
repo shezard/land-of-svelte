@@ -1,15 +1,13 @@
-import { writable } from 'svelte/store';
 import { store } from './store';
-import type { Store, GameState, RunningState } from '..';
-
-export const game = writable<GameState>('loading');
-export const running = writable<RunningState>('fresh');
+import type { Store } from '..';
 
 const advance = () => {
 	store.update((store: Store) => {
 		const $currentLevel = store.levels[store.currentLevelNumber];
 
-		store = $currentLevel.advance(store);
+		if (store.game.running !== 'gameOver') {
+			store = $currentLevel.advance(store);
+		}
 
 		return store;
 	});
