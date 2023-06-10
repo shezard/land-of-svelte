@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { lastLogs } from '$lib/logs';
-	import { store } from '$lib/store';
+	import { lastLogs } from '$stores/logs';
+	import { store } from '$stores/store';
 
 	const attack = () => {
 		$store.player.attack();

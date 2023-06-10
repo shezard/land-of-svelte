@@ -1,4 +1,4 @@
-import { store } from './store';
+import { store } from '$stores/store';
 import type { Store } from '..';
 
 const advance = () => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { store } from '$lib/store';
+	import { store } from '$stores/store';
 	import type { Store } from '../..';
 
 	const runGame = () => {
@@ -21,7 +21,7 @@
 <div class="text-3xl text-white">Land Of Svelte</div>
 
 <div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
-	{#if $store.game.running === 'fresh'}
+	{#if $store.game.running === 'newGame'}
 		New Game
 	{:else}
 		Continue

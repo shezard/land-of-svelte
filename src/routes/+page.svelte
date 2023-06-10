@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { keyboard } from '$lib/keyboard';
-	import { currentLevel, store } from '$lib/store';
+	import { keyboard } from '$stores/keyboard';
+	import { currentLevel, store } from '$stores/store';
 	import { scripts } from '$lib/scripts';
 	import Game from '../components/Game.svelte';
 	import type { Store } from '..';

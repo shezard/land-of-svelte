@@ -1,8 +1,8 @@
 import type { Inventory, OrientedPosition, Stats, Store, Item } from '..';
 import type { Level } from './Level';
 import { fight } from './fight';
-import { logs } from './logs';
-import { store } from './store';
+import { logs } from '$stores/logs';
+import { store } from '$stores/store';
 
 export class Player {
 	position: OrientedPosition;

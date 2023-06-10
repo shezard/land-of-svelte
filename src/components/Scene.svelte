@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as T from '@threlte/core';
 
-	import { textures } from '$lib/textures';
+	import { textures } from '$stores/textures';
 	import { getClosestWall } from '$lib/helpers';
 
 	import Wall from './Wall.svelte';
@@ -11,7 +11,7 @@
 	import Ceiling from './Ceiling.svelte';
 	import Script from './Script.svelte';
 	import { gameTick } from '$lib/game';
-	import { currentLevel, store } from '$lib/store';
+	import { currentLevel, store } from '$stores/store';
 
 	gameTick();
 </script>

@@ -1,7 +1,7 @@
 import type { AI, Script, LevelProp, Map2d, Store } from '..';
 import { fight } from './fight';
 import { makeAstar } from './grid';
-import { logs } from './logs';
+import { logs } from '$stores/logs';
 
 export class Level {
 	width: number;

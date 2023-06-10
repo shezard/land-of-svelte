@@ -1,16 +1,13 @@
 import type { Level } from '$lib/Level';
 import type { Player } from '$lib/Player';
 
-export type GameState = GameState;
-export type RunningState = 'fresh' | 'continue';
-
 export type Position2d = [number, number];
 export type Map2d = number[][];
 
 export interface Store {
 	game: {
 		state: 'loading' | 'mainMenu' | 'controlMenu' | 'running';
-		running: 'fresh' | 'continue' | 'gameOver';
+		running: 'newGame' | 'continue' | 'gameOver';
 	};
 	levels: Level[];
 	currentLevelNumber: number;
@@ -25,7 +22,7 @@ export interface LevelProp {
 	textureMap: Map2d;
 	lightMap: Map2d;
 	scripts: Script[];
-	ceiling: number | undefined;
+	ceiling?: number | undefined;
 }
 
 export interface Doodad {

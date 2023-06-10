@@ -3,10 +3,10 @@ import { derived, writable } from 'svelte/store';
 import level0 from '$lib/maps/level-0.json';
 import level1 from '$lib/maps/level-1.json';
 
-import { Level } from './Level';
-import { Player } from './Player';
+import { Level } from '../lib/Level';
+import { Player } from '../lib/Player';
 import type { LevelProp, Map2d, Store } from '..';
-import { makeItem } from './Item';
+import { makeItem } from '../lib/Item';
 
 const swapXY = function (width: number, height: number, map: Map2d): Map2d {
 	const swappedMap = [] as Map2d;
@@ -34,7 +34,7 @@ const createStore = () => {
 	const store = writable<Store>({
 		game: {
 			state: 'loading',
-			running: 'fresh'
+			running: 'newGame'
 		},
 		levels: swappedLevels,
 		currentLevelNumber: 0,

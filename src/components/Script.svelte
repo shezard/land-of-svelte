@@ -4,10 +4,10 @@
 
 	import Box from './Box.svelte';
 
-	import { textures } from '$lib/textures';
+	import { textures } from '$stores/textures';
 	import { getClosestWall } from '$lib/helpers';
 	import { scripts } from '$lib/scripts';
-	import { currentLevel, store } from '$lib/store';
+	import { currentLevel, store } from '$stores/store';
 	import type { Script } from '..';
 
 	export let script: Script;

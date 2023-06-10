@@ -2,8 +2,8 @@
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
 
-	import { store } from '$lib/store';
-	import { textures } from '$lib/textures';
+	import { store } from '$stores/store';
+	import { textures } from '$stores/textures';
 	import type { Store } from '../..';
 
 	const textureLoader = new THREE.TextureLoader();

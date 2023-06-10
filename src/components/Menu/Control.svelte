@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { keyboard } from '$lib/keyboard';
+	import { keyboard } from '$stores/keyboard';
 </script>
 
 <div class="text-3xl text-white">Controls</div>

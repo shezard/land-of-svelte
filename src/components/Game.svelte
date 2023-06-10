@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Canvas } from '@threlte/core';
 
-	import { store } from '$lib/store';
+	import { store } from '$stores/store';
 
 	import Scene from './Scene.svelte';
 	import MainMenu from './Menu/Main.svelte';
