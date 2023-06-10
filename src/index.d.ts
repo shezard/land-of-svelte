@@ -67,7 +67,7 @@ export interface Stats {
 }
 
 export interface Inventory {
-	mainHand: null | Item;
+	mainHand: Item;
 	offHand: null;
 }
 
@@ -75,4 +75,6 @@ export interface Item {
 	name: 'sword';
 	texture: string;
 	stats: Stats;
+    cooldown: number;
+    lastAttackTimestamp: number;
 }

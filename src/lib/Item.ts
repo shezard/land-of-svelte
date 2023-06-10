@@ -10,6 +10,8 @@ export const makeItem = function (weaponName: string): Item {
 			hit: 0,
 			pAttack: 1,
 			pDefense: 0
-		}
+		},
+        cooldown: 1,
+        lastAttackTimestamp: 0,
 	};
 };

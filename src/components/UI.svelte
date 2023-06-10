@@ -11,8 +11,8 @@
 
 <div class="grid absolute w-full h-[100px] z-10 bottom-0 border-4 border-dark">
 	<div class="border-4 border-light text-2xl flex">
-		<div
-			class="sprite w-[100px] h-[100px] cursor-pointer"
+		<button
+			class="sprite w-[80px] h-[80px] m-[10px] cursor-pointer border-4"
 			on:click={attack}
 			on:keypress={attack}
 		/>
@@ -41,7 +41,6 @@
 	}
 
 	.border-light {
-		padding-left: 4px;
 		box-sizing: border-box;
 		border-style: inset;
 		border-color: #9c6b65;
@@ -55,8 +54,13 @@
 
 	.sprite {
 		background: url('textures/swords.png') top left no-repeat;
-		background-position: 0px 0px;
-		background-size: 500px;
+		background-position: 2px 0px;
+		background-size: 360px;
 		image-rendering: pixelated;
+		border-color: #542b29;
 	}
+
+    .sprite:active {
+        background-color: #6f6f64;
+    }
 </style>
