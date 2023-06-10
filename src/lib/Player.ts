@@ -1,4 +1,4 @@
-import type { Inventory, OrientedPosition, Stats, Store } from '..';
+import type { Inventory, Item, OrientedPosition, Stats, Store, Weapon } from '..';
 import type { Level } from './Level';
 import { fight } from './fight';
 import { logs } from './logs';
@@ -98,7 +98,7 @@ export class Player {
 				return store;
 			}
 			const newAiStats = fight(
-				store.player.stats,
+				store.player.getInventoryStats(),
 				ai.stats,
 				() => {
 					logs.update((logs) => {
@@ -132,4 +132,25 @@ export class Player {
 			return store;
 		});
 	}
+
+    getInventoryStats() : Stats
+    {
+        return [this.inventory.mainHand].reduce(function(stats, item : Weapon|null) {
+            if(item) {
+                stats.hp += item.stats.hp;
+                stats.ac += item.stats.ac;
+                stats.hit += item.stats.hit;
+                stats.pAttack += item.stats.pAttack;
+                stats.pDefense += item.stats.pDefense;
+            }
+
+            return stats;
+        }, {
+			hp: 0,
+			ac: 0,
+			hit: 0,
+			pAttack: 0,
+			pDefense: 0
+        });
+    }
 }

@@ -17,7 +17,7 @@ export const fight = function (
 		return newStats;
 	}
 
-	const damage = emitter.pAttack - receiver.pArmor;
+	const damage = emitter.pAttack - receiver.pDefense;
 
 	if (damage > 0) {
 		newStats.hp -= damage;

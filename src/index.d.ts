@@ -65,11 +65,17 @@ export interface Stats {
 	hp: number;
 	ac: number;
 	hit: number;
-	pArmor: number;
+	pDefense: number;
 	pAttack: number;
 }
 
 export interface Inventory {
-	mainHand: null | 'sword';
+	mainHand: null | Weapon;
 	offHand: null;
+}
+
+export interface Weapon {
+	name: 'sword';
+	texture: string;
+	stats: Stats;
 }

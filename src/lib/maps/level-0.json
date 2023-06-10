@@ -82,7 +82,7 @@
 				"hp": 5,
 				"ac": 0,
 				"hit": 0,
-				"pArmor": 0,
+				"pDefense": 0,
 				"pAttack": 1
 			}
 		}

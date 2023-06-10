@@ -1,7 +1,7 @@
 # TODO
 
--   Add combat formula
--   Add combat logs
+-   Improve feedback when click on attack button
+-   Add weapon cooldown
 -   Add combat "animation"
 -   Display Hp as a health bar
--   Handle player death
+-   Better handling of game over

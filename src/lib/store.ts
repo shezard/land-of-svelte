@@ -6,6 +6,7 @@ import level1 from '$lib/maps/level-1.json';
 import { Level } from './Level';
 import { Player } from './Player';
 import type { LevelProp, Map2d, Store } from '..';
+import { makeItem } from './Item';
 
 const swapXY = function (width: number, height: number, map: Map2d): Map2d {
 	const swappedMap = [] as Map2d;
@@ -43,11 +44,11 @@ const createStore = () => {
 				hp: 10,
 				ac: 3,
 				hit: 0,
-				pArmor: 0,
-				pAttack: 1
+				pDefense: 0,
+				pAttack: 0
 			},
 			{
-				mainHand: 'sword',
+				mainHand: makeItem('sword'),
 				offHand: null
 			}
 		)
