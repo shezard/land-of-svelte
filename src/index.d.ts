@@ -24,7 +24,7 @@ export interface LevelProp {
 	collisionMap: Map2d;
 	textureMap: Map2d;
 	lightMap: Map2d;
-	items: Item[];
+	scripts: Script[];
 	ceiling: number | undefined;
 }
 
@@ -53,7 +53,7 @@ export interface AI {
 	z?: number;
 }
 
-export type Item = Doodad | AI;
+export type Script = Doodad | AI;
 
 export interface OrientedPosition {
 	x: number;
@@ -70,11 +70,11 @@ export interface Stats {
 }
 
 export interface Inventory {
-	mainHand: null | Weapon;
+	mainHand: null | Item;
 	offHand: null;
 }
 
-export interface Weapon {
+export interface Item {
 	name: 'sword';
 	texture: string;
 	stats: Stats;

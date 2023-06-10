@@ -1,4 +1,4 @@
-import type { Inventory, OrientedPosition, Stats, Store, Weapon } from '..';
+import type { Inventory, OrientedPosition, Stats, Store, Item } from '..';
 import type { Level } from './Level';
 import { fight } from './fight';
 import { logs } from './logs';
@@ -76,8 +76,8 @@ export class Player {
 		}
 
 		let collide = false;
-		level.items.forEach((item) => {
-			if (item.collision && item.x == x && item.y == y) {
+		level.scripts.forEach((script) => {
+			if (script.collision && script.x == x && script.y == y) {
 				collide = true;
 			}
 		});
@@ -133,18 +133,20 @@ export class Player {
 		});
 	}
 
-    getStats() : Stats
-    {
-        return [this.inventory.mainHand].reduce(function(stats, item : Weapon|null) {
-            if(item) {
-                stats.hp += item.stats.hp;
-                stats.ac += item.stats.ac;
-                stats.hit += item.stats.hit;
-                stats.pAttack += item.stats.pAttack;
-                stats.pDefense += item.stats.pDefense;
-            }
+	getStats(): Stats {
+		return [this.inventory.mainHand].reduce(
+			function (stats, item: Item | null) {
+				if (item) {
+					stats.hp += item.stats.hp;
+					stats.ac += item.stats.ac;
+					stats.hit += item.stats.hit;
+					stats.pAttack += item.stats.pAttack;
+					stats.pDefense += item.stats.pDefense;
+				}
 
-            return stats;
-        }, {...this.stats});
-    }
+				return stats;
+			},
+			{ ...this.stats }
+		);
+	}
 }

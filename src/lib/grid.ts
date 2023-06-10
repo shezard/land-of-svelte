@@ -15,8 +15,8 @@ export const makeAstar = (currentLevel: Level) => {
 		}
 	}
 
-	currentLevel.items.map((item) => {
-		grid.set([item.x, item.y], 'value', Number(item.collision) as 0 | 1);
+	currentLevel.scripts.map((script) => {
+		grid.set([script.x, script.y], 'value', Number(script.collision) as 0 | 1);
 	});
 
 	return new Astar(grid);

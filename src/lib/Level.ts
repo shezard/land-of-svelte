@@ -1,4 +1,4 @@
-import type { AI, Item, LevelProp, Map2d, Store } from '..';
+import type { AI, Script, LevelProp, Map2d, Store } from '..';
 import { fight } from './fight';
 import { makeAstar } from './grid';
 import { logs } from './logs';
@@ -10,7 +10,7 @@ export class Level {
 	collisionMap: Map2d;
 	textureMap: Map2d;
 	lightMap: Map2d;
-	items: Item[];
+	scripts: Script[];
 	ceiling: number | undefined;
 
 	constructor(level: LevelProp) {
@@ -20,12 +20,12 @@ export class Level {
 		this.collisionMap = level.collisionMap;
 		this.textureMap = level.textureMap;
 		this.lightMap = level.lightMap;
-		this.items = level.items;
+		this.scripts = level.scripts;
 		this.ceiling = level.ceiling;
 	}
 
 	getAis(): AI[] {
-		return this.items.filter((item) => {
+		return this.scripts.filter((item) => {
 			return item.type === 'ai';
 		}) as AI[];
 	}
@@ -37,17 +37,17 @@ export class Level {
 	}
 
 	removeAiAt(x: number, y: number): void {
-		this.items = this.items.filter((item: Item) => {
-			return !(item.x === x && item.y === y && item.type === 'ai');
+		this.scripts = this.scripts.filter((script: Script) => {
+			return !(script.x === x && script.y === y && script.type === 'ai');
 		});
 	}
 
 	advance(store: Store): Store {
 		const grid = makeAstar(this);
 
-		this.getAis().map((item) => {
+		this.getAis().map((ai) => {
 			const nextPosition = grid.search(
-				[item.x, item.y],
+				[ai.x, ai.y],
 				[store.player.position.x, store.player.position.y],
 				{
 					rightAngle: true
@@ -55,15 +55,15 @@ export class Level {
 			);
 
 			if (nextPosition !== undefined && nextPosition.length > 2) {
-				item.x = nextPosition[1][0];
-				item.y = nextPosition[1][1];
+				ai.x = nextPosition[1][0];
+				ai.y = nextPosition[1][1];
 
-				this.replaceItem(item);
+				this.replaceScript(ai);
 			}
 
 			if (nextPosition !== undefined && nextPosition.length == 2) {
 				const newPlayerStats = fight(
-					item.stats,
+					ai.stats,
 					store.player.stats,
 					() => {
 						logs.update((logs) => {
@@ -95,23 +95,23 @@ export class Level {
 		return store;
 	}
 
-	getItem(itemId: number): Item | null {
-		const items = this.items;
+	getScript(scriptId: number): Script | null {
+		const scripts = this.scripts;
 
-		let itemFound = null;
-		items.forEach((item) => {
-			if (item.id === itemId) {
-				itemFound = item;
+		let scriptFound = null;
+		scripts.forEach((script: Script) => {
+			if (script.id === scriptId) {
+				scriptFound = script;
 			}
 		});
 
-		return itemFound;
+		return scriptFound;
 	}
 
-	replaceItem(item: Item) {
-		this.items.forEach((oldItem) => {
-			if (oldItem.id === item.id) {
-				oldItem = item;
+	replaceScript(script: Script) {
+		this.scripts.forEach((oldScript) => {
+			if (oldScript.id === script.id) {
+				oldScript = script;
 			}
 		});
 	}

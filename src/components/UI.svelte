@@ -6,7 +6,7 @@
 		$store.player.attack();
 	};
 
-    let stats = $store.player.getStats();
+	$: stats = $store.player.getStats();
 </script>
 
 <div class="grid absolute w-full h-[100px] z-10 bottom-0 border-4 border-dark">

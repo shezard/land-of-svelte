@@ -5,18 +5,18 @@ import { animateToggleReverse } from './animation';
 export const scripts = [
 	[
 		{
-			itemId: 1,
+			scriptId: 1,
 			action: 'click',
 			doAction: animateToggleReverse((store: Writable<Store>, t: number) => {
 				store.update((store: Store) => {
-					const item = store.levels[0].getItem(0);
-					if (item) {
-						item.z = t * 1.01;
-						item.collision = true;
-						if (item.z > 1) {
-							item.collision = false;
+					const script = store.levels[0].getScript(0);
+					if (script) {
+						script.z = t * 1.01;
+						script.collision = true;
+						if (script.z > 1) {
+							script.collision = false;
 						}
-						store.levels[0].replaceItem(item);
+						store.levels[0].replaceScript(script);
 					}
 					return store;
 				});

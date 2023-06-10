@@ -1,6 +1,6 @@
-import type { Weapon } from '..';
+import type { Item } from '..';
 
-export const makeItem = function (weaponName: string): Weapon {
+export const makeItem = function (weaponName: string): Item {
 	return {
 		name: 'sword',
 		texture: 'sword.png',

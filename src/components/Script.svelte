@@ -8,14 +8,14 @@
 	import { getClosestWall } from '$lib/helpers';
 	import { scripts } from '$lib/scripts';
 	import { currentLevel, store } from '$lib/store';
-	import type { Item } from '..';
+	import type { Script } from '..';
 
-	export let item: Item;
+	export let script: Script;
 
-	const handleClick = (item: Item) => () => {
+	const handleClick = (script: Script) => () => {
 		scripts[$store.currentLevelNumber]
 			.filter((scripts) => {
-				return scripts.itemId === item.id && scripts.action === 'click';
+				return scripts.scriptId === script.id && scripts.action === 'click';
 			})
 			.map((script) => {
 				script.doAction(store);
@@ -23,46 +23,46 @@
 	};
 
 	$: closestWallDirection =
-		item.direction !== undefined
-			? item.direction
-			: getClosestWall($currentLevel, item.x, item.y);
+		script.direction !== undefined
+			? script.direction
+			: getClosestWall($currentLevel, script.x, script.y);
 
-	let texture = item.texture ? $textures[`${item.texture}.png`] : null;
+	let texture = script.texture ? $textures[`${script.texture}.png`] : null;
 </script>
 
-{#if item.type == 'door'}
+{#if script.type == 'door'}
 	<T.Mesh
 		geometry={new THREE.BoxGeometry()}
 		material={new THREE.MeshLambertMaterial({
 			map: texture
 		})}
 		position={{
-			x: item.x,
-			y: item.z ?? 0,
-			z: item.y
+			x: script.x,
+			y: script.z ?? 0,
+			z: script.y
 		}}
 		castShadow
 		receiveShadow
 	/>
 {/if}
 
-{#if item.type == 'button'}
+{#if script.type == 'button'}
 	<Box
-		x={item.x + 0.45 * Math.cos(closestWallDirection)}
-		y={item.y + 0.45 * Math.sin(closestWallDirection)}
+		x={script.x + 0.45 * Math.cos(closestWallDirection)}
+		y={script.y + 0.45 * Math.sin(closestWallDirection)}
 		wx={0.025 + Math.abs(0.025 * Math.sin(closestWallDirection))}
 		wy={0.025 + Math.abs(0.025 * Math.cos(closestWallDirection))}
 		wz={0.05}
-		on:click={handleClick(item)}
+		on:click={handleClick(script)}
 		{texture}
 		interactive
 	/>
 {/if}
 
-{#if item.type == 'ladder'}
+{#if script.type == 'ladder'}
 	<Box
-		x={item.x + Math.cos(closestWallDirection) * 0.5}
-		y={item.y + Math.sin(closestWallDirection) * 0.5}
+		x={script.x + Math.cos(closestWallDirection) * 0.5}
+		y={script.y + Math.sin(closestWallDirection) * 0.5}
 		wx={0.1 + Math.abs(0.2 * Math.sin(closestWallDirection))}
 		wy={0.1 + Math.abs(0.2 * Math.cos(closestWallDirection))}
 		{texture}
@@ -70,10 +70,10 @@
 	/>
 {/if}
 
-{#if item.type == 'ai'}
+{#if script.type == 'ai'}
 	<Box
-		x={item.x}
-		y={item.y}
+		x={script.x}
+		y={script.y}
 		wx={Math.abs(Math.cos($store.player.position.t))}
 		wy={Math.abs(Math.sin($store.player.position.t))}
 		{texture}

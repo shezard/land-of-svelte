@@ -9,7 +9,7 @@
 	import Torch from './Torch.svelte';
 	import Map2d from './Map2d.svelte';
 	import Ceiling from './Ceiling.svelte';
-	import Item from './Item.svelte';
+	import Script from './Script.svelte';
 	import { gameTick } from '$lib/game';
 	import { currentLevel, store } from '$lib/store';
 
@@ -39,8 +39,8 @@
 	{/if}
 </Map2d>
 
-{#each $currentLevel.items as item}
-	<Item {item} />
+{#each $currentLevel.scripts as script}
+	<Script {script} />
 {/each}
 
 <T.PerspectiveCamera
