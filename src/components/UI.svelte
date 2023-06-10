@@ -5,6 +5,8 @@
 	const attack = () => {
 		$store.player.attack();
 	};
+
+    let stats = $store.player.getStats();
 </script>
 
 <div class="grid absolute w-full h-[100px] z-10 bottom-0 border-4 border-dark">
@@ -16,9 +18,9 @@
 		/>
 		<div class="w-20" />
 		<div>
-			AC : {$store.player.stats.ac} <br />
-			Hit : {$store.player.stats.hit} <br />
-			HP : {$store.player.stats.hp} <br />
+			AC : {stats.ac} <br />
+			Hit : {stats.hit} <br />
+			HP : {stats.hp} <br />
 		</div>
 		<div class="w-20" />
 		<div class="logs">
