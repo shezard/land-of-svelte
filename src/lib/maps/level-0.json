@@ -80,10 +80,11 @@
 			"y": 5,
 			"stats": {
 				"hp": 5,
+				"maxHp": 5,
 				"ac": 0,
 				"hit": 0,
 				"pDefense": 0,
-				"pAttack": 1
+				"pAttack": 0
 			}
 		}
 	]

@@ -2,7 +2,8 @@
 	import * as THREE from 'three';
 	import * as T from '@threlte/core';
 
-	export let texture: THREE.Texture | null;
+	export let texture: THREE.Texture | undefined | null = undefined;
+	export let color: THREE.ColorRepresentation | undefined = undefined;
 
 	export let x = 0;
 	export let y = 0;
@@ -21,7 +22,8 @@
 	geometry={new THREE.BoxGeometry(wx, wz, wy)}
 	material={new THREE.MeshLambertMaterial({
 		map: texture,
-		transparent: true
+		transparent: true,
+		color
 	})}
 	position={{ x: x, y: z, z: y }}
 	{receiveShadow}

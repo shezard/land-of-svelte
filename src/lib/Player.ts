@@ -89,8 +89,6 @@ export class Player {
 		const offsetX = Math.round(+Math.sin(this.position.t));
 		const offsetY = Math.round(-Math.cos(this.position.t));
 
-		// handle weapon CD
-
 		store.update((store: Store) => {
 			const weapon = store.player.inventory.mainHand;
 
@@ -123,6 +121,7 @@ export class Player {
 						logs.push(`You hit for ${damage} dmg`);
 						return logs;
 					});
+					ai.color = 0xff0000;
 				},
 				() => {
 					logs.update((logs) => {
@@ -150,6 +149,7 @@ export class Player {
 			function (stats, item: Item | null) {
 				if (item) {
 					stats.hp += item.stats.hp;
+					stats.maxHp += item.stats.maxHp;
 					stats.ac += item.stats.ac;
 					stats.hit += item.stats.hit;
 					stats.pAttack += item.stats.pAttack;

@@ -77,5 +77,26 @@
 		wx={Math.abs(Math.cos($store.player.position.t))}
 		wy={Math.abs(Math.sin($store.player.position.t))}
 		{texture}
+		color={script.color}
 	/>
+
+    <Box
+        x={script.x}
+        y={script.y}
+        wx={Math.abs(Math.cos($store.player.position.t)) * 0.8}
+		wy={Math.abs(Math.sin($store.player.position.t)) * 0.8}
+        wz={0.05}
+        z={0.5}
+        color={0xff0000}
+    />
+
+    <Box
+        x={script.x - Math.abs(Math.cos($store.player.position.t)) * 0.5 + Math.abs(Math.cos($store.player.position.t)) * 0.8 * (1 - script.stats.hp /script.stats.maxHp)/2}
+        y={script.y - Math.abs(Math.sin($store.player.position.t)) * 0.5 + Math.abs(Math.sin($store.player.position.t)) * 0.8 * (1 - script.stats.hp / script.stats.maxHp)/2}
+        z={0.5}
+        wx={Math.abs(Math.cos($store.player.position.t)) * 0.8 * (1 - script.stats.hp /script.stats.maxHp)}
+		wy={Math.abs(Math.sin($store.player.position.t)) * 0.8 * (1 - script.stats.hp / script.stats.maxHp)}
+        wz={0.05}
+        color={0x000000}
+    />
 {/if}

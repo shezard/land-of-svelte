@@ -3,9 +3,11 @@ import type { Store } from '..';
 
 const advanceUi = () => {
 	store.update((store: Store) => {
-
-        // clear animation
-        store.screen.shaking = false;
+		// clear animation
+		store.screen.shaking = false;
+		store.levels[store.currentLevelNumber].getAis().map((ai) => {
+			ai.color = 0xffffff;
+		});
 
 		const weapon = store.player.inventory.mainHand;
 

@@ -1,5 +1,6 @@
 import type { Level } from '$lib/Level';
 import type { Player } from '$lib/Player';
+import type { ColorRepresentation } from 'three';
 
 export type Position2d = [number, number];
 export type Map2d = number[][];
@@ -35,7 +36,7 @@ export interface Doodad {
 	collision?: boolean;
 	direction?: number;
 	texture?: string;
-	color?: string;
+	color?: ColorRepresentation;
 	x: number;
 	y: number;
 	z?: number;
@@ -47,7 +48,7 @@ export interface AI {
 	collision?: boolean;
 	direction?: number;
 	texture?: string;
-	color?: string;
+	color?: ColorRepresentation;
 	stats: Stats;
 	x: number;
 	y: number;
@@ -64,6 +65,7 @@ export interface OrientedPosition {
 
 export interface Stats {
 	hp: number;
+	maxHp: number;
 	ac: number;
 	hit: number;
 	pDefense: number;
