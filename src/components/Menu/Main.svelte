@@ -31,7 +31,9 @@
 <div
 	class="text-2xl text-white cursor-pointer action"
 	on:click={showControlMenu}
-	on:keypress={showControlMenu}
+	on:keypress={() => {
+		/*no op*/
+	}}
 >
 	Controls
 </div>

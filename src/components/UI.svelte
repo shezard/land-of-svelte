@@ -18,7 +18,9 @@
 			class="weapon w-[80px] h-[80px] m-[10px] cursor-pointer border-4"
 			style="background-image: {weaponBackgroundImage}"
 			on:click={attack}
-			on:keypress={attack}
+			on:keypress={() => {
+				/*no op*/
+			}}
 		/>
 		<div class="w-20" />
 		<div>

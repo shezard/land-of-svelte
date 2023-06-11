@@ -100,7 +100,7 @@ export class Player {
 
 			weapon.lastAttackTimestamp = Date.now();
 
-            const ai = store.levels[store.currentLevelNumber].getAiAt(
+			const ai = store.levels[store.currentLevelNumber].getAiAt(
 				this.position.x + offsetX,
 				this.position.y + offsetY
 			);

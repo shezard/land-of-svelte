@@ -27,7 +27,7 @@
 			? script.direction
 			: getClosestWall($currentLevel, script.x, script.y);
 
-	let texture = script.texture ? $textures[`${script.texture}.png`] : null;
+	$: texture = script.texture ? $textures[`${script.texture}.png`] : null;
 </script>
 
 {#if script.type == 'door'}
