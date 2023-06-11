@@ -51,7 +51,10 @@ const createStore = () => {
 				mainHand: makeItem('sword'),
 				offHand: null
 			}
-		)
+		),
+		ui: {
+			weaponCooldownPercent: 100
+		}
 	});
 
 	return store;

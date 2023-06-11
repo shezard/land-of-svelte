@@ -12,6 +12,7 @@ export interface Store {
 	levels: Level[];
 	currentLevelNumber: number;
 	player: Player;
+	ui: UI;
 }
 
 export interface LevelProp {
@@ -75,6 +76,10 @@ export interface Item {
 	name: 'sword';
 	texture: string;
 	stats: Stats;
-    cooldown: number;
-    lastAttackTimestamp: number;
+	cooldown: number;
+	lastAttackTimestamp: number;
+}
+
+export interface UI {
+	weaponCooldownPercent: number;
 }

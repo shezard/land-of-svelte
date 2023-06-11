@@ -89,7 +89,7 @@ export class Player {
 		const offsetX = Math.round(+Math.sin(this.position.t));
 		const offsetY = Math.round(-Math.cos(this.position.t));
 
-        // handle weapon CD
+		// handle weapon CD
 
 		store.update((store: Store) => {
 			const ai = store.levels[store.currentLevelNumber].getAiAt(
@@ -101,13 +101,13 @@ export class Player {
 				return store;
 			}
 
-            const weapon = store.player.inventory.mainHand;
+			const weapon = store.player.inventory.mainHand;
 
-            if((Date.now() - weapon.lastAttackTimestamp) < (weapon.cooldown * 1e3)) {
-                return store;
-            }
+			if (Date.now() - weapon.lastAttackTimestamp < weapon.cooldown * 1e3) {
+				return store;
+			}
 
-            weapon.lastAttackTimestamp = Date.now();
+			weapon.lastAttackTimestamp = Date.now();
 
 			const newAiStats = fight(
 				store.player.getStats(),
