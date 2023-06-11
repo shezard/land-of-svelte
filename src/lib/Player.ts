@@ -92,15 +92,6 @@ export class Player {
 		// handle weapon CD
 
 		store.update((store: Store) => {
-			const ai = store.levels[store.currentLevelNumber].getAiAt(
-				this.position.x + offsetX,
-				this.position.y + offsetY
-			);
-
-			if (!ai) {
-				return store;
-			}
-
 			const weapon = store.player.inventory.mainHand;
 
 			if (Date.now() - weapon.lastAttackTimestamp < weapon.cooldown * 1e3) {
@@ -108,6 +99,15 @@ export class Player {
 			}
 
 			weapon.lastAttackTimestamp = Date.now();
+
+            const ai = store.levels[store.currentLevelNumber].getAiAt(
+				this.position.x + offsetX,
+				this.position.y + offsetY
+			);
+
+			if (!ai) {
+				return store;
+			}
 
 			const newAiStats = fight(
 				store.player.getStats(),
