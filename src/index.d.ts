@@ -5,11 +5,22 @@ import type { ColorRepresentation } from 'three';
 export type Position2d = [number, number];
 export type Map2d = number[][];
 
+export type GameState =
+	| {
+			state: 'loading';
+			running: 'newGame';
+	  }
+	| {
+			state: 'mainMenu' | 'controlMenu';
+			running: 'newGame' | 'continue';
+	  }
+	| {
+			state: 'running';
+			running: 'continue' | 'gameOver' | 'inventory';
+	  };
+
 export interface Store {
-	game: {
-		state: 'loading' | 'mainMenu' | 'controlMenu' | 'running';
-		running: 'newGame' | 'continue' | 'gameOver';
-	};
+	game: GameState;
 	levels: Level[];
 	currentLevelNumber: number;
 	player: Player;
@@ -32,7 +43,7 @@ export interface LevelProp {
 
 export interface Doodad {
 	id: number;
-	type: 'door' | 'button' | 'ladder';
+	type: 'door' | 'button' | 'ladder' | 'loot';
 	collision?: boolean;
 	direction?: number;
 	texture?: string;

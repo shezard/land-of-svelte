@@ -7,6 +7,7 @@ interface Keyboard {
 	right: string;
 	rotateLeft: string;
 	rotateRight: string;
+	inventory: string;
 }
 
 export const keyboard = writable<Keyboard>({
@@ -15,5 +16,6 @@ export const keyboard = writable<Keyboard>({
 	backward: 's',
 	right: 'd',
 	rotateLeft: 'a',
-	rotateRight: 'e'
+	rotateRight: 'e',
+	inventory: 'i'
 });

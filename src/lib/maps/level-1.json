@@ -53,6 +53,14 @@
 			"texture": "ladder-0",
 			"x": 1,
 			"y": 2
+		},
+		{
+			"id": 1,
+			"type": "loot",
+			"collision": false,
+			"texture": "sword-0",
+			"x": 4,
+			"y": 5
 		}
 	]
 }

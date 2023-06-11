@@ -6,3 +6,4 @@
 -   [ ] Better handling of game over
 -   [ ] Add item grabbing / inventory display ?
 -   [ ] Add door + key on level 1
+-   [ ] Add treasure chest
