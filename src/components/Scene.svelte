@@ -54,12 +54,4 @@
 		y: 0,
 		z: $store.player.position.y - Math.cos($store.player.position.t)
 	}}
->
-	<T.OrbitControls
-		target={{
-			x: $store.player.position.x,
-			y: 0,
-			z: $store.player.position.y
-		}}
-	/>
-</T.PerspectiveCamera>
+/>

@@ -52,6 +52,9 @@ const createStore = () => {
 				offHand: null
 			}
 		),
+		screen: {
+			shaking: false
+		},
 		ui: {
 			weaponCooldownPercent: 100
 		}

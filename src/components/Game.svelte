@@ -8,6 +8,8 @@
 	import ControlMenu from './Menu/Control.svelte';
 	import Loader from './Menu/Loader.svelte';
 	import UI from './UI.svelte';
+
+	$: shaking = $store.screen.shaking;
 </script>
 
 {#if $store.game.state == 'loading'}
@@ -29,10 +31,16 @@
 		{:else}
 			<UI />
 		{/if}
-		<div class="absolute z-0 w-full h-full">
+		<div class="absolute z-0 w-full h-full" class:shaking>
 			<Canvas rendererParameters={{ antialias: false }}>
 				<Scene />
 			</Canvas>
 		</div>
 	</div>
 {/if}
+
+<style>
+	.shaking {
+		animation: shake 0.25s;
+	}
+</style>

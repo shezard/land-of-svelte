@@ -3,6 +3,10 @@ import type { Store } from '..';
 
 const advanceUi = () => {
 	store.update((store: Store) => {
+
+        // clear animation
+        store.screen.shaking = false;
+
 		const weapon = store.player.inventory.mainHand;
 
 		if (weapon.lastAttackTimestamp === 0) {

@@ -12,6 +12,9 @@ export interface Store {
 	levels: Level[];
 	currentLevelNumber: number;
 	player: Player;
+	screen: {
+		shaking: boolean;
+	};
 	ui: UI;
 }
 

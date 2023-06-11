@@ -76,6 +76,7 @@ export class Level {
 							logs.push(`You took ${damage} dmg`);
 							return logs;
 						});
+						store.screen.shaking = true;
 					},
 					() => {
 						logs.update((logs) => {
