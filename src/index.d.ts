@@ -5,11 +5,7 @@ import type { ColorRepresentation } from 'three';
 export type Position2d = [number, number];
 export type Map2d = number[][];
 
-export type GameState =
-	| {
-			state: 'loading';
-			running: 'newGame';
-	  }
+export type GameState = (
 	| {
 			state: 'mainMenu' | 'controlMenu';
 			running: 'newGame' | 'continue';
@@ -17,7 +13,10 @@ export type GameState =
 	| {
 			state: 'running' | 'inventory';
 			running: 'continue' | 'gameOver';
-	  };
+	  }
+) & {
+	isLoading: boolean;
+};
 
 export interface Store {
 	game: GameState;

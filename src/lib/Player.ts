@@ -1,4 +1,4 @@
-import type { Inventory, OrientedPosition, Stats, Store, Item } from '..';
+import type { Inventory, OrientedPosition, Stats, Item } from '..';
 import type { Level } from './Level';
 import { fight } from './fight';
 import { logs } from '$stores/logs';
@@ -89,7 +89,7 @@ export class Player {
 		const offsetX = Math.round(+Math.sin(this.position.t));
 		const offsetY = Math.round(-Math.cos(this.position.t));
 
-		store.update((store: Store) => {
+		store.update((store) => {
 			const weapon = store.player.inventory.mainHand;
 
 			if (Date.now() - weapon.lastAttackTimestamp < weapon.cooldown * 1e3) {

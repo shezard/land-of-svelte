@@ -1,8 +1,7 @@
 import { store } from '$stores/store';
-import type { Store } from '..';
 
 const advanceUi = () => {
-	store.update((store: Store) => {
+	store.update((store) => {
 		// clear animation
 		store.screen.shaking = false;
 		store.levels[store.currentLevelNumber].getAis().map((ai) => {
@@ -23,7 +22,7 @@ const advanceUi = () => {
 };
 
 const advanceGame = () => {
-	store.update((store: Store) => {
+	store.update((store) => {
 		const $currentLevel = store.levels[store.currentLevelNumber];
 
 		if (store.game.running !== 'gameOver') {

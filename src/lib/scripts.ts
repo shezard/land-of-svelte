@@ -7,8 +7,8 @@ export const scripts = [
 		{
 			scriptId: 1,
 			action: 'click',
-			doAction: animateToggleReverse((store: Writable<Store>, t: number) => {
-				store.update((store: Store) => {
+			doAction: animateToggleReverse((store, t) => {
+				store.update((store) => {
 					const script = store.levels[0].getScript(0);
 					if (script) {
 						script.z = t * 1.01;
@@ -27,7 +27,7 @@ export const scripts = [
 			x: 1,
 			y: 2,
 			doAction: (store: Writable<Store>) => {
-				store.update((store: Store) => {
+				store.update((store) => {
 					store.currentLevelNumber = 1;
 					store.player.position.t = Math.PI / 2;
 					return store;
@@ -41,7 +41,7 @@ export const scripts = [
 			x: 1,
 			y: 2,
 			doAction: (store: Writable<Store>) => {
-				store.update((store: Store) => {
+				store.update((store) => {
 					store.currentLevelNumber = 0;
 					store.player.position.t = Math.PI / 2;
 					return store;

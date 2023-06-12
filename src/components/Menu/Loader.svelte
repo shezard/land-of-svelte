@@ -4,7 +4,6 @@
 
 	import { store } from '$stores/store';
 	import { textures } from '$stores/textures';
-	import type { Store } from '../..';
 
 	const textureLoader = new THREE.TextureLoader();
 
@@ -21,8 +20,8 @@
 			const loadedTexture = textureLoader.load('textures/' + texture, () => {
 				loadedTextureCount++;
 				if (loadedTextureCount === texturesToLoad.length) {
-					store.update((store: Store) => {
-						store.game.state = 'mainMenu';
+					store.update((store) => {
+						store.game.isLoading = false;
 						return store;
 					});
 				}

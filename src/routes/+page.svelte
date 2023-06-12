@@ -3,7 +3,6 @@
 	import { currentLevel, store } from '$stores/store';
 	import { scripts } from '$lib/scripts';
 	import Game from '../components/Game.svelte';
-	import type { Store } from '..';
 
 	const doWalk = () => {
 		scripts[$store.currentLevelNumber]
@@ -24,57 +23,40 @@
 			return;
 		}
 
-		if (
-			($store.game.running === 'continue' && $store.game.state === 'running') ||
-			$store.game.state === 'controlMenu'
-		) {
-			store.update((store: Store) => {
-				store.game.state = 'mainMenu';
-				return store;
-			});
-			return;
-		}
-
-		if (
-			($store.game.running === 'continue' || $store.game.running === 'gameOver') &&
-			$store.game.state === 'mainMenu'
-		) {
-			store.update((store: Store) => {
-				store.game.state = 'running';
-				return store;
-			});
-			return;
-		}
+		store.back();
 	};
 
 	const keyPress = (e: KeyboardEvent) => {
-		if (($store.game.state !== 'inventory' && $store.game.state !== 'running') || $store.game.running === 'gameOver') {
+		if (
+			($store.game.state !== 'inventory' && $store.game.state !== 'running') ||
+			$store.game.running === 'gameOver'
+		) {
 			return;
 		}
 
 		if (e.key === $keyboard.forward) {
-			store.update((store: Store) => {
+			store.update((store) => {
 				store.player.moveForward($currentLevel);
 				return store;
 			});
 			doWalk();
 		}
 		if (e.key === $keyboard.left) {
-			store.update((store: Store) => {
+			store.update((store) => {
 				store.player.moveLeft($currentLevel);
 				return store;
 			});
 			doWalk();
 		}
 		if (e.key === $keyboard.backward) {
-			store.update((store: Store) => {
+			store.update((store) => {
 				store.player.moveBackward($currentLevel);
 				return store;
 			});
 			doWalk();
 		}
 		if (e.key === $keyboard.right) {
-			store.update((store: Store) => {
+			store.update((store) => {
 				store.player.moveRight($currentLevel);
 				return store;
 			});
@@ -82,23 +64,20 @@
 		}
 
 		if (e.key === $keyboard.rotateLeft) {
-			store.update((store: Store) => {
+			store.update((store) => {
 				store.player.rotateLeft();
 				return store;
 			});
 		}
 		if (e.key === $keyboard.rotateRight) {
-			store.update((store: Store) => {
+			store.update((store) => {
 				store.player.rotateRight();
 				return store;
 			});
 		}
 
 		if (e.key === $keyboard.inventory) {
-			store.update((store: Store) => {
-				store.game.state = store.game.state == 'inventory' ? 'running' : 'inventory';
-				return store;
-			});
+			store.navigateTo('inventory');
 		}
 	};
 </script>

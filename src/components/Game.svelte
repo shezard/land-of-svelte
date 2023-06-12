@@ -13,7 +13,7 @@
 	$: shaking = $store.screen.shaking;
 </script>
 
-{#if $store.game.state == 'loading'}
+{#if $store.game.isLoading}
 	<Loader />
 {:else}
 	<div class="container w-screen h-screen">

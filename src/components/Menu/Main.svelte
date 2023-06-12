@@ -1,20 +1,16 @@
 <script lang="ts">
 	import { store } from '$stores/store';
-	import type { Store } from '../..';
 
 	const runGame = () => {
-		store.update((store: Store) => {
-			store.game.state = 'running';
+		store.navigateTo('running');
+		store.update((store) => {
 			store.game.running = 'continue';
 			return store;
 		});
 	};
 
 	const showControlMenu = () => {
-		store.update((store: Store) => {
-			store.game.state = 'controlMenu';
-			return store;
-		});
+		store.navigateTo('controlMenu');
 	};
 </script>
 
