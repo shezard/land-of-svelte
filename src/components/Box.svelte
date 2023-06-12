@@ -16,15 +16,23 @@
 	export let receiveShadow = false;
 	export let castShadow = false;
 	export let interactive = false;
+
+	let options = {
+		transparent: true
+	} as THREE.MeshLambertMaterialParameters;
+
+	if (texture) {
+		options.map = texture;
+	}
+
+	if (color) {
+		options.color = color;
+	}
 </script>
 
 <T.Mesh
 	geometry={new THREE.BoxGeometry(wx, wz, wy)}
-	material={new THREE.MeshLambertMaterial({
-		map: texture,
-		transparent: true,
-		color
-	})}
+	material={new THREE.MeshLambertMaterial(options)}
 	position={{ x: x, y: z, z: y }}
 	{receiveShadow}
 	{castShadow}

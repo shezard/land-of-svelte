@@ -48,7 +48,7 @@
 	};
 
 	const keyPress = (e: KeyboardEvent) => {
-		if ($store.game.state !== 'running' || $store.game.running === 'gameOver') {
+		if (($store.game.state !== 'inventory' && $store.game.state !== 'running') || $store.game.running === 'gameOver') {
 			return;
 		}
 
