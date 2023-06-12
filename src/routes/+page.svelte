@@ -80,6 +80,7 @@
 			});
 			doWalk();
 		}
+
 		if (e.key === $keyboard.rotateLeft) {
 			store.update((store: Store) => {
 				store.player.rotateLeft();
@@ -89,6 +90,13 @@
 		if (e.key === $keyboard.rotateRight) {
 			store.update((store: Store) => {
 				store.player.rotateRight();
+				return store;
+			});
+		}
+
+		if (e.key === $keyboard.inventory) {
+			store.update((store: Store) => {
+				store.game.state = store.game.state == 'inventory' ? 'running' : 'inventory';
 				return store;
 			});
 		}

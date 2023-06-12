@@ -8,7 +8,8 @@
 	import { getClosestWall } from '$lib/helpers';
 	import { scripts } from '$lib/scripts';
 	import { currentLevel, store } from '$stores/store';
-	import type { Script } from '..';
+	import type { Loot, Script, Store } from '..';
+	import { makeItem } from '$lib/Item';
 
 	export let script: Script;
 
@@ -22,8 +23,12 @@
 			});
 	};
 
-	const handleLoot = (script: Script) => () => {
-		console.log(script);
+	const handleLoot = (loot: Loot) => () => {
+		store.update((store: Store) => {
+			store.player.inventory.bag = [makeItem(loot.name), ...store.player.inventory.bag];
+
+			return store;
+		});
 	};
 
 	$: closestWallDirection =
@@ -120,5 +125,13 @@
 {/if}
 
 {#if script.type == 'loot'}
-	<Box x={script.x} y={script.y} z={-0.4} wz={0.1} on:click={handleLoot(script)} {texture} />
+	<Box
+		x={script.x}
+		y={script.y}
+		z={-0.4}
+		wz={0.1}
+		on:click={handleLoot(script)}
+		{texture}
+		interactive
+	/>
 {/if}

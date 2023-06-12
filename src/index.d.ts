@@ -15,8 +15,8 @@ export type GameState =
 			running: 'newGame' | 'continue';
 	  }
 	| {
-			state: 'running';
-			running: 'continue' | 'gameOver' | 'inventory';
+			state: 'running' | 'inventory';
+			running: 'continue' | 'gameOver';
 	  };
 
 export interface Store {
@@ -43,7 +43,7 @@ export interface LevelProp {
 
 export interface Doodad {
 	id: number;
-	type: 'door' | 'button' | 'ladder' | 'loot';
+	type: 'door' | 'button' | 'ladder';
 	collision?: boolean;
 	direction?: number;
 	texture?: string;
@@ -66,7 +66,21 @@ export interface AI {
 	z?: number;
 }
 
-export type Script = Doodad | AI;
+export interface Loot {
+	id: number;
+	type: 'loot';
+	name: string;
+	collision?: boolean;
+	direction?: number;
+	texture?: string;
+	color?: ColorRepresentation;
+	stats: Stats;
+	x: number;
+	y: number;
+	z?: number;
+}
+
+export type Script = Doodad | AI | Loot;
 
 export interface OrientedPosition {
 	x: number;
@@ -86,6 +100,7 @@ export interface Stats {
 export interface Inventory {
 	mainHand: Item;
 	offHand: null;
+	bag: Item[];
 }
 
 export interface Item {

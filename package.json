@@ -12,7 +12,8 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"lint:fix": "prettier --plugin-search-dir . --check . && eslint --fix .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"all": "npm run format && npm run lint:fix"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -28,6 +29,7 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.26.0",
+		"fast-astar": "^1.0.6",
 		"postcss": "^8.4.23",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",

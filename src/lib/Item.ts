@@ -6,6 +6,7 @@ export const makeItem = function (weaponName: string): Item {
 		texture: 'sword.png',
 		stats: {
 			hp: 0,
+			maxHp: 0,
 			ac: 0,
 			hit: 0,
 			pAttack: 1,

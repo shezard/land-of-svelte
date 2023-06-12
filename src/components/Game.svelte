@@ -8,6 +8,7 @@
 	import ControlMenu from './Menu/Control.svelte';
 	import Loader from './Menu/Loader.svelte';
 	import UI from './UI.svelte';
+	import Inventory from './Menu/Inventory.svelte';
 
 	$: shaking = $store.screen.shaking;
 </script>
@@ -25,6 +26,8 @@
 						<MainMenu />
 					{:else if $store.game.state == 'controlMenu'}
 						<ControlMenu />
+					{:else if $store.game.state == 'inventory'}
+						<Inventory />
 					{/if}
 				</div>
 			</div>

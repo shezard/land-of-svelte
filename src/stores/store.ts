@@ -42,6 +42,7 @@ const createStore = () => {
 			{ x: 2, y: 10, t: 0 },
 			{
 				hp: 10,
+				maxHp: 10,
 				ac: 3,
 				hit: 0,
 				pDefense: 0,
@@ -49,7 +50,8 @@ const createStore = () => {
 			},
 			{
 				mainHand: makeItem('sword'),
-				offHand: null
+				offHand: null,
+				bag: []
 			}
 		),
 		screen: {
