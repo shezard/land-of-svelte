@@ -13,6 +13,10 @@
 	export let wy = 1;
 	export let wz = 1;
 
+    export let rx = 0;
+	export let ry = 0;
+	export let rz = 0;
+
 	export let receiveShadow = false;
 	export let castShadow = false;
 	export let interactive = false;
@@ -34,6 +38,7 @@
 	geometry={new THREE.BoxGeometry(wx, wz, wy)}
 	material={new THREE.MeshLambertMaterial(options)}
 	position={{ x: x, y: z, z: y }}
+    rotation={{ x: rx, y: rz, z : ry}}
 	{receiveShadow}
 	{castShadow}
 	{interactive}

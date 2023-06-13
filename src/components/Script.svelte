@@ -134,8 +134,10 @@
 	<Box
 		x={script.x}
 		y={script.y}
-		z={-0.4}
-		wz={0.1}
+        wx={0.5}
+        wy={0.0}
+		wz={0.5}
+        rz={Math.PI * 0.75}
 		on:click={handleLoot(script)}
 		{texture}
 		interactive
