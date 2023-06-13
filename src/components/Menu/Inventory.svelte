@@ -19,12 +19,27 @@
 	$: mainHand = $store.player.inventory.mainHand;
 	$: offHand = $store.player.inventory.offHand;
 	$: armor = $store.player.inventory.armor;
+
+	$: stats = $store.player.getStats();
 </script>
 
 <div class="menu">
-	<div class="text-3xl text-white">Inventory</div>
+	<div class="text-3xl text-white">Character</div>
 
-	<div class="grid grid-cols-2">
+	<div class="grid grid-cols-3">
+        <div class="flex flex-col text-white">
+			<div class="text-2xl">
+				Stats:
+                <div class="pl-10">
+                    AC : {stats.ac} <br />
+                    Hit : {stats.hit} <br />
+                    HP : {stats.hp} <br />
+                    Attack : {stats.pAttack} <br />
+                    Defense : {stats.pDefense} <br />
+                </div>
+			</div>
+		</div>
+
 		<div class="flex flex-col text-white">
 			<div class="text-2xl">
 				Main Hand:
