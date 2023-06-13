@@ -29,7 +29,7 @@
 		options.map = texture;
 	}
 
-	if (color) {
+	if (color !== undefined) {
 		options.color = color;
 	}
 </script>
