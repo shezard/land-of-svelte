@@ -145,7 +145,7 @@ export class Player {
 	}
 
 	getStats(): Stats {
-		return [this.inventory.mainHand].reduce(
+		return [this.inventory.mainHand, this.inventory.offHand, this.inventory.armor].reduce(
 			function (stats, item: Item | null) {
 				if (item) {
 					stats.hp += item.stats.hp;
@@ -160,5 +160,40 @@ export class Player {
 			},
 			{ ...this.stats }
 		);
+	}
+
+	equip(item: Item, itemIndex: number): Inventory {
+		let oldItem = null;
+		if (item.slot === 'mainHand') {
+			oldItem = this.inventory.mainHand;
+		}
+		if (item.slot === 'offHand') {
+			oldItem = this.inventory.offHand;
+		}
+		if (item.slot === 'armor') {
+			oldItem = this.inventory.armor;
+		}
+
+		const inventory = {
+			mainHand: item.slot === 'mainHand' ? item : this.inventory.mainHand,
+			offHand: item.slot === 'offHand' ? item : this.inventory.offHand,
+			armor: item.slot === 'armor' ? item : this.inventory.armor,
+			bag: [...this.inventory.bag, oldItem].filter(Boolean) as Item[]
+		};
+
+		inventory.bag.splice(itemIndex, 1);
+
+		return inventory;
+	}
+
+	unequip(item: Item): Inventory {
+		const inventory = {
+			mainHand: item.slot === 'mainHand' ? null : this.inventory.mainHand,
+			offHand: item.slot === 'offHand' ? null : this.inventory.offHand,
+			armor: item.slot === 'armor' ? null : this.inventory.armor,
+			bag: [...this.inventory.bag, item]
+		};
+
+		return inventory;
 	}
 }

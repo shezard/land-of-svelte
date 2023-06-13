@@ -5,21 +5,20 @@
 <slot />
 
 <style global>
+	:global(body) {
+		overflow: hidden;
+	}
 
-    body {
-        overflow: hidden;
-    }
+	:global(.menu) {
+		position: relative;
+		width: 60vw;
+		height: 40vh;
+	}
 
 	* {
 		font-family: 'Alagard', sans-serif;
 		text-shadow: 1px 1px 1px black;
 		user-select: none;
-	}
-
-	.menu {
-		position: relative;
-		width: 60vw;
-		height: 40vh;
 	}
 
 	@keyframes shake {

@@ -3,13 +3,18 @@
 	import { store } from '$stores/store';
 
 	const attack = () => {
+		if ($store.player.inventory.mainHand === null) {
+			return;
+		}
 		$store.player.attack();
 	};
 
 	$: stats = $store.player.getStats();
 
+	$: mainHandTexture = $store.player.inventory.mainHand?.texture ?? '';
+
 	$: weaponBackgroundImage = `linear-gradient(to bottom, rgba(0, 0, 0, 0) ${$store.ui.weaponCooldownPercent}%, #6f6f64 ${$store.ui.weaponCooldownPercent}%),
-			url('textures/${$store.player.inventory.mainHand.texture}.png')`;
+			url('textures/${mainHandTexture}.png')`;
 </script>
 
 <div class="grid absolute w-full h-[100px] z-10 bottom-0 border-4 border-dark">

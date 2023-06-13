@@ -1,4 +1,5 @@
 import { store } from '$stores/store';
+import { useFrame } from '@threlte/core';
 
 const advanceFrame = (t: number) => {
 	store.update((store) => {
@@ -14,7 +15,7 @@ const advanceFrame = (t: number) => {
 
 		const weapon = store.player.inventory.mainHand;
 
-		if (weapon.lastAttackTimestamp === 0) {
+		if (weapon === null || weapon.lastAttackTimestamp === 0) {
 			return store;
 		}
 
@@ -42,19 +43,13 @@ export const gameTick = () => {
 	let start = Date.now();
 	const tickDuration = 1000;
 
-	const gameTick = () => {
-		requestAnimationFrame(() => {
-			t = Date.now() - start;
-			advanceFrame(Date.now());
+	useFrame(() => {
+		t = Date.now() - start;
+		advanceFrame(Date.now());
 
-			if (t > tickDuration) {
-				start = Date.now();
-				advanceGame();
-			}
-
-			gameTick();
-		});
-	};
-
-	gameTick();
+		if (t > tickDuration) {
+			start = Date.now();
+			advanceGame();
+		}
+	});
 };

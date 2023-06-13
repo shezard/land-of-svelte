@@ -98,7 +98,7 @@ export interface Stats {
 }
 
 export interface Inventory {
-	mainHand: Item;
+	mainHand: Item | null;
 	offHand: Item | null;
 	armor: Item | null;
 	bag: Item[];
@@ -107,6 +107,7 @@ export interface Inventory {
 export interface Item {
 	name: 'sword' | 'shield' | 'armor' | 'not-found';
 	texture: string;
+	slot: 'mainHand' | 'offHand' | 'armor';
 	stats: Stats;
 	cooldown: number;
 	lastAttackTimestamp: number;
