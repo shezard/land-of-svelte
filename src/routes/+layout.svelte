@@ -5,6 +5,11 @@
 <slot />
 
 <style global>
+
+    body {
+        overflow: hidden;
+    }
+
 	* {
 		font-family: 'Alagard', sans-serif;
 		text-shadow: 1px 1px 1px black;

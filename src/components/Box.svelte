@@ -2,8 +2,8 @@
 	import * as THREE from 'three';
 	import * as T from '@threlte/core';
 
-	export let texture: THREE.Texture | undefined | null = undefined;
-	export let color: THREE.ColorRepresentation | undefined = undefined;
+	export let texture: THREE.Texture | null = null;
+	export let color: THREE.ColorRepresentation = 0xffffff;
 
 	export let x = 0;
 	export let y = 0;
