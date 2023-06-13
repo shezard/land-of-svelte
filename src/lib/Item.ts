@@ -3,7 +3,7 @@ import type { Item } from '..';
 export const makeItem = function (weaponName: string): Item {
 	return {
 		name: 'sword',
-		texture: 'sword.png',
+		texture: 'sword-0',
 		stats: {
 			hp: 0,
 			maxHp: 0,

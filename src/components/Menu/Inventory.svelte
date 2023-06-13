@@ -2,13 +2,18 @@
 	import { store } from '$stores/store';
 </script>
 
-<div>
-	Inventory
-	<ul>
+<div class="text-3xl text-white">Inventory</div>
+
+<div class="grid grid-cols-2">
+	<div class="flex flex-col text-white">
 		{#each $store.player.inventory.bag as item}
-			<li>
-				{item.texture}
-			</li>
+			<img src="textures/{item.texture}.png" alt={item.name} />
 		{/each}
-	</ul>
+	</div>
 </div>
+
+<style>
+	img {
+		image-rendering: pixelated;
+	}
+</style>

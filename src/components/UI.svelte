@@ -9,7 +9,7 @@
 	$: stats = $store.player.getStats();
 
 	$: weaponBackgroundImage = `linear-gradient(to bottom, rgba(0, 0, 0, 0) ${$store.ui.weaponCooldownPercent}%, #6f6f64 ${$store.ui.weaponCooldownPercent}%),
-			url('textures/swords.png')`;
+			url('textures/${$store.player.inventory.mainHand.texture}.png')`;
 </script>
 
 <div class="grid absolute w-full h-[100px] z-10 bottom-0 border-4 border-dark">
@@ -60,7 +60,7 @@
 
 	.weapon {
 		background-position: 0px 0px;
-		background-size: 360px;
+		background-size: 72px;
 		image-rendering: pixelated;
 		border-color: #542b29;
 	}

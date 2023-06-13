@@ -27,6 +27,12 @@
 		store.update((store: Store) => {
 			store.player.inventory.bag = [makeItem(loot.name), ...store.player.inventory.bag];
 
+			store.levels[store.currentLevelNumber].scripts = store.levels[
+				store.currentLevelNumber
+			].scripts.filter((script) => {
+				return loot.id !== script.id;
+			});
+
 			return store;
 		});
 	};
