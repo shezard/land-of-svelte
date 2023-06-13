@@ -10,6 +10,7 @@
 	import { currentLevel, store } from '$stores/store';
 	import type { Loot, Script, Store } from '..';
 	import { makeItem } from '$lib/Item';
+	import AI from './AI.svelte';
 
 	export let script: Script;
 
@@ -86,58 +87,17 @@
 {/if}
 
 {#if script.type == 'ai'}
-	<Box
-		x={script.x}
-		y={script.y}
-		wx={Math.abs(Math.cos($store.player.position.t))}
-		wy={Math.abs(Math.sin($store.player.position.t))}
-		{texture}
-		color={script.color}
-	/>
-
-	<Box
-		x={script.x}
-		y={script.y}
-		wx={Math.abs(Math.cos($store.player.position.t)) * 0.8}
-		wy={Math.abs(Math.sin($store.player.position.t)) * 0.8}
-		wz={0.05}
-		z={0.5}
-		color={0xff0000}
-	/>
-
-	<Box
-		x={script.x -
-			Math.abs(Math.cos($store.player.position.t)) * 0.5 +
-			(Math.abs(Math.cos($store.player.position.t)) *
-				0.8 *
-				(1 - script.stats.hp / script.stats.maxHp)) /
-				2}
-		y={script.y -
-			Math.abs(Math.sin($store.player.position.t)) * 0.5 +
-			(Math.abs(Math.sin($store.player.position.t)) *
-				0.8 *
-				(1 - script.stats.hp / script.stats.maxHp)) /
-				2}
-		z={0.5}
-		wx={Math.abs(Math.cos($store.player.position.t)) *
-			0.8 *
-			(1 - script.stats.hp / script.stats.maxHp)}
-		wy={Math.abs(Math.sin($store.player.position.t)) *
-			0.8 *
-			(1 - script.stats.hp / script.stats.maxHp)}
-		wz={0.05}
-		color={0x000000}
-	/>
+	<AI ai={script} {texture} />
 {/if}
 
 {#if script.type == 'loot'}
 	<Box
 		x={script.x}
 		y={script.y}
-        wx={0.5}
-        wy={0.0}
+		wx={0.5}
+		wy={0.0}
 		wz={0.5}
-        rz={Math.PI * 0.75}
+		rz={script.t}
 		on:click={handleLoot(script)}
 		{texture}
 		interactive

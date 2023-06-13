@@ -11,6 +11,12 @@
 		user-select: none;
 	}
 
+	.menu {
+		position: relative;
+		width: 60vw;
+		height: 40vh;
+	}
+
 	@keyframes shake {
 		0% {
 			transform: translateX(0);

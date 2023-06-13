@@ -57,9 +57,9 @@
 		{
 			"id": 1,
 			"type": "loot",
-			"name": "sword",
+			"name": "armor",
 			"collision": false,
-			"texture": "sword-0",
+			"texture": "armor-0",
 			"x": 4,
 			"y": 5
 		}

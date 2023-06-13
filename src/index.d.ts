@@ -77,6 +77,7 @@ export interface Loot {
 	x: number;
 	y: number;
 	z?: number;
+	t?: number;
 }
 
 export type Script = Doodad | AI | Loot;
@@ -98,12 +99,13 @@ export interface Stats {
 
 export interface Inventory {
 	mainHand: Item;
-	offHand: null;
+	offHand: Item | null;
+	armor: Item | null;
 	bag: Item[];
 }
 
 export interface Item {
-	name: 'sword';
+	name: 'sword' | 'shield' | 'armor' | 'not-found';
 	texture: string;
 	stats: Stats;
 	cooldown: number;

@@ -21,7 +21,7 @@
 			<div
 				class="grid justify-items-center items-center absolute w-full h-full z-10 backdrop-blur-sm"
 			>
-				<div class="cursor-default">
+				<div class="cursor-default menu">
 					{#if $store.game.state == 'mainMenu'}
 						<MainMenu />
 					{:else if $store.game.state == 'controlMenu'}

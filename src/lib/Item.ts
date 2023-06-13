@@ -1,18 +1,69 @@
 import type { Item } from '..';
 
-export const makeItem = function (weaponName: string): Item {
+export const makeItem = function (itemName: string): Item {
+	if (itemName === 'sword') {
+		return {
+			name: 'sword',
+			texture: 'sword-0',
+			stats: {
+				hp: 0,
+				maxHp: 0,
+				ac: 0,
+				hit: 0,
+				pAttack: 1,
+				pDefense: 0
+			},
+			cooldown: 1,
+			lastAttackTimestamp: 0
+		};
+	}
+
+	if (itemName === 'armor') {
+		return {
+			name: 'armor',
+			texture: 'armor-0',
+			stats: {
+				hp: 0,
+				maxHp: 0,
+				ac: 2,
+				hit: 0,
+				pAttack: 0,
+				pDefense: 0
+			},
+			cooldown: 1,
+			lastAttackTimestamp: 0
+		};
+	}
+
+	if (itemName === 'shield') {
+		return {
+			name: 'shield',
+			texture: 'shield-0',
+			stats: {
+				hp: 0,
+				maxHp: 0,
+				ac: 2,
+				hit: 0,
+				pAttack: 0,
+				pDefense: 0
+			},
+			cooldown: 1,
+			lastAttackTimestamp: 0
+		};
+	}
+
 	return {
-		name: 'sword',
-		texture: 'sword-0',
+		name: 'not-found',
+		texture: 'not-found-0',
 		stats: {
 			hp: 0,
 			maxHp: 0,
 			ac: 0,
 			hit: 0,
-			pAttack: 1,
+			pAttack: 0,
 			pDefense: 0
 		},
-		cooldown: 1,
+		cooldown: 0,
 		lastAttackTimestamp: 0
 	};
 };

@@ -1,11 +1,15 @@
 import { store } from '$stores/store';
 
-const advanceUi = () => {
+const advanceFrame = (t: number) => {
 	store.update((store) => {
 		// clear animation
 		store.screen.shaking = false;
 		store.levels[store.currentLevelNumber].getAis().map((ai) => {
 			ai.color = 0xffffff;
+		});
+
+		store.levels[store.currentLevelNumber].getLoots().map((loot) => {
+			loot.t = t * 1e-3;
 		});
 
 		const weapon = store.player.inventory.mainHand;
@@ -41,7 +45,7 @@ export const gameTick = () => {
 	const gameTick = () => {
 		requestAnimationFrame(() => {
 			t = Date.now() - start;
-			advanceUi();
+			advanceFrame(Date.now());
 
 			if (t > tickDuration) {
 				start = Date.now();

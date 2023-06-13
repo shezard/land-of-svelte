@@ -54,10 +54,6 @@
 		text-shadow: none;
 	}
 
-	.logs {
-		background-color: #9a9a8e;
-	}
-
 	.weapon {
 		background-position: 0px 0px;
 		background-size: 72px;

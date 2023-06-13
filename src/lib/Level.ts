@@ -1,4 +1,4 @@
-import type { AI, Script, LevelProp, Map2d, Store } from '..';
+import type { AI, Script, LevelProp, Map2d, Store, Loot } from '..';
 import { fight } from './fight';
 import { makeAstar } from './grid';
 import { logs } from '$stores/logs';
@@ -40,6 +40,12 @@ export class Level {
 		this.scripts = this.scripts.filter((script: Script) => {
 			return !(script.x === x && script.y === y && script.type === 'ai');
 		});
+	}
+
+	getLoots(): Loot[] {
+		return this.scripts.filter((item) => {
+			return item.type === 'loot';
+		}) as Loot[];
 	}
 
 	advance(store: Store): Store {

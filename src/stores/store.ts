@@ -54,6 +54,7 @@ const createStore = () => {
 			{
 				mainHand: makeItem('sword'),
 				offHand: null,
+				armor: null,
 				bag: []
 			}
 		),
