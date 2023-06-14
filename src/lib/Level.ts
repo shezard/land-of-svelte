@@ -50,6 +50,20 @@ export class Level {
 	}
 
 	removeAiAt(x: number, y: number): void {
+		const loot = this.getAiAt(x, y)?.loot;
+
+		if (loot) {
+			this.scripts.push({
+				id: this.scripts.length,
+				type: 'loot',
+				name: loot,
+				collision: false,
+				texture: `${loot}-0`,
+				x,
+				y
+			});
+		}
+
 		this.scripts = this.scripts.filter((script: Script) => {
 			return !(script.x === x && script.y === y && script.type === 'ai');
 		});

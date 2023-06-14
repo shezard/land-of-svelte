@@ -92,6 +92,10 @@ export class Player {
 		store.update((store) => {
 			const weapon = store.player.inventory.mainHand;
 
+			if (!weapon) {
+				return store;
+			}
+
 			if (Date.now() - weapon.lastAttackTimestamp < weapon.cooldown * 1e3) {
 				return store;
 			}

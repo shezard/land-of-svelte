@@ -85,7 +85,8 @@
 				"hit": 0,
 				"pDefense": 0,
 				"pAttack": 1
-			}
+			},
+			"loot": "armor"
 		},
 		{
 			"id": 4,
@@ -103,7 +104,7 @@
 			"x": 3,
 			"y": 9,
 			"direction": 4.7123,
-			"content": ["Yeah!", "A", "Panel"]
+			"content": ["Tips: Some items are clickable"]
 		}
 	]
 }

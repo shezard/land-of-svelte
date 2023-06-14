@@ -60,6 +60,7 @@ export interface AI {
 	texture?: string;
 	color?: ColorRepresentation;
 	stats: Stats;
+	loot?: ItemName;
 	x: number;
 	y: number;
 	z?: number;
@@ -69,7 +70,7 @@ export interface Panel {
 	id: number;
 	type: 'panel';
 	collision?: boolean;
-	direction?: number;
+	direction: number;
 	texture?: string;
 	color?: ColorRepresentation;
 	content: string[];
@@ -86,7 +87,6 @@ export interface Loot {
 	direction?: number;
 	texture?: string;
 	color?: ColorRepresentation;
-	stats: Stats;
 	x: number;
 	y: number;
 	z?: number;
@@ -117,10 +117,12 @@ export interface Inventory {
 	bag: Item[];
 }
 
+type ItemName = 'sword' | 'shield' | 'armor' | 'not-found';
+
 export interface Item {
-	name: 'sword' | 'shield' | 'armor' | 'not-found';
+	name: ItemName;
 	texture: string;
-	slot: 'mainHand' | 'offHand' | 'armor';
+	slot: 'mainHand' | 'offHand' | 'armor' | 'none';
 	stats: Stats;
 	cooldown: number;
 	lastAttackTimestamp: number;
