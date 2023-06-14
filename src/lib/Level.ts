@@ -3,6 +3,19 @@ import { fight } from './fight';
 import { makeAstar } from './grid';
 import { logs } from '$stores/logs';
 
+const swapXY = function (width: number, height: number, map: Map2d): Map2d {
+	const swappedMap = [] as Map2d;
+	for (let y = 0; y < height; y++) {
+		for (let x = 0; x < width; x++) {
+			if (!swappedMap[y]) {
+				swappedMap[y] = [];
+			}
+			swappedMap[y][x] = map[x][y];
+		}
+	}
+	return swappedMap;
+};
+
 export class Level {
 	width: number;
 	height: number;
@@ -17,9 +30,9 @@ export class Level {
 		this.width = level.width;
 		this.height = level.height;
 		this.floor = level.floor;
-		this.collisionMap = level.collisionMap;
-		this.textureMap = level.textureMap;
-		this.lightMap = level.lightMap;
+		this.collisionMap = swapXY(level.width, level.height, level.collisionMap);
+		this.textureMap = swapXY(level.width, level.height, level.textureMap);
+		this.lightMap = swapXY(level.width, level.height, level.lightMap);
 		this.scripts = level.scripts;
 		this.ceiling = level.ceiling;
 	}

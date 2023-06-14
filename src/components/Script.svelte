@@ -8,9 +8,10 @@
 	import { getClosestWall } from '$lib/helpers';
 	import { scripts } from '$lib/scripts';
 	import { currentLevel, store } from '$stores/store';
-	import type { Loot, Script, Store } from '..';
+	import type { Loot, Panel, Script, Store } from '..';
 	import { makeItem } from '$lib/Item';
 	import AI from './AI.svelte';
+	import { logs } from '$stores/logs';
 
 	export let script: Script;
 
@@ -35,6 +36,13 @@
 			});
 
 			return store;
+		});
+	};
+
+	const showText = (panel: Panel) => () => {
+		logs.update((logs) => {
+			logs = logs.concat(panel.content);
+			return logs;
 		});
 	};
 
@@ -99,6 +107,19 @@
 		wz={0.5}
 		rz={script.t}
 		on:click={handleLoot(script)}
+		{texture}
+		interactive
+	/>
+{/if}
+
+{#if script.type == 'panel'}
+	<Box
+		x={script.x + Math.cos(script.direction) * 0.5}
+		y={script.y + Math.sin(script.direction) * 0.5}
+		wx={0.05 + Math.abs(0.4 * Math.sin(script.direction))}
+		wy={0.05 + Math.abs(0.4 * Math.cos(script.direction))}
+		wz={0.3}
+		on:click={showText(script)}
 		{texture}
 		interactive
 	/>

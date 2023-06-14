@@ -65,6 +65,19 @@ export interface AI {
 	z?: number;
 }
 
+export interface Panel {
+	id: number;
+	type: 'panel';
+	collision?: boolean;
+	direction?: number;
+	texture?: string;
+	color?: ColorRepresentation;
+	content: string[];
+	x: number;
+	y: number;
+	z?: number;
+}
+
 export interface Loot {
 	id: number;
 	type: 'loot';
@@ -80,7 +93,7 @@ export interface Loot {
 	t?: number;
 }
 
-export type Script = Doodad | AI | Loot;
+export type Script = Doodad | AI | Loot | Panel;
 
 export interface OrientedPosition {
 	x: number;
