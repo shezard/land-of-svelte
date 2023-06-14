@@ -33,7 +33,7 @@
 </script>
 
 <div
-	class="container grid justify-items-center items-center h-screen text-3xl text-white bg-stone-800 w-screen"
+	class="grid justify-items-center items-center h-screen text-3xl text-white bg-stone-800 w-screen"
 >
 	Loading ... {loadedTextureCount} / {texturesToLoad.length}
 </div>

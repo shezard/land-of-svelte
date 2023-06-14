@@ -39,9 +39,9 @@
 		tooltip = false;
 	};
 
-	const moveTooltip = (e: Event) => {
-		tooltipX = e.layerX + 15;
-		tooltipY = e.layerY + 15;
+	const moveTooltip = (e: MouseEvent) => {
+		tooltipX = Number(e.layerX) + 15;
+		tooltipY = Number(e.layerY) + 15;
 	};
 
 	$: mainHand = $store.player.inventory.mainHand;
