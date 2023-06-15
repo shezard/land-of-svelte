@@ -14,7 +14,7 @@
 				);
 			})
 			.map((script) => {
-				script.doAction(store, $store);
+				script.doAction(store);
 			});
 	};
 

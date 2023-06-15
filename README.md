@@ -9,12 +9,12 @@
 -   [/] Add combat "animation"
 -   [/] Display ennemy hp as a health bar
 -   [/] Add item grabbing / inventory display
--   [ ] Add door + key on level 0
--   [ ] Improve animation / script (split script execution into predicate and execution)
+-   [/] Split script execution into predicate and execution
+-   [/] Add door + key on level 0
+-   [ ] Add missing key texture
 -   [ ] Display player hp as a health bar
 -   [ ] Better handling of game over
 -   [ ] Add treasure chest
-
 
 ## Developing
 

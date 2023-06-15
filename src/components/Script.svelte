@@ -18,10 +18,14 @@
 	$: handleClick = (script: Script) => () => {
 		scripts[$store.currentLevelNumber]
 			.filter((scripts) => {
-				return scripts.scriptId === script.id && scripts.action === 'click';
+				return (
+					scripts.scriptId === script.id &&
+					scripts.action === 'click' &&
+					scripts.predicate($store)
+				);
 			})
 			.map((script) => {
-				script.doAction(store, $store);
+				script.doAction(store);
 			});
 	};
 
