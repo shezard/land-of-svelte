@@ -37,6 +37,9 @@ export const scripts = [
 						script.collision = true;
 						if (script.z > 1) {
 							script.collision = false;
+							store.player.inventory.bag = store.player.inventory.bag.filter(
+								(item) => item.name !== 'key'
+							);
 						}
 						store.levels[0].replaceScript(script);
 					}
