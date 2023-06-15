@@ -15,13 +15,13 @@
 
 	export let script: Script;
 
-	const handleClick = (script: Script) => () => {
+	$: handleClick = (script: Script) => () => {
 		scripts[$store.currentLevelNumber]
 			.filter((scripts) => {
 				return scripts.scriptId === script.id && scripts.action === 'click';
 			})
 			.map((script) => {
-				script.doAction(store);
+				script.doAction(store, $store);
 			});
 	};
 
@@ -67,6 +67,8 @@
 		}}
 		castShadow
 		receiveShadow
+		on:click={handleClick(script)}
+		interactive
 	/>
 {/if}
 

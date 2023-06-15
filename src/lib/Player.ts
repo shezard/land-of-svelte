@@ -168,6 +168,11 @@ export class Player {
 
 	equip(item: Item, itemIndex: number): Inventory {
 		let oldItem = null;
+
+		if (item.slot === 'none') {
+			return this.inventory;
+		}
+
 		if (item.slot === 'mainHand') {
 			oldItem = this.inventory.mainHand;
 		}

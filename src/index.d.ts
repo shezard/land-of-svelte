@@ -117,7 +117,7 @@ export interface Inventory {
 	bag: Item[];
 }
 
-type ItemName = 'sword' | 'shield' | 'armor' | 'not-found';
+type ItemName = 'sword' | 'shield' | 'armor' | 'key' | 'not-found';
 
 export interface Item {
 	name: ItemName;

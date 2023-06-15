@@ -4,6 +4,18 @@
 
 [Play the lastest version of Land of Svelte](https://shezard.github.io/land-of-svelte/)
 
+# TODO
+
+-   [/] Add combat "animation"
+-   [/] Display ennemy hp as a health bar
+-   [/] Add item grabbing / inventory display
+-   [ ] Add door + key on level 0
+-   [ ] Improve animation / script (split script execution into predicate and execution)
+-   [ ] Display player hp as a health bar
+-   [ ] Better handling of game over
+-   [ ] Add treasure chest
+
+
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:

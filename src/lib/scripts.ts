@@ -1,6 +1,6 @@
 import type { Writable } from 'svelte/store';
 import type { Store } from '..';
-import { animateToggleReverse } from './animation';
+import { animateOnce, animateToggleReverse } from './animation';
 
 export const scripts = [
 	[
@@ -21,6 +21,33 @@ export const scripts = [
 					return store;
 				});
 			}, 1)
+		},
+		{
+			scriptId: 4,
+			action: 'click',
+			doAction: (store: Writable<Store>, $store: Store) => {
+				if (
+					$store.player.inventory.bag.filter((item) => item.name === 'key').length ===
+						0 ||
+					$store.levels[0].getScript(4)?.z > 0
+				) {
+					return;
+				}
+				animateOnce((store, t) => {
+					store.update((store) => {
+						const script = store.levels[0].getScript(4);
+						if (script) {
+							script.z = t * 1.01;
+							script.collision = true;
+							if (script.z > 1) {
+								script.collision = false;
+							}
+							store.levels[0].replaceScript(script);
+						}
+						return store;
+					});
+				}, 1)(store);
+			}
 		},
 		{
 			action: 'walk',

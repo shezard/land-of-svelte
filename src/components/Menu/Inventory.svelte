@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { store } from '$stores/store';
-	import type { Item, Stats } from '../..';
+	import type { Item } from '../..';
 
 	const toBag = (item: Item) => () => {
 		store.update((store) => {
 			store.player.inventory = store.player.unequip(item);
 			return store;
 		});
-		tooltip = false;
+		tooltip = null;
 	};
 
 	const toInventory = (item: Item, itemIndex: number) => () => {
@@ -15,28 +15,19 @@
 			store.player.inventory = store.player.equip(item, itemIndex);
 			return store;
 		});
-		tooltip = false;
+		tooltip = null;
 	};
 
-	let tooltip = false;
+	let tooltip: Item | null = null;
 	let tooltipX = 0;
 	let tooltipY = 0;
-	let tooltipStats: Stats = {
-		hp: 0,
-		maxHp: 0,
-		ac: 0,
-		hit: 0,
-		pDefense: 0,
-		pAttack: 0
-	};
 
 	const showTooltip = (item: Item) => () => {
-		tooltip = true;
-		tooltipStats = item.stats;
+		tooltip = item;
 	};
 
 	const hideTooltip = () => {
-		tooltip = false;
+		tooltip = null;
 	};
 
 	const moveTooltip = (e: MouseEvent) => {
@@ -139,17 +130,26 @@
 		</div>
 	</div>
 
-	<div
-		class="info text-2xl text-white absolute hidden"
-		class:tooltip
-		style="top:{tooltipY}px;left:{tooltipX}px;"
-	>
-		AC : {tooltipStats.ac} <br />
-		Hit : {tooltipStats.hit} <br />
-		HP : {tooltipStats.hp} <br />
-		Attack : {tooltipStats.pAttack} <br />
-		Defense : {tooltipStats.pDefense} <br />
-	</div>
+	{#if tooltip}
+		<div class="info text-2xl text-white absolute" style="top:{tooltipY}px;left:{tooltipX}px;">
+			{tooltip.name} <br />
+			{#if tooltip.stats.ac > 0}
+				AC : {tooltip.stats.ac} <br />
+			{/if}
+			{#if tooltip.stats.hit > 0}
+				Hit : {tooltip.stats.hit} <br />
+			{/if}
+			{#if tooltip.stats.hp > 0}
+				HP : {tooltip.stats.hp} <br />
+			{/if}
+			{#if tooltip.stats.pAttack > 0}
+				Attack : {tooltip.stats.pAttack} <br />
+			{/if}
+			{#if tooltip.stats.pDefense > 0}
+				Defense : {tooltip.stats.pDefense} <br />
+			{/if}
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -157,9 +157,5 @@
 		image-rendering: pixelated;
 		width: 24px;
 		@apply inline cursor-pointer;
-	}
-
-	.tooltip {
-		display: block;
 	}
 </style>

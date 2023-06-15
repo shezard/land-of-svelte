@@ -55,6 +55,24 @@ export const makeItem = function (itemName: string): Item {
 		};
 	}
 
+	if (itemName === 'key') {
+		return {
+			name: 'key',
+			texture: 'key-0',
+			slot: 'none',
+			stats: {
+				hp: 0,
+				maxHp: 0,
+				ac: 0,
+				hit: 0,
+				pAttack: 0,
+				pDefense: 0
+			},
+			cooldown: 0,
+			lastAttackTimestamp: 0
+		};
+	}
+
 	return {
 		name: 'not-found',
 		texture: 'not-found-0',
