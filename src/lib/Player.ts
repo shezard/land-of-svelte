@@ -129,7 +129,7 @@ export class Player {
 				},
 				() => {
 					logs.update((logs) => {
-						logs.push('You killed an ennemy');
+						logs.push(`You killed a ${ai.name}`);
 						return logs;
 					});
 				}

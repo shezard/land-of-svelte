@@ -55,6 +55,7 @@ export interface Doodad {
 export interface AI {
 	id: number;
 	type: 'ai';
+	name: string;
 	collision?: boolean;
 	direction?: number;
 	texture?: string;

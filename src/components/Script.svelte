@@ -41,6 +41,11 @@
 
 			return store;
 		});
+
+		logs.update((logs) => {
+			logs.push(`You take a ${loot.name}`);
+			return logs;
+		});
 	};
 
 	const showText = (panel: Panel) => () => {
