@@ -25,19 +25,13 @@
 
 	@keyframes shake {
 		0% {
-			transform: translateX(0);
-		}
-		25% {
-			transform: translateX(10px);
+			transform: translateX(-20px);
 		}
 		50% {
-			transform: translateX(-10px);
-		}
-		75% {
-			transform: translateX(10px);
+			transform: translateX(20px);
 		}
 		100% {
-			transform: translateX(0);
+			transform: translateX(-20px);
 		}
 	}
 </style>

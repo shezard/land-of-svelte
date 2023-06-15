@@ -44,6 +44,6 @@
 
 <style>
 	.shaking {
-		animation: shake 0.25s;
+		animation: shake 0.45s;
 	}
 </style>
