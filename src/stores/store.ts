@@ -49,6 +49,10 @@ const createStore = () => {
 	const stack: Route[] = ['mainMenu'];
 
 	const navigateTo = (target: Route): void => {
+        if(target === stack[stack.length - 1]) {
+            return;
+        }
+
 		stack.push(target);
 
 		update((store) => {
