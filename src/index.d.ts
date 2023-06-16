@@ -37,7 +37,7 @@ export interface LevelProp {
 	textureMap: Map2d;
 	lightMap: Map2d;
 	scripts: Script[];
-	ceiling?: number | undefined;
+	ceiling: number;
 }
 
 export interface Doodad {

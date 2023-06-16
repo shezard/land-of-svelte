@@ -16,11 +16,7 @@
 	gameTick();
 </script>
 
-{#if $currentLevel.ceiling}
-	<Ceiling texture={$textures[`floor-${$currentLevel.ceiling}.png`]} />
-{:else}
-	<T.AmbientLight color={0xddffff} intensity={0.5} />
-{/if}
+<Ceiling texture={$textures[`floor-${$currentLevel.ceiling}.png`]} />
 
 <Floor texture={$textures[`floor-${$currentLevel.floor}.png`]} />
 
