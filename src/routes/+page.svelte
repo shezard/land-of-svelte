@@ -34,28 +34,28 @@
 			return;
 		}
 
-		if (e.key === $keyboard.forward) {
+		if (e.code === $keyboard.forward) {
 			store.update((store) => {
 				store.player.moveForward($currentLevel);
 				return store;
 			});
 			doWalk();
 		}
-		if (e.key === $keyboard.left) {
+		if (e.code === $keyboard.left) {
 			store.update((store) => {
 				store.player.moveLeft($currentLevel);
 				return store;
 			});
 			doWalk();
 		}
-		if (e.key === $keyboard.backward) {
+		if (e.code === $keyboard.backward) {
 			store.update((store) => {
 				store.player.moveBackward($currentLevel);
 				return store;
 			});
 			doWalk();
 		}
-		if (e.key === $keyboard.right) {
+		if (e.code === $keyboard.right) {
 			store.update((store) => {
 				store.player.moveRight($currentLevel);
 				return store;
@@ -63,20 +63,20 @@
 			doWalk();
 		}
 
-		if (e.key === $keyboard.rotateLeft) {
+		if (e.code === $keyboard.rotateLeft) {
 			store.update((store) => {
 				store.player.rotateLeft();
 				return store;
 			});
 		}
-		if (e.key === $keyboard.rotateRight) {
+		if (e.code === $keyboard.rotateRight) {
 			store.update((store) => {
 				store.player.rotateRight();
 				return store;
 			});
 		}
 
-		if (e.key === $keyboard.inventory) {
+		if (e.code === $keyboard.inventory) {
 			store.navigateTo('inventory');
 		}
 	};

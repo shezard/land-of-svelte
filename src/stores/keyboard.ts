@@ -10,12 +10,14 @@ interface Keyboard {
 	inventory: string;
 }
 
+export type Action = keyof Keyboard;
+
 export const keyboard = writable<Keyboard>({
-	forward: 'z',
-	left: 'q',
-	backward: 's',
-	right: 'd',
-	rotateLeft: 'a',
-	rotateRight: 'e',
-	inventory: 'i'
+	forward: 'KeyW',
+	left: 'KeyA',
+	backward: 'KeyS',
+	right: 'KeyD',
+	rotateLeft: 'KeyQ',
+	rotateRight: 'KeyE',
+	inventory: 'KeyI'
 });

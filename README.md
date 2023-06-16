@@ -11,10 +11,13 @@
 -   [/] Add item grabbing / inventory display
 -   [/] Split script execution into predicate and execution
 -   [/] Add door + key on level 0
--   [ ] Add missing key texture
+-   [/] Add missing key texture
+-   [/] Add support for WASD and ZQSD keyboards
 -   [ ] Display player hp as a health bar
 -   [ ] Better handling of game over
 -   [ ] Add treasure chest
+-   [ ] Pause game while in the menu
+-   [ ] Use Oriented Position type inside Script
 
 ## Developing
 
