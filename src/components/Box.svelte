@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import * as T from '@threlte/core';
+	import { useCursor } from '@threlte/extras';
 
 	export let texture: THREE.Texture | null = null;
 	export let color: THREE.ColorRepresentation = 0xffffff;
@@ -20,6 +21,8 @@
 	export let receiveShadow = false;
 	export let castShadow = false;
 	export let interactive = false;
+
+	const { onPointerEnter, onPointerLeave } = useCursor('pointer', 'default');
 </script>
 
 <T.Mesh
@@ -35,4 +38,6 @@
 	{castShadow}
 	{interactive}
 	on:click
+	on:pointerenter={onPointerEnter}
+	on:pointerleave={onPointerLeave}
 />

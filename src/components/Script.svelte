@@ -1,7 +1,4 @@
 <script lang="ts">
-	import * as T from '@threlte/core';
-	import * as THREE from 'three';
-
 	import Box from './Box.svelte';
 
 	import { textures } from '$stores/textures';
@@ -64,20 +61,15 @@
 </script>
 
 {#if script.type == 'door'}
-	<T.Mesh
-		geometry={new THREE.BoxGeometry()}
-		material={new THREE.MeshLambertMaterial({
-			map: texture
-		})}
-		position={{
-			x: script.x,
-			y: script.z ?? 0,
-			z: script.y
-		}}
-		castShadow
-		receiveShadow
+	<Box
+		x={script.x}
+		y={script.y}
+		z={script.z ?? 0}
+		{texture}
 		on:click={handleClick(script)}
 		interactive
+		castShadow
+		receiveShadow
 	/>
 {/if}
 
