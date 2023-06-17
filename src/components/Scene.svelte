@@ -24,7 +24,7 @@
 	interactivity();
 	gameTick();
 
-    const doWalk = (store: Store): Store => {
+	const doWalk = (store: Store): Store => {
 		scripts[store.currentLevelNumber]
 			.filter((script) => {
 				return (
@@ -66,7 +66,7 @@
 				return store;
 			});
 
-            updateCamera($store, camera);
+			updateCamera($store, camera);
 		}
 		if (e.code === $keyboard.left) {
 			store.update((store) => {
@@ -74,7 +74,7 @@
 				store = doWalk(store);
 				return store;
 			});
-            updateCamera($store, camera);
+			updateCamera($store, camera);
 		}
 		if (e.code === $keyboard.backward) {
 			store.update((store) => {
@@ -82,7 +82,7 @@
 				store = doWalk(store);
 				return store;
 			});
-            updateCamera($store, camera);
+			updateCamera($store, camera);
 		}
 		if (e.code === $keyboard.right) {
 			store.update((store) => {
@@ -90,7 +90,7 @@
 				store = doWalk(store);
 				return store;
 			});
-            updateCamera($store, camera);
+			updateCamera($store, camera);
 		}
 
 		if (e.code === $keyboard.rotateLeft) {
@@ -98,14 +98,14 @@
 				store.player.rotateLeft();
 				return store;
 			});
-            updateCamera($store, camera);
+			updateCamera($store, camera);
 		}
 		if (e.code === $keyboard.rotateRight) {
 			store.update((store) => {
 				store.player.rotateRight();
 				return store;
 			});
-            updateCamera($store, camera);
+			updateCamera($store, camera);
 		}
 
 		if (e.code === $keyboard.inventory) {
@@ -114,7 +114,6 @@
 	};
 
 	onMount(() => updateCamera($store, camera));
-
 </script>
 
 <Ceiling texture={$textures[`floor-${$currentLevel.ceiling}.png`]} />
@@ -132,7 +131,7 @@
 
 <Map2d map2d={$currentLevel.lightMap} let:x let:y let:item>
 	{#if item}
-		<Torch position={[x, y]} direction={getClosestWall($currentLevel, Number(x), Number(y))} />
+		<Torch position={[x, y]} t={getClosestWall($currentLevel, Number(x), Number(y))} />
 	{/if}
 </Map2d>
 

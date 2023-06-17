@@ -40,59 +40,46 @@ export interface LevelProp {
 	ceiling: number;
 }
 
-export interface Doodad {
+export type Doodad = {
 	id: number;
 	type: 'door' | 'button' | 'ladder';
 	collision?: boolean;
-	direction?: number;
 	texture?: string;
 	color?: ColorRepresentation;
-	x: number;
-	y: number;
 	z?: number;
-}
+} & OrientedPosition;
 
-export interface AI {
+export type AI = {
 	id: number;
 	type: 'ai';
 	name: string;
 	collision?: boolean;
-	direction?: number;
 	texture?: string;
 	color?: number;
 	stats: Stats;
 	loot?: ItemName;
-	x: number;
-	y: number;
 	z?: number;
-}
+} & OrientedPosition;
 
-export interface Panel {
+export type Panel = {
 	id: number;
 	type: 'panel';
 	collision?: boolean;
-	direction: number;
 	texture?: string;
 	color?: ColorRepresentation;
 	content: string[];
-	x: number;
-	y: number;
 	z?: number;
-}
+} & OrientedPosition;
 
-export interface Loot {
+export type Loot = {
 	id: number;
 	type: 'loot';
 	name: string;
 	collision?: boolean;
-	direction?: number;
 	texture?: string;
 	color?: ColorRepresentation;
-	x: number;
-	y: number;
 	z?: number;
-	t?: number;
-}
+} & OrientedPosition;
 
 export type Script = Doodad | AI | Loot | Panel;
 

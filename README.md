@@ -13,12 +13,12 @@
 -   [/] Add door + key on level 0
 -   [/] Add missing key texture
 -   [/] Add support for WASD and ZQSD keyboards
--   [ ] Better display of clickable (change cursor -> see next.thretle.xyz)
+-   [/] Better display of clickable (change cursor -> see next.thretle.xyz)
+-   [/] Use Oriented Position type inside Script
 -   [ ] Display player hp as a health bar
 -   [ ] Better handling of game over
 -   [ ] Add treasure chest
 -   [ ] Pause game while in the menu
--   [ ] Use Oriented Position type inside Script
 
 ## Developing
 

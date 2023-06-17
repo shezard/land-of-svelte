@@ -48,10 +48,9 @@
 		});
 	};
 
-	$: closestWallDirection =
-		script.direction !== undefined
-			? script.direction
-			: getClosestWall($currentLevel, script.x, script.y);
+	$: closestWallDirection = script.t
+		? script.t
+		: getClosestWall($currentLevel, script.x, script.y);
 
 	$: texture = script.texture ? $textures[`${script.texture}.png`] : null;
 </script>
@@ -113,10 +112,10 @@
 
 {#if script.type == 'panel'}
 	<Box
-		x={script.x + Math.cos(script.direction) * 0.5}
-		y={script.y + Math.sin(script.direction) * 0.5}
-		wx={0.05 + Math.abs(0.4 * Math.sin(script.direction))}
-		wy={0.05 + Math.abs(0.4 * Math.cos(script.direction))}
+		x={script.x + Math.cos(script.t) * 0.5}
+		y={script.y + Math.sin(script.t) * 0.5}
+		wx={0.05 + Math.abs(0.4 * Math.sin(script.t))}
+		wy={0.05 + Math.abs(0.4 * Math.cos(script.t))}
 		wz={0.3}
 		on:click={showText(script)}
 		{texture}

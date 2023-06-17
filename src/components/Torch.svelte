@@ -6,7 +6,7 @@
 
 	export let position: Position2d;
 
-	export let direction = Math.PI / 2;
+	export let t = Math.PI / 2;
 </script>
 
 <T.Group position.y={-0.1}>
@@ -20,8 +20,8 @@
 
 	<Box
 		color={0xfff0f0}
-		x={position[0] + 0.45 * Math.cos(direction)}
-		y={position[1] + 0.45 * Math.sin(direction)}
+		x={position[0] + 0.45 * Math.cos(t)}
+		y={position[1] + 0.45 * Math.sin(t)}
 		z={0.3}
 		wx={0.05}
 		wy={0.05}
@@ -30,14 +30,14 @@
 
 	<Box
 		color={0x62351c}
-		x={position[0] + 0.5 * Math.cos(direction)}
-		y={position[1] + 0.5 * Math.sin(direction)}
+		x={position[0] + 0.5 * Math.cos(t)}
+		y={position[1] + 0.5 * Math.sin(t)}
 		z={0.2}
 		wx={0.055}
 		wy={0.055}
 		wz={0.2}
-		rx={0.5 * Math.cos(direction + Math.PI / 2)}
-		ry={0.5 * Math.sin(direction + Math.PI / 2)}
+		rx={0.5 * Math.cos(t + Math.PI / 2)}
+		ry={0.5 * Math.sin(t + Math.PI / 2)}
 		castShadow
 	/>
 </T.Group>

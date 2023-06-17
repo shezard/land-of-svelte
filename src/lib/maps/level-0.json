@@ -61,7 +61,7 @@
 			"color": "333333",
 			"x": 1,
 			"y": 9,
-			"direction": 4.7123
+			"t": 4.7123
 		},
 		{
 			"id": 2,
@@ -104,7 +104,7 @@
 			"texture": "panel-0",
 			"x": 3,
 			"y": 9,
-			"direction": 4.7123,
+			"t": 4.7123,
 			"content": ["Tips: Some items are clickable"]
 		}
 	]
