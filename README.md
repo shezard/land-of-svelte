@@ -13,6 +13,7 @@
 -   [/] Add door + key on level 0
 -   [/] Add missing key texture
 -   [/] Add support for WASD and ZQSD keyboards
+-   [ ] Better display of clickable (change cursor -> see next.thretle.xyz)
 -   [ ] Display player hp as a health bar
 -   [ ] Better handling of game over
 -   [ ] Add treasure chest

@@ -2,7 +2,7 @@
 	import type { AI } from '..';
 	import Box from './Box.svelte';
 	import { store } from '$stores/store';
-	import * as THREE from 'three';
+	import type * as THREE from 'three';
 
 	export let ai: AI;
 	export let texture: THREE.Texture | null;

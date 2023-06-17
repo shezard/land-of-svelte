@@ -11,6 +11,15 @@
 		overflow: hidden;
 	}
 
+	:global(body::after) {
+		position: absolute;
+		width: 0;
+		height: 0;
+		overflow: hidden;
+		z-index: -1;
+		content: url(textures/sword-0.png);
+	}
+
 	:global(.menu) {
 		position: relative;
 		width: 60vw;

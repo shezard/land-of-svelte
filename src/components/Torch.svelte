@@ -1,36 +1,25 @@
 <script lang="ts">
-	import * as T from '@threlte/core';
+	import * as THREE from 'three';
+	import { T } from '@threlte/core';
 	import type { Position2d } from '../index.d.ts';
 	import Box from './Box.svelte';
 
 	export let position: Position2d;
 
 	export let direction = Math.PI / 2;
-
-	export let color = 0xfff0f0;
 </script>
 
-<T.Group
-	position={{
-		x: 0,
-		y: -0.1,
-		z: 0
-	}}
->
+<T.Group position.y={-0.1}>
 	<T.PointLight
 		intensity={0.8}
-		position={{
-			x: position[0],
-			y: 0.4,
-			z: position[1]
-		}}
+		position={[position[0], 0.4, position[1]]}
 		distance={10}
-		shadow={true}
-		{color}
+		color={new THREE.Color(0xffdede)}
+		castShadow={true}
 	/>
 
 	<Box
-		{color}
+		color={0xfff0f0}
 		x={position[0] + 0.45 * Math.cos(direction)}
 		y={position[1] + 0.45 * Math.sin(direction)}
 		z={0.3}

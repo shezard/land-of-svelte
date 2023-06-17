@@ -15,14 +15,10 @@
 	$: handleClick = (script: Script) => () => {
 		scripts[$store.currentLevelNumber]
 			.filter((scripts) => {
-				return (
-					scripts.scriptId === script.id &&
-					scripts.action === 'click' &&
-					scripts.predicate($store)
-				);
+				return scripts.scriptId === script.id && scripts.predicate($store);
 			})
 			.map((script) => {
-				script.doAction(store);
+				script.doClick?.(store);
 			});
 	};
 
@@ -81,7 +77,7 @@
 		wy={0.025 + Math.abs(0.025 * Math.cos(closestWallDirection))}
 		wz={0.05}
 		on:click={handleClick(script)}
-		{texture}
+		color={0xffffff}
 		interactive
 	/>
 {/if}

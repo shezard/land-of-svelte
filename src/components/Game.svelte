@@ -34,8 +34,8 @@
 		{:else}
 			<UI />
 		{/if}
-		<div class="absolute z-0 w-full h-full" class:shaking>
-			<Canvas rendererParameters={{ antialias: false }}>
+		<div class="absolute z-0 w-full h-full bg-stone-800 overflow-hidden" class:shaking>
+			<Canvas rendererParameters={{ antialias: false }} colorSpace={'srgb'}>
 				<Scene />
 			</Canvas>
 		</div>

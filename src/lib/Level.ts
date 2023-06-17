@@ -24,7 +24,7 @@ export class Level {
 	textureMap: Map2d;
 	lightMap: Map2d;
 	scripts: Script[];
-	ceiling: number | undefined;
+	ceiling: number;
 
 	constructor(level: LevelProp) {
 		this.width = level.width;

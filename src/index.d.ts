@@ -59,7 +59,7 @@ export interface AI {
 	collision?: boolean;
 	direction?: number;
 	texture?: string;
-	color?: ColorRepresentation;
+	color?: number;
 	stats: Stats;
 	loot?: ItemName;
 	x: number;

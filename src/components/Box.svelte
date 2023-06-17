@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
 	import * as THREE from 'three';
-	import * as T from '@threlte/core';
+	import { T } from '@threlte/core';
 	import { useCursor } from '@threlte/extras';
 
 	export let texture: THREE.Texture | null = null;
-	export let color: THREE.ColorRepresentation = 0xffffff;
+	export let color: number | undefined = undefined;
 
 	export let x = 0;
 	export let y = 0;
@@ -22,22 +24,27 @@
 	export let castShadow = false;
 	export let interactive = false;
 
+	const dispatch = createEventDispatcher();
 	const { onPointerEnter, onPointerLeave } = useCursor('pointer', 'default');
+
+	const enter = () => {
+		interactive && onPointerEnter();
+	};
+
+	const leave = () => {
+		interactive && onPointerLeave();
+	};
 </script>
 
 <T.Mesh
-	geometry={new THREE.BoxGeometry(wx, wz, wy)}
-	material={new THREE.MeshLambertMaterial({
-		map: texture,
-		transparent: true,
-		color: color
-	})}
-	position={{ x: x, y: z, z: y }}
-	rotation={{ x: rx, y: rz, z: ry }}
+	position={[x, z, y]}
+	rotation={[rx, rz, ry]}
 	{receiveShadow}
 	{castShadow}
-	{interactive}
-	on:click
-	on:pointerenter={onPointerEnter}
-	on:pointerleave={onPointerLeave}
-/>
+	on:click={() => dispatch('click')}
+	on:pointerenter={enter}
+	on:pointerleave={leave}
+>
+	<T.BoxGeometry args={[wx, wz, wy]} />
+	<T.MeshLambertMaterial map={texture} transparent={true} color={new THREE.Color(color)} />
+</T.Mesh>

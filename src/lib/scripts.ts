@@ -1,4 +1,3 @@
-import type { Writable } from 'svelte/store';
 import type { Store } from '..';
 import { animateOnce, animateToggleReverse } from './animation';
 
@@ -6,9 +5,8 @@ export const scripts = [
 	[
 		{
 			scriptId: 1,
-			action: 'click',
 			predicate: () => true,
-			doAction: animateToggleReverse((store, t) => {
+			doClick: animateToggleReverse((store, t) => {
 				store.update((store) => {
 					const script = store.levels[0].getScript(0);
 					if (script) {
@@ -25,11 +23,10 @@ export const scripts = [
 		},
 		{
 			scriptId: 4,
-			action: 'click',
 			predicate: ($store: Store): boolean => {
 				return $store.player.inventory.bag.filter((item) => item.name === 'key').length > 0;
 			},
-			doAction: animateOnce((store, t) => {
+			doClick: animateOnce((store, t) => {
 				store.update((store) => {
 					const script = store.levels[0].getScript(4);
 					if (script) {
@@ -48,31 +45,23 @@ export const scripts = [
 			}, 1)
 		},
 		{
-			action: 'walk',
 			x: 1,
 			y: 2,
-			predicate: () => true,
-			doAction: (store: Writable<Store>) => {
-				store.update((store) => {
-					store.currentLevelNumber = 1;
-					store.player.position.t = Math.PI / 2;
-					return store;
-				});
+			doWalk: (store: Store): Store => {
+				store.currentLevelNumber = 1;
+				store.player.position.t = Math.PI / 2;
+				return store;
 			}
 		}
 	],
 	[
 		{
-			action: 'walk',
 			x: 1,
 			y: 2,
-			predicate: () => true,
-			doAction: (store: Writable<Store>) => {
-				store.update((store) => {
-					store.currentLevelNumber = 0;
-					store.player.position.t = Math.PI / 2;
-					return store;
-				});
+			doWalk: (store: Store): Store => {
+				store.currentLevelNumber = 0;
+				store.player.position.t = Math.PI / 2;
+				return store;
 			}
 		}
 	]
