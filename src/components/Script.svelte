@@ -5,10 +5,11 @@
 	import { getClosestWall } from '$lib/helpers';
 	import { scripts } from '$lib/scripts';
 	import { currentLevel, store } from '$stores/store';
-	import type { Loot, Panel, Script, Store } from '..';
+	import type { Container, Loot, Panel, Script, Store } from '..';
 	import { makeItem } from '$lib/Item';
 	import AI from './AI.svelte';
 	import { logs } from '$stores/logs';
+	import { container } from '$stores/container';
 
 	export let script: Script;
 
@@ -39,6 +40,11 @@
 			logs.push(`You take a ${loot.name}`);
 			return logs;
 		});
+	};
+
+	const handleContainer = (containerScript: Container) => () => {
+		store.navigateTo('container');
+		container.set(containerScript.content.map(makeItem));
 	};
 
 	const showText = (panel: Panel) => () => {
@@ -118,6 +124,21 @@
 		wy={0.05 + Math.abs(0.4 * Math.cos(script.t))}
 		wz={0.3}
 		on:click={showText(script)}
+		{texture}
+		interactive
+	/>
+{/if}
+
+{#if script.type == 'container'}
+	<Box
+		x={script.x}
+		y={script.y}
+		z={-0.2}
+		wx={0.6}
+		wy={0.6}
+		wz={0.6}
+		rz={Math.PI}
+		on:click={handleContainer(script)}
 		{texture}
 		interactive
 	/>

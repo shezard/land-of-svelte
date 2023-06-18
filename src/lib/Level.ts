@@ -61,7 +61,7 @@ export class Level {
 				texture: [`${loot}-0`],
 				x,
 				y,
-                t: 0,
+				t: 0
 			});
 		}
 

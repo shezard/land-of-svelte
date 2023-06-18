@@ -7,11 +7,11 @@ export type Map2d = number[][];
 
 export type GameState = (
 	| {
-			state: 'mainMenu' | 'controlMenu';
+			state: 'main' | 'control';
 			running: 'newGame' | 'continue';
 	  }
 	| {
-			state: 'running' | 'inventory';
+			state: 'running' | 'inventory' | 'container';
 			running: 'continue' | 'gameOver';
 	  }
 ) & {
@@ -58,7 +58,6 @@ export type AI = {
 	color?: number;
 	stats: Stats;
 	loot?: ItemName;
-	z?: number;
 } & OrientedPosition;
 
 export type Panel = {
@@ -68,7 +67,6 @@ export type Panel = {
 	texture: string[];
 	color?: ColorRepresentation;
 	content: string[];
-	z?: number;
 } & OrientedPosition;
 
 export type Loot = {
@@ -77,12 +75,19 @@ export type Loot = {
 	name: string;
 	texture: string[];
 	collision?: boolean;
-	texture: string;
 	color?: ColorRepresentation;
-	z?: number;
 } & OrientedPosition;
 
-export type Script = Doodad | AI | Loot | Panel;
+export type Container = {
+	id: number;
+	type: 'container';
+	name: string;
+	texture: string[];
+	collision?: boolean;
+	content: ItemName[];
+} & OrientedPosition;
+
+export type Script = Doodad | AI | Loot | Panel | Container;
 
 export interface OrientedPosition {
 	x: number;

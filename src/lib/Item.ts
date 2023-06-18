@@ -1,6 +1,6 @@
-import type { Item } from '..';
+import type { Item, ItemName } from '..';
 
-export const makeItem = function (itemName: string): Item {
+export const makeItem = function (itemName: ItemName): Item {
 	if (itemName === 'sword') {
 		return {
 			name: 'sword',

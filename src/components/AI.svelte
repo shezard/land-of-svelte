@@ -5,7 +5,7 @@
 	import type * as THREE from 'three';
 
 	export let ai: AI;
-	export let texture: THREE.Texture | null;
+	export let texture: THREE.Texture[];
 
 	$: ratio = ai.stats.hp / ai.stats.maxHp;
 </script>

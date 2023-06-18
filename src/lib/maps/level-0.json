@@ -67,7 +67,7 @@
 			"id": 2,
 			"type": "ladder",
 			"collision": false,
-            "texture": ["ladder-0", "panel-1", "panel-1", "panel-1", "panel-1", "panel-1"],
+			"texture": ["ladder-0", "panel-1", "panel-1", "panel-1", "panel-1", "panel-1"],
 			"x": 1,
 			"y": 2
 		},
@@ -106,6 +106,15 @@
 			"y": 9,
 			"t": 4.7123,
 			"content": ["Tips: Some items are clickable"]
+		},
+		{
+			"id": 6,
+			"type": "container",
+			"collision": true,
+			"texture": ["chest-1", "chest-1", "chest-1", "chest-1", "chest-0", "chest-1"],
+			"x": 3,
+			"y": 10,
+			"content": ["sword", "armor"]
 		}
 	]
 }

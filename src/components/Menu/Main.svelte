@@ -10,7 +10,7 @@
 	};
 
 	const showControlMenu = () => {
-		store.navigateTo('controlMenu');
+		store.navigateTo('control');
 	};
 </script>
 

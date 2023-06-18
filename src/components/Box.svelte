@@ -46,23 +46,19 @@
 	on:pointerleave={leave}
 >
 	<T.BoxGeometry args={[wx, wz, wy]} />
-    {#if texture.length < 2}
-        <T.MeshLambertMaterial
-            map={texture[0]}
-            color={new THREE.Color(color)}
-            transparent={true}
-        />
-    {:else}
-        <T.MeshLambertMaterial
-            attach={(parent, self) => {
-                parent.material = texture.map((texture) => {
-                    const material = self.clone();
-                    material.map = texture;
-                    return material;
-                });
-            }}
-            color={new THREE.Color(color)}
-            transparent={true}
-        />
-    {/if }
+	{#if texture.length < 2}
+		<T.MeshLambertMaterial map={texture[0]} color={new THREE.Color(color)} transparent={true} />
+	{:else}
+		<T.MeshLambertMaterial
+			attach={(parent, self) => {
+				parent.material = texture.map((texture) => {
+					const material = self.clone();
+					material.map = texture;
+					return material;
+				});
+			}}
+			color={new THREE.Color(color)}
+			transparent={true}
+		/>
+	{/if}
 </T.Mesh>

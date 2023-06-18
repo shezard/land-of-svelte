@@ -5,14 +5,14 @@ import level1 from '$lib/maps/level-1.json';
 
 import { Level } from '../lib/Level';
 import { Player } from '../lib/Player';
-import type { LevelProp, Store } from '..';
+import type { LevelProp, Script, Store } from '..';
 import { makeItem } from '../lib/Item';
 
-type Route = 'mainMenu' | 'controlMenu' | 'running' | 'inventory';
+type Route = 'main' | 'control' | 'running' | 'inventory' | 'container';
 
 const initialStoreState: Store = {
 	game: {
-		state: 'mainMenu',
+		state: 'main',
 		running: 'newGame',
 		isLoading: true
 	},
@@ -46,7 +46,7 @@ const initialStoreState: Store = {
 const createStore = () => {
 	const { subscribe, set, update } = writable<Store>(initialStoreState);
 
-	const stack: Route[] = ['mainMenu'];
+	const stack: Route[] = ['main'];
 
 	const navigateTo = (target: Route): void => {
 		if (target === stack[stack.length - 1]) {

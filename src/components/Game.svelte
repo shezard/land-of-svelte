@@ -4,11 +4,13 @@
 	import { store } from '$stores/store';
 
 	import Scene from './Scene.svelte';
-	import MainMenu from './Menu/Main.svelte';
-	import ControlMenu from './Menu/Control.svelte';
-	import Loader from './Menu/Loader.svelte';
 	import UI from './UI.svelte';
+
+	import Loader from './Menu/Loader.svelte';
+	import Main from './Menu/Main.svelte';
+	import Control from './Menu/Control.svelte';
 	import Inventory from './Menu/Inventory.svelte';
+	import Container from './Menu/Container.svelte';
 
 	$: shaking = $store.screen.shaking;
 </script>
@@ -22,12 +24,14 @@
 				class="grid justify-items-center items-center absolute w-full h-full z-10 backdrop-blur-sm"
 			>
 				<div class="cursor-default menu">
-					{#if $store.game.state == 'mainMenu'}
-						<MainMenu />
-					{:else if $store.game.state == 'controlMenu'}
-						<ControlMenu />
+					{#if $store.game.state == 'main'}
+						<Main />
+					{:else if $store.game.state == 'control'}
+						<Control />
 					{:else if $store.game.state == 'inventory'}
 						<Inventory />
+					{:else if $store.game.state == 'container'}
+						<Container />
 					{/if}
 				</div>
 			</div>
