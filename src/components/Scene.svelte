@@ -8,7 +8,6 @@
 	import Wall from './Wall.svelte';
 	import Floor from './Floor.svelte';
 	import Torch from './Torch.svelte';
-	import Map2d from './Map2d.svelte';
 	import Ceiling from './Ceiling.svelte';
 	import Script from './Script.svelte';
 	import { gameTick } from '$lib/game';
@@ -120,20 +119,16 @@
 
 <Floor texture={$textures[`floor-${$currentLevel.floor}.png`]} />
 
-<Map2d map2d={$currentLevel.collisionMap} let:x let:y let:item>
-	{#if item == 1}
-		<Wall
-			position={[x, y]}
-			texture={$textures[`wall-${$currentLevel.textureMap[Number(x)][Number(y)]}.png`]}
-		/>
-	{/if}
-</Map2d>
+{#each $currentLevel.getWalls() as wall}
+	<Wall
+		position={[wall.x, wall.y]}
+		texture={$textures[`wall-${$currentLevel.textureMap[wall.x][wall.y]}.png`]}
+	/>
+{/each}
 
-<Map2d map2d={$currentLevel.lightMap} let:x let:y let:item>
-	{#if item}
-		<Torch position={[x, y]} t={getClosestWall($currentLevel, Number(x), Number(y))} />
-	{/if}
-</Map2d>
+{#each $currentLevel.lights as torch}
+	<Torch position={[torch.x, torch.y]} t={getClosestWall($currentLevel, torch.x, torch.y)} />
+{/each}
 
 {#each $currentLevel.scripts as script}
 	<Script {script} />

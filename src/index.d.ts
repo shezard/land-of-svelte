@@ -34,7 +34,7 @@ export interface LevelProp {
 	floor: number;
 	collisionMap: Map2d;
 	textureMap: Map2d;
-	lightMap: Map2d;
+	lights: OrientedPosition[];
 	scripts: Script[];
 	ceiling: number;
 }

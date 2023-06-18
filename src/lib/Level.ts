@@ -1,4 +1,4 @@
-import type { AI, Script, LevelProp, Map2d, Store, Loot } from '..';
+import type { AI, Script, LevelProp, Map2d, Store, Loot, OrientedPosition } from '..';
 import { fight } from './fight';
 import { makeAstar } from './grid';
 import { logs } from '$stores/logs';
@@ -22,7 +22,7 @@ export class Level {
 	floor: number;
 	collisionMap: Map2d;
 	textureMap: Map2d;
-	lightMap: Map2d;
+	lights: OrientedPosition[];
 	scripts: Script[];
 	ceiling: number;
 
@@ -32,7 +32,7 @@ export class Level {
 		this.floor = level.floor;
 		this.collisionMap = swapXY(level.width, level.height, level.collisionMap);
 		this.textureMap = swapXY(level.width, level.height, level.textureMap);
-		this.lightMap = swapXY(level.width, level.height, level.lightMap);
+		this.lights = level.lights;
 		this.scripts = level.scripts;
 		this.ceiling = level.ceiling;
 	}
@@ -74,6 +74,22 @@ export class Level {
 		return this.scripts.filter((item) => {
 			return item.type === 'loot';
 		}) as Loot[];
+	}
+
+	getWalls(): OrientedPosition[] {
+		const walls = [];
+		for (let i = 0; i < this.width; i++) {
+			for (let j = 0; j < this.width; j++) {
+				if (this.collisionMap[i][j] == 1) {
+					walls.push({
+						x: i,
+						y: j,
+						t: 0
+					});
+				}
+			}
+		}
+		return walls;
 	}
 
 	advance(store: Store): Store {
