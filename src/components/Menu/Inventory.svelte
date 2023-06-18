@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { store } from '$stores/store';
 	import type { Item } from '../..';
+	import ItemTooltip from './ItemTooltip.svelte';
 
 	const toBag = (item: Item) => () => {
 		store.update((store) => {
@@ -131,24 +132,7 @@
 	</div>
 
 	{#if tooltip}
-		<div class="info text-2xl text-white absolute" style="top:{tooltipY}px;left:{tooltipX}px;">
-			{tooltip.name} <br />
-			{#if tooltip.stats.ac > 0}
-				AC : {tooltip.stats.ac} <br />
-			{/if}
-			{#if tooltip.stats.hit > 0}
-				Hit : {tooltip.stats.hit} <br />
-			{/if}
-			{#if tooltip.stats.hp > 0}
-				HP : {tooltip.stats.hp} <br />
-			{/if}
-			{#if tooltip.stats.pAttack > 0}
-				Attack : {tooltip.stats.pAttack} <br />
-			{/if}
-			{#if tooltip.stats.pDefense > 0}
-				Defense : {tooltip.stats.pDefense} <br />
-			{/if}
-		</div>
+        <ItemTooltip item={tooltip} {tooltipX} {tooltipY}/>
 	{/if}
 </div>
 

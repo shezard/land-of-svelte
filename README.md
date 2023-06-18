@@ -19,9 +19,10 @@
 -   [ ] Add treasure chest
 -                                         [/] Add multiple texture handling (for a single item)
 -                                         [/] Container doClick
+-                                         [ ] Show border around item in inventory
 -                                         [ ] Container screen + button lootAll
 -                                         [ ] Multiple loot
--                                         [ ] Show border around item in inventory
+-                                         [ ] Extract tooltip as a component
 -   [ ] Better handling of game over
 -   [ ] Pause game while in the menu
 -   [ ] Gold
