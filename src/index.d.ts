@@ -44,7 +44,7 @@ export type Doodad = {
 	id: number;
 	type: 'door' | 'button' | 'ladder';
 	collision?: boolean;
-	texture?: string;
+	texture: string[];
 	color?: ColorRepresentation;
 	z?: number;
 } & OrientedPosition;
@@ -54,7 +54,7 @@ export type AI = {
 	type: 'ai';
 	name: string;
 	collision?: boolean;
-	texture?: string;
+	texture: string[];
 	color?: number;
 	stats: Stats;
 	loot?: ItemName;
@@ -65,7 +65,7 @@ export type Panel = {
 	id: number;
 	type: 'panel';
 	collision?: boolean;
-	texture?: string;
+	texture: string[];
 	color?: ColorRepresentation;
 	content: string[];
 	z?: number;
@@ -75,8 +75,9 @@ export type Loot = {
 	id: number;
 	type: 'loot';
 	name: string;
+	texture: string[];
 	collision?: boolean;
-	texture?: string;
+	texture: string;
 	color?: ColorRepresentation;
 	z?: number;
 } & OrientedPosition;

@@ -50,7 +50,7 @@
 			"id": 0,
 			"type": "door",
 			"collision": true,
-			"texture": "door-0",
+			"texture": ["door-0"],
 			"x": 2,
 			"y": 8
 		},
@@ -67,7 +67,7 @@
 			"id": 2,
 			"type": "ladder",
 			"collision": false,
-			"texture": "ladder-0",
+            "texture": ["ladder-0", "panel-1", "panel-1", "panel-1", "panel-1", "panel-1"],
 			"x": 1,
 			"y": 2
 		},
@@ -76,7 +76,7 @@
 			"type": "ai",
 			"name": "orc",
 			"collision": true,
-			"texture": "orc-1",
+			"texture": ["orc-1"],
 			"x": 7,
 			"y": 5,
 			"stats": {
@@ -93,7 +93,7 @@
 			"id": 4,
 			"type": "door",
 			"collision": true,
-			"texture": "door-0",
+			"texture": ["door-0"],
 			"x": 4,
 			"y": 2
 		},
@@ -101,7 +101,7 @@
 			"id": 5,
 			"type": "panel",
 			"collision": false,
-			"texture": "panel-0",
+			"texture": ["panel-1", "panel-1", "panel-1", "panel-1", "panel-0", "panel-1"],
 			"x": 3,
 			"y": 9,
 			"t": 4.7123,

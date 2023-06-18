@@ -35,7 +35,7 @@
 			<UI />
 		{/if}
 		<div class="absolute z-0 w-full h-full bg-stone-800 overflow-hidden" class:shaking>
-			<Canvas rendererParameters={{ antialias: false }} colorSpace={'srgb'}>
+			<Canvas rendererParameters={{ antialias: false }}>
 				<Scene />
 			</Canvas>
 		</div>

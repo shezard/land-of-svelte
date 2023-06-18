@@ -7,4 +7,4 @@
 	export let texture: THREE.Texture;
 </script>
 
-<Box {texture} x={position[0]} y={position[1]} castShadow receiveShadow />
+<Box texture={[texture]} x={position[0]} y={position[1]} castShadow receiveShadow />

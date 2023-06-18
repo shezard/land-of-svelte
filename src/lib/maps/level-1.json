@@ -50,7 +50,7 @@
 			"id": 0,
 			"type": "ladder",
 			"collision": false,
-			"texture": "ladder-0",
+            "texture": ["panel-1", "ladder-0", "panel-1", "panel-1", "ladder-0", "panel-1"],
 			"x": 1,
 			"y": 2
 		},
@@ -59,7 +59,7 @@
 			"type": "loot",
 			"name": "armor",
 			"collision": false,
-			"texture": "armor-0",
+			"texture": ["armor-0"],
 			"x": 4,
 			"y": 5
 		}

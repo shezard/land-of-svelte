@@ -58,9 +58,10 @@ export class Level {
 				type: 'loot',
 				name: loot,
 				collision: false,
-				texture: `${loot}-0`,
+				texture: [`${loot}-0`],
 				x,
-				y
+				y,
+                t: 0,
 			});
 		}
 

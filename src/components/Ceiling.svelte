@@ -10,7 +10,7 @@
 </script>
 
 <Box
-	{texture}
+	texture={[texture]}
 	x={$currentLevel.width / 2}
 	y={$currentLevel.height / 2}
 	z={1}

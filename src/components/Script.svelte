@@ -52,7 +52,7 @@
 		? script.t
 		: getClosestWall($currentLevel, script.x, script.y);
 
-	$: texture = script.texture ? $textures[`${script.texture}.png`] : null;
+	$: texture = (script.texture ?? []).map((texture) => $textures[`${texture}.png`]);
 </script>
 
 {#if script.type == 'door'}

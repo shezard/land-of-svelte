@@ -16,9 +16,16 @@
 -   [/] Better display of clickable (change cursor -> see next.thretle.xyz)
 -   [/] Use Oriented Position type inside Script
 -   [ ] Display player hp as a health bar
--   [ ] Better handling of game over
 -   [ ] Add treasure chest
+-                   [/] Add multiple texture handling (for a single item)
+-                   [ ] Container screen + button lootAll
+-                   [ ] Container doClick
+-                   [ ] Multiple loot
+-                   [ ] Show border around item in inventory
+-   [ ] Better handling of game over
 -   [ ] Pause game while in the menu
+-   [ ] Gold
+-   [ ] Try to fix alpha transparency showing canvas background
 
 ## Developing
 
