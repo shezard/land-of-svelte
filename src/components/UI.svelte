@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { lastLogs } from '$stores/logs';
 	import { store } from '$stores/store';
+	import { ui } from '$stores/ui';
 
 	const attack = () => {
 		if ($store.player.inventory.mainHand === null) {
@@ -13,7 +14,7 @@
 
 	$: mainHandTexture = $store.player.inventory.mainHand?.texture ?? '';
 
-	$: weaponBackgroundImage = `linear-gradient(to bottom, rgba(0, 0, 0, 0) ${$store.ui.weaponCooldownPercent}%, #6f6f64 ${$store.ui.weaponCooldownPercent}%),
+	$: weaponBackgroundImage = `linear-gradient(to bottom, rgba(0, 0, 0, 0) ${$ui.weaponCooldownPercent}%, #6f6f64 ${$ui.weaponCooldownPercent}%),
 			url('textures/${mainHandTexture}.png')`;
 </script>
 

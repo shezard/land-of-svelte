@@ -70,7 +70,6 @@
 		on:click={handleClick(script)}
 		interactive
 		castShadow
-		receiveShadow
 	/>
 {/if}
 
@@ -94,7 +93,6 @@
 		wx={0.1 + Math.abs(0.2 * Math.sin(closestWallDirection))}
 		wy={0.1 + Math.abs(0.2 * Math.cos(closestWallDirection))}
 		{texture}
-		castShadow
 	/>
 {/if}
 

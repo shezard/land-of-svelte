@@ -5,7 +5,7 @@ import level1 from '$lib/maps/level-1.json';
 
 import { Level } from '../lib/Level';
 import { Player } from '../lib/Player';
-import type { LevelProp, Script, Store } from '..';
+import type { LevelProp, Store } from '..';
 import { makeItem } from '../lib/Item';
 
 type Route = 'main' | 'control' | 'running' | 'inventory' | 'container';
@@ -37,9 +37,6 @@ const initialStoreState: Store = {
 	),
 	screen: {
 		shaking: false
-	},
-	ui: {
-		weaponCooldownPercent: 100
 	}
 };
 

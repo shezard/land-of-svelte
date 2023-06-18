@@ -26,7 +26,6 @@ export interface Store {
 	screen: {
 		shaking: boolean;
 	};
-	ui: UI;
 }
 
 export interface LevelProp {
@@ -72,7 +71,7 @@ export type Panel = {
 export type Loot = {
 	id: number;
 	type: 'loot';
-	name: string;
+	name: ItemName;
 	texture: string[];
 	collision?: boolean;
 	color?: ColorRepresentation;

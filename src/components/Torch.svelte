@@ -38,6 +38,5 @@
 		wz={0.2}
 		rx={0.5 * Math.cos(t + Math.PI / 2)}
 		ry={0.5 * Math.sin(t + Math.PI / 2)}
-		castShadow
 	/>
 </T.Group>

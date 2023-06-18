@@ -13,15 +13,6 @@ const advanceFrame = (t: number) => {
 			loot.t = t * 1e-3;
 		});
 
-		const weapon = store.player.inventory.mainHand;
-
-		if (weapon === null || weapon.lastAttackTimestamp === 0) {
-			return store;
-		}
-
-		store.ui.weaponCooldownPercent =
-			((Date.now() - weapon.lastAttackTimestamp) / (weapon.cooldown * 1e3)) * 100;
-
 		return store;
 	});
 };
@@ -43,13 +34,18 @@ export const gameTick = () => {
 	let start = Date.now();
 	const tickDuration = 1000;
 
-	useFrame(() => {
-		t = Date.now() - start;
-		advanceFrame(Date.now());
+	useFrame(
+		() => {
+			t = Date.now() - start;
+			advanceFrame(Date.now());
 
-		if (t > tickDuration) {
-			start = Date.now();
-			advanceGame();
+			if (t > tickDuration) {
+				start = Date.now();
+				advanceGame();
+			}
+		},
+		{
+			invalidate: false
 		}
-	});
+	);
 };
