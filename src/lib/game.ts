@@ -33,15 +33,15 @@ export const gameTick = () => {
 	let t = 0;
 	let start = Date.now();
 	const tickDuration = 1000;
-    let i = 0;
+	let i = 0;
 
 	useFrame(
 		() => {
-            i++;
+			i++;
 			t = Date.now() - start;
-            if(i % 10 == 0) {
-                advanceFrame(Date.now());
-            }
+			if (i % 10 == 0) {
+				advanceFrame(Date.now());
+			}
 
 			if (t > tickDuration) {
 				start = Date.now();

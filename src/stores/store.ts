@@ -32,7 +32,7 @@ const initialStoreState: Store = {
 			mainHand: makeItem('sword'),
 			offHand: null,
 			armor: null,
-			bag: []
+			bag: [makeItem('sword'), makeItem('armor')]
 		}
 	),
 	screen: {
