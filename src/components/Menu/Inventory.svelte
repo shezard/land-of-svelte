@@ -22,8 +22,6 @@
 	$: armor = $store.player.inventory.armor;
 
 	$: stats = $store.player.getStats();
-
-    const bagSlots = [0, 1, 2,3,4,5,6,7];
 </script>
 
 <div class="menu">
@@ -69,32 +67,30 @@
 		<div class="flex flex-col text-white">
 			<div class="text-2xl">Bag</div>
 
-            <div class="grid item-grid">
-                {#each bagSlots as index}
-                    <div class="placeholder">
-                        {#if $store.player.inventory.bag[index]}
-                            <MenuItem
-                                item={$store.player.inventory.bag[index]}
-                                on:click={toInventory($store.player.inventory.bag[index], index)}
-                            />
-                        {/if}
-                    </div>
-                {/each}
-            </div>
-
+			<div class="grid item-grid">
+				{#each [...Array(8).keys()] as index}
+					<div class="placeholder">
+						{#if $store.player.inventory.bag[index]}
+							<MenuItem
+								item={$store.player.inventory.bag[index]}
+								on:click={toInventory($store.player.inventory.bag[index], index)}
+							/>
+						{/if}
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
 </div>
 
 <style>
+	.item-grid {
+		grid-template-columns: 48px 48px 48px 48px;
+		grid-template-rows: 48px 48px 48px 48px;
+		grid-gap: 10px;
+	}
 
-    .item-grid {
-        grid-template-columns: 48px 48px 48px 48px;
-        grid-template-rows: 48px 48px 48px 48px;
-        grid-gap: 10px;
-    }
-
-    .placeholder {
+	.placeholder {
 		border: 2px solid rgba(255, 255, 255, 0.2);
-    }
+	}
 </style>

@@ -17,12 +17,12 @@
 -   [/] Use Oriented Position type inside Script
 -   [ ] Display player hp as a health bar
 -   [ ] Add treasure chest
--                                               [/] Add multiple texture handling (for a single item)
--                                               [/] Container doClick
--                                               [/] Extract tooltip as a component
--                                               [/] Container screen + button lootAll
--                                               [ ] Show border around item in inventory
--                                               [ ] Multiple loot
+-                                                   [/] Add multiple texture handling (for a single item)
+-                                                   [/] Container doClick
+-                                                   [/] Extract tooltip as a component
+-                                                   [/] Container screen + button lootAll
+-                                                   [/] Show border around item in inventory
+-                                                   [ ] Multiple loot
 -   [ ] Better handling of game over
 -   [ ] Pause game while in the menu
 -   [ ] Gold
