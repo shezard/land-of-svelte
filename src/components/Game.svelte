@@ -11,6 +11,7 @@
 	import Control from './Menu/Control.svelte';
 	import Inventory from './Menu/Inventory.svelte';
 	import Container from './Menu/Container.svelte';
+	import Editor from './Menu/Editor.svelte';
 
 	$: shaking = $store.screen.shaking;
 </script>
@@ -28,6 +29,8 @@
 						<Main />
 					{:else if $store.game.state == 'control'}
 						<Control />
+					{:else if $store.game.state == 'editor'}
+						<Editor />
 					{:else if $store.game.state == 'inventory'}
 						<Inventory />
 					{:else if $store.game.state == 'container'}

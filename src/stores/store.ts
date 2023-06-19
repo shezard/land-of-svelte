@@ -8,7 +8,7 @@ import { Player } from '../lib/Player';
 import type { LevelProp, Store } from '..';
 import { makeItem } from '../lib/Item';
 
-type Route = 'main' | 'control' | 'running' | 'inventory' | 'container';
+type Route = 'main' | 'control' | 'editor' | 'running' | 'inventory' | 'container';
 
 const initialStoreState: Store = {
 	game: {

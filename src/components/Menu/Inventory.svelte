@@ -24,11 +24,11 @@
 	$: stats = $store.player.getStats();
 </script>
 
-<div class="menu">
-	<div class="text-3xl text-white">Character</div>
+<div class="menu text-white">
+	<div class="text-3xl">Character</div>
 
 	<div class="grid grid-cols-3">
-		<div class="flex flex-col text-white">
+		<div class="flex flex-col">
 			<div class="text-2xl">
 				Stats:
 				<div class="pl-10">
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col text-white">
+		<div class="flex flex-col">
 			<div class="text-2xl">
 				Main Hand
 				{#if mainHand}
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col text-white">
+		<div class="flex flex-col">
 			<div class="text-2xl">Bag</div>
 
 			<div class="grid item-grid">

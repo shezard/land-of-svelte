@@ -12,6 +12,10 @@
 	const showControlMenu = () => {
 		store.navigateTo('control');
 	};
+
+	const showEditor = () => {
+		store.navigateTo('editor');
+	};
 </script>
 
 <div class="text-3xl text-white">Land Of Svelte</div>
@@ -32,6 +36,16 @@
 	}}
 >
 	Controls
+</div>
+
+<div
+	class="text-2xl text-white cursor-pointer action"
+	on:click={showEditor}
+	on:keypress={() => {
+		/*no op*/
+	}}
+>
+	Editor
 </div>
 
 <style>

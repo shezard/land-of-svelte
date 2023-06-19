@@ -38,9 +38,9 @@
 	};
 </script>
 
-<div class="menu">
+<div class="menu text-white">
 	<div class="grid grid-cols-3">
-		<div class="flex flex-col text-white items-center">
+		<div class="flex flex-col items-center">
 			<div class="text-3xl">Bag</div>
 
 			<div class="grid item-grid">
@@ -57,9 +57,9 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col text-white items-center">
+		<div class="flex flex-col items-center">
 			<div
-				class="text-3xl text-white cursor-pointer flex flex-col items-center"
+				class="text-3xl cursor-pointer flex flex-col items-center"
 				on:click={transfertAll($container.bag)}
 				on:keypress={() => {
 					//no-op
@@ -70,7 +70,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col text-white items-center">
+		<div class="flex flex-col items-center">
 			<div class="text-3xl capitalize">{$container.name}</div>
 
 			<div class="grid item-grid">

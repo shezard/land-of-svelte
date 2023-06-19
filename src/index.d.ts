@@ -7,7 +7,7 @@ export type Map2d = number[][];
 
 export type GameState = (
 	| {
-			state: 'main' | 'control';
+			state: 'main' | 'control' | 'editor';
 			running: 'newGame' | 'continue';
 	  }
 	| {
@@ -124,3 +124,8 @@ export interface Item {
 export interface UI {
 	weaponCooldownPercent: number;
 }
+
+export type Tile = {
+	collision: boolean;
+	texture: number;
+} & OrientedPosition;
