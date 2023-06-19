@@ -44,7 +44,11 @@
 
 	const handleContainer = (containerScript: Container) => () => {
 		store.navigateTo('container');
-		container.set(containerScript.content.map(makeItem));
+		container.update((container) => {
+            container.name = containerScript.name;
+            container.bag = containerScript.content.map(makeItem);
+            return container;
+        });
 	};
 
 	const showText = (panel: Panel) => () => {

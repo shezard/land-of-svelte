@@ -26,6 +26,10 @@
 		height: 40vh;
 	}
 
+    :global(html) {
+        --border-color-dark: #542b29;
+    }
+
 	* {
 		font-family: 'Alagard', sans-serif;
 		text-shadow: 1px 1px 1px black;

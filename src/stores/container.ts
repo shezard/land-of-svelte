@@ -1,4 +1,12 @@
 import { writable } from 'svelte/store';
 import type { Item } from '..';
 
-export const container = writable<Item[]>([]);
+type ContainerStore = {
+    name: string;
+    bag: Item[];
+}
+
+export const container = writable<ContainerStore>({
+    name: '',
+    bag: [],
+});
