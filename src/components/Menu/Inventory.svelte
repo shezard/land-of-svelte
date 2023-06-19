@@ -22,6 +22,8 @@
 	$: armor = $store.player.inventory.armor;
 
 	$: stats = $store.player.getStats();
+
+    const bagSlots = [0, 1, 2,3,4,5,6,7];
 </script>
 
 <div class="menu">
@@ -43,21 +45,21 @@
 
 		<div class="flex flex-col text-white">
 			<div class="text-2xl">
-				Main Hand:
+				Main Hand
 				{#if mainHand}
 					<MenuItem item={mainHand} on:click={toBag(mainHand)} />
 				{/if}
 			</div>
 
 			<div class="text-2xl">
-				Off Hand:
+				Off Hand
 				{#if offHand}
 					<MenuItem item={offHand} on:click={toBag(offHand)} />
 				{/if}
 			</div>
 
 			<div class="text-2xl">
-				Armor:
+				Armor
 				{#if armor}
 					<MenuItem item={armor} on:click={toBag(armor)} />
 				{/if}
@@ -65,10 +67,34 @@
 		</div>
 
 		<div class="flex flex-col text-white">
-			<div class="text-2xl">Bag:</div>
-			{#each $store.player.inventory.bag as item, index}
-				<MenuItem {item} on:click={toInventory(item, index)} />
-			{/each}
+			<div class="text-2xl">Bag</div>
+
+            <div class="grid item-grid">
+                {#each bagSlots as index}
+                    <div class="placeholder">
+                        {#if $store.player.inventory.bag[index]}
+                            <MenuItem
+                                item={$store.player.inventory.bag[index]}
+                                on:click={toInventory($store.player.inventory.bag[index], index)}
+                            />
+                        {/if}
+                    </div>
+                {/each}
+            </div>
+
 		</div>
 	</div>
 </div>
+
+<style>
+
+    .item-grid {
+        grid-template-columns: 48px 48px 48px 48px;
+        grid-template-rows: 48px 48px 48px 48px;
+        grid-gap: 10px;
+    }
+
+    .placeholder {
+		border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+</style>

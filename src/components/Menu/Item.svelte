@@ -43,7 +43,6 @@
 		image-rendering: pixelated;
 		width: 48px;
 		height: 48px;
-		border: 2px solid rgba(255, 255, 255, 0.2);
 		padding: 5px;
 		@apply inline cursor-pointer;
 	}
