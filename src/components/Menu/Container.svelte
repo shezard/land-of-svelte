@@ -25,6 +25,14 @@
 			return container;
 		});
 	};
+
+    const transfertAll = (content: Item[]) => {
+        store.update((store) => {
+			store.player.inventory.bag = store.player.inventory.bag.concat(content);
+			return store;
+		});
+		container.set([]);
+    }
 </script>
 
 <div class="menu">
@@ -43,6 +51,13 @@
 			{#each $container as item, index}
 				<MenuItem {item} on:click={toBag(item, index)} />
 			{/each}
+            {#if $container.length}
+                <div class="cursor-pointer text-2xl" on:click={transfertAll($container)} on:keypress={() => {
+                    //no-op
+                }}>
+                    Transfert all
+                </div>
+            {/if}
 		</div>
 	</div>
 </div>

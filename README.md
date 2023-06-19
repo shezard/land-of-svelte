@@ -20,8 +20,8 @@
 -                                               [/] Add multiple texture handling (for a single item)
 -                                               [/] Container doClick
 -                                               [/] Extract tooltip as a component
+-                                               [/] Container screen + button lootAll
 -                                               [ ] Show border around item in inventory
--                                               [ ] Container screen + button lootAll
 -                                               [ ] Multiple loot
 -   [ ] Better handling of game over
 -   [ ] Pause game while in the menu
