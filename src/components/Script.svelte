@@ -45,10 +45,10 @@
 	const handleContainer = (containerScript: Container) => () => {
 		store.navigateTo('container');
 		container.update((container) => {
-            container.name = containerScript.name;
-            container.bag = containerScript.content.map(makeItem);
-            return container;
-        });
+			container.name = containerScript.name;
+			container.bag = containerScript.content.map(makeItem);
+			return container;
+		});
 	};
 
 	const showText = (panel: Panel) => () => {

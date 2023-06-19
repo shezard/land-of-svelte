@@ -10,9 +10,9 @@
 			return store;
 		});
 		container.update((container) => {
-            container.bag = [];
-            return container;
-        });
+			container.bag = [];
+			return container;
+		});
 	};
 
 	const toBag = (item: Item, itemIndex: number) => () => {
