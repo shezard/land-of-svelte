@@ -40,8 +40,8 @@ You can preview the production build with `npm run preview`.
 -   [x] Add treasure chest
 -   [ ] Editor
     -   [x] Display script
+    -   [x] Export as json
     -   [ ] Display torch
-    -   [ ] Export as json
     -   [ ] Edit tile
 -   [ ] Better handling of game over
 -   [ ] Pause game while in the menu

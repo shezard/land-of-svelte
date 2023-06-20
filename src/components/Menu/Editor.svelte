@@ -36,6 +36,11 @@
             return store;
         });
     }
+
+    const handleExport = () => {
+        console.log(JSON.stringify($currentLevel, null, 4));
+    }
+
 </script>
 
 <div class="menu text-white">
@@ -53,6 +58,11 @@
 				Ceiling
 				<img src={`textures/floor-${$currentLevel.ceiling}.png`} alt="" />
 			</div>
+            <div>
+                <button class="border border-1 rounded mt-5 px-2" on:click={handleExport}>
+                    Export level
+                </button>
+            </div>
 		</div>
 		<div>
 			<div

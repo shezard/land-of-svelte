@@ -172,12 +172,12 @@ export class Level {
 	}
 
 	replaceScript(script: Script) {
-        this.scripts = this.scripts.map((oldScript) => {
-            if (oldScript.id === script.id) {
-                return script;
-            }
+		this.scripts = this.scripts.map((oldScript) => {
+			if (oldScript.id === script.id) {
+				return script;
+			}
 
-            return oldScript;
-        });
+			return oldScript;
+		});
 	}
 }
