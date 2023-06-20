@@ -3,6 +3,11 @@ import { useFrame } from '@threlte/core';
 
 const advanceFrame = (t: number) => {
 	store.update((store) => {
+
+		if (store.game.state !== 'running') {
+            return store;
+        }
+
 		// clear animation
 		store.screen.shaking = false;
 		store.levels[store.currentLevelNumber].getAis().map((ai) => {
@@ -21,9 +26,11 @@ const advanceGame = () => {
 	store.update((store) => {
 		const $currentLevel = store.levels[store.currentLevelNumber];
 
-		if (store.game.running !== 'gameOver') {
-			store = $currentLevel.advance(store);
-		}
+		if (store.game.state !== 'running') {
+            return store;
+        }
+
+        store = $currentLevel.advance(store);
 
 		return store;
 	});
