@@ -6,22 +6,22 @@
 
 # TODO
 
--   [/] Add combat "animation"
--   [/] Display ennemy hp as a health bar
--   [/] Add item grabbing / inventory display
--   [/] Split script execution into predicate and execution
--   [/] Add door + key on level 0
--   [/] Add missing key texture
--   [/] Add support for WASD and ZQSD keyboards
--   [/] Better display of clickable (change cursor -> see next.thretle.xyz)
--   [/] Use Oriented Position type inside Script
--   [/] Display player hp as a health bar
--   [/] Add treasure chest
+-   [x] Add combat "animation"
+-   [x] Display ennemy hp as a health bar
+-   [x] Add item grabbing / inventory display
+-   [x] Split script execution into predicate and execution
+-   [x] Add door + key on level 0
+-   [x] Add missing key texture
+-   [x] Add support for WASD and ZQSD keyboards
+-   [x] Better display of clickable (change cursor -> see next.thretle.xyz)
+-   [x] Use Oriented Position type inside Script
+-   [x] Display player hp as a health bar
+-   [x] Add treasure chest
 -   [ ] Editor
--             [/] Display script
--             [ ] Display torch
--             [ ] Export as json
--             [ ] Edit tile
+    -   [x] Display script
+    -   [ ] Display torch
+    -   [ ] Export as json
+    -   [ ] Edit tile
 -   [ ] Better handling of game over
 -   [ ] Pause game while in the menu
 -   [ ] Gold
