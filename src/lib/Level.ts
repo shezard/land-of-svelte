@@ -172,10 +172,12 @@ export class Level {
 	}
 
 	replaceScript(script: Script) {
-		this.scripts.forEach((oldScript) => {
-			if (oldScript.id === script.id) {
-				oldScript = script;
-			}
-		});
+        this.scripts = this.scripts.map((oldScript) => {
+            if (oldScript.id === script.id) {
+                return script;
+            }
+
+            return oldScript;
+        });
 	}
 }

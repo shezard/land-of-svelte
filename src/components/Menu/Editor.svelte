@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { JSONEditor, type Content } from 'svelte-jsoneditor'
 	import { store, currentLevel } from '$stores/store';
 	import type { Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
@@ -16,10 +17,25 @@
 	};
 
 	let tile: Tile | null = null;
+    let content : Content;
 
-	const showTileInfo = (currentTile: Tile) => () => {
-		tile = currentTile;
+	const showTileInfo = (x: number, y: number) => () => {
+		tile = getTileAt(x, y);
+        content = {
+            json: tile.script,
+        } as Content
 	};
+
+    const handleChange = (newContent : Content) => {
+        if(!newContent.json) {
+            return;
+        }
+
+        store.update((store) => {
+            store.levels[store.currentLevelNumber].replaceScript(newContent.json);
+            return store;
+        });
+    }
 </script>
 
 <div class="menu text-white">
@@ -47,7 +63,7 @@
 					{#each rowX as _, y}
 						<EditorTile
 							tile={getTileAt(y, x)}
-							on:click={showTileInfo(getTileAt(y, x))}
+							on:click={showTileInfo(y, x)}
 						/>
 					{/each}
 				{/each}
@@ -67,9 +83,13 @@
 				<div>
 					{#if tile.script}
 						Script
-						<textarea class="text-black w-full" style="min-height:200px"
-							>{JSON.stringify(tile.script, null, 4)}</textarea
-						>
+
+                        <JSONEditor
+                            mainMenuBar={false}
+                            navigationBar={false}
+                            {content}
+                            onChange={handleChange}
+                        />
 					{/if}
 				</div>
 			{/if}
