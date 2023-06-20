@@ -8,7 +8,7 @@ export const makeAstar = (currentLevel: Level) => {
 	});
 
 	for (let i = 0; i < currentLevel.width; i++) {
-		for (let j = 0; j < currentLevel.width; j++) {
+		for (let j = 0; j < currentLevel.height; j++) {
 			if (currentLevel.collisionMap[i][j]) {
 				grid.set([i, j], 'value', 1);
 			}

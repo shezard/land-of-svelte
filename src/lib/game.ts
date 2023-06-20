@@ -3,10 +3,9 @@ import { useFrame } from '@threlte/core';
 
 const advanceFrame = (t: number) => {
 	store.update((store) => {
-
 		if (store.game.state !== 'running') {
-            return store;
-        }
+			return store;
+		}
 
 		// clear animation
 		store.screen.shaking = false;
@@ -27,10 +26,10 @@ const advanceGame = () => {
 		const $currentLevel = store.levels[store.currentLevelNumber];
 
 		if (store.game.state !== 'running') {
-            return store;
-        }
+			return store;
+		}
 
-        store = $currentLevel.advance(store);
+		store = $currentLevel.advance(store);
 
 		return store;
 	});

@@ -26,6 +26,32 @@
         } as Content
 	};
 
+    const updateLevel = (dimension : 'width'|'height') => (e : Event) => {
+
+        if(e.currentTarget === null) {
+            return;
+        }
+
+        const target = e.currentTarget as HTMLInputElement;
+
+        store.update((store) => {
+            if(dimension === 'width') {
+                console.log(store.levels[store.currentLevelNumber]);
+                store.levels[store.currentLevelNumber].resize(
+                    Number(target.value),
+                    store.levels[store.currentLevelNumber].height
+                );
+            }
+            if(dimension === 'height') {
+                store.levels[store.currentLevelNumber].resize(
+                    store.levels[store.currentLevelNumber].width,
+                    Number(target.value)
+                );
+            }
+            return store;
+        });
+    }
+
     const handleChange = (newContent : Content) => {
         if(!newContent.json) {
             return;
@@ -37,8 +63,10 @@
         });
     }
 
+    let exportURI = '';
+
     const handleExport = () => {
-        console.log(JSON.stringify($currentLevel, null, 4));
+        exportURI = 'data:application/json;charset=utf-8,' + encodeURI(JSON.stringify($currentLevel, null, 4));
     }
 
 </script>
@@ -49,7 +77,11 @@
 	<div class="grid grid-cols-3">
 		<div>
 			<div>Level [{$store.currentLevelNumber}]</div>
-			<div>{$currentLevel.width} x {$currentLevel.height}</div>
+			<div>
+                <input type="number" value={$currentLevel.width} on:change={updateLevel('width')} />
+                x
+                <input type="number" value={$currentLevel.height}  on:change={updateLevel('height')}/>
+            </div>
 			<div>
 				Floor
 				<img src={`textures/floor-${$currentLevel.floor}.png`} alt="" />
@@ -58,10 +90,10 @@
 				Ceiling
 				<img src={`textures/floor-${$currentLevel.ceiling}.png`} alt="" />
 			</div>
-            <div>
-                <button class="border border-1 rounded mt-5 px-2" on:click={handleExport}>
+            <div class=" mt-5">
+                <a href="{exportURI}" class="inline-block border border-1 rounded px-2" on:click={handleExport} download={`level-${$store.currentLevelNumber}.json`}>
                     Export level
-                </button>
+                </a>
             </div>
 		</div>
 		<div>
@@ -69,11 +101,11 @@
 				class="grid"
 				style="grid-template-columns: repeat({$currentLevel.width}, 1fr);grid-template-rows: repeat({$currentLevel.height}, 1fr);"
 			>
-				{#each $currentLevel.collisionMap as rowX, x}
-					{#each rowX as _, y}
+				{#each $currentLevel.collisionMap as rowY, y}
+					{#each rowY as _, x}
 						<EditorTile
-							tile={getTileAt(y, x)}
-							on:click={showTileInfo(y, x)}
+							tile={getTileAt(x, y)}
+							on:click={showTileInfo(x, y)}
 						/>
 					{/each}
 				{/each}
@@ -108,6 +140,11 @@
 </div>
 
 <style>
+    input[type=number] {
+        color: black;
+        width: 3rem
+    }
+
 	img {
 		width: 48px;
 		height: 48px;

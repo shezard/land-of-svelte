@@ -3,19 +3,6 @@ import { fight } from './fight';
 import { makeAstar } from './grid';
 import { logs } from '$stores/logs';
 
-const swapXY = function (width: number, height: number, map: Map2d): Map2d {
-	const swappedMap = [] as Map2d;
-	for (let y = 0; y < height; y++) {
-		for (let x = 0; x < width; x++) {
-			if (!swappedMap[y]) {
-				swappedMap[y] = [];
-			}
-			swappedMap[y][x] = map[x][y];
-		}
-	}
-	return swappedMap;
-};
-
 export class Level {
 	width: number;
 	height: number;
@@ -30,11 +17,38 @@ export class Level {
 		this.width = level.width;
 		this.height = level.height;
 		this.floor = level.floor;
-		this.collisionMap = swapXY(level.width, level.height, level.collisionMap);
-		this.textureMap = swapXY(level.width, level.height, level.textureMap);
+		this.collisionMap = level.collisionMap;
+		this.textureMap = level.textureMap;
 		this.lights = level.lights;
 		this.scripts = level.scripts;
 		this.ceiling = level.ceiling;
+	}
+
+	resize(width: number, height: number) {
+		this.width = width;
+		this.height = height;
+
+		for (let y = 0; y < height; y++) {
+			if (!this.collisionMap[y]) {
+				this.collisionMap[y] = [];
+			}
+
+			if (!this.textureMap[y]) {
+				this.textureMap[y] = [];
+			}
+
+			for (let x = 0; x < width; x++) {
+				if (!this.collisionMap[y][x]) {
+					this.collisionMap[y][x] = 0;
+				}
+
+				if (!this.textureMap[y][x]) {
+					this.textureMap[y][x] = 0;
+				}
+			}
+		}
+
+		console.table(this.collisionMap);
 	}
 
 	getAis(): AI[] {
@@ -91,7 +105,7 @@ export class Level {
 	getWalls(): OrientedPosition[] {
 		const walls = [];
 		for (let i = 0; i < this.width; i++) {
-			for (let j = 0; j < this.width; j++) {
+			for (let j = 0; j < this.height; j++) {
 				if (this.collisionMap[i][j] == 1) {
 					walls.push({
 						x: i,

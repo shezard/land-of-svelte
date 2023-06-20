@@ -3,12 +3,11 @@
 
 	export let tile: Tile;
 
-	export let sized: boolean = false;
+	export let sized = false;
 
 	$: texture = tile.collision ? `textures/wall-${tile.texture}.png` : `textures/floor-0.png`;
 
-	$: texture =
-		tile.script && tile.script.texture ? `textures/${tile.script.texture[0]}.png` : texture;
+	$: texture = tile.script?.texture ? `textures/${tile.script.texture[0]}.png` : texture;
 </script>
 
 <img

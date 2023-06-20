@@ -34,6 +34,14 @@
 	const leave = () => {
 		interactive && onPointerLeave();
 	};
+
+    const onAttach = (parent : THREE.Mesh, self : THREE.MeshLambertMaterial) : void => {
+        parent.material = texture.map((texture) => {
+            const material = self.clone();
+            material.map = texture;
+            return material;
+        });
+    }
 </script>
 
 <T.Mesh
@@ -50,13 +58,7 @@
 		<T.MeshLambertMaterial map={texture[0]} color={new THREE.Color(color)} transparent={true} />
 	{:else}
 		<T.MeshLambertMaterial
-			attach={(parent, self) => {
-				parent.material = texture.map((texture) => {
-					const material = self.clone();
-					material.map = texture;
-					return material;
-				});
-			}}
+			attach={onAttach}
 			color={new THREE.Color(color)}
 			transparent={true}
 		/>

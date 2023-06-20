@@ -1,4 +1,4 @@
-import { derived, type Readable } from 'svelte/store';
+import { derived } from 'svelte/store';
 import { store } from './store';
 import type { UI } from '..';
 
