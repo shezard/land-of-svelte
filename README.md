@@ -18,10 +18,10 @@
 -   [/] Display player hp as a health bar
 -   [/] Add treasure chest
 -   [ ] Editor
--       [ ] Display script
--       [ ] Display torch
--       [ ] Export as json
--       [ ] Edit tile
+-             [/] Display script
+-             [ ] Display torch
+-             [ ] Export as json
+-             [ ] Edit tile
 -   [ ] Better handling of game over
 -   [ ] Pause game while in the menu
 -   [ ] Gold

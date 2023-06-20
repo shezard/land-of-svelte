@@ -70,6 +70,18 @@ export class Level {
 		});
 	}
 
+	getLightAt(x: number, y: number): OrientedPosition | undefined {
+		return this.lights.find((light: OrientedPosition) => {
+			return light.x === x && light.y === y;
+		});
+	}
+
+	getScriptAt(x: number, y: number): Script | undefined {
+		return this.scripts.find((script: Script) => {
+			return script.x === x && script.y === y;
+		});
+	}
+
 	getLoots(): Loot[] {
 		return this.scripts.filter((item) => {
 			return item.type === 'loot';

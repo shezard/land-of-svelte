@@ -9,7 +9,9 @@
 			y: y,
 			t: 0,
 			collision: Boolean($currentLevel.collisionMap[x][y]),
-			texture: $currentLevel.textureMap[x][y]
+			texture: $currentLevel.textureMap[x][y],
+			light: $currentLevel.getLightAt(x, y),
+			script: $currentLevel.getScriptAt(x, y)
 		};
 	};
 
@@ -36,15 +38,20 @@
 				<img src={`textures/floor-${$currentLevel.ceiling}.png`} alt="" />
 			</div>
 		</div>
-		<div
-			class="grid"
-			style="grid-template-columns: repeat({$currentLevel.width}, 1fr);grid-template-rows: repeat({$currentLevel.height}, 1fr);"
-		>
-			{#each $currentLevel.collisionMap as rowX, x}
-				{#each rowX as _, y}
-					<EditorTile tile={getTileAt(y, x)} on:click={showTileInfo(getTileAt(y, x))} />
+		<div>
+			<div
+				class="grid"
+				style="grid-template-columns: repeat({$currentLevel.width}, 1fr);grid-template-rows: repeat({$currentLevel.height}, 1fr);"
+			>
+				{#each $currentLevel.collisionMap as rowX, x}
+					{#each rowX as _, y}
+						<EditorTile
+							tile={getTileAt(y, x)}
+							on:click={showTileInfo(getTileAt(y, x))}
+						/>
+					{/each}
 				{/each}
-			{/each}
+			</div>
 		</div>
 		<div class="pl-5">
 			{#if tile}
@@ -56,6 +63,14 @@
 				</div>
 				<div>
 					Texture <EditorTile {tile} sized />
+				</div>
+				<div>
+					{#if tile.script}
+						Script
+						<textarea class="text-black w-full" style="min-height:200px"
+							>{JSON.stringify(tile.script, null, 4)}</textarea
+						>
+					{/if}
 				</div>
 			{/if}
 		</div>

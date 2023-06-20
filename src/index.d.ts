@@ -128,4 +128,6 @@ export interface UI {
 export type Tile = {
 	collision: boolean;
 	texture: number;
+	light?: OrientedPosition;
+	script?: Script;
 } & OrientedPosition;
