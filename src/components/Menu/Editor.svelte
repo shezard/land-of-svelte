@@ -36,14 +36,13 @@
 
         store.update((store) => {
             if(dimension === 'width') {
-                console.log(store.levels[store.currentLevelNumber]);
-                store.levels[store.currentLevelNumber].resize(
+                store.levels[store.currentLevelNumber] = store.levels[store.currentLevelNumber].resize(
                     Number(target.value),
                     store.levels[store.currentLevelNumber].height
                 );
             }
             if(dimension === 'height') {
-                store.levels[store.currentLevelNumber].resize(
+                store.levels[store.currentLevelNumber] = store.levels[store.currentLevelNumber].resize(
                     store.levels[store.currentLevelNumber].width,
                     Number(target.value)
                 );
@@ -97,19 +96,18 @@
             </div>
 		</div>
 		<div>
-			<div
-				class="grid"
-				style="grid-template-columns: repeat({$currentLevel.width}, 1fr);grid-template-rows: repeat({$currentLevel.height}, 1fr);"
-			>
-				{#each $currentLevel.collisionMap as rowY, y}
-					{#each rowY as _, x}
-						<EditorTile
-							tile={getTileAt(x, y)}
-							on:click={showTileInfo(x, y)}
-						/>
-					{/each}
+            <div class="flex items-center justify-center">
+				{#each $currentLevel.collisionMap as rowX, x}
+                    <div class="flex-1">
+                        {#each rowX as _, y}
+                            <EditorTile
+                                tile={getTileAt(x, y)}
+                                on:click={showTileInfo(x, y)}
+                            />
+                        {/each}
+                    </div>
 				{/each}
-			</div>
+            </div>
 		</div>
 		<div class="pl-5">
 			{#if tile}
