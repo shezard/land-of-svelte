@@ -15,9 +15,14 @@
 	class:sized
 	alt=""
 	on:click
+    on:mouseenter
+    on:mousedown
 	on:keypress={() => {
 		// no-op
 	}}
+    on:dragstart|preventDefault={() => {
+        // no-op
+    }}
 />
 
 <style>

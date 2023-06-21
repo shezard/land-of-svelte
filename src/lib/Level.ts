@@ -25,17 +25,15 @@ export class Level {
 	}
 
 	resize(width: number, height: number): Level {
-
-        const level = new Level(this);
+		const level = new Level(this);
 
 		level.width = width;
 		level.height = height;
 
-        level.collisionMap = [];
-        level.textureMap = [];
+		level.collisionMap = [];
+		level.textureMap = [];
 
-
-        for (let x = 0; x < width; x++) {
+		for (let x = 0; x < width; x++) {
 			if (!level.collisionMap[x]) {
 				level.collisionMap[x] = [];
 			}
@@ -44,28 +42,26 @@ export class Level {
 				level.textureMap[x] = [];
 			}
 
-            for (let y = 0; y < height; y++) {
+			for (let y = 0; y < height; y++) {
 				if (!level.collisionMap[x][y]) {
-                    if(!this.collisionMap[x] || !this.collisionMap[x][y]) {
-                        level.collisionMap[x][y] = 0
-                    } else {
-                        level.collisionMap[x][y] = this.collisionMap[x][y];
-                    }
+					if (!this.collisionMap[x]?.[y]) {
+						level.collisionMap[x][y] = 0;
+					} else {
+						level.collisionMap[x][y] = this.collisionMap[x][y];
+					}
 				}
 
 				if (!level.textureMap[x][y]) {
-                    if(!this.textureMap[x] || !this.textureMap[x][y]) {
-                        level.textureMap[x][y] = 0
-                    } else {
-                        level.textureMap[x][y] = this.textureMap[x][y];
-                    }
+					if (!this.textureMap[x]?.[y]) {
+						level.textureMap[x][y] = 0;
+					} else {
+						level.textureMap[x][y] = this.textureMap[x][y];
+					}
 				}
 			}
 		}
 
-        console.log(level.collisionMap.length);
-
-        return level;
+		return level;
 	}
 
 	getAis(): AI[] {
