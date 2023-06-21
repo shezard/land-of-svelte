@@ -1,15 +1,14 @@
 <script lang="ts">
     import { JSONEditor } from 'svelte-jsoneditor'
 	import { store, currentLevel } from '$stores/store';
+	import { activatedTool } from '$stores/tool';
 	import type { Script, Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
-
+	import EditorTool from './EditorTool.svelte';
 
     interface JSONContent {
-        json: Script?,
+        json: Script|null,
     }
-
-    type Tool = 'collision+'|'collision-';
 
 	$: getTileAt = (x: number, y: number): Tile => {
 		return {
@@ -59,7 +58,7 @@
     }
 
     const handleChange = (newContent : JSONContent) => {
-        if(!newContent.json) {
+        if(newContent.json === null) {
             return;
         }
 
@@ -75,15 +74,6 @@
         exportURI = 'data:application/json;charset=utf-8,' + encodeURI(JSON.stringify($currentLevel, null, 4));
     }
 
-    let tool : Tool|null = null;
-    const toggleTool = (tooltoToggle : Tool) => () => {
-        if(tool === tooltoToggle) {
-            tool = null;
-        } else {
-            tool = tooltoToggle;
-        }
-    }
-
     let isToolActivated = false;
     const activateTool = () => {
         isToolActivated = true;
@@ -94,13 +84,13 @@
     }
 
     const applyTool = (x: number, y: number) => () => {
-        if(isToolActivated && tool === 'collision+') {
+        if(isToolActivated && $activatedTool === 'collision+') {
             store.update((store) => {
                 store.levels[store.currentLevelNumber].collisionMap[x][y] = 1;
                 return store;
             });
         }
-        if(isToolActivated && tool === 'collision-') {
+        if(isToolActivated && $activatedTool === 'collision-') {
             store.update((store) => {
                 store.levels[store.currentLevelNumber].collisionMap[x][y] = 0;
                 return store;
@@ -140,12 +130,8 @@
                 <div class="text-2xl">
                     Tools
                 </div>
-                <button class="inline-block border border-1 rounded px-2" class:active={tool === 'collision+'} on:click={toggleTool('collision+')}>
-                    + Collision
-                </button>
-                <button class="inline-block border border-1 rounded px-2" class:active={tool === 'collision-'} on:click={toggleTool('collision-')}>
-                    - Collision
-                </button>
+                <EditorTool tool="collision+" title="+ Collision" />
+                <EditorTool tool="collision-" title="- Collision" />
             </div>
             <div class=" mt-5">
                 <a href="{exportURI}" class="inline-block border border-1 rounded px-2" on:click={handleExport} download={`level-${$store.currentLevelNumber}.json`}>
@@ -207,9 +193,4 @@
 		width: 48px;
 		height: 48px;
 	}
-
-    .active {
-        background: white;
-        color: black;
-    }
 </style>
