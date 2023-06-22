@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Tile } from '../..';
     import {currentLevel} from '$stores/store';
+	import { getClosestWall } from '$lib/helpers';
 
 	export let tile: Tile;
 
@@ -12,20 +13,36 @@
 	$: texture = tile.script?.texture ? `textures/${tile.script.texture[0]}.png` : texture;
 </script>
 
-<img
-	src={texture}
-	class:sized
-	alt=""
-	on:click
+<div
+    class="relative"
+    on:click
     on:mouseenter
     on:mousedown
-	on:keypress={() => {
-		// no-op
-	}}
-    on:dragstart|preventDefault={() => {
+    on:keypress={() => {
         // no-op
     }}
-/>
+>
+    <img
+        src={texture}
+        class:sized
+        alt=""
+        on:dragstart|preventDefault={() => {
+            // no-op
+        }}
+    />
+
+    {#if tile.light}
+        <div
+            class="absolute top-0 left-0 w-full h-full flex justify-center"
+            style="transform:rotate({getClosestWall($currentLevel, tile.x, tile.y) + (Math.PI/2) }rad)"
+        >
+            <div
+                class="rounded border border-1 border-black w-2 h-2 bg-yellow-200"
+            >
+            </div>
+        </div>
+    {/if}
+</div>
 
 <style>
 	img {
