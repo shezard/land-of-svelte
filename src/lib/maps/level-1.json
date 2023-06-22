@@ -18,18 +18,18 @@
 		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 	],
 	"textureMap": [
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-4", "wall-0", "wall-0", "wall-0", "wall-4", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-4", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-4", "wall-0", "wall-0", "wall-0", "wall-4", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-4", "wall-0", "wall-4", "wall-4", "wall-0", "wall-0", "wall-0", "wall-4", "wall-4", "wall-4", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"],
+		["wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0", "wall-0"]
 	],
 	"lights": [
 		{

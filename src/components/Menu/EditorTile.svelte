@@ -9,7 +9,7 @@
 
     let texture: string;
 
-	$: texture = tile.collision ? `textures/wall-${tile.texture}.png` : `textures/${$currentLevel.floor}.png`;
+	$: texture = tile.collision ? `textures/${tile.texture}.png` : `textures/${$currentLevel.floor}.png`;
 	$: texture = tile.script?.texture ? `textures/${tile.script.texture[0]}.png` : texture;
 </script>
 

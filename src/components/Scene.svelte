@@ -122,7 +122,7 @@
 {#each $currentLevel.getWalls() as wall}
 	<Wall
 		position={[wall.x, wall.y]}
-		texture={$textures[`wall-${$currentLevel.textureMap[wall.x][wall.y]}.png`]}
+		texture={$textures[`${$currentLevel.textureMap[wall.x][wall.y]}.png`]}
 	/>
 {/each}
 

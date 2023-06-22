@@ -201,9 +201,19 @@
 				<div>
 					Collision <input type="checkbox" bind:checked={tile.collision} />
 				</div>
-				<div>
-					Texture <EditorTile {tile} sized />
-				</div>
+                {#if tile.collision}
+                    <div>
+                        Texture
+
+                        <EditorTexture texture={`${tile.texture}`} on:change={(e) => {
+                            store.update((store) => {
+                                // TODO : utiliser des noms de textures dans la textures
+                                store.levels[store.currentLevelNumber].textureMap[tile.x][tile.y] = e.detail;
+                                return store;
+                            });
+                        }} />
+                    </div>
+                {/if}
 				<div>
 					{#if tile.script}
 						Script

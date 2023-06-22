@@ -9,7 +9,7 @@ export class Level {
 	floor: string;
 	ceiling: string;
 	collisionMap: Map2d;
-	textureMap: Map2d;
+	textureMap: string[][];
 	lights: Light[];
 	scripts: Script[];
 
@@ -53,7 +53,7 @@ export class Level {
 
 				if (!level.textureMap[x][y]) {
 					if (!this.textureMap[x]?.[y]) {
-						level.textureMap[x][y] = 0;
+						level.textureMap[x][y] = 'floor-0';
 					} else {
 						level.textureMap[x][y] = this.textureMap[x][y];
 					}

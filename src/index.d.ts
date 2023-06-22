@@ -34,7 +34,7 @@ export interface LevelProp {
 	floor: string;
 	ceiling: string;
 	collisionMap: Map2d;
-	textureMap: Map2d;
+	textureMap: string[][];
 	lights: Light[];
 	scripts: Script[];
 }
@@ -130,6 +130,6 @@ export type Light = { id: number } & OrientedPosition;
 export type Tile = {
 	collision: boolean;
 	light?: Light;
-	texture: number;
+	texture: string;
 	script?: Script;
 } & OrientedPosition;
