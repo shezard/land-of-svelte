@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {activatedTool, type ToolName} from '$stores/tool';
+    import {activatedTool, type ToolName} from '$stores/editor';
 
     export let tool: ToolName;
     export let title: string;

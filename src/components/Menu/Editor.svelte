@@ -1,7 +1,7 @@
 <script lang="ts">
     import { JSONEditor } from 'svelte-jsoneditor'
 	import { store, currentLevel } from '$stores/store';
-	import { activatedTool } from '$stores/tool';
+	import { activatedTool } from '$stores/editor'
 	import type { Script, Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
 	import EditorTool from './EditorTool.svelte';
