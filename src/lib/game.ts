@@ -45,9 +45,7 @@ export const gameTick = () => {
 		() => {
 			i++;
 			t = Date.now() - start;
-			if (i % 10 == 0) {
-				advanceFrame(Date.now());
-			}
+            advanceFrame(Date.now());
 
 			if (t > tickDuration) {
 				start = Date.now();
