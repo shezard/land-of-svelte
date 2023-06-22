@@ -5,6 +5,7 @@
 	import type { Script, Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
 	import EditorTool from './EditorTool.svelte';
+	import EditorTexture from './EditorTexture.svelte';
 
     interface JSONContent {
         json: Script|null,
@@ -119,11 +120,21 @@
             <div class="grid grid-cols-2">
                 <div>
                     Floor
-                    <img src={`textures/${$currentLevel.floor}.png`} alt="" />
+                    <EditorTexture texture={$currentLevel.floor} on:change={(e) => {
+                        store.update((store) => {
+                            store.levels[store.currentLevelNumber].floor = e.detail;
+                            return store;
+                        });
+                    }} />
                 </div>
                 <div>
                     Ceiling
-                    <img src={`textures/${$currentLevel.ceiling}.png`} alt="" />
+                    <EditorTexture texture={$currentLevel.ceiling} on:change={(e) => {
+                        store.update((store) => {
+                            store.levels[store.currentLevelNumber].ceiling = e.detail;
+                            return store;
+                        });
+                    }} />
                 </div>
             </div>
             <div class="mt-3">
@@ -188,9 +199,4 @@
         color: black;
         width: 3rem
     }
-
-	img {
-		width: 48px;
-		height: 48px;
-	}
 </style>
