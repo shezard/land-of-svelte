@@ -1,12 +1,14 @@
 <script lang="ts">
 	import type { Tile } from '../..';
+    import {currentLevel} from '$stores/store';
 
 	export let tile: Tile;
 
 	export let sized = false;
 
-	$: texture = tile.collision ? `textures/wall-${tile.texture}.png` : `textures/floor-0.png`;
+    let texture: string;
 
+	$: texture = tile.collision ? `textures/wall-${tile.texture}.png` : `textures/${$currentLevel.floor}.png`;
 	$: texture = tile.script?.texture ? `textures/${tile.script.texture[0]}.png` : texture;
 </script>
 

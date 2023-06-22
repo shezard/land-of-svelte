@@ -119,11 +119,11 @@
             <div class="grid grid-cols-2">
                 <div>
                     Floor
-                    <img src={`textures/floor-${$currentLevel.floor}.png`} alt="" />
+                    <img src={`textures/${$currentLevel.floor}.png`} alt="" />
                 </div>
                 <div>
                     Ceiling
-                    <img src={`textures/floor-${$currentLevel.ceiling}.png`} alt="" />
+                    <img src={`textures/${$currentLevel.ceiling}.png`} alt="" />
                 </div>
             </div>
             <div class="mt-3">

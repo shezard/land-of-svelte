@@ -31,12 +31,12 @@ export interface Store {
 export interface LevelProp {
 	width: number;
 	height: number;
-	floor: number;
+	floor: string;
+	ceiling: string;
 	collisionMap: Map2d;
 	textureMap: Map2d;
 	lights: OrientedPosition[];
 	scripts: Script[];
-	ceiling: number;
 }
 
 export type Doodad = {

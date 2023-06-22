@@ -1,8 +1,8 @@
 {
 	"width": 12,
 	"height": 12,
-	"floor": 0,
-	"ceiling": 1,
+	"floor": "floor-0",
+	"ceiling": "floor-1",
 	"collisionMap": [
 		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 		[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],

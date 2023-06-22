@@ -6,12 +6,12 @@ import { logs } from '$stores/logs';
 export class Level {
 	width: number;
 	height: number;
-	floor: number;
+	floor: string;
+	ceiling: string;
 	collisionMap: Map2d;
 	textureMap: Map2d;
 	lights: OrientedPosition[];
 	scripts: Script[];
-	ceiling: number;
 
 	constructor(level: LevelProp) {
 		this.width = level.width;

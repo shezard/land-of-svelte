@@ -115,9 +115,9 @@
 	onMount(() => updateCamera($store, camera));
 </script>
 
-<Ceiling texture={$textures[`floor-${$currentLevel.ceiling}.png`]} />
+<Ceiling texture={$textures[`${$currentLevel.ceiling}.png`]} />
 
-<Floor texture={$textures[`floor-${$currentLevel.floor}.png`]} />
+<Floor texture={$textures[`${$currentLevel.floor}.png`]} />
 
 {#each $currentLevel.getWalls() as wall}
 	<Wall

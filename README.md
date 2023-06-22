@@ -41,8 +41,10 @@ You can preview the production build with `npm run preview`.
 -   [ ] Editor
     -   [x] Display script
     -   [x] Export as json
+    -   [x] Edit tile script
+    -   [x] Edit tile collision
+    -   [ ] Edit tile texture
     -   [ ] Display torch
-    -   [ ] Edit tile
 -   [ ] Better handling of game over
 -   [ ] Pause game while in the menu
 -   [ ] Gold
