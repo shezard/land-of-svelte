@@ -35,7 +35,7 @@ export interface LevelProp {
 	ceiling: string;
 	collisionMap: Map2d;
 	textureMap: Map2d;
-	lights: OrientedPosition[];
+	lights: Light[];
 	scripts: Script[];
 }
 
@@ -125,9 +125,11 @@ export interface UI {
 	weaponCooldownPercent: number;
 }
 
+export type Light = OrientedPosition & { id: number };
+
 export type Tile = {
 	collision: boolean;
+	light?: Light;
 	texture: number;
-	light?: OrientedPosition;
 	script?: Script;
 } & OrientedPosition;

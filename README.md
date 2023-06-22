@@ -45,6 +45,7 @@ You can preview the production build with `npm run preview`.
     -   [x] Edit tile collision
     -   [ ] Edit tile texture
     -   [ ] Display torch
+-   [ ] Torch without closest wall should be fixed to the floor
 -   [ ] Better handling of game over
 -   [ ] Pause game while in the menu
 -   [ ] Gold

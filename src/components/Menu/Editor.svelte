@@ -24,12 +24,17 @@
 	};
 
 	let tile: Tile | null = null;
-    let content : JSONContent;
+
+    let script : JSONContent;
+    let light : JSONContent;
 
 	const showTileInfo = (x: number, y: number) => () => {
 		tile = getTileAt(x, y);
-        content = {
+        script = {
             json: tile.script,
+        } as JSONContent
+        light = {
+            json: tile.light,
         } as JSONContent
 	};
 
@@ -58,13 +63,24 @@
         });
     }
 
-    const handleChange = (newContent : JSONContent) => {
-        if(newContent.json === null) {
+    const handleChangeScript = (newScript : JSONContent) => {
+        if(newScript.json === null) {
             return;
         }
 
         store.update((store) => {
-            store.levels[store.currentLevelNumber].replaceScript(newContent.json);
+            store.levels[store.currentLevelNumber].replaceScript(newScript.json);
+            return store;
+        });
+    }
+
+    const handleChangeLight = (newLight : JSONContent) => {
+        if(newLight.json === null) {
+            return;
+        }
+
+        store.update((store) => {
+            store.levels[store.currentLevelNumber].replaceLight(newLight.json);
             return store;
         });
     }
@@ -184,8 +200,20 @@
                         <JSONEditor
                             mainMenuBar={false}
                             navigationBar={false}
-                            {content}
-                            onChange={handleChange}
+                            content={script}
+                            onChange={handleChangeScript}
+                        />
+					{/if}
+				</div>
+                <div>
+					{#if tile.light}
+						Light
+
+                        <JSONEditor
+                            mainMenuBar={false}
+                            navigationBar={false}
+                            content={light}
+                            onChange={handleChangeLight}
                         />
 					{/if}
 				</div>

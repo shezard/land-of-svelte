@@ -1,4 +1,4 @@
-import type { AI, Script, LevelProp, Map2d, Store, Loot, OrientedPosition } from '..';
+import type { AI, Script, LevelProp, Map2d, Store, Loot, OrientedPosition, Light } from '..';
 import { fight } from './fight';
 import { makeAstar } from './grid';
 import { logs } from '$stores/logs';
@@ -10,7 +10,7 @@ export class Level {
 	ceiling: string;
 	collisionMap: Map2d;
 	textureMap: Map2d;
-	lights: OrientedPosition[];
+	lights: Light[];
 	scripts: Script[];
 
 	constructor(level: LevelProp) {
@@ -97,8 +97,8 @@ export class Level {
 		});
 	}
 
-	getLightAt(x: number, y: number): OrientedPosition | undefined {
-		return this.lights.find((light: OrientedPosition) => {
+	getLightAt(x: number, y: number): Light | undefined {
+		return this.lights.find((light: Light) => {
 			return light.x === x && light.y === y;
 		});
 	}
@@ -205,6 +205,16 @@ export class Level {
 			}
 
 			return oldScript;
+		});
+	}
+
+	replaceLight(light: Light) {
+		this.lights = this.lights.map((oldLight) => {
+			if (oldLight.id === light.id) {
+				return light;
+			}
+
+			return oldLight;
 		});
 	}
 }
