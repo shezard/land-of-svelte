@@ -74,17 +74,6 @@
         });
     }
 
-    const handleChangeLight = (newLight : JSONContent) => {
-        if(newLight.json === null) {
-            return;
-        }
-
-        store.update((store) => {
-            store.levels[store.currentLevelNumber].replaceLight(newLight.json);
-            return store;
-        });
-    }
-
     let exportURI = '';
 
     const handleExport = () => {
@@ -100,16 +89,35 @@
         isToolActivated = false;
     }
 
-    const applyTool = (x: number, y: number) => () => {
-        if(isToolActivated && $activatedTool === 'collision+') {
+    const applyTool = (x: number, y: number) => (e : Event) => {
+
+        if(!isToolActivated) {
+            return;
+        }
+
+        if($activatedTool === 'collision+') {
             store.update((store) => {
                 store.levels[store.currentLevelNumber].collisionMap[x][y] = 1;
                 return store;
             });
         }
-        if(isToolActivated && $activatedTool === 'collision-') {
+
+        if($activatedTool === 'collision-') {
             store.update((store) => {
                 store.levels[store.currentLevelNumber].collisionMap[x][y] = 0;
+                return store;
+            });
+        }
+
+        if($activatedTool === 'light' && e.type === 'mousedown') {
+            store.update((store) => {
+                const light = store.levels[store.currentLevelNumber].getLightAt(x, y);
+                if(light) {
+                    store.levels[store.currentLevelNumber].removeLightAt(x, y);
+                } else {
+                    store.levels[store.currentLevelNumber].addLightAt(x, y);
+                }
+
                 return store;
             });
         }
@@ -159,6 +167,7 @@
                 </div>
                 <EditorTool tool="collision+" title="+ Collision" />
                 <EditorTool tool="collision-" title="- Collision" />
+                <EditorTool tool="light" title="Light" />
             </div>
             <div class=" mt-5">
                 <a href="{exportURI}" class="inline-block border border-1 rounded px-2" on:click={handleExport} download={`level-${$store.currentLevelNumber}.json`}>
@@ -174,7 +183,9 @@
                             <EditorTile
                                 tile={getTileAt(x, y)}
                                 on:click={showTileInfo(x, y)}
-                                on:mousedown={() => setTimeout(() => applyTool(x, y)())}
+                                on:mousedown={(e) => setTimeout(() => {
+                                    applyTool(x, y)(e)
+                                })}
                                 on:mouseenter={applyTool(x, y)}
                             />
                         {/each}
@@ -202,18 +213,6 @@
                             navigationBar={false}
                             content={script}
                             onChange={handleChangeScript}
-                        />
-					{/if}
-				</div>
-                <div>
-					{#if tile.light}
-						Light
-
-                        <JSONEditor
-                            mainMenuBar={false}
-                            navigationBar={false}
-                            content={light}
-                            onChange={handleChangeLight}
                         />
 					{/if}
 				</div>

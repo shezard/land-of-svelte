@@ -103,6 +103,25 @@ export class Level {
 		});
 	}
 
+	addLightAt(x: number, y: number): void {
+		const id = Math.max(...this.lights.map((light) => light.id)) + 1;
+		this.lights = [
+			...this.lights,
+			{
+				id,
+				x,
+				y,
+				t: 0
+			}
+		];
+	}
+
+	removeLightAt(x: number, y: number): void {
+		this.lights = this.lights.filter((light: Light) => {
+			return !(light.x === x && light.y === y);
+		});
+	}
+
 	getScriptAt(x: number, y: number): Script | undefined {
 		return this.scripts.find((script: Script) => {
 			return script.x === x && script.y === y;
@@ -205,16 +224,6 @@ export class Level {
 			}
 
 			return oldScript;
-		});
-	}
-
-	replaceLight(light: Light) {
-		this.lights = this.lights.map((oldLight) => {
-			if (oldLight.id === light.id) {
-				return light;
-			}
-
-			return oldLight;
 		});
 	}
 }

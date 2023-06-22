@@ -125,7 +125,7 @@ export interface UI {
 	weaponCooldownPercent: number;
 }
 
-export type Light = OrientedPosition & { id: number };
+export type Light = { id: number } & OrientedPosition;
 
 export type Tile = {
 	collision: boolean;
