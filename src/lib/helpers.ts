@@ -16,3 +16,19 @@ export const getClosestWall = function (level: Level, x: number, y: number) {
 
 	return 0;
 };
+
+export function clickOutside(node: HTMLElement) {
+	const handleClick = (event: Event) => {
+		if (!node.contains(event.target) && !event.defaultPrevented) {
+			node.dispatchEvent(new CustomEvent('clickoutside', node));
+		}
+	};
+
+	document.addEventListener('click', handleClick, true);
+
+	return {
+		destroy() {
+			document.removeEventListener('click', handleClick, true);
+		}
+	};
+}

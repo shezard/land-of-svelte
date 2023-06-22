@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { clickOutside } from "$lib/helpers";
 	import { createEventDispatcher } from "svelte";
 
     export let texture : string;
@@ -31,6 +32,10 @@
             alt=""
             on:click={() => {
                 dispatch('change', textureToPick);
+                active = false;
+            }}
+            use:clickOutside
+            on:clickoutside={() => {
                 active = false;
             }}
             on:keypress={() => {
