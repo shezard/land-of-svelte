@@ -38,15 +38,15 @@ You can preview the production build with `npm run preview`.
 -   [x] Use Oriented Position type inside Script
 -   [x] Display player hp as a health bar
 -   [x] Add treasure chest
--   [ ] Editor
-    -   [x] Display script
-    -   [x] Export as json
-    -   [x] Edit tile script
-    -   [x] Edit tile collision
-    -   [ ] Edit tile texture
-    -   [ ] Display torch
+-   [x] Editor
+-   [x] Pause game while in the menu
+-   [ ] XP / Leveling
+    - [ ] XP bar
+    - [ ] Level up
+    - [ ] Derived stats
+    - [ ] Saving / Loading
 -   [ ] Torch without closest wall should be fixed to the floor
 -   [ ] Better handling of game over
--   [ ] Pause game while in the menu
 -   [ ] Gold
 -   [ ] Try to fix alpha transparency showing canvas background
+- [ ] FPS improvement
