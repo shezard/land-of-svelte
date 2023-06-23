@@ -1,4 +1,5 @@
-import type { Store } from '..';
+import type { Doodad, Store } from '..';
+
 import { animateOnce, animateToggleReverse } from './animation';
 
 export const scripts = [
@@ -8,15 +9,13 @@ export const scripts = [
 			predicate: () => true,
 			doClick: animateToggleReverse((store, t) => {
 				store.update((store) => {
-					const script = store.levels[0].getScript(0);
-					if (script) {
-						script.z = t * 1.01;
-						script.collision = true;
-						if (script.z > 1) {
-							script.collision = false;
-						}
-						store.levels[0].replaceScript(script);
+					const script = store.levels[0].getScript(0) as Doodad;
+					script.z = t * 1.01;
+					script.collision = true;
+					if (script.z > 1) {
+						script.collision = false;
 					}
+					store.levels[0].replaceScript(script);
 					return store;
 				});
 			}, 1)
@@ -28,18 +27,16 @@ export const scripts = [
 			},
 			doClick: animateOnce((store, t) => {
 				store.update((store) => {
-					const script = store.levels[0].getScript(4);
-					if (script) {
-						script.z = t * 1.01;
-						script.collision = true;
-						if (script.z > 1) {
-							script.collision = false;
-							store.player.inventory.bag = store.player.inventory.bag.filter(
-								(item) => item.name !== 'key'
-							);
-						}
-						store.levels[0].replaceScript(script);
+					const script = store.levels[0].getScript(4) as Doodad;
+					script.z = t * 1.01;
+					script.collision = true;
+					if (script.z > 1) {
+						script.collision = false;
+						store.player.inventory.bag = store.player.inventory.bag.filter(
+							(item) => item.name !== 'key'
+						);
 					}
+					store.levels[0].replaceScript(script);
 					return store;
 				});
 			}, 1)

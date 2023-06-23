@@ -26,15 +26,11 @@
 	let tile: Tile | null = null;
 
     let script : JSONContent;
-    let light : JSONContent;
 
 	const showTileInfo = (x: number, y: number) => () => {
 		tile = getTileAt(x, y);
         script = {
             json: tile.script,
-        } as JSONContent
-        light = {
-            json: tile.light,
         } as JSONContent
 	};
 
@@ -206,6 +202,9 @@
                         Texture
 
                         <EditorTexture texture={`${tile.texture}`} on:change={(e) => {
+                            if(tile === null) {
+                                return;
+                            }
                             store.update((store) => {
                                 // TODO : utiliser des noms de textures dans la textures
                                 store.levels[store.currentLevelNumber].textureMap[tile.x][tile.y] = e.detail;
