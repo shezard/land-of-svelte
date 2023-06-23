@@ -17,6 +17,7 @@
 	wy={Math.abs(Math.sin($store.player.position.t))}
 	{texture}
 	color={ai.color}
+    transparent
 />
 
 <Box

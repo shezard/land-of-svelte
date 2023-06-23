@@ -22,6 +22,7 @@
 
 	export let receiveShadow = false;
 	export let castShadow = false;
+	export let transparent = false;
 	export let interactive = false;
 
 	const dispatch = createEventDispatcher();
@@ -55,12 +56,12 @@
 >
 	<T.BoxGeometry args={[wx, wz, wy]} />
 	{#if texture.length < 2}
-		<T.MeshLambertMaterial map={texture[0]} color={new THREE.Color(color)} transparent={true} />
+		<T.MeshLambertMaterial map={texture[0]} color={new THREE.Color(color)} {transparent} />
 	{:else}
 		<T.MeshLambertMaterial
 			attach={onAttach}
 			color={new THREE.Color(color)}
-			transparent={true}
+			{transparent}
 		/>
 	{/if}
 </T.Mesh>

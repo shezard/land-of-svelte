@@ -97,11 +97,12 @@
 		wx={0.1 + Math.abs(0.2 * Math.sin(closestWallDirection))}
 		wy={0.1 + Math.abs(0.2 * Math.cos(closestWallDirection))}
 		{texture}
+        transparent
 	/>
 {/if}
 
 {#if script.type == 'ai'}
-	<AI ai={script} {texture} />
+	<AI ai={script} {texture}/>
 {/if}
 
 {#if script.type == 'loot'}
@@ -114,6 +115,7 @@
 		rz={script.t}
 		on:click={handleLoot(script)}
 		{texture}
+        transparent
 		interactive
 	/>
 {/if}
@@ -142,6 +144,7 @@
 		rz={Math.PI}
 		on:click={handleContainer(script)}
 		{texture}
+        transparent
 		interactive
 	/>
 {/if}
