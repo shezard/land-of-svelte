@@ -172,9 +172,9 @@ export class Level {
 	}
 
 	advance(store: Store): Store {
-		const grid = makeAstar(this);
 
-		this.getAis().map((ai) => {
+        this.getAis().map((ai) => {
+            const grid = makeAstar(this);
 			const nextPosition = grid.search(
 				[ai.x, ai.y],
 				[store.player.position.x, store.player.position.y],
