@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as THREE from 'three';
 	import { T } from '@threlte/core';
 	import type { Position2d } from '../index.d.ts';
 	import Box from './Box.svelte';
+	import { colorCache } from '$lib/color.js';
 
 	export let position: Position2d;
 
@@ -14,7 +14,7 @@
 		intensity={0.8}
 		position={[position[0], 0.4, position[1]]}
 		distance={10}
-		color={new THREE.Color(0xffdede)}
+		color={colorCache(0xffdede)}
 		castShadow={true}
 	/>
 

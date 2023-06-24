@@ -4,6 +4,7 @@
 	import * as THREE from 'three';
 	import { T } from '@threlte/core';
 	import { useCursor } from '@threlte/extras';
+	import { colorCache } from '$lib/color';
 
 	export let texture: THREE.Texture[] = [];
 	export let color: number | undefined = undefined;
@@ -56,11 +57,11 @@
 >
 	<T.BoxGeometry args={[wx, wz, wy]} />
 	{#if texture.length < 2}
-		<T.MeshLambertMaterial map={texture[0]} color={new THREE.Color(color)} {transparent} />
+		<T.MeshLambertMaterial map={texture[0]} color={colorCache(color)} {transparent} />
 	{:else}
 		<T.MeshLambertMaterial
 			attach={onAttach}
-			color={new THREE.Color(color)}
+			color={colorCache(color)}
 			{transparent}
 		/>
 	{/if}
