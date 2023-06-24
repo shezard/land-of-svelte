@@ -39,8 +39,9 @@ You can preview the production build with `npm run preview`.
 -   [x] Display player hp as a health bar
 -   [x] Add treasure chest
 -   [ ] Editor
+    -   [x] Level switching
+    -   [ ] New level
     -   [ ] Monster creation
-    -   [ ] Level switching
 -   [x] Pause game while in the menu
 -   [ ] XP / Leveling
     -   [ ] XP bar

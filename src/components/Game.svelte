@@ -11,7 +11,7 @@
 	import Control from './Menu/Control.svelte';
 	import Inventory from './Menu/Inventory.svelte';
 	import Container from './Menu/Container.svelte';
-	import Editor from './Menu/Editor.svelte';
+	import Editor from './Editor/Editor.svelte';
 
 	$: shaking = $store.screen.shaking;
 </script>
