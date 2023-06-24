@@ -41,12 +41,12 @@ You can preview the production build with `npm run preview`.
 -   [x] Editor
 -   [x] Pause game while in the menu
 -   [ ] XP / Leveling
-    - [ ] XP bar
-    - [ ] Level up
-    - [ ] Derived stats
-    - [ ] Saving / Loading
+    -   [ ] XP bar
+    -   [ ] Level up
+    -   [ ] Derived stats
+    -   [ ] Saving / Loading
 -   [ ] Torch without closest wall should be fixed to the floor
 -   [ ] Better handling of game over
 -   [ ] Gold
 -   [ ] Try to fix alpha transparency showing canvas background
-- [ ] FPS improvement
+-   [ ] FPS improvement

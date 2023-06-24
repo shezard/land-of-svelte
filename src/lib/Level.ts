@@ -1,7 +1,18 @@
-import type { AI, Script, LevelProp, Map2d, Store, Loot, OrientedPosition, Light } from '..';
+import type {
+	AI,
+	Script,
+	LevelProp,
+	Map2d,
+	Store,
+	Loot,
+	OrientedPosition,
+	Light,
+	AIName
+} from '..';
 import { fight } from './fight';
 import { makeAstar } from './grid';
 import { logs } from '$stores/logs';
+import { makeAI } from './AI';
 
 export class Level {
 	width: number;
@@ -20,7 +31,12 @@ export class Level {
 		this.collisionMap = level.collisionMap;
 		this.textureMap = level.textureMap;
 		this.lights = level.lights;
-		this.scripts = level.scripts;
+		this.scripts = level.scripts.map((script: Script) => {
+			if (script.type === 'ai') {
+				return makeAI(script.name as AIName, script.id, script.x, script.y, script.loot);
+			}
+			return script;
+		});
 		this.ceiling = level.ceiling;
 	}
 

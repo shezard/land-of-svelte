@@ -25,61 +25,77 @@
 </script>
 
 <div class="menu text-white">
-	<div class="text-3xl">Character</div>
+	<div class="grid grid-cols-2">
+	    <div class="text-3xl">Stats</div>
+	    <div class="text-3xl">Inventory</div>
+    </div>
 
-	<div class="grid grid-cols-3">
-		<div class="flex flex-col">
-			<div class="text-2xl">
-				Stats:
-				<div class="pl-10">
-					AC : {stats.ac} <br />
-					Hit : {stats.hit} <br />
-					HP : {stats.hp} <br />
-					Attack : {stats.pAttack} <br />
-					Defense : {stats.pDefense} <br />
-				</div>
-			</div>
-		</div>
+	<div class="grid grid-cols-2">
+        <div class="grid grid-cols-2">
+            <div class="flex flex-col">
+                <div class="text-2xl">
+                    <div class="pl-10">
+                        Level : {$store.player.level} <br />
+                        XP : {$store.player.xp} <br />
+                    </div>
+                </div>
+            </div>
 
-		<div class="flex flex-col">
-			<div class="text-2xl">
-				Main Hand
-				{#if mainHand}
-					<MenuItem item={mainHand} on:click={toBag(mainHand)} />
-				{/if}
-			</div>
+            <div class="flex flex-col">
+                <div class="text-2xl">
+                    AC : {stats.ac} <br />
+                    Hit : {stats.hit} <br />
+                    HP : {stats.hp} <br />
+                    Attack : {stats.pAttack} <br />
+                    Defense : {stats.pDefense} <br />
+                </div>
+            </div>
+        </div>
 
-			<div class="text-2xl">
-				Off Hand
-				{#if offHand}
-					<MenuItem item={offHand} on:click={toBag(offHand)} />
-				{/if}
-			</div>
+        <div class="grid grid-cols-2">
+            <div class="flex flex-col pl-10">
+                <div class="text-2xl">
+                    &nbsp;<br/>
+                </div>
+                <div class="text-2xl">
+                    Main Hand
+                    {#if mainHand}
+                        <MenuItem item={mainHand} on:click={toBag(mainHand)} />
+                    {/if}
+                </div>
 
-			<div class="text-2xl">
-				Armor
-				{#if armor}
-					<MenuItem item={armor} on:click={toBag(armor)} />
-				{/if}
-			</div>
-		</div>
+                <div class="text-2xl">
+                    Off Hand
+                    {#if offHand}
+                        <MenuItem item={offHand} on:click={toBag(offHand)} />
+                    {/if}
+                </div>
 
-		<div class="flex flex-col">
-			<div class="text-2xl">Bag</div>
+                <div class="text-2xl">
+                    Armor
+                    {#if armor}
+                        <MenuItem item={armor} on:click={toBag(armor)} />
+                    {/if}
+                </div>
+            </div>
 
-			<div class="grid item-grid">
-				{#each [...Array(8).keys()] as index}
-					<div class="placeholder">
-						{#if $store.player.inventory.bag[index]}
-							<MenuItem
-								item={$store.player.inventory.bag[index]}
-								on:click={toInventory($store.player.inventory.bag[index], index)}
-							/>
-						{/if}
-					</div>
-				{/each}
-			</div>
-		</div>
+            <div class="flex flex-col">
+                <div class="text-2xl">Bag</div>
+
+                <div class="grid item-grid">
+                    {#each [...Array(8).keys()] as index}
+                        <div class="placeholder">
+                            {#if $store.player.inventory.bag[index]}
+                                <MenuItem
+                                    item={$store.player.inventory.bag[index]}
+                                    on:click={toInventory($store.player.inventory.bag[index], index)}
+                                />
+                            {/if}
+                        </div>
+                    {/each}
+                </div>
+            </div>
+        </div>
 	</div>
 </div>
 

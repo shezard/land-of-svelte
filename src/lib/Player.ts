@@ -5,14 +5,24 @@ import { logs } from '$stores/logs';
 import { store } from '$stores/store';
 
 export class Player {
+	xp: number;
+	level: number;
 	position: OrientedPosition;
 	stats: Stats;
 	inventory: Inventory;
 
-	constructor(position: OrientedPosition, stats: Stats, inventory: Inventory) {
+	constructor(
+		position: OrientedPosition,
+		stats: Stats,
+		inventory: Inventory,
+		xp: number,
+		level: number
+	) {
 		this.position = position;
 		this.stats = stats;
 		this.inventory = inventory;
+		this.xp = xp;
+		this.level = level;
 	}
 
 	moveForward(level: Level) {
@@ -132,6 +142,7 @@ export class Player {
 						logs.push(`You killed a ${ai.name}`);
 						return logs;
 					});
+					store.player.xp += ai.xp;
 				}
 			);
 

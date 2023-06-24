@@ -33,7 +33,9 @@ const initialStoreState: Store = {
 			offHand: null,
 			armor: null,
 			bag: [makeItem('sword'), makeItem('armor')]
-		}
+		},
+		0,
+		1
 	),
 	screen: {
 		shaking: false

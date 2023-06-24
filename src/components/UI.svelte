@@ -32,10 +32,17 @@
 		/>
 		<div class="w-40">
 			<div
-				class="border border-4 border-dark-color w-[160px] h-[35px] m-[10px] grid items-center justify-items-center text-white"
+				class="border-4 border-dark-color w-[160px] h-[35px] m-[10px] grid items-center justify-items-center text-white"
 				style="background: linear-gradient(to left, rgba(0, 0, 0, 0) {hpPercent}%, #870001 {hpPercent}%)"
 			>
 				{stats.hp} / {stats.maxHp}
+			</div>
+
+            <div
+				class="border-4 border-dark-color w-[160px] h-[35px] m-[10px] grid items-center justify-items-center text-white"
+				style="background: linear-gradient(to left, rgba(0, 0, 0, 0) {hpPercent}%, #D1B000 {hpPercent}%)"
+			>
+				{$store.player.xp} / {$store.player.level}
 			</div>
 		</div>
 		<div class="w-20" />

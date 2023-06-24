@@ -48,6 +48,8 @@ export type Doodad = {
 	z?: number;
 } & OrientedPosition;
 
+export type AIName = 'orc' | 'not-found';
+
 export type AI = {
 	id: number;
 	type: 'ai';
@@ -57,6 +59,7 @@ export type AI = {
 	color?: number;
 	stats: Stats;
 	loot?: ItemName;
+	xp: number;
 } & OrientedPosition;
 
 export type Panel = {
