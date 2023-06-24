@@ -231,15 +231,39 @@
 			"id": 2,
 			"type": "ai",
 			"name": "orc",
+			"collision": true,
+			"texture": ["orc-1"],
 			"x": 6,
-			"y": 6
+			"y": 6,
+			"t": 0,
+			"stats": {
+				"hp": 5,
+				"maxHp": 5,
+				"ac": 0,
+				"hit": 0,
+				"pDefense": 0,
+				"pAttack": 1
+			},
+			"xp": 3
 		},
 		{
 			"id": 2,
 			"type": "ai",
 			"name": "orc",
+			"collision": true,
+			"texture": ["orc-1"],
 			"x": 9,
-			"y": 6
+			"y": 6,
+			"t": 0,
+			"stats": {
+				"hp": 5,
+				"maxHp": 5,
+				"ac": 0,
+				"hit": 0,
+				"pDefense": 0,
+				"pAttack": 1
+			},
+			"xp": 3
 		}
 	]
 }

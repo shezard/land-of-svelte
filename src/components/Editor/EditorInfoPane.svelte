@@ -3,6 +3,41 @@
 	import { currentLevelNumber, currentLevel } from '$stores/editor'
 	import EditorTexture from './EditorTexture.svelte';
 	import EditorTool from "./EditorTool.svelte";
+	import type { AIName } from '../..';
+	import { Level } from '$lib/Level';
+
+    const changeLevel = (e: Event) => {
+        if(e.currentTarget === null) {
+            return;
+        }
+
+        const target = e.currentTarget as HTMLInputElement;
+
+        const levelNumber = Number(target.value);
+
+        console.log(levelNumber, $store.levels.length);
+        if(levelNumber >= $store.levels.length) {
+            store.update((store) => {
+
+                const level = new Level({
+                    width: 0,
+                    height: 0,
+                    floor: 'floor-0',
+                    ceiling: 'floor-1',
+                    collisionMap: [[]],
+                    textureMap: [[]],
+                    lights: [],
+                    scripts: [],
+                });
+
+                store.levels.push(level.resize(12, 12));
+
+                return store;
+            })
+        }
+
+        currentLevelNumber.set(levelNumber);
+    }
 
     const updateLevel = (dimension : 'width'|'height') => (e : Event) => {
 
@@ -49,12 +84,14 @@
         exportURI = 'data:application/json;charset=utf-8,' + encodeURI(JSON.stringify($currentLevel, null, 4));
     }
 
+    const ais : AIName[] = ['orc'];
+
 </script>
 <div>
     <div class="text-2xl">Info</div>
     <div class="grid grid-cols-2">
         <div>
-            Level <input type="number" min="0" bind:value={$currentLevelNumber} />
+            Level <input type="number" min="0" value={$currentLevelNumber} on:change={changeLevel} />
         </div>
         <div>
             <input type="number" value={$currentLevel.width} on:change={updateLevel('width')} />
@@ -88,7 +125,9 @@
         <EditorTool tool="ai">
             AI
             <select on:click|stopPropagation>
-                <option value="orc">Orc</option>
+                {#each ais as ai}
+                    <option value="{ai}">{ai}</option>
+                {/each}
             </select>
         </EditorTool>
     </div>

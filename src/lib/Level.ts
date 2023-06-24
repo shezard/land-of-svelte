@@ -28,16 +28,11 @@ export class Level {
 		this.width = level.width;
 		this.height = level.height;
 		this.floor = level.floor;
+		this.ceiling = level.ceiling;
 		this.collisionMap = level.collisionMap;
 		this.textureMap = level.textureMap;
 		this.lights = level.lights;
-		this.scripts = level.scripts.map((script: Script) => {
-			if (script.type === 'ai') {
-				return makeAI(script.name as AIName, script.id, script.x, script.y, script.loot);
-			}
-			return script;
-		});
-		this.ceiling = level.ceiling;
+		this.scripts = level.scripts;
 	}
 
 	resize(width: number, height: number): Level {
@@ -172,9 +167,8 @@ export class Level {
 	}
 
 	advance(store: Store): Store {
-
-        this.getAis().map((ai) => {
-            const grid = makeAstar(this);
+		this.getAis().map((ai) => {
+			const grid = makeAstar(this);
 			const nextPosition = grid.search(
 				[ai.x, ai.y],
 				[store.player.position.x, store.player.position.y],
