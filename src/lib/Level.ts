@@ -88,7 +88,7 @@ export class Level {
 	}
 
 	addAiAt(x: number, y: number, aiName: AIName) {
-		const id = Math.max(...this.scripts.map((script) => script.id)) + 1;
+		const id = Math.max(...this.scripts.map((script) => script.id), 0) + 1;
 		this.scripts = [...this.scripts, makeAI(aiName, id, x, y)];
 	}
 
@@ -120,7 +120,7 @@ export class Level {
 	}
 
 	addLightAt(x: number, y: number): void {
-		const id = Math.max(...this.lights.map((light) => light.id)) + 1;
+		const id = Math.max(...this.lights.map((light) => light.id), 0) + 1;
 		this.lights = [
 			...this.lights,
 			{

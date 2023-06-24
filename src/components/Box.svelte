@@ -57,7 +57,11 @@
 >
 	<T.BoxGeometry args={[wx, wz, wy]} />
 	{#if texture.length < 2}
-		<T.MeshLambertMaterial map={texture[0]} color={colorCache(color)} {transparent} />
+		<T.MeshLambertMaterial
+            map={texture[0]}
+            color={colorCache(color)}
+            {transparent}
+        />
 	{:else}
 		<T.MeshLambertMaterial
 			attach={onAttach}
