@@ -2,7 +2,6 @@
     import {activatedTool, type ToolName} from '$stores/editor';
 
     export let tool: ToolName;
-    export let title: string;
 
     const toggleTool = (toolToToggle: ToolName) => () => {
         activatedTool.update((activatedTool) => {
@@ -22,7 +21,7 @@
     class:active={$activatedTool === tool}
     on:click={toggleTool(tool)}
 >
-    {title}
+    <slot />
 </button>
 
 <style>

@@ -92,6 +92,11 @@ export class Level {
 		});
 	}
 
+	addAiAt(x: number, y: number, aiName: AIName) {
+		const id = Math.max(...this.scripts.map((script) => script.id)) + 1;
+		this.scripts = [...this.scripts, makeAI(aiName, id, x, y)];
+	}
+
 	removeAiAt(x: number, y: number): void {
 		const loot = this.getAiAt(x, y)?.loot;
 

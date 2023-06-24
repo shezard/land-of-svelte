@@ -76,9 +76,21 @@
         <div class="text-2xl">
             Tools
         </div>
-        <EditorTool tool="collision+" title="+ Collision" />
-        <EditorTool tool="collision-" title="- Collision" />
-        <EditorTool tool="light" title="Light" />
+        <EditorTool tool="collision+">
+            + Collision
+        </EditorTool>
+        <EditorTool tool="collision-">
+            - Collision
+        </EditorTool>
+        <EditorTool tool="light">
+            Light
+        </EditorTool>
+        <EditorTool tool="ai">
+            AI
+            <select on:click|stopPropagation>
+                <option value="orc">Orc</option>
+            </select>
+        </EditorTool>
     </div>
     <div class=" mt-5">
         <a

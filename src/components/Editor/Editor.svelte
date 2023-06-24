@@ -1,7 +1,7 @@
 <script lang="ts">
     import { JSONEditor } from 'svelte-jsoneditor'
 	import { store } from '$stores/store';
-	import { activatedTool, currentLevelNumber, currentLevel } from '$stores/editor'
+	import { activatedTool, currentLevelNumber, currentLevel, isToolActivated } from '$stores/editor'
 	import type { Script, Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
 	import EditorTexture from './EditorTexture.svelte';
@@ -45,18 +45,9 @@
         });
     }
 
-    let isToolActivated = false;
-    const activateTool = () => {
-        isToolActivated = true;
-    }
-
-    const deactivateTool = () => {
-        isToolActivated = false;
-    }
-
     const applyTool = (x: number, y: number) => (e : Event) => {
 
-        if(!isToolActivated) {
+        if(!$isToolActivated) {
             return;
         }
 
@@ -86,11 +77,23 @@
                 return store;
             });
         }
+
+        if($activatedTool === 'ai' && e.type === 'mousedown') {
+            store.update((store) => {
+                store.levels[$currentLevelNumber].addAiAt(x, y , 'orc')
+
+                return store;
+            });
+        }
     }
 
 </script>
 
-<div class="menu text-white" on:mousedown={activateTool} on:mouseup={deactivateTool}>
+<div
+    class="menu text-white"
+    on:mousedown={() => isToolActivated.set(true)}
+    on:mouseup={() => isToolActivated.set(false)}
+>
 	<div class="text-3xl">Editor</div>
 
 	<div class="grid grid-cols-3">

@@ -5,7 +5,7 @@ export const makeAI = function (
 	id: number,
 	x: number,
 	y: number,
-	loot: ItemName | undefined
+	loot: ItemName | undefined = undefined
 ): AI {
 	if (aiName === 'orc') {
 		return {
