@@ -1,7 +1,7 @@
 <script lang="ts">
     import { JSONEditor } from 'svelte-jsoneditor'
-	import { store, currentLevel } from '$stores/store';
-	import { activatedTool } from '$stores/editor'
+	import { store } from '$stores/store';
+	import { activatedTool, currentLevelNumber, currentLevel } from '$stores/editor'
 	import type { Script, Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
 	import EditorTool from './EditorTool.svelte';
@@ -44,14 +44,14 @@
 
         store.update((store) => {
             if(dimension === 'width') {
-                store.levels[store.currentLevelNumber] = store.levels[store.currentLevelNumber].resize(
+                store.levels[$currentLevelNumber] = store.levels[$currentLevelNumber].resize(
                     Number(target.value),
-                    store.levels[store.currentLevelNumber].height
+                    store.levels[$currentLevelNumber].height
                 );
             }
             if(dimension === 'height') {
-                store.levels[store.currentLevelNumber] = store.levels[store.currentLevelNumber].resize(
-                    store.levels[store.currentLevelNumber].width,
+                store.levels[$currentLevelNumber] = store.levels[$currentLevelNumber].resize(
+                    store.levels[$currentLevelNumber].width,
                     Number(target.value)
                 );
             }
@@ -65,7 +65,7 @@
         }
 
         store.update((store) => {
-            store.levels[store.currentLevelNumber].replaceScript(newScript.json);
+            store.levels[$currentLevelNumber].replaceScript(newScript.json);
             return store;
         });
     }
@@ -93,25 +93,25 @@
 
         if($activatedTool === 'collision+') {
             store.update((store) => {
-                store.levels[store.currentLevelNumber].collisionMap[x][y] = 1;
+                store.levels[$currentLevelNumber].collisionMap[x][y] = 1;
                 return store;
             });
         }
 
         if($activatedTool === 'collision-') {
             store.update((store) => {
-                store.levels[store.currentLevelNumber].collisionMap[x][y] = 0;
+                store.levels[$currentLevelNumber].collisionMap[x][y] = 0;
                 return store;
             });
         }
 
         if($activatedTool === 'light' && e.type === 'mousedown') {
             store.update((store) => {
-                const light = store.levels[store.currentLevelNumber].getLightAt(x, y);
+                const light = store.levels[$currentLevelNumber].getLightAt(x, y);
                 if(light) {
-                    store.levels[store.currentLevelNumber].removeLightAt(x, y);
+                    store.levels[$currentLevelNumber].removeLightAt(x, y);
                 } else {
-                    store.levels[store.currentLevelNumber].addLightAt(x, y);
+                    store.levels[$currentLevelNumber].addLightAt(x, y);
                 }
 
                 return store;
@@ -129,7 +129,7 @@
             <div class="text-2xl">Info</div>
             <div class="grid grid-cols-2">
                 <div>
-                    Level [{$store.currentLevelNumber}]
+                    Level <input type="number" min="0" bind:value={$currentLevelNumber} />
                 </div>
                 <div>
                     <input type="number" value={$currentLevel.width} on:change={updateLevel('width')} />
@@ -142,7 +142,7 @@
                     Floor
                     <EditorTexture texture={$currentLevel.floor} on:change={(e) => {
                         store.update((store) => {
-                            store.levels[store.currentLevelNumber].floor = e.detail;
+                            store.levels[$currentLevelNumber].floor = e.detail;
                             return store;
                         });
                     }} />
@@ -151,7 +151,7 @@
                     Ceiling
                     <EditorTexture texture={$currentLevel.ceiling} on:change={(e) => {
                         store.update((store) => {
-                            store.levels[store.currentLevelNumber].ceiling = e.detail;
+                            store.levels[$currentLevelNumber].ceiling = e.detail;
                             return store;
                         });
                     }} />
@@ -166,7 +166,7 @@
                 <EditorTool tool="light" title="Light" />
             </div>
             <div class=" mt-5">
-                <a href="{exportURI}" class="inline-block border border-1 rounded px-2" on:click={handleExport} download={`level-${$store.currentLevelNumber}.json`}>
+                <a href="{exportURI}" class="inline-block border border-1 rounded px-2" on:click={handleExport} download={`level-${$currentLevelNumber}.json`}>
                     Export level
                 </a>
             </div>
@@ -207,7 +207,7 @@
                             }
                             store.update((store) => {
                                 // TODO : utiliser des noms de textures dans la textures
-                                store.levels[store.currentLevelNumber].textureMap[tile.x][tile.y] = e.detail;
+                                store.levels[$currentLevelNumber].textureMap[tile.x][tile.y] = e.detail;
                                 return store;
                             });
                         }} />
@@ -233,6 +233,7 @@
 <style>
     input[type=number] {
         color: black;
-        width: 3rem
+        width: 3rem;
+        text-indent: 5px;
     }
 </style>
