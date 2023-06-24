@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { store } from '$stores/store';
-	import { currentLevelNumber, currentLevel } from '$stores/editor'
+	import { currentLevelNumber, currentLevel, currentTexture, currentAI } from '$stores/editor';
+    import { textures } from '$stores/textures';
 	import EditorTexture from './EditorTexture.svelte';
 	import EditorTool from "./EditorTool.svelte";
 	import type { AIName } from '../..';
@@ -15,7 +16,6 @@
 
         const levelNumber = Number(target.value);
 
-        console.log(levelNumber, $store.levels.length);
         if(levelNumber >= $store.levels.length) {
             store.update((store) => {
 
@@ -84,7 +84,11 @@
         exportURI = 'data:application/json;charset=utf-8,' + encodeURI(JSON.stringify($currentLevel, null, 4));
     }
 
-    const ais : AIName[] = ['orc'];
+    const aiOptions : AIName[] = ['orc'];
+
+    const textureOptions = Object.keys($textures).map((texture) => {
+        return texture.replace('.png', '');
+    });
 
 </script>
 <div>
@@ -119,13 +123,23 @@
         <EditorTool tool="collision-">
             - Collision
         </EditorTool>
+
+        <EditorTool tool="texture">
+            Texture
+            <select on:click|stopPropagation bind:value={$currentTexture}>
+                {#each textureOptions as texture}
+                    <option value="{texture}">{texture}</option>
+                {/each}
+            </select>
+        </EditorTool>
+
         <EditorTool tool="light">
             Light
         </EditorTool>
         <EditorTool tool="ai">
             AI
-            <select on:click|stopPropagation>
-                {#each ais as ai}
+            <select on:click|stopPropagation bind:value={$currentAI}>
+                {#each aiOptions as ai}
                     <option value="{ai}">{ai}</option>
                 {/each}
             </select>
@@ -144,9 +158,15 @@
 </div>
 
 <style>
-    input[type=number] {
+    input {
         color: black;
         width: 3rem;
         text-indent: 5px;
+    }
+
+    select {
+        color: black;
+        text-indent: 2px;
+        padding-right: 4px;
     }
 </style>

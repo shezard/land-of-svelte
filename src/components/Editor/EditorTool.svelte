@@ -17,7 +17,7 @@
 </script>
 
 <button
-    class="inline-block border border-1 rounded px-2"
+    class="inline-block border border-1 rounded px-2 m-1"
     class:active={$activatedTool === tool}
     on:click={toggleTool(tool)}
 >

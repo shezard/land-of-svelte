@@ -1,7 +1,7 @@
 <script lang="ts">
     import { JSONEditor } from 'svelte-jsoneditor'
 	import { store } from '$stores/store';
-	import { activatedTool, currentLevelNumber, currentLevel, isToolActivated } from '$stores/editor'
+	import { activatedTool, currentLevelNumber, currentLevel, isToolActivated, currentAI, currentTexture } from '$stores/editor'
 	import type { Script, Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
 	import EditorTexture from './EditorTexture.svelte';
@@ -51,6 +51,13 @@
             return;
         }
 
+        if($activatedTool === 'texture') {
+            store.update((store) => {
+                store.levels[$currentLevelNumber].textureMap[x][y] = $currentTexture;
+                return store;
+            });
+        }
+
         if($activatedTool === 'collision+') {
             store.update((store) => {
                 store.levels[$currentLevelNumber].collisionMap[x][y] = 1;
@@ -80,7 +87,7 @@
 
         if($activatedTool === 'ai' && e.type === 'mousedown') {
             store.update((store) => {
-                store.levels[$currentLevelNumber].addAiAt(x, y , 'orc')
+                store.levels[$currentLevelNumber].addAiAt(x, y , $currentAI)
 
                 return store;
             });

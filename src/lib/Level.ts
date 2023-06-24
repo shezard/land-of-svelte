@@ -64,7 +64,7 @@ export class Level {
 
 				if (!level.textureMap[x][y]) {
 					if (!this.textureMap[x]?.[y]) {
-						level.textureMap[x][y] = 'floor-0';
+						level.textureMap[x][y] = 'wall-0';
 					} else {
 						level.textureMap[x][y] = this.textureMap[x][y];
 					}
