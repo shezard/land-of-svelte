@@ -66,50 +66,42 @@
 		if (e.code === $keyboard.forward) {
             player.update((player) => {
 				player.moveForward($currentLevel);
+                store.update((store) => {
+                    return doWalk(store);
+                });
                 updateCamera(camera, player.position);
                 return player;
             });
-
-			store.update((store) => {
-				store = doWalk(store);
-				return store;
-			});
 		}
 		if (e.code === $keyboard.left) {
             player.update((player) => {
 				player.moveLeft($currentLevel);
+                store.update((store) => {
+                    return doWalk(store);
+                });
                 updateCamera(camera, player.position);
                 return player;
             });
-
-			store.update((store) => {
-				store = doWalk(store);
-				return store;
-			});
 		}
 		if (e.code === $keyboard.backward) {
             player.update((player) => {
 				player.moveBackward($currentLevel);
+                store.update((store) => {
+                    return doWalk(store);
+                });
                 updateCamera(camera, player.position);
                 return player;
             });
-
-			store.update((store) => {
-				store = doWalk(store);
-				return store;
-			});
 		}
 		if (e.code === $keyboard.right) {
             player.update((player) => {
 				player.moveRight($currentLevel);
+                store.update((store) => {
+                    return doWalk(store);
+                });
                 updateCamera(camera, player.position);
                 return player;
             });
-
-			store.update((store) => {
-				store = doWalk(store);
-				return store;
-			});
 		}
 
 		if (e.code === $keyboard.rotateLeft) {
