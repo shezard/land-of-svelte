@@ -96,11 +96,9 @@
 
 </script>
 
-<div
-    class="menu text-white"
-    on:mousedown={() => isToolActivated.set(true)}
-    on:mouseup={() => isToolActivated.set(false)}
->
+<svelte:body on:mouseup={() => isToolActivated.set(false)} />
+
+<div class="menu text-white">
 	<div class="text-3xl">Editor</div>
 
 	<div class="grid grid-cols-3">
@@ -113,9 +111,10 @@
                             <EditorTile
                                 tile={getTileAt(x, y)}
                                 on:click={showTileInfo(x, y)}
-                                on:mousedown={(e) => setTimeout(() => {
-                                    applyTool(x, y)(e)
-                                })}
+                                on:mousedown={(e) => {
+                                    isToolActivated.set(true);
+                                    applyTool(x, y)(e);
+                                }}
                                 on:mouseenter={applyTool(x, y)}
                             />
                         {/each}
@@ -140,7 +139,6 @@
                                 return;
                             }
                             store.update((store) => {
-                                // TODO : utiliser des noms de textures dans la textures
                                 store.levels[$currentLevelNumber].textureMap[tile.x][tile.y] = e.detail;
                                 return store;
                             });
