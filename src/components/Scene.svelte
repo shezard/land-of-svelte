@@ -65,7 +65,7 @@
 				return store;
 			});
 
-			updateCamera($store, camera);
+			updateCamera(camera);
 		}
 		if (e.code === $keyboard.left) {
 			store.update((store) => {
@@ -73,7 +73,7 @@
 				store = doWalk(store);
 				return store;
 			});
-			updateCamera($store, camera);
+			updateCamera(camera);
 		}
 		if (e.code === $keyboard.backward) {
 			store.update((store) => {
@@ -81,7 +81,7 @@
 				store = doWalk(store);
 				return store;
 			});
-			updateCamera($store, camera);
+			updateCamera(camera);
 		}
 		if (e.code === $keyboard.right) {
 			store.update((store) => {
@@ -89,7 +89,7 @@
 				store = doWalk(store);
 				return store;
 			});
-			updateCamera($store, camera);
+			updateCamera(camera);
 		}
 
 		if (e.code === $keyboard.rotateLeft) {
@@ -97,14 +97,14 @@
 				store.player.rotateLeft();
 				return store;
 			});
-			updateCamera($store, camera);
+			updateCamera(camera);
 		}
 		if (e.code === $keyboard.rotateRight) {
 			store.update((store) => {
 				store.player.rotateRight();
 				return store;
 			});
-			updateCamera($store, camera);
+			updateCamera(camera);
 		}
 
 		if (e.code === $keyboard.inventory) {
@@ -112,7 +112,7 @@
 		}
 	};
 
-	onMount(() => updateCamera($store, camera));
+	onMount(() => updateCamera(camera));
 </script>
 
 <Ceiling texture={$textures[`${$currentLevel.ceiling}.png`]} />

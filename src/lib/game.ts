@@ -1,11 +1,15 @@
 import { store } from '$stores/store';
 import { useFrame } from '@threlte/core';
+import { get } from 'svelte/store';
 
 const advanceFrame = (t: number) => {
+    if(get(store).game.state !== 'running') {
+        return;
+    }
+
+    // TODO : first see if we need clenup / rotation ? if so, run update
+
 	store.update((store) => {
-		if (store.game.state !== 'running') {
-			return store;
-		}
 
 		// clear animation
 		store.screen.shaking = false;
@@ -22,15 +26,13 @@ const advanceFrame = (t: number) => {
 };
 
 const advanceGame = () => {
+    if(get(store).game.state !== 'running') {
+        return;
+    }
+
 	store.update((store) => {
 		const $currentLevel = store.levels[store.currentLevelNumber];
-
-		if (store.game.state !== 'running') {
-			return store;
-		}
-
 		store = $currentLevel.advance(store);
-
 		return store;
 	});
 };

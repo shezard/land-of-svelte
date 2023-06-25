@@ -1,14 +1,17 @@
-import type { Writable } from 'svelte/store';
-import type { Store } from '..';
+import { get, type Writable } from 'svelte/store';
+import { store } from '$stores/store';
 
-export const updateCamera = (store: Store, camera: Writable<THREE.Camera>): void => {
+export const updateCamera = (camera: Writable<THREE.Camera>): void => {
+
+    const position = get(store).player.position;
+
 	camera.update((camera) => {
-		camera.position.x = store.player.position.x - Math.sin(store.player.position.t) * 0.5;
-		camera.position.z = store.player.position.y + Math.cos(store.player.position.t) * 0.5;
+		camera.position.x = position.x - Math.sin(position.t) * 0.5;
+		camera.position.z = position.y + Math.cos(position.t) * 0.5;
 		camera.lookAt(
-			store.player.position.x + Math.sin(store.player.position.t),
+			position.x + Math.sin(position.t),
 			0,
-			store.player.position.y - Math.cos(store.player.position.t)
+			position.y - Math.cos(position.t)
 		);
 		return camera;
 	});

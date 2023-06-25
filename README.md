@@ -38,8 +38,10 @@ You can preview the production build with `npm run preview`.
 -   [x] Use Oriented Position type inside Script
 -   [x] Display player hp as a health bar
 -   [x] Add treasure chest
--   [x] Editor
 -   [x] Pause game while in the menu
+-   [] Editor
+    -   [ ] Fix texture tile image not updating when changing tile texture
+    -   [ ] Try to remove setTimeout when adding light to improve UX
 -   [ ] XP / Leveling
     -   [ ] XP bar
     -   [ ] Level up
