@@ -1,17 +1,25 @@
-import { store } from '$stores/store';
+import { currentLevel, store } from '$stores/store';
 import { useFrame } from '@threlte/core';
 import { get } from 'svelte/store';
 
 const advanceFrame = (t: number) => {
-    if(get(store).game.state !== 'running') {
-        return;
-    }
+	if (get(store).game.state !== 'running') {
+		return;
+	}
 
-    // TODO : first see if we need clenup / rotation ? if so, run update
+	const weapon = get(store).player.inventory.mainHand;
+
+	if (
+		!get(store).screen.dirty &&
+		get(currentLevel).getLoots().length === 0 &&
+		Date.now() - weapon.lastAttackTimestamp >= weapon.cooldown * 1e3
+	) {
+		return;
+	}
 
 	store.update((store) => {
-
 		// clear animation
+		store.screen.dirty = false;
 		store.screen.shaking = false;
 		store.levels[store.currentLevelNumber].getAis().map((ai) => {
 			ai.color = 0xffffff;
@@ -26,9 +34,9 @@ const advanceFrame = (t: number) => {
 };
 
 const advanceGame = () => {
-    if(get(store).game.state !== 'running') {
-        return;
-    }
+	if (get(store).game.state !== 'running') {
+		return;
+	}
 
 	store.update((store) => {
 		const $currentLevel = store.levels[store.currentLevelNumber];

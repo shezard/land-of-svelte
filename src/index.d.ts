@@ -25,6 +25,7 @@ export interface Store {
 	player: Player;
 	screen: {
 		shaking: boolean;
+		dirty: boolean;
 	};
 }
 

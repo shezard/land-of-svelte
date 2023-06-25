@@ -200,6 +200,7 @@ export class Level {
 							return logs;
 						});
 						store.screen.shaking = true;
+						store.screen.dirty = true;
 					},
 					() => {
 						logs.update((logs) => {

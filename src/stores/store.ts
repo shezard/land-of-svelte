@@ -38,7 +38,8 @@ const initialStoreState: Store = {
 		1
 	),
 	screen: {
-		shaking: false
+		shaking: false,
+		dirty: false
 	}
 };
 

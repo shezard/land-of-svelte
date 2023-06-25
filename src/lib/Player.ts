@@ -136,6 +136,7 @@ export class Player {
 						return logs;
 					});
 					ai.color = 0xff0000;
+					store.screen.dirty = true;
 				},
 				() => {
 					logs.update((logs) => {
