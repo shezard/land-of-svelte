@@ -107,6 +107,9 @@
 		if (e.code === $keyboard.rotateLeft) {
             player.update((player) => {
 				player.rotateLeft();
+                store.update((store) => {
+                    return store;
+                });
                 updateCamera(camera, player.position);
                 return player;
             });
@@ -114,6 +117,9 @@
 		if (e.code === $keyboard.rotateRight) {
             player.update((player) => {
 				player.rotateRight();
+                store.update((store) => {
+                    return store;
+                });
                 updateCamera(camera, player.position);
                 return player;
             });
