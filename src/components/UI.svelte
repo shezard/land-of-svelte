@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { lastLogs } from '$stores/logs';
-	import { store } from '$stores/store';
+	import { player } from '$stores/player';
 	import { ui } from '$stores/ui';
 
 	const attack = () => {
-		if ($store.player.inventory.mainHand === null) {
+		if ($player.inventory.mainHand === null) {
 			return;
 		}
-		$store.player.attack();
+		$player.attack();
 	};
 
-	$: stats = $store.player.getStats();
+	$: stats = $player.getStats();
 
-	$: mainHandTexture = $store.player.inventory.mainHand?.texture ?? '';
+	$: mainHandTexture = $player.inventory.mainHand?.texture ?? '';
 
 	$: weaponBackgroundImage = `linear-gradient(to bottom, rgba(0, 0, 0, 0) ${$ui.weaponCooldownPercent}%, #6f6f64 ${$ui.weaponCooldownPercent}%),
 			url('textures/${mainHandTexture}.png')`;
@@ -42,7 +42,7 @@
 				class="border-4 border-dark-color w-[160px] h-[35px] m-[10px] grid items-center justify-items-center text-white"
 				style="background: linear-gradient(to left, rgba(0, 0, 0, 0) {hpPercent}%, #D1B000 {hpPercent}%)"
 			>
-				{$store.player.xp} / {$store.player.level}
+				{$player.xp} / {$player.level}
 			</div>
 		</div>
 		<div class="w-20" />

@@ -17,6 +17,8 @@
 	import { keyboard } from '$stores/keyboard';
 	import { onMount } from 'svelte';
 	import { updateCamera } from '$lib/camera';
+	import { get } from 'svelte/store';
+	import { player } from '$stores/player';
 
 	const { camera } = useThrelte();
 
@@ -24,12 +26,15 @@
 	gameTick();
 
 	const doWalk = (store: Store): Store => {
+
+        const position = get(player).position;
+
 		scripts[store.currentLevelNumber]
 			.filter((script) => {
 				return (
 					script.doWalk &&
-					script.x === store.player.position.x &&
-					script.y === store.player.position.y
+					script.x === position.x &&
+					script.y === position.y
 				);
 			})
 			.map((script) => {
@@ -59,52 +64,67 @@
 		}
 
 		if (e.code === $keyboard.forward) {
+            player.update((player) => {
+				player.moveForward($currentLevel);
+                updateCamera(camera, player.position);
+                return player;
+            });
+
 			store.update((store) => {
-				store.player.moveForward($currentLevel);
 				store = doWalk(store);
 				return store;
 			});
-
-			updateCamera(camera);
 		}
 		if (e.code === $keyboard.left) {
+            player.update((player) => {
+				player.moveLeft($currentLevel);
+                updateCamera(camera, player.position);
+                return player;
+            });
+
 			store.update((store) => {
-				store.player.moveLeft($currentLevel);
 				store = doWalk(store);
 				return store;
 			});
-			updateCamera(camera);
 		}
 		if (e.code === $keyboard.backward) {
+            player.update((player) => {
+				player.moveBackward($currentLevel);
+                updateCamera(camera, player.position);
+                return player;
+            });
+
 			store.update((store) => {
-				store.player.moveBackward($currentLevel);
 				store = doWalk(store);
 				return store;
 			});
-			updateCamera(camera);
 		}
 		if (e.code === $keyboard.right) {
+            player.update((player) => {
+				player.moveRight($currentLevel);
+                updateCamera(camera, player.position);
+                return player;
+            });
+
 			store.update((store) => {
-				store.player.moveRight($currentLevel);
 				store = doWalk(store);
 				return store;
 			});
-			updateCamera(camera);
 		}
 
 		if (e.code === $keyboard.rotateLeft) {
-			store.update((store) => {
-				store.player.rotateLeft();
-				return store;
-			});
-			updateCamera(camera);
+            player.update((player) => {
+				player.rotateLeft();
+                updateCamera(camera, player.position);
+                return player;
+            });
 		}
 		if (e.code === $keyboard.rotateRight) {
-			store.update((store) => {
-				store.player.rotateRight();
-				return store;
-			});
-			updateCamera(camera);
+            player.update((player) => {
+				player.rotateRight();
+                updateCamera(camera, player.position);
+                return player;
+            });
 		}
 
 		if (e.code === $keyboard.inventory) {
@@ -112,7 +132,7 @@
 		}
 	};
 
-	onMount(() => updateCamera(camera));
+	onMount(() => updateCamera(camera, get(player).position));
 </script>
 
 <Ceiling texture={$textures[`${$currentLevel.ceiling}.png`]} />

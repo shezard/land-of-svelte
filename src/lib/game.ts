@@ -1,4 +1,5 @@
 import { currentLevel, store } from '$stores/store';
+import { player } from '$stores/player';
 import { useFrame } from '@threlte/core';
 import { get } from 'svelte/store';
 
@@ -7,12 +8,13 @@ const advanceFrame = (t: number) => {
 		return;
 	}
 
-	const weapon = get(store).player.inventory.mainHand;
+    player.update((player) => {
+        return player;
+    });
 
 	if (
 		!get(store).screen.dirty &&
-		get(currentLevel).getLoots().length === 0 &&
-		Date.now() - weapon.lastAttackTimestamp >= weapon.cooldown * 1e3
+		get(currentLevel).getLoots().length === 0
 	) {
 		return;
 	}

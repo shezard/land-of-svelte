@@ -1,5 +1,4 @@
 import type { Level } from '$lib/Level';
-import type { Player } from '$lib/Player';
 import type { ColorRepresentation } from 'three';
 
 export type Position2d = [number, number];
@@ -22,7 +21,6 @@ export interface Store {
 	game: GameState;
 	levels: Level[];
 	currentLevelNumber: number;
-	player: Player;
 	screen: {
 		shaking: boolean;
 		dirty: boolean;

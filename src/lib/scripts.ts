@@ -1,3 +1,5 @@
+import { player } from '$stores/player';
+import { get } from 'svelte/store';
 import type { Doodad, Store } from '..';
 
 import { animateOnce, animateToggleReverse } from './animation';
@@ -22,8 +24,8 @@ export const scripts = [
 		},
 		{
 			scriptId: 4,
-			predicate: ($store: Store): boolean => {
-				return $store.player.inventory.bag.filter((item) => item.name === 'key').length > 0;
+			predicate: (): boolean => {
+				return get(player).inventory.bag.filter((item) => item.name === 'key').length > 0;
 			},
 			doClick: animateOnce((store, t) => {
 				store.update((store) => {
@@ -32,9 +34,12 @@ export const scripts = [
 					script.collision = true;
 					if (script.z > 1) {
 						script.collision = false;
-						store.player.inventory.bag = store.player.inventory.bag.filter(
-							(item) => item.name !== 'key'
-						);
+						player.update((player) => {
+							player.inventory.bag = player.inventory.bag.filter(
+								(item) => item.name !== 'key'
+							);
+							return player;
+						});
 					}
 					store.levels[0].replaceScript(script);
 					return store;
@@ -46,7 +51,10 @@ export const scripts = [
 			y: 2,
 			doWalk: (store: Store): Store => {
 				store.currentLevelNumber = 1;
-				store.player.position.t = Math.PI / 2;
+				player.update((player) => {
+					player.position.t = Math.PI / 2;
+					return player;
+				});
 				return store;
 			}
 		}
@@ -57,7 +65,10 @@ export const scripts = [
 			y: 2,
 			doWalk: (store: Store): Store => {
 				store.currentLevelNumber = 0;
-				store.player.position.t = Math.PI / 2;
+				player.update((player) => {
+					player.position.t = Math.PI / 2;
+					return player;
+				});
 				return store;
 			}
 		}

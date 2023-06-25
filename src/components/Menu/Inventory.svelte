@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { store } from '$stores/store';
+    import { player } from '$stores/player';
 	import type { Item } from '../..';
 	import MenuItem from './Item.svelte';
 
 	const toBag = (item: Item) => () => {
-		store.update((store) => {
-			store.player.inventory = store.player.unequip(item);
-			return store;
+		player.update((player) => {
+			player.inventory = player.unequip(item);
+			return player;
 		});
 	};
 
 	const toInventory = (item: Item, itemIndex: number) => () => {
-		store.update((store) => {
-			store.player.inventory = store.player.equip(item, itemIndex);
-			return store;
+		player.update((player) => {
+			player.inventory = player.equip(item, itemIndex);
+			return player;
 		});
 	};
 
-	$: mainHand = $store.player.inventory.mainHand;
-	$: offHand = $store.player.inventory.offHand;
-	$: armor = $store.player.inventory.armor;
+	$: mainHand = $player.inventory.mainHand;
+	$: offHand = $player.inventory.offHand;
+	$: armor = $player.inventory.armor;
 
-	$: stats = $store.player.getStats();
+	$: stats = $player.getStats();
 </script>
 
 <div class="menu text-white">
@@ -35,8 +35,8 @@
             <div class="flex flex-col">
                 <div class="text-2xl">
                     <div class="pl-10">
-                        Level : {$store.player.level} <br />
-                        XP : {$store.player.xp} <br />
+                        Level : {$player.level} <br />
+                        XP : {$player.xp} <br />
                     </div>
                 </div>
             </div>
@@ -85,10 +85,10 @@
                 <div class="grid item-grid">
                     {#each [...Array(8).keys()] as index}
                         <div class="placeholder">
-                            {#if $store.player.inventory.bag[index]}
+                            {#if $player.inventory.bag[index]}
                                 <MenuItem
-                                    item={$store.player.inventory.bag[index]}
-                                    on:click={toInventory($store.player.inventory.bag[index], index)}
+                                    item={$player.inventory.bag[index]}
+                                    on:click={toInventory($player.inventory.bag[index], index)}
                                 />
                             {/if}
                         </div>

@@ -13,6 +13,8 @@ import { fight } from './fight';
 import { makeAstar } from './grid';
 import { logs } from '$stores/logs';
 import { makeAI } from './AI';
+import { player } from '$stores/player';
+import { get } from 'svelte/store';
 
 export class Level {
 	width: number;
@@ -167,15 +169,14 @@ export class Level {
 	}
 
 	advance(store: Store): Store {
+		const position = get(player).position;
+		const stats = get(player).stats;
+
 		this.getAis().map((ai) => {
 			const grid = makeAstar(this);
-			const nextPosition = grid.search(
-				[ai.x, ai.y],
-				[store.player.position.x, store.player.position.y],
-				{
-					rightAngle: true
-				}
-			);
+			const nextPosition = grid.search([ai.x, ai.y], [position.x, position.y], {
+				rightAngle: true
+			});
 
 			if (nextPosition !== undefined && nextPosition.length > 2) {
 				ai.x = nextPosition[1][0];
@@ -187,7 +188,7 @@ export class Level {
 			if (nextPosition !== undefined && nextPosition.length == 2) {
 				const newPlayerStats = fight(
 					ai.stats,
-					store.player.stats,
+					stats,
 					() => {
 						logs.update((logs) => {
 							logs.push(`You dodged a hit`);
@@ -211,7 +212,10 @@ export class Level {
 					}
 				);
 
-				store.player.stats = newPlayerStats;
+				player.update((player) => {
+					player.stats = newPlayerStats;
+					return player;
+				});
 			}
 		});
 

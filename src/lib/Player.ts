@@ -3,6 +3,7 @@ import type { Level } from './Level';
 import { fight } from './fight';
 import { logs } from '$stores/logs';
 import { store } from '$stores/store';
+import { player } from '$stores/player';
 
 export class Player {
 	xp: number;
@@ -100,7 +101,7 @@ export class Player {
 		const offsetY = Math.round(-Math.cos(this.position.t));
 
 		store.update((store) => {
-			const weapon = store.player.inventory.mainHand;
+			const weapon = this.inventory.mainHand;
 
 			if (!weapon) {
 				return store;
@@ -122,7 +123,7 @@ export class Player {
 			}
 
 			const newAiStats = fight(
-				store.player.getStats(),
+				this.getStats(),
 				ai.stats,
 				() => {
 					logs.update((logs) => {
@@ -143,7 +144,10 @@ export class Player {
 						logs.push(`You killed a ${ai.name}`);
 						return logs;
 					});
-					store.player.xp += ai.xp;
+					player.update((player) => {
+						player.xp += ai.xp;
+						return player;
+					});
 				}
 			);
 

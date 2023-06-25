@@ -4,9 +4,7 @@ import level0 from '$lib/maps/level-0.json';
 import level1 from '$lib/maps/level-1.json';
 
 import { Level } from '../lib/Level';
-import { Player } from '../lib/Player';
 import type { LevelProp, Store } from '..';
-import { makeItem } from '../lib/Item';
 
 type Route = 'main' | 'control' | 'editor' | 'running' | 'inventory' | 'container';
 
@@ -18,25 +16,6 @@ const initialStoreState: Store = {
 	},
 	levels: [new Level(level0 as LevelProp), new Level(level1 as LevelProp)],
 	currentLevelNumber: 0,
-	player: new Player(
-		{ x: 2, y: 10, t: 0 },
-		{
-			hp: 10,
-			maxHp: 10,
-			ac: 3,
-			hit: 0,
-			pDefense: 0,
-			pAttack: 0
-		},
-		{
-			mainHand: makeItem('sword'),
-			offHand: null,
-			armor: null,
-			bag: [makeItem('sword'), makeItem('armor')]
-		},
-		0,
-		1
-	),
 	screen: {
 		shaking: false,
 		dirty: false

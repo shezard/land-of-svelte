@@ -1,9 +1,9 @@
 import { derived } from 'svelte/store';
-import { store } from './store';
+import { player } from './player';
 import type { UI } from '..';
 
-export const ui = derived(store, function (store): UI {
-	const weapon = store.player.inventory.mainHand;
+export const ui = derived(player, function (player): UI {
+	const weapon = player.inventory.mainHand;
 
 	if (weapon === null || weapon.lastAttackTimestamp === 0) {
 		return {

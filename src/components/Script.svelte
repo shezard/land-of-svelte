@@ -10,13 +10,14 @@
 	import AI from './AI.svelte';
 	import { logs } from '$stores/logs';
 	import { container } from '$stores/container';
+	import { player } from '$stores/player';
 
 	export let script: Script;
 
 	$: handleClick = (script: Script) => () => {
 		scripts[$store.currentLevelNumber]
 			.filter((scripts) => {
-				return scripts.scriptId === script.id && scripts.predicate($store);
+				return scripts.scriptId === script.id && scripts.predicate();
 			})
 			.map((script) => {
 				script.doClick?.(store);
@@ -24,8 +25,13 @@
 	};
 
 	const handleLoot = (loot: Loot) => () => {
+
+        player.update((player) => {
+			player.inventory.bag = [makeItem(loot.name), ...player.inventory.bag];
+            return player;
+        });
+
 		store.update((store: Store) => {
-			store.player.inventory.bag = [makeItem(loot.name), ...store.player.inventory.bag];
 
 			store.levels[store.currentLevelNumber].scripts = store.levels[
 				store.currentLevelNumber
