@@ -134,10 +134,11 @@
                     <div>
                         Texture
 
-                        <EditorTexture texture={`${tile.texture}`} on:change={(e) => {
+                        <EditorTexture texture={tile.texture} on:change={(e) => {
                             if(tile === null) {
                                 return;
                             }
+                            tile.texture = e.detail;
                             store.update((store) => {
                                 store.levels[$currentLevelNumber].textureMap[tile.x][tile.y] = e.detail;
                                 return store;
