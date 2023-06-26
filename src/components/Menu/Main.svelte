@@ -7,6 +7,7 @@
 	import type { Canvas } from '@threlte/core';
 	import { get } from 'svelte/store';
 	import type { LevelProp } from '../..';
+	import { hasSave } from '$stores/game';
 
     export let canvas : Canvas;
 
@@ -45,6 +46,7 @@
 	const saveGame = () => {
         localStorage.setItem('player', JSON.stringify(get(player)));
         localStorage.setItem('store', JSON.stringify(get(store)));
+        hasSave.set(true);
     }
 
 	const showControlMenu = () => {
@@ -54,9 +56,6 @@
 	const showEditor = () => {
 		store.navigateTo('editor');
 	};
-
-    $: hasSave = 'player' in localStorage
-
 </script>
 
 <div class="text-3xl text-white">Land Of Svelte</div>
@@ -65,9 +64,9 @@
     New Game
 </div>
 
-{#if hasSave }
+{#if $hasSave }
     <div class="text-2xl text-white cursor-pointer action" on:click={continueGame} on:keypress={continueGame}>
-        Contine
+        Continue
     </div>
 {/if}
 
