@@ -1,12 +1,5 @@
 import { writable } from 'svelte/store';
-import type { Item } from '..';
+import type { Container } from '..';
 
-interface ContainerStore {
-	name: string;
-	bag: Item[];
-}
 
-export const container = writable<ContainerStore>({
-	name: '',
-	bag: []
-});
+export const container = writable<Container>();
