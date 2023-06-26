@@ -1,13 +1,51 @@
 <script lang="ts">
+	import { Level } from '$lib/Level';
+	import { Player } from '$lib/Player';
+	import { updateCamera } from '$lib/camera';
+	import { player } from '$stores/player';
 	import { store } from '$stores/store';
+	import type { Canvas } from '@threlte/core';
+	import { get } from 'svelte/store';
+	import type { LevelProp } from '../..';
 
-	const runGame = () => {
+    export let canvas : Canvas;
+
+	const startGame = () => {
 		store.navigateTo('running');
 		store.update((store) => {
 			store.game.running = 'continue';
 			return store;
 		});
 	};
+
+	const continueGame = () => {
+
+        const playerProp = JSON.parse(localStorage.getItem('player')!);
+        const savedPlayer = new Player(
+            playerProp.position,
+            playerProp.stats,
+            playerProp.inventory,
+            playerProp.xp,
+            playerProp.level
+        );
+        player.set(savedPlayer);
+
+        const savedStore = JSON.parse(localStorage.getItem('store')!);
+        savedStore.levels = savedStore.levels.map((level : LevelProp) => {
+            return new Level(level);
+        });
+        store.set(savedStore);
+
+        updateCamera(canvas.ctx.camera, playerProp.position);
+
+		startGame();
+    }
+
+
+	const saveGame = () => {
+        localStorage.setItem('player', JSON.stringify(get(player)));
+        localStorage.setItem('store', JSON.stringify(get(store)));
+    }
 
 	const showControlMenu = () => {
 		store.navigateTo('control');
@@ -16,17 +54,28 @@
 	const showEditor = () => {
 		store.navigateTo('editor');
 	};
+
+    $: hasSave = 'player' in localStorage
+
 </script>
 
 <div class="text-3xl text-white">Land Of Svelte</div>
 
-<div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
-	{#if $store.game.running === 'newGame'}
-		New Game
-	{:else}
-		Continue
-	{/if}
+<div class="text-2xl text-white cursor-pointer action" on:click={startGame} on:keypress={startGame}>
+    New Game
 </div>
+
+{#if hasSave }
+    <div class="text-2xl text-white cursor-pointer action" on:click={continueGame} on:keypress={continueGame}>
+        Contine
+    </div>
+{/if}
+
+{#if $store.game.running === 'continue'}
+    <div class="text-2xl text-white cursor-pointer action" on:click={saveGame} on:keypress={saveGame}>
+		Save
+    </div>
+{/if}
 
 <div
 	class="text-2xl text-white cursor-pointer action"

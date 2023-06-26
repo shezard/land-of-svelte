@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
+	import { store } from '$stores/store';
 	import type { Item } from '../..';
 	import MenuItem from './Item.svelte';
 
