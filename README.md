@@ -39,9 +39,8 @@ You can preview the production build with `npm run preview`.
 -   [x] Display player hp as a health bar
 -   [x] Add treasure chest
 -   [x] Pause game while in the menu
--   [] Editor
-    -   [ ] Fix texture tile image not updating when changing tile texture
-    -   [ ] Try to remove setTimeout when adding light to improve UX
+-   [x] Container: fix store not updating
+-   [x] Editor
 -   [ ] XP / Leveling
     -   [ ] XP bar
     -   [ ] Level up

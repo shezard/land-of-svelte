@@ -14,6 +14,8 @@
 	import Editor from './Editor/Editor.svelte';
 
 	$: shaking = $store.screen.shaking;
+
+    let canvas : Canvas;
 </script>
 
 {#if $store.game.isLoading}
@@ -26,7 +28,7 @@
 			>
 				<div class="cursor-default menu">
 					{#if $store.game.state == 'main'}
-						<Main />
+						<Main {canvas} />
 					{:else if $store.game.state == 'control'}
 						<Control />
 					{:else if $store.game.state == 'editor'}
@@ -42,7 +44,7 @@
 			<UI />
 		{/if}
 		<div class="absolute z-0 w-full h-full bg-stone-800 overflow-hidden" class:shaking>
-			<Canvas rendererParameters={{ antialias: false }}>
+			<Canvas rendererParameters={{ antialias: false }} bind:this={canvas}>
 				<Scene />
 			</Canvas>
 		</div>

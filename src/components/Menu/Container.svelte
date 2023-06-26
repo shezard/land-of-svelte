@@ -1,16 +1,17 @@
 <script lang="ts">
+	import { makeItem } from '$lib/Item';
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
-	import type { Item } from '../..';
+	import type { Item, ItemName } from '../..';
 	import MenuItem from './Item.svelte';
 
-	const transfertAll = (bag: Item[]) => () => {
+	const transfertAll = (content: ItemName[]) => () => {
 		player.update((player) => {
-			player.inventory.bag = player.inventory.bag.concat(bag);
+			player.inventory.bag = player.inventory.bag.concat(content.map((itemName) => makeItem(itemName)));
 			return player;
 		});
 		container.update((container) => {
-			container.bag = [];
+			container.content = [];
 			return container;
 		});
 	};
@@ -21,7 +22,7 @@
 			return player;
 		});
 		container.update((container) => {
-			container.bag.splice(itemIndex, 1);
+			container.content.splice(itemIndex, 1);
 			return container;
 		});
 	};
@@ -32,7 +33,7 @@
 			return player;
 		});
 		container.update((container) => {
-			container.bag.push(item);
+			container.content.push(item.name);
 			return container;
 		});
 	};
@@ -60,7 +61,7 @@
 		<div class="flex flex-col items-center">
 			<div
 				class="text-3xl cursor-pointer flex flex-col items-center"
-				on:click={transfertAll($container.bag)}
+				on:click={transfertAll($container.content)}
 				on:keypress={() => {
 					//no-op
 				}}
@@ -76,10 +77,10 @@
 			<div class="grid item-grid">
 				{#each [...Array(8).keys()] as index}
 					<div class="placeholder">
-						{#if $container.bag[index]}
+						{#if $container.content[index]}
 							<MenuItem
-								item={$container.bag[index]}
-								on:click={toBag($container.bag[index], index)}
+								item={makeItem($container.content[index])}
+								on:click={toBag(makeItem($container.content[index]), index)}
 							/>
 						{/if}
 					</div>
