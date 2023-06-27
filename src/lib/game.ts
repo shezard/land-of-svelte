@@ -33,7 +33,7 @@ const advanceFrame = (t: number) => {
 };
 
 const advanceGame = () => {
-	if (get(store).game.state !== 'running') {
+	if (get(store).game.state !== 'running' || get(store).game.running === 'gameOver') {
 		return;
 	}
 
