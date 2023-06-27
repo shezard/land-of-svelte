@@ -1,8 +1,9 @@
 import { player } from '$stores/player';
 import { get } from 'svelte/store';
-import type { Doodad, Store } from '..';
+import type { Doodad } from '..';
 
 import { animateOnce, animateToggleReverse } from './animation';
+import { store } from '$stores/store';
 
 export const scripts = [
 	[
@@ -49,27 +50,48 @@ export const scripts = [
 		{
 			x: 1,
 			y: 2,
-			doWalk: (store: Store): Store => {
-				store.currentLevelNumber = 1;
+			doWalk: () => {
+				store.update((store) => {
+					store.currentLevelNumber = 1;
+					return store;
+				});
 				player.update((player) => {
 					player.position.t = Math.PI / 2;
 					return player;
 				});
-				return store;
 			}
+		},
+		{
+			x: 6,
+			y: 9,
+			predicate: () => true,
+			doWalk: animateOnce((store, t) => {
+				store.update((store) => {
+					const script = store.levels[0].getScript(7) as Doodad;
+					script.z = t * 1.01;
+					script.collision = true;
+					if (script.z > 1) {
+						script.collision = false;
+					}
+					store.levels[0].replaceScript(script);
+					return store;
+				});
+			}, 1)
 		}
 	],
 	[
 		{
 			x: 1,
 			y: 2,
-			doWalk: (store: Store): Store => {
-				store.currentLevelNumber = 0;
+			doWalk: () => {
+				store.update((store) => {
+					store.currentLevelNumber = 0;
+					return store;
+				});
 				player.update((player) => {
 					player.position.t = Math.PI / 2;
 					return player;
 				});
-				return store;
 			}
 		}
 	]

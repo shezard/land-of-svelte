@@ -12,7 +12,6 @@
 	import Script from './Script.svelte';
 	import { gameTick } from '$lib/game';
 	import { currentLevel, store } from '$stores/store';
-	import type { Store } from '..';
 	import { scripts } from '$lib/scripts';
 	import { keyboard } from '$stores/keyboard';
 	import { onMount } from 'svelte';
@@ -25,11 +24,11 @@
 	interactivity();
 	gameTick();
 
-	const doWalk = (store: Store): Store => {
+	const doWalk = () => {
 
         const position = get(player).position;
 
-		scripts[store.currentLevelNumber]
+		scripts[get(store).currentLevelNumber]
 			.filter((script) => {
 				return (
 					script.doWalk &&
@@ -41,10 +40,8 @@
 				if (!script.doWalk) {
 					return;
 				}
-				store = script.doWalk(store);
+				script.doWalk(store);
 			});
-
-		return store;
 	};
 
 	const keyUp = (e: KeyboardEvent) => {
@@ -66,38 +63,45 @@
 		if (e.code === $keyboard.forward) {
             player.update((player) => {
 				player.moveForward($currentLevel);
+                doWalk();
                 store.update((store) => {
-                    return doWalk(store);
+                    return store;
                 });
                 updateCamera(camera, player.position);
                 return player;
             });
 		}
+
 		if (e.code === $keyboard.left) {
             player.update((player) => {
 				player.moveLeft($currentLevel);
+                doWalk();
                 store.update((store) => {
-                    return doWalk(store);
+                    return store;
                 });
                 updateCamera(camera, player.position);
                 return player;
             });
 		}
+
 		if (e.code === $keyboard.backward) {
             player.update((player) => {
 				player.moveBackward($currentLevel);
+                doWalk();
                 store.update((store) => {
-                    return doWalk(store);
+                    return store;
                 });
                 updateCamera(camera, player.position);
                 return player;
             });
 		}
+
 		if (e.code === $keyboard.right) {
             player.update((player) => {
 				player.moveRight($currentLevel);
+                doWalk();
                 store.update((store) => {
-                    return doWalk(store);
+                    return store;
                 });
                 updateCamera(camera, player.position);
                 return player;

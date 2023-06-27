@@ -203,15 +203,15 @@
 		{
 			"id": 3,
 			"type": "ai",
-			"name": "orc",
+			"name": "gobelin",
 			"collision": true,
-			"texture": ["orc-1"],
+			"texture": ["gobelin-1"],
 			"x": 6,
 			"y": 2,
 			"t": 0,
 			"stats": {
-				"hp": 5,
-				"maxHp": 5,
+				"hp": 3,
+				"maxHp": 3,
 				"ac": 0,
 				"hit": 0,
 				"pDefense": 0,
@@ -248,6 +248,15 @@
 			"y": 10,
 			"t": 1.5,
 			"content": ["sword"]
+		},
+		{
+			"id": 7,
+			"type": "door",
+			"collision": true,
+			"texture": ["door-0"],
+			"x": 6,
+			"y": 4,
+			"t": 0
 		}
 	]
 }

@@ -76,6 +76,7 @@
 		on:click={handleClick(script)}
 		interactive
 		castShadow
+        receiveShadow
 	/>
 {/if}
 
