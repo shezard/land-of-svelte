@@ -89,7 +89,7 @@ export const advanceAi = (store: Store, level: Level) => (ai: AI) => {
 		rightAngle: true
 	});
 
-	if (nextPosition !== undefined && nextPosition.length > 2) {
+	if (nextPosition !== undefined && nextPosition.length > 2 && nextPosition.length < 7) {
 		ai.x = nextPosition[1][0];
 		ai.y = nextPosition[1][1];
 
