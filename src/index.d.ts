@@ -38,9 +38,11 @@ export interface LevelProp {
 	scripts: Script[];
 }
 
+export type DoodadName = 'door' | 'button' | 'ladder' | 'not-found';
+
 export type Doodad = {
 	id: number;
-	type: 'door' | 'button' | 'ladder';
+	type: DoodadName;
 	collision?: boolean;
 	texture: string[];
 	color?: ColorRepresentation;

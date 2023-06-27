@@ -30,7 +30,7 @@ export const makeAI = function (
 		};
 	}
 
-    if (aiName === 'gobelin') {
+	if (aiName === 'gobelin') {
 		return {
 			id: id,
 			type: 'ai',

@@ -1,7 +1,15 @@
 <script lang="ts">
     import { JSONEditor } from 'svelte-jsoneditor'
 	import { store } from '$stores/store';
-	import { activatedTool, currentLevelNumber, currentLevel, isToolActivated, currentAI, currentTexture } from '$stores/editor'
+	import {
+        activatedTool,
+        currentLevelNumber,
+        currentLevel,
+        isToolActivated,
+        currentAI,
+        currentTexture,
+        currentDoodad
+    } from '$stores/editor'
 	import type { Script, Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
 	import EditorTexture from './EditorTexture.svelte';
@@ -87,7 +95,25 @@
 
         if($activatedTool === 'ai' && e.type === 'mousedown') {
             store.update((store) => {
-                store.levels[$currentLevelNumber].addAiAt(x, y , $currentAI)
+                const ai = store.levels[$currentLevelNumber].getAiAt(x, y);
+                if(ai) {
+                    store.levels[$currentLevelNumber].removeAiAt(x, y);
+                } else {
+                    store.levels[$currentLevelNumber].addAiAt(x, y , $currentAI)
+                }
+
+                return store;
+            });
+        }
+
+        if($activatedTool === 'doodad' && e.type === 'mousedown') {
+            store.update((store) => {
+                const doodad = store.levels[$currentLevelNumber].getScriptAt(x, y);
+                if(doodad) {
+                    store.levels[$currentLevelNumber].removeScriptAt(x, y);
+                } else {
+                    store.levels[$currentLevelNumber].addDoodadAt(x, y , $currentDoodad)
+                }
 
                 return store;
             });

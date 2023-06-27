@@ -8,14 +8,11 @@ const advanceFrame = (t: number) => {
 		return;
 	}
 
-    player.update((player) => {
-        return player;
-    });
+	player.update((player) => {
+		return player;
+	});
 
-	if (
-		!get(store).screen.dirty &&
-		get(currentLevel).getLoots().length === 0
-	) {
+	if (!get(store).screen.dirty && get(currentLevel).getLoots().length === 0) {
 		return;
 	}
 

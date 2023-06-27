@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { store } from '$stores/store';
-	import { currentLevelNumber, currentLevel, currentTexture, currentAI } from '$stores/editor';
+	import { currentLevelNumber, currentLevel, currentTexture, currentAI, currentDoodad } from '$stores/editor';
     import { textures } from '$stores/textures';
 	import EditorTexture from './EditorTexture.svelte';
 	import EditorTool from "./EditorTool.svelte";
-	import type { AIName } from '../..';
+	import type { AIName, DoodadName } from '../..';
 	import { Level } from '$lib/Level';
 
     const changeLevel = (e: Event) => {
@@ -84,11 +84,13 @@
         exportURI = 'data:application/json;charset=utf-8,' + encodeURI(JSON.stringify($currentLevel, null, 4));
     }
 
-    const aiOptions : AIName[] = ['orc'];
-
     const textureOptions = Object.keys($textures).map((texture) => {
         return texture.replace('.png', '');
     });
+
+    const aiOptions : AIName[] = ['orc', 'gobelin'];
+
+    const doodadOptions : DoodadName[] = ['door'];
 
 </script>
 <div>
@@ -136,11 +138,21 @@
         <EditorTool tool="light">
             Light
         </EditorTool>
+
         <EditorTool tool="ai">
             AI
             <select on:click|stopPropagation bind:value={$currentAI}>
                 {#each aiOptions as ai}
                     <option value="{ai}">{ai}</option>
+                {/each}
+            </select>
+        </EditorTool>
+
+        <EditorTool tool="doodad">
+            Doodad
+            <select on:click|stopPropagation bind:value={$currentDoodad}>
+                {#each doodadOptions as doodad}
+                    <option value="{doodad}">{doodad}</option>
                 {/each}
             </select>
         </EditorTool>

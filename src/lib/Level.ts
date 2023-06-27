@@ -7,7 +7,8 @@ import type {
 	Loot,
 	OrientedPosition,
 	Light,
-	AIName
+	AIName,
+	DoodadName
 } from '..';
 import { fight } from './fight';
 import { makeAstar } from './grid';
@@ -15,6 +16,7 @@ import { logs } from '$stores/logs';
 import { makeAI } from './AI';
 import { player } from '$stores/player';
 import { get } from 'svelte/store';
+import { makeDoodad } from './Doodad';
 
 export class Level {
 	width: number;
@@ -144,6 +146,17 @@ export class Level {
 		return this.scripts.find((script: Script) => {
 			return script.x === x && script.y === y;
 		});
+	}
+
+	removeScriptAt(x: number, y: number): void {
+		this.scripts = this.scripts.filter((script: Script) => {
+			return !(script.x === x && script.y === y);
+		});
+	}
+
+	addDoodadAt(x: number, y: number, doodadName: DoodadName): void {
+		const id = Math.max(...this.scripts.map((script) => script.id), 0) + 1;
+		this.scripts = [...this.scripts, makeDoodad(doodadName, id, x, y)];
 	}
 
 	getLoots(): Loot[] {

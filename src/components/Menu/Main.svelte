@@ -6,7 +6,7 @@
 	import { store } from '$stores/store';
 	import type { Canvas } from '@threlte/core';
 	import { get } from 'svelte/store';
-	import type { LevelProp } from '../..';
+	import type { LevelProp, Store } from '../..';
 	import { hasSave } from '$stores/game';
 
     export let canvas : Canvas;
@@ -20,8 +20,7 @@
 	};
 
 	const continueGame = () => {
-
-        const playerProp = JSON.parse(localStorage.getItem('player')!);
+        const playerProp = JSON.parse(localStorage.getItem('player')!) as Player;
         const savedPlayer = new Player(
             playerProp.position,
             playerProp.stats,
@@ -31,7 +30,7 @@
         );
         player.set(savedPlayer);
 
-        const savedStore = JSON.parse(localStorage.getItem('store')!);
+        const savedStore = JSON.parse(localStorage.getItem('store')!) as Store;
         savedStore.levels = savedStore.levels.map((level : LevelProp) => {
             return new Level(level);
         });
