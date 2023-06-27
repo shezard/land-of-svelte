@@ -47,7 +47,7 @@ export type Doodad = {
 	z?: number;
 } & OrientedPosition;
 
-export type AIName = 'orc' | 'not-found';
+export type AIName = 'orc' | 'gobelin' | 'not-found';
 
 export type AI = {
 	id: number;

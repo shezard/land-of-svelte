@@ -41,6 +41,7 @@ You can preview the production build with `npm run preview`.
 -   [x] Pause game while in the menu
 -   [x] Container: fix store not updating
 -   [x] Editor
+-   [ ] Dialog
 -   [ ] XP / Leveling
     -   [ ] XP bar
     -   [ ] Level up

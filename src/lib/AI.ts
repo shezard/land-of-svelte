@@ -30,6 +30,29 @@ export const makeAI = function (
 		};
 	}
 
+    if (aiName === 'gobelin') {
+		return {
+			id: id,
+			type: 'ai',
+			name: 'gobelin',
+			collision: true,
+			texture: ['gobelin-1'],
+			x: x,
+			y: y,
+			t: 0,
+			stats: {
+				hp: 3,
+				maxHp: 3,
+				ac: 0,
+				hit: 0,
+				pDefense: 0,
+				pAttack: 1
+			},
+			xp: 3,
+			loot: loot
+		};
+	}
+
 	return {
 		id: 0,
 		type: 'ai',
