@@ -10,12 +10,7 @@ import type {
 	AIName,
 	DoodadName
 } from '..';
-import { fight } from './fight';
-import { makeAstar } from './grid';
-import { logs } from '$stores/logs';
-import { makeAI } from './AI';
-import { player } from '$stores/player';
-import { get } from 'svelte/store';
+import { advanceAi, makeAI } from './AI';
 import { makeDoodad } from './Doodad';
 
 export class Level {
@@ -182,55 +177,7 @@ export class Level {
 	}
 
 	advance(store: Store): Store {
-		const position = get(player).position;
-		const stats = get(player).stats;
-
-		this.getAis().map((ai) => {
-			const grid = makeAstar(this);
-			const nextPosition = grid.search([ai.x, ai.y], [position.x, position.y], {
-				rightAngle: true
-			});
-
-			if (nextPosition !== undefined && nextPosition.length > 2) {
-				ai.x = nextPosition[1][0];
-				ai.y = nextPosition[1][1];
-
-				this.replaceScript(ai);
-			}
-
-			if (nextPosition !== undefined && nextPosition.length == 2) {
-				const newPlayerStats = fight(
-					ai.stats,
-					stats,
-					() => {
-						logs.update((logs) => {
-							logs.push(`You dodged a hit`);
-							return logs;
-						});
-					},
-					(damage) => {
-						logs.update((logs) => {
-							logs.push(`You took ${damage} dmg`);
-							return logs;
-						});
-						store.screen.shaking = true;
-						store.screen.dirty = true;
-					},
-					() => {
-						logs.update((logs) => {
-							logs.push('Death!');
-							return logs;
-						});
-						store.game.running = 'gameOver';
-					}
-				);
-
-				player.update((player) => {
-					player.stats = newPlayerStats;
-					return player;
-				});
-			}
-		});
+		this.getAis().map(advanceAi(store, this));
 
 		store.levels[store.currentLevelNumber] = this;
 

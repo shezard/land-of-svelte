@@ -1,4 +1,10 @@
-import type { AI, AIName, ItemName } from '..';
+import { get } from 'svelte/store';
+import type { AI, AIName, ItemName, Store } from '..';
+import { makeAstar } from './grid';
+import { player } from '$stores/player';
+import { fight } from './fight';
+import { logs } from '$stores/logs';
+import type { Level } from './Level';
 
 export const makeAI = function (
 	aiName: AIName,
@@ -72,4 +78,54 @@ export const makeAI = function (
 		},
 		xp: 0
 	};
+};
+
+export const advanceAi = (store: Store, level: Level) => (ai: AI) => {
+	const position = get(player).position;
+	const stats = get(player).stats;
+
+	const grid = makeAstar(level);
+	const nextPosition = grid.search([ai.x, ai.y], [position.x, position.y], {
+		rightAngle: true
+	});
+
+	if (nextPosition !== undefined && nextPosition.length > 2) {
+		ai.x = nextPosition[1][0];
+		ai.y = nextPosition[1][1];
+
+		level.replaceScript(ai);
+	}
+
+	if (nextPosition !== undefined && nextPosition.length == 2) {
+		const newPlayerStats = fight(
+			ai.stats,
+			stats,
+			() => {
+				logs.update((logs) => {
+					logs.push(`You dodged a hit`);
+					return logs;
+				});
+			},
+			(damage) => {
+				logs.update((logs) => {
+					logs.push(`You took ${damage} dmg`);
+					return logs;
+				});
+				store.screen.shaking = true;
+				store.screen.dirty = true;
+			},
+			() => {
+				logs.update((logs) => {
+					logs.push('Death!');
+					return logs;
+				});
+				store.game.running = 'gameOver';
+			}
+		);
+
+		player.update((player) => {
+			player.stats = newPlayerStats;
+			return player;
+		});
+	}
 };
