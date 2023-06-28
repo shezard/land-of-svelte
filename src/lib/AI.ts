@@ -17,7 +17,7 @@ export const makeAI = function (
 		return {
 			id: id,
 			type: 'ai',
-			name: 'orc',
+			name: aiName,
 			collision: true,
 			texture: ['orc-1'],
 			x: x,
@@ -40,9 +40,9 @@ export const makeAI = function (
 		return {
 			id: id,
 			type: 'ai',
-			name: 'gobelin',
+			name: aiName,
 			collision: true,
-			texture: ['gobelin-idle'],
+			texture: [`${aiName}-idle`],
 			x: x,
 			y: y,
 			t: 0,
@@ -91,7 +91,7 @@ export const advanceAi = (store: Store, level: Level) => (ai: AI) => {
 
     // IDLE
     if(!nextPosition || nextPosition.length >= 7) {
-        ai.texture = ['gobelin-idle'];
+        ai.texture = [`${ai.name}-idle`];
 		level.replaceScript(ai);
         return;
     }
@@ -100,7 +100,7 @@ export const advanceAi = (store: Store, level: Level) => (ai: AI) => {
 	if (nextPosition.length > 2) {
 		ai.x = nextPosition[1][0];
 		ai.y = nextPosition[1][1];
-        ai.texture = ['gobelin-aggro'];
+        ai.texture = [`${ai.name}-aggro`];
 
 		level.replaceScript(ai);
         return
