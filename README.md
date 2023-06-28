@@ -41,12 +41,15 @@ You can preview the production build with `npm run preview`.
 -   [x] Pause game while in the menu
 -   [x] Container: fix store not updating
 -   [x] Editor
--   [ ] Dialog
--   [ ] XP / Leveling
-    -   [ ] XP bar
-    -   [ ] Level up
-    -   [ ] Derived stats
-    -   [ ] Saving / Loading
+    - [ ] Add panel
+-   [x] Saving / Loading
+-   [ ] Fix door animation !
+-   [ ] Level 2
+    -   [ ] Dialog
+    -   [ ] XP / Leveling
+        -   [ ] XP bar
+        -   [ ] Level up
+        -   [ ] Derived stats
 -   [ ] Torch without closest wall should be fixed to the floor
 -   [ ] Better handling of game over
 -   [ ] Gold

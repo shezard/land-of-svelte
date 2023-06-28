@@ -1,4 +1,3 @@
-import { makeItem } from '$lib/Item';
 import { Player } from '$lib/Player';
 import { writable } from 'svelte/store';
 
@@ -13,10 +12,10 @@ const initialPlayer = new Player(
 		pAttack: 0
 	},
 	{
-		mainHand: makeItem('sword'),
+		mainHand: null,
 		offHand: null,
 		armor: null,
-		bag: [makeItem('sword'), makeItem('armor')]
+		bag: []
 	},
 	0,
 	1
