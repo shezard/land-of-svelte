@@ -10,7 +10,7 @@ export const scripts = [
 		{
 			scriptId: 1,
 			predicate: () => true,
-			doClick: animateToggleReverse((store, t) => {
+			doClick: animateToggleReverse((t) => {
 				store.update((store) => {
 					const script = store.levels[0].getScript(0) as Doodad;
 					script.z = t * 1.01;
@@ -28,7 +28,7 @@ export const scripts = [
 			predicate: (): boolean => {
 				return get(player).inventory.bag.filter((item) => item.name === 'key').length > 0;
 			},
-			doClick: animateOnce((store, t) => {
+			doClick: animateOnce((t) => {
 				store.update((store) => {
 					const script = store.levels[0].getScript(4) as Doodad;
 					script.z = t * 1.01;
@@ -65,7 +65,7 @@ export const scripts = [
 			x: 6,
 			y: 9,
 			predicate: () => true,
-			doWalk: animateOnce((store, t) => {
+			doWalk: animateOnce((t) => {
 				store.update((store) => {
 					const script = store.levels[0].getScript(7) as Doodad;
 					script.z = t * 1.01;

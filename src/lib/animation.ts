@@ -1,20 +1,13 @@
-import type { Writable } from 'svelte/store';
-import type { Store } from '..';
-
 type AnimationDirection = 'forward' | 'backward';
 
-export const animate = (
-	cb: (store: Writable<Store>, t: number) => void,
-	store: Writable<Store>,
-	duration: number
-) => {
+export const animate = (cb: (t: number) => void, duration: number) => {
 	let t = 0;
 	const start = Date.now();
 
 	const step = () => {
 		requestAnimationFrame(() => {
 			t = (Date.now() - start) / 1e3 / duration;
-			cb(store, Math.min(t, 1));
+			cb(Math.min(t, 1));
 			if (t < duration) {
 				step();
 			}
@@ -24,10 +17,10 @@ export const animate = (
 	step();
 };
 
-export const animateOnce = (cb: (store: Writable<Store>, t: number) => void, duration: number) => {
+export const animateOnce = (cb: (t: number) => void, duration: number) => {
 	let called = false;
 
-	return (store: Writable<Store>) => {
+	return () => {
 		if (called) {
 			return;
 		}
@@ -40,7 +33,7 @@ export const animateOnce = (cb: (store: Writable<Store>, t: number) => void, dur
 		const step = () => {
 			requestAnimationFrame(() => {
 				t = (Date.now() - start) / 1e3 / duration;
-				cb(store, Math.min(t, 1));
+				cb(Math.min(t, 1));
 				if (t < duration) {
 					step();
 				}
@@ -51,13 +44,10 @@ export const animateOnce = (cb: (store: Writable<Store>, t: number) => void, dur
 	};
 };
 
-export const animateToggle = (
-	cb: (store: Writable<Store>, t: number) => void,
-	duration: number
-) => {
+export const animateToggle = (cb: (t: number) => void, duration: number) => {
 	let running = false;
 
-	return (store: Writable<Store>) => {
+	return () => {
 		if (running) {
 			return;
 		}
@@ -70,7 +60,7 @@ export const animateToggle = (
 		const step = () => {
 			requestAnimationFrame(() => {
 				t = (Date.now() - start) / 1e3 / duration;
-				cb(store, Math.min(t, 1));
+				cb(Math.min(t, 1));
 				if (t < duration) {
 					step();
 				}
@@ -85,14 +75,11 @@ export const animateToggle = (
 	};
 };
 
-export const animateToggleReverse = (
-	cb: (store: Writable<Store>, t: number) => void,
-	duration: number
-) => {
+export const animateToggleReverse = (cb: (t: number) => void, duration: number) => {
 	let running = false;
 	let direction: AnimationDirection = 'forward';
 
-	return (store: Writable<Store>) => {
+	return () => {
 		if (running) {
 			return;
 		}
@@ -111,7 +98,7 @@ export const animateToggleReverse = (
 					t = 1 - (Date.now() - start) / 1e3 / duration;
 				}
 
-				cb(store, Math.max(0, Math.min(t, 1)));
+				cb(Math.max(0, Math.min(t, 1)));
 
 				if (t > 0 && t < duration) {
 					step();

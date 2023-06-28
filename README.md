@@ -41,7 +41,7 @@ You can preview the production build with `npm run preview`.
 -   [x] Pause game while in the menu
 -   [x] Container: fix store not updating
 -   [x] Editor
-    - [ ] Add panel
+    -   [ ] Add panel
 -   [x] Saving / Loading
 -   [ ] Fix door animation !
 -   [ ] Level 2

@@ -89,52 +89,52 @@ export const advanceAi = (store: Store, level: Level) => (ai: AI) => {
 		rightAngle: true
 	});
 
-    // IDLE
-    if(!nextPosition || nextPosition.length >= 7) {
-        ai.texture = [`${ai.name}-idle`];
+	// IDLE
+	if (!nextPosition || nextPosition.length >= 7) {
+		ai.texture = [`${ai.name}-idle`];
 		level.replaceScript(ai);
-        return;
-    }
+		return;
+	}
 
-    // FOLLOW
+	// FOLLOW
 	if (nextPosition.length > 2) {
 		ai.x = nextPosition[1][0];
 		ai.y = nextPosition[1][1];
-        ai.texture = [`${ai.name}-aggro`];
+		ai.texture = [`${ai.name}-aggro`];
 
 		level.replaceScript(ai);
-        return
+		return;
 	}
 
-    // ATTACK
-    const newPlayerStats = fight(
-        ai.stats,
-        stats,
-        () => {
-            logs.update((logs) => {
-                logs.push(`You dodged a hit`);
-                return logs;
-            });
-        },
-        (damage) => {
-            logs.update((logs) => {
-                logs.push(`You took ${damage} dmg`);
-                return logs;
-            });
-            store.screen.shaking = true;
-            store.screen.dirty = true;
-        },
-        () => {
-            logs.update((logs) => {
-                logs.push('Death!');
-                return logs;
-            });
-            store.game.running = 'gameOver';
-        }
-    );
+	// ATTACK
+	const newPlayerStats = fight(
+		ai.stats,
+		stats,
+		() => {
+			logs.update((logs) => {
+				logs.push(`You dodged a hit`);
+				return logs;
+			});
+		},
+		(damage) => {
+			logs.update((logs) => {
+				logs.push(`You took ${damage} dmg`);
+				return logs;
+			});
+			store.screen.shaking = true;
+			store.screen.dirty = true;
+		},
+		() => {
+			logs.update((logs) => {
+				logs.push('Death!');
+				return logs;
+			});
+			store.game.running = 'gameOver';
+		}
+	);
 
-    player.update((player) => {
-        player.stats = newPlayerStats;
-        return player;
-    });
+	player.update((player) => {
+		player.stats = newPlayerStats;
+		return player;
+	});
 };
