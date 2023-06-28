@@ -205,7 +205,7 @@
 			"type": "ai",
 			"name": "gobelin",
 			"collision": true,
-			"texture": ["gobelin-1"],
+			"texture": ["gobelin-idle"],
 			"x": 6,
 			"y": 2,
 			"t": 0,

@@ -42,7 +42,7 @@ export const makeAI = function (
 			type: 'ai',
 			name: 'gobelin',
 			collision: true,
-			texture: ['gobelin-1'],
+			texture: ['gobelin-idle'],
 			x: x,
 			y: y,
 			t: 0,
@@ -89,43 +89,52 @@ export const advanceAi = (store: Store, level: Level) => (ai: AI) => {
 		rightAngle: true
 	});
 
-	if (nextPosition !== undefined && nextPosition.length > 2 && nextPosition.length < 7) {
+    // IDLE
+    if(!nextPosition || nextPosition.length >= 7) {
+        ai.texture = ['gobelin-idle'];
+		level.replaceScript(ai);
+        return;
+    }
+
+    // FOLLOW
+	if (nextPosition.length > 2) {
 		ai.x = nextPosition[1][0];
 		ai.y = nextPosition[1][1];
+        ai.texture = ['gobelin-aggro'];
 
 		level.replaceScript(ai);
+        return
 	}
 
-	if (nextPosition !== undefined && nextPosition.length == 2) {
-		const newPlayerStats = fight(
-			ai.stats,
-			stats,
-			() => {
-				logs.update((logs) => {
-					logs.push(`You dodged a hit`);
-					return logs;
-				});
-			},
-			(damage) => {
-				logs.update((logs) => {
-					logs.push(`You took ${damage} dmg`);
-					return logs;
-				});
-				store.screen.shaking = true;
-				store.screen.dirty = true;
-			},
-			() => {
-				logs.update((logs) => {
-					logs.push('Death!');
-					return logs;
-				});
-				store.game.running = 'gameOver';
-			}
-		);
+    // ATTACK
+    const newPlayerStats = fight(
+        ai.stats,
+        stats,
+        () => {
+            logs.update((logs) => {
+                logs.push(`You dodged a hit`);
+                return logs;
+            });
+        },
+        (damage) => {
+            logs.update((logs) => {
+                logs.push(`You took ${damage} dmg`);
+                return logs;
+            });
+            store.screen.shaking = true;
+            store.screen.dirty = true;
+        },
+        () => {
+            logs.update((logs) => {
+                logs.push('Death!');
+                return logs;
+            });
+            store.game.running = 'gameOver';
+        }
+    );
 
-		player.update((player) => {
-			player.stats = newPlayerStats;
-			return player;
-		});
-	}
+    player.update((player) => {
+        player.stats = newPlayerStats;
+        return player;
+    });
 };
