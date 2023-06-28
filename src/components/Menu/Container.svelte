@@ -66,7 +66,7 @@
 					//no-op
 				}}
 			>
-				<div>Transfert all</div>
+				<div>Transfer all</div>
 				<div>&lt;</div>
 			</div>
 		</div>

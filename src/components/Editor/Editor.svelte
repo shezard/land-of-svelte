@@ -120,6 +120,14 @@
         }
     }
 
+    const handleChangeTileTexture = (tile: Tile) => (e : CustomEvent<string>) : void => {
+        tile.texture = e.detail;
+        store.update((store) => {
+            store.levels[$currentLevelNumber].textureMap[tile.x][tile.y] = e.detail;
+            return store;
+        });
+    }
+
 </script>
 
 <svelte:body on:mouseup={() => isToolActivated.set(false)} />
@@ -160,16 +168,7 @@
                     <div>
                         Texture
 
-                        <EditorTexture texture={tile.texture} on:change={(e) => {
-                            if(tile === null) {
-                                return;
-                            }
-                            tile.texture = e.detail;
-                            store.update((store) => {
-                                store.levels[$currentLevelNumber].textureMap[tile.x][tile.y] = e.detail;
-                                return store;
-                            });
-                        }} />
+                        <EditorTexture texture={tile.texture} on:change={handleChangeTileTexture(tile)} />
                     </div>
                 {/if}
 				<div>

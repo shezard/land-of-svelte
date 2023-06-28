@@ -20,7 +20,13 @@
 	};
 
 	const continueGame = () => {
-        const playerProp = JSON.parse(localStorage.getItem('player')!) as Player;
+
+        const localStoragePlayer : string|null = localStorage.getItem('player');
+        if(!localStoragePlayer) {
+            return;
+        }
+
+        const playerProp = JSON.parse(localStoragePlayer) as Player;
         const savedPlayer = new Player(
             playerProp.position,
             playerProp.stats,
@@ -30,7 +36,13 @@
         );
         player.set(savedPlayer);
 
-        const savedStore = JSON.parse(localStorage.getItem('store')!) as Store;
+
+        const localStorageStore : string|null = localStorage.getItem('store');
+        if(!localStorageStore) {
+            return;
+        }
+
+        const savedStore = JSON.parse(localStorageStore) as Store;
         savedStore.levels = savedStore.levels.map((level : LevelProp) => {
             return new Level(level);
         });

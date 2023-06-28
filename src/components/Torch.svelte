@@ -11,9 +11,9 @@
 
 <T.Group position.y={-0.1}>
 	<T.PointLight
-		intensity={0.8}
+		intensity={0.6}
 		position={[position[0], 0.4, position[1]]}
-		distance={10}
+		distance={5}
 		color={colorCache(0xffdede)}
 		castShadow={true}
 	/>

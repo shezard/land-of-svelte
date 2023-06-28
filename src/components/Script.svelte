@@ -11,16 +11,17 @@
 	import { logs } from '$stores/logs';
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
+	import { get } from 'svelte/store';
 
 	export let script: Script;
 
-	$: handleClick = (script: Script) => () => {
-		scripts[$store.currentLevelNumber]
+	const handleClick = (script: Script) => () => {
+		scripts[get(store).currentLevelNumber]
 			.filter((scripts) => {
 				return scripts.scriptId === script.id && scripts.predicate();
 			})
 			.map((script) => {
-				script.doClick?.(store);
+				script.doClick?.();
 			});
 	};
 

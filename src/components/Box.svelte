@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	import * as THREE from 'three';
+	import type * as THREE from 'three';
 	import { T } from '@threlte/core';
 	import { useCursor } from '@threlte/extras';
 	import { colorCache } from '$lib/color';

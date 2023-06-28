@@ -1,4 +1,5 @@
 <script lang="ts">
+    import * as THREE from 'three';
 	import { T, useThrelte } from '@threlte/core';
 	import { interactivity } from '@threlte/extras';
 
@@ -40,7 +41,7 @@
 				if (!script.doWalk) {
 					return;
 				}
-				script.doWalk(store);
+				script.doWalk();
 			});
 	};
 
@@ -157,5 +158,7 @@
 {/each}
 
 <T.PerspectiveCamera makeDefault />
+
+<T.AmbientLight args={[new THREE.Color(0x404040)]}></T.AmbientLight>
 
 <svelte:window on:keypress={keyPress} on:keyup={keyUp} />
