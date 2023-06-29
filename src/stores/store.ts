@@ -9,62 +9,62 @@ import type { LevelProp, Store } from '..';
 type Route = 'main' | 'control' | 'editor' | 'running' | 'inventory' | 'container';
 
 const initialStoreState: Store = {
-	game: {
-		state: 'main',
-		running: 'newGame',
-		isLoading: true
-	},
-	levels: [new Level(level0 as LevelProp), new Level(level1 as LevelProp)],
-	currentLevelNumber: 0,
-	screen: {
-		shaking: false,
-		dirty: false
-	}
+    game: {
+        state: 'main',
+        running: 'newGame',
+        isLoading: true
+    },
+    levels: [new Level(level0 as LevelProp), new Level(level1 as LevelProp)],
+    currentLevelNumber: 0,
+    screen: {
+        shaking: false,
+        dirty: false
+    }
 };
 
 const createStore = () => {
-	const { subscribe, set, update } = writable<Store>(initialStoreState);
+    const { subscribe, set, update } = writable<Store>(initialStoreState);
 
-	const stack: Route[] = ['main'];
+    const stack: Route[] = ['main'];
 
-	const navigateTo = (target: Route): void => {
-		if (target === stack[stack.length - 1]) {
-			return;
-		}
+    const navigateTo = (target: Route): void => {
+        if (target === stack[stack.length - 1]) {
+            return;
+        }
 
-		stack.push(target);
+        stack.push(target);
 
-		update((store) => {
-			store.game.state = target;
-			return store;
-		});
-	};
+        update((store) => {
+            store.game.state = target;
+            return store;
+        });
+    };
 
-	const back = (): void => {
-		if (stack.length <= 1) {
-			return;
-		}
+    const back = (): void => {
+        if (stack.length <= 1) {
+            return;
+        }
 
-		stack.pop();
-		const target = stack[stack.length - 1];
+        stack.pop();
+        const target = stack[stack.length - 1];
 
-		update((store) => {
-			store.game.state = target;
-			return store;
-		});
-	};
+        update((store) => {
+            store.game.state = target;
+            return store;
+        });
+    };
 
-	return {
-		subscribe,
-		set,
-		update,
-		navigateTo,
-		back
-	};
+    return {
+        subscribe,
+        set,
+        update,
+        navigateTo,
+        back
+    };
 };
 
 export const store = createStore();
 
 export const currentLevel = derived(store, (store) => {
-	return store.levels[store.currentLevelNumber];
+    return store.levels[store.currentLevelNumber];
 });

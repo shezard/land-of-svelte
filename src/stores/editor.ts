@@ -3,14 +3,14 @@ import { store } from './store';
 import type { AIName, DoodadName, NpcName } from '..';
 
 export type ToolName =
-	| 'texture'
-	| 'collision+'
-	| 'collision-'
-	| 'light'
-	| 'ai'
-	| 'npc'
-	| 'doodad'
-	| null;
+    | 'texture'
+    | 'collision+'
+    | 'collision-'
+    | 'light'
+    | 'ai'
+    | 'npc'
+    | 'doodad'
+    | null;
 
 export const activatedTool = writable<ToolName>(null);
 
@@ -27,8 +27,8 @@ export const currentDoodad = writable<DoodadName>('door');
 export const currentLevelNumber = writable(0);
 
 export const currentLevel = derived(
-	[store, currentLevelNumber],
-	function ([store, currentLevelNumber]) {
-		return store.levels[currentLevelNumber];
-	}
+    [store, currentLevelNumber],
+    function ([store, currentLevelNumber]) {
+        return store.levels[currentLevelNumber];
+    }
 );
