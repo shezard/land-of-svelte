@@ -155,23 +155,13 @@
         },
         {
             "id": 2,
-            "type": "ai",
-            "name": "npc",
-            "mode": "idle",
+            "type": "npc",
+            "name": "man",
             "collision": true,
             "texture": ["npc-1"],
             "x": 5,
             "y": 2,
-            "t": 0,
-            "stats": {
-                "hp": 20,
-                "maxHp": 20,
-                "ac": 20,
-                "hit": 0,
-                "pDefense": 20,
-                "pAttack": 0
-            },
-            "xp": 0
+            "t": 0
         }
     ]
 }

@@ -11,7 +11,7 @@
 
     export let canvas : Canvas;
 
-	const startGame = () => {
+	const runGame = () => {
 		store.navigateTo('running');
 		store.update((store) => {
 			store.game.running = 'continue';
@@ -19,7 +19,7 @@
 		});
 	};
 
-	const continueGame = () => {
+	const loadGame = () => {
 
         const localStoragePlayer : string|null = localStorage.getItem('player');
         if(!localStoragePlayer) {
@@ -50,7 +50,7 @@
 
         updateCamera(canvas.ctx.camera, playerProp.position);
 
-		startGame();
+		runGame();
     }
 
 
@@ -71,17 +71,21 @@
 
 <div class="text-3xl text-white">Land Of Svelte</div>
 
-<div class="text-2xl text-white cursor-pointer action" on:click={startGame} on:keypress={startGame}>
-    New Game
-</div>
-
-{#if $hasSave }
-    <div class="text-2xl text-white cursor-pointer action" on:click={continueGame} on:keypress={continueGame}>
-        Continue
+{#if $store.game.running === 'newGame'}
+    <div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
+        New Game
     </div>
+    {#if $hasSave}
+        <div class="text-2xl text-white cursor-pointer action" on:click={loadGame} on:keypress={loadGame}>
+            Continue
+        </div>
+    {/if}
 {/if}
 
 {#if $store.game.running === 'continue'}
+    <div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
+        Continue
+    </div>
     <div class="text-2xl text-white cursor-pointer action" on:click={saveGame} on:keypress={saveGame}>
 		Save
     </div>
