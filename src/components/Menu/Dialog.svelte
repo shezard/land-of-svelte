@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { dialog, dialogChain, type DialogChoice } from "$stores/dialogs";
+    import { dialogs, dialog, dialogChain, type DialogChoice } from "$stores/dialogs";
 
-    const doAction = (dialogChoice: DialogChoice) => () =>  {
+    const doAction = (dialogChoice: DialogChoice, dialogChoiceId: number) => () =>  {
         dialogChain.update((dialogChain) => {
-            return [...dialogChain, dialogChoice.id];
+            return [...dialogChain, dialogChoiceId];
         })
         dialogChoice.doAction?.();
     }
@@ -16,20 +16,22 @@
 			<div class="text-3xl">
                 {$dialog.title}
             </div>
-            <div class=" mt-2 mb-2">
+            <div class=" mt-2 mb-2 grid justify-items-center">
                 {#each $dialog.content as content}
-                    {content}
+                    <div class="">
+                        {content}
+                    </div>
                 {/each}
             </div>
-            {#each $dialog.dialogChoices as dialogChoice}
+            {#each $dialog.dialogChoices as dialogChoiceId}
                 <div
                     class="action cursor-pointer"
-                    on:click={doAction(dialogChoice)}
+                    on:click={doAction(dialogs[dialogChoiceId], dialogChoiceId)}
                     on:keypress={() => {
                         // no-op
                     }}
                 >
-                    {dialogChoice.content}
+                    {dialogs[dialogChoiceId].content}
                 </div>
             {/each}
 		</div>

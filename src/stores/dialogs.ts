@@ -1,78 +1,67 @@
 import { derived, writable } from 'svelte/store';
 
 interface Dialog {
-    id: number;
     title: string;
     content: string[];
-    dialogChoices: DialogChoice[];
+    dialogChoices: number[];
 }
 
 export interface DialogChoice {
-    id: number;
-    content: string;
+    content: string[];
     doAction?: () => void;
-    dialogChoices?: DialogChoice[];
+    dialogChoices?: number[];
 }
 
-const testDialog2: Dialog = {
-    id: 1,
+const testDialog1: Dialog = {
     title: 'NPC Name ?',
     content: ['Welcome adventurer, blabla'],
-    dialogChoices: [
-        {
-            id: 3,
-            content: 'proceed',
-            doAction: () => {
-                console.log('ok');
-                // to next step
-            },
-            dialogChoices: [{
-                id: 5,
-                content: 'foo'
-            }]
-        },
-        {
-            id: 4,
-            content: 'wait',
-            doAction: () => {
-                console.log('ok');
-                // close dialog
-            }
-        }
-    ]
+    dialogChoices: [2, 3]
 };
 
-const dialogs: Dialog[] = [testDialog2];
+const testDialog2: DialogChoice = {
+    content: ['proceed'],
+    doAction: () => {
+        console.log('ok');
+        // to next step
+    },
+    dialogChoices: [4]
+}
+
+const testDialog3: DialogChoice =
+{
+    content: ['wait'],
+    doAction: () => {
+        console.log('ok');
+        // close dialog
+    }
+}
+
+const testDialog4: DialogChoice = {
+    content: ['foo']
+};
+
+
+export const dialogs: Record<number, Dialog|DialogChoice> = {
+    1: testDialog1,
+    2: testDialog2,
+    3: testDialog3,
+    4: testDialog4
+};
 
 export const dialogChain = writable<number[]>();
 
 export const dialog = derived(dialogChain, function (dialogChain: number[]): Dialog {
-    const dialog = dialogs.find((dialog: Dialog) => {
-        return dialog.id === dialogChain[0];
+
+    const dialogsFromChain = dialogChain.map((dialogId) => {
+        return dialogs[dialogId];
     });
 
-    if (dialog === undefined) {
-        throw new Error(`Dialog not found ${dialogChain[0]}`);
-    }
+    const firstDialog = dialogsFromChain[0] as Dialog;
+    const lastDialog = dialogsFromChain[dialogsFromChain.length - 1] as DialogChoice;
 
-    let content : string[] = [];
-    let currentDialog = dialog;
-
-    if(dialogChain.length > 1) {
-        for(let i = 1; i < dialogChain.length ; i++) {
-            const dialogChoice = currentDialog.dialogChoices.find((dialog) => {
-                return dialog.id === dialogChain[i];
-            });
-            if(dialogChoice) {
-                content.push(dialogChoice.content);
-            }
-            if(dialogChoice?.dialogChoices) {
-                dialog.dialogChoices = dialogChoice?.dialogChoices;
-            }
-        }
-    }
-
-    dialog.content = [dialog.content[0], ...content];
-
-    return dialog;
+    return {
+        title: firstDialog.title,
+        content: dialogsFromChain.map((dialog) => dialog.content).flat(),
+        dialogChoices: lastDialog.dialogChoices ?? [],
+    };
 });
