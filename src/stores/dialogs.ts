@@ -8,41 +8,47 @@ interface Dialog {
 
 export interface DialogChoice {
     content: string[];
+    predicate: () => boolean;
     doAction?: () => void;
     dialogChoices?: number[];
 }
 
-const testDialog1: Dialog = {
-    title: 'NPC Name ?',
-    content: ['Welcome adventurer, blabla'],
+const minerDialog: Dialog = {
+    title: 'Miner',
+    content: ["You've seen Ned ?"],
     dialogChoices: [2, 3]
 };
 
 const testDialog2: DialogChoice = {
-    content: ['proceed'],
+    content: ['Yes'],
+    predicate: () => false,
     doAction: () => {
         console.log('ok');
         // to next step
+    }
+};
+
+const testDialog3: DialogChoice = {
+    content: ['No'],
+    predicate: () => true,
+    doAction: () => {
+        console.log('ok');
+        // close dialog
     },
     dialogChoices: [4]
-}
+};
 
-const testDialog3: DialogChoice =
-{
-    content: ['wait'],
+const testDialog4: DialogChoice = {
+    content: ['Come see me if you found him !'],
+    predicate: () => true,
     doAction: () => {
         console.log('ok');
         // close dialog
     }
-}
-
-const testDialog4: DialogChoice = {
-    content: ['foo']
 };
 
-
-export const dialogs: Record<number, Dialog|DialogChoice> = {
-    1: testDialog1,
+export const dialogs: Record<number, Dialog | DialogChoice> = {
+    1: minerDialog,
     2: testDialog2,
     3: testDialog3,
     4: testDialog4
@@ -51,7 +57,6 @@ export const dialogs: Record<number, Dialog|DialogChoice> = {
 export const dialogChain = writable<number[]>();
 
 export const dialog = derived(dialogChain, function (dialogChain: number[]): Dialog {
-
     const dialogsFromChain = dialogChain.map((dialogId) => {
         return dialogs[dialogId];
     });
@@ -62,6 +67,6 @@ export const dialog = derived(dialogChain, function (dialogChain: number[]): Dia
     return {
         title: firstDialog.title,
         content: dialogsFromChain.map((dialog) => dialog.content).flat(),
-        dialogChoices: lastDialog.dialogChoices ?? [],
+        dialogChoices: lastDialog.dialogChoices ?? []
     };
 });
