@@ -8,7 +8,10 @@
         isToolActivated,
         currentAI,
         currentTexture,
-        currentDoodad
+        currentDoodad,
+
+		currentNpc
+
     } from '$stores/editor'
 	import type { Script, Tile } from '../..';
 	import EditorTile from './EditorTile.svelte';
@@ -100,6 +103,19 @@
                     store.levels[$currentLevelNumber].removeAiAt(x, y);
                 } else {
                     store.levels[$currentLevelNumber].addAiAt(x, y , $currentAI)
+                }
+
+                return store;
+            });
+        }
+
+        if($activatedTool === 'npc' && e.type === 'mousedown') {
+            store.update((store) => {
+                const ai = store.levels[$currentLevelNumber].getScriptAt(x, y);
+                if(ai) {
+                    store.levels[$currentLevelNumber].removeScriptAt(x, y);
+                } else {
+                    store.levels[$currentLevelNumber].addNpcAt(x, y , $currentNpc)
                 }
 
                 return store;

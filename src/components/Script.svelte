@@ -12,6 +12,7 @@
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
 	import { get } from 'svelte/store';
+	import Npc from './Npc.svelte';
 
 	export let script: Script;
 
@@ -107,6 +108,10 @@
 
 {#if script.type == 'ai'}
 	<AI ai={script} {texture}/>
+{/if}
+
+{#if script.type == 'npc'}
+	<Npc npc={script} {texture}/>
 {/if}
 
 {#if script.type == 'loot'}

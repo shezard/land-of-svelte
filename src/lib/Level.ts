@@ -8,10 +8,12 @@ import type {
 	OrientedPosition,
 	Light,
 	AIName,
-	DoodadName
+	DoodadName,
+	NpcName
 } from '..';
 import { advanceAi, makeAI } from './AI';
 import { makeDoodad } from './Doodad';
+import { makeNpc } from './Npc';
 
 export class Level {
 	width: number;
@@ -147,6 +149,11 @@ export class Level {
 		this.scripts = this.scripts.filter((script: Script) => {
 			return !(script.x === x && script.y === y);
 		});
+	}
+
+	addNpcAt(x: number, y: number, npcName: NpcName) {
+		const id = Math.max(...this.scripts.map((script) => script.id), 0) + 1;
+		this.scripts = [...this.scripts, makeNpc(npcName, id, x, y)];
 	}
 
 	addDoodadAt(x: number, y: number, doodadName: DoodadName): void {

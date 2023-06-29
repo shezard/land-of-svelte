@@ -1,21 +1,16 @@
 {
-	"width": 12,
+	"width": 7,
 	"height": 12,
 	"floor": "floor-0",
 	"ceiling": "floor-1",
 	"collisionMap": [
 		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 		[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+		[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+		[1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
 		[1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		[1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
 	"textureMap": [
 		[
@@ -36,7 +31,7 @@
 			"wall-0",
 			"wall-0",
 			"wall-0",
-			"wall-0",
+			"wall-4",
 			"wall-4",
 			"wall-0",
 			"wall-0",
@@ -50,26 +45,12 @@
 			"wall-0",
 			"wall-0",
 			"wall-0",
-			"wall-0",
+			"wall-4",
 			"wall-4",
 			"wall-0",
 			"wall-0",
 			"wall-0",
 			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0"
-		],
-		[
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-4",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-4",
 			"wall-0",
 			"wall-0",
 			"wall-0"
@@ -84,29 +65,29 @@
 			"wall-0",
 			"wall-0",
 			"wall-4",
+			"wall-0",
+			"wall-0",
+			"wall-0"
+		],
+		[
+			"wall-0",
+			"wall-4",
+			"wall-0",
 			"wall-4",
 			"wall-4",
+			"wall-0",
+			"wall-0",
+			"wall-0",
+			"wall-4",
+			"wall-4",
+			"wall-4",
 			"wall-0"
 		],
 		[
 			"wall-0",
+			"wall-4",
 			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0"
-		],
-		[
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
+			"wall-4",
 			"wall-0",
 			"wall-0",
 			"wall-0",
@@ -118,65 +99,9 @@
 		],
 		[
 			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0"
-		],
-		[
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0"
-		],
-		[
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0"
-		],
-		[
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0"
-		],
-		[
-			"wall-0",
-			"wall-0",
-			"wall-0",
-			"wall-0",
+			"wall-4",
+			"wall-4",
+			"wall-4",
 			"wall-0",
 			"wall-0",
 			"wall-0",
@@ -199,14 +124,15 @@
 			"y": 6
 		},
 		{
-			"id": 2,
-			"x": 10,
-			"y": 4
-		},
-		{
 			"id": 3,
 			"x": 2,
 			"y": 10
+		},
+		{
+			"id": 4,
+			"x": 5,
+			"y": 2,
+			"t": 0
 		}
 	],
 	"scripts": [
@@ -230,40 +156,22 @@
 		{
 			"id": 2,
 			"type": "ai",
-			"name": "orc",
+			"name": "npc",
+			"mode": "idle",
 			"collision": true,
-			"texture": ["orc-1"],
-			"x": 6,
-			"y": 6,
+			"texture": ["npc-1"],
+			"x": 5,
+			"y": 2,
 			"t": 0,
 			"stats": {
-				"hp": 5,
-				"maxHp": 5,
-				"ac": 0,
+				"hp": 20,
+				"maxHp": 20,
+				"ac": 20,
 				"hit": 0,
-				"pDefense": 0,
-				"pAttack": 1
+				"pDefense": 20,
+				"pAttack": 0
 			},
-			"xp": 3
-		},
-		{
-			"id": 2,
-			"type": "ai",
-			"name": "orc",
-			"collision": true,
-			"texture": ["orc-1"],
-			"x": 9,
-			"y": 6,
-			"t": 0,
-			"stats": {
-				"hp": 5,
-				"maxHp": 5,
-				"ac": 0,
-				"hit": 0,
-				"pDefense": 0,
-				"pAttack": 1
-			},
-			"xp": 3
+			"xp": 0
 		}
 	]
 }

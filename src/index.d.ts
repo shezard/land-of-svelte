@@ -49,12 +49,25 @@ export type Doodad = {
 	z?: number;
 } & OrientedPosition;
 
+export type NpcName = 'man' | 'not-found';
+
+export type Npc = {
+	id: number;
+	type: 'npc';
+	name: string;
+	collision?: boolean;
+	texture: string[];
+	color?: number;
+} & OrientedPosition;
+
 export type AIName = 'orc' | 'gobelin' | 'not-found';
+export type AIMode = 'idle' | 'attack-on-sight';
 
 export type AI = {
 	id: number;
 	type: 'ai';
 	name: string;
+	mode: AIMode;
 	collision?: boolean;
 	texture: string[];
 	color?: number;
@@ -90,7 +103,7 @@ export type Container = {
 	content: ItemName[];
 } & OrientedPosition;
 
-export type Script = Doodad | AI | Loot | Panel | Container;
+export type Script = Doodad | AI | Npc | Loot | Panel | Container;
 
 export interface OrientedPosition {
 	x: number;

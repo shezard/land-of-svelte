@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { store } from '$stores/store';
-	import { currentLevelNumber, currentLevel, currentTexture, currentAI, currentDoodad } from '$stores/editor';
+	import { currentLevelNumber, currentLevel, currentTexture, currentAI, currentNpc, currentDoodad } from '$stores/editor';
     import { textures } from '$stores/textures';
 	import EditorTexture from './EditorTexture.svelte';
 	import EditorTool from "./EditorTool.svelte";
-	import type { AIName, DoodadName } from '../..';
+	import type { AIName, DoodadName, NpcName } from '../..';
 	import { Level } from '$lib/Level';
 
     const changeLevel = (e: Event) => {
@@ -90,6 +90,8 @@
 
     const aiOptions : AIName[] = ['orc', 'gobelin'];
 
+    const npcOptions : NpcName[] = ['man'];
+
     const doodadOptions : DoodadName[] = ['door'];
 
 </script>
@@ -144,6 +146,15 @@
             <select on:click|stopPropagation bind:value={$currentAI}>
                 {#each aiOptions as ai}
                     <option value="{ai}">{ai}</option>
+                {/each}
+            </select>
+        </EditorTool>
+
+        <EditorTool tool="npc">
+            NPC
+            <select on:click|stopPropagation bind:value={$currentNpc}>
+                {#each npcOptions as npc}
+                    <option value="{npc}">{npc}</option>
                 {/each}
             </select>
         </EditorTool>

@@ -18,6 +18,7 @@ export const makeAI = function (
 			id: id,
 			type: 'ai',
 			name: aiName,
+			mode: 'attack-on-sight',
 			collision: true,
 			texture: ['orc-1'],
 			x: x,
@@ -41,6 +42,7 @@ export const makeAI = function (
 			id: id,
 			type: 'ai',
 			name: aiName,
+			mode: 'attack-on-sight',
 			collision: true,
 			texture: [`${aiName}-idle`],
 			x: x,
@@ -63,6 +65,7 @@ export const makeAI = function (
 		id: 0,
 		type: 'ai',
 		name: 'not-found',
+		mode: 'idle',
 		collision: true,
 		texture: ['not-found'],
 		x: x,
@@ -81,6 +84,11 @@ export const makeAI = function (
 };
 
 export const advanceAi = (store: Store, level: Level) => (ai: AI) => {
+	if (ai.mode === 'idle') {
+		return;
+	}
+
+	// ai.mode === 'aggro'
 	const position = get(player).position;
 	const stats = get(player).stats;
 
