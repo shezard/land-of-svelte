@@ -26,6 +26,16 @@
 		height: 40vh;
 	}
 
+    :global(.action::before) {
+		content: ' ';
+		display: inline-block;
+		width: 2rem;
+	}
+
+    :global(.action:hover::before) {
+		content: '☞';
+	}
+
 	:global(html) {
 		--border-color-dark: #542b29;
 	}

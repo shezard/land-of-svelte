@@ -159,6 +159,7 @@
             "name": "man",
             "collision": true,
             "texture": ["npc-1"],
+            "dialogs": [1],
             "x": 5,
             "y": 2,
             "t": 0

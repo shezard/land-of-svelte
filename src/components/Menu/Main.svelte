@@ -110,14 +110,3 @@
 >
 	Editor
 </div>
-
-<style>
-	.action::before {
-		content: ' ';
-		display: inline-block;
-		width: 2rem;
-	}
-	.action:hover::before {
-		content: '☞';
-	}
-</style>

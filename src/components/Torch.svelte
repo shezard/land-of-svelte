@@ -15,7 +15,6 @@
 		position={[position[0], 0.4, position[1]]}
 		distance={5}
 		color={colorCache(0xffdede)}
-		castShadow={true}
 	/>
 
 	<Box

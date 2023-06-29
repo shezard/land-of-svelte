@@ -16,4 +16,5 @@
 	{texture}
 	color={npc.color}
     transparent
+    interactive
 />

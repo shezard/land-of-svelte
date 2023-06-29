@@ -6,7 +6,7 @@ import level1 from '$lib/maps/level-1.json';
 import { Level } from '../lib/Level';
 import type { LevelProp, Store } from '..';
 
-type Route = 'main' | 'control' | 'editor' | 'running' | 'inventory' | 'container';
+type Route = 'main' | 'control' | 'editor' | 'running' | 'inventory' | 'container' | 'dialog';
 
 const initialStoreState: Store = {
     game: {

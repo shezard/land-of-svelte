@@ -5,14 +5,14 @@
 	import { getClosestWall } from '$lib/helpers';
 	import { scripts } from '$lib/scripts';
 	import { currentLevel, store } from '$stores/store';
-	import type { Container, Loot, Panel, Script, Store } from '..';
+	import type { Container, Loot, Npc, Panel, Script, Store } from '..';
 	import { makeItem } from '$lib/Item';
 	import AI from './AI.svelte';
 	import { logs } from '$stores/logs';
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
 	import { get } from 'svelte/store';
-	import Npc from './Npc.svelte';
+    import { dialogChain } from '$stores/dialogs';
 
 	export let script: Script;
 
@@ -53,6 +53,11 @@
 	const handleContainer = (containerScript: Container) => () => {
 		store.navigateTo('container');
 		container.set(containerScript);
+	};
+
+	const handleNpc = (npcScript: Npc) => () => {
+		store.navigateTo('dialog');
+		dialogChain.set(npcScript.dialogs);
 	};
 
 	const showText = (panel: Panel) => () => {
@@ -111,7 +116,17 @@
 {/if}
 
 {#if script.type == 'npc'}
-	<Npc npc={script} {texture}/>
+    <Box
+        x={script.x}
+        y={script.y}
+        wx={Math.abs(Math.cos($player.position.t))}
+        wy={Math.abs(Math.sin($player.position.t))}
+        on:click={handleNpc(script)}
+        {texture}
+        color={script.color}
+        transparent
+        interactive
+    />
 {/if}
 
 {#if script.type == 'loot'}
