@@ -47,11 +47,15 @@ const testDialog4: DialogChoice = {
     }
 };
 
-export const dialogs: Record<number, Dialog | DialogChoice> = {
+const dialogs: Record<number, Dialog | DialogChoice> = {
     1: minerDialog,
     2: testDialog2,
     3: testDialog3,
     4: testDialog4
+};
+
+export const getDialogChoice = (dialogChoiceId: number): DialogChoice => {
+    return dialogs[dialogChoiceId] as DialogChoice;
 };
 
 export const dialogChain = writable<number[]>();

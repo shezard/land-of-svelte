@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { dialogs, dialog, dialogChain, type DialogChoice } from "$stores/dialogs";
+    import { getDialogChoice, dialog, dialogChain, type DialogChoice } from "$stores/dialogs";
 
     const doAction = (dialogChoice: DialogChoice, dialogChoiceId: number) => () =>  {
         dialogChain.update((dialogChain) => {
@@ -24,15 +24,15 @@
                 {/each}
             </div>
             {#each $dialog.dialogChoices as dialogChoiceId}
-                {#if dialogs[dialogChoiceId].predicate()}
+                {#if getDialogChoice(dialogChoiceId).predicate()}
                     <div
                         class="action cursor-pointer"
-                        on:click={doAction(dialogs[dialogChoiceId], dialogChoiceId)}
+                        on:click={doAction(getDialogChoice(dialogChoiceId), dialogChoiceId)}
                         on:keypress={() => {
                             // no-op
                         }}
                     >
-                        {dialogs[dialogChoiceId].content}
+                        {getDialogChoice(dialogChoiceId).content}
                     </div>
                 {/if}
             {/each}
