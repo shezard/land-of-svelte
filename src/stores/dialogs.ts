@@ -1,4 +1,5 @@
 import { derived, writable } from 'svelte/store';
+import { hasQuestFlag } from './quest';
 
 interface Dialog {
     title: string;
@@ -21,20 +22,12 @@ const minerDialog: Dialog = {
 
 const testDialog2: DialogChoice = {
     content: ['Yes'],
-    predicate: () => false,
-    doAction: () => {
-        console.log('ok');
-        // to next step
-    }
+    predicate: () => hasQuestFlag('ned', 'found'),
 };
 
 const testDialog3: DialogChoice = {
     content: ['No'],
     predicate: () => true,
-    doAction: () => {
-        console.log('ok');
-        // close dialog
-    },
     dialogChoices: [4]
 };
 
