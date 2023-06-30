@@ -20,7 +20,6 @@
 	};
 
 	const loadGame = () => {
-
         const localStoragePlayer : string|null = localStorage.getItem('player');
         if(!localStoragePlayer) {
             return;
@@ -52,7 +51,6 @@
 
 		runGame();
     }
-
 
 	const saveGame = () => {
         localStorage.setItem('player', JSON.stringify(get(player)));
