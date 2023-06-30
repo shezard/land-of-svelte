@@ -44,7 +44,7 @@ You can preview the production build with `npm run preview`.
 -   [ ] Dialog
     -   [x] Move npc title into level.json
     -   [x] Unify dialog and dialog choice
-    -   [ ] Split answer and response
+    -   [x] Split answer and response
     -   [ ] Add stats subsystem test
     -   [ ] Dialog editor ?
     -   [ ] Persist/load quest and dialog store state
