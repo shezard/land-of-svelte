@@ -1,22 +1,21 @@
-import { get, writable } from "svelte/store";
+import { get, writable } from 'svelte/store';
 
-type QuestName = 'ned'
+type QuestName = 'ned';
 
 interface Quest {
     flag: string;
 }
 
-type Quests = Partial<Record<QuestName, Quest>>
+type Quests = Partial<Record<QuestName, Quest>>;
 
 export const quests = writable<Quests>({});
 
-export const hasQuestFlag = (name : QuestName, flag : string) => {
-
+export const hasQuestFlag = (name: QuestName, flag: string) => {
     const quest = get(quests)[name];
 
-    if(quest === undefined) {
+    if (quest === undefined) {
         return false;
     }
 
     return quest.flag === flag;
-}
+};

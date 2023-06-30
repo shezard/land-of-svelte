@@ -15,14 +15,14 @@ export interface DialogChoice {
 }
 
 const minerDialog: Dialog = {
-    title: 'Miner',
+    title: 'Ted the miner',
     content: ["You've seen Ned ?"],
     dialogChoices: [2, 3]
 };
 
 const testDialog2: DialogChoice = {
     content: ['Yes'],
-    predicate: () => hasQuestFlag('ned', 'found'),
+    predicate: () => hasQuestFlag('ned', 'found')
 };
 
 const testDialog3: DialogChoice = {
