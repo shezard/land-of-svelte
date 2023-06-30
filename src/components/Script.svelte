@@ -12,7 +12,7 @@
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
 	import { get } from 'svelte/store';
-    import { dialogChain } from '$stores/dialogs';
+    import { npc } from '$stores/dialogs';
 
 	export let script: Script;
 
@@ -57,7 +57,7 @@
 
 	const handleNpc = (npcScript: Npc) => () => {
 		store.navigateTo('dialog');
-		dialogChain.set(npcScript.dialogs);
+		npc.set(npcScript);
 	};
 
 	const showText = (panel: Panel) => () => {

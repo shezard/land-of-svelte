@@ -1,5 +1,6 @@
 import { derived, writable } from 'svelte/store';
 import { hasQuestFlag } from './quest';
+import type { Npc } from '..';
 
 interface Dialog {
     title: string;
@@ -15,7 +16,7 @@ export interface DialogChoice {
 }
 
 const minerDialog: Dialog = {
-    title: 'Ted the miner',
+    title: 'TO REMOVE',
     content: ["You've seen Ned ?"],
     dialogChoices: [2, 3]
 };
@@ -51,18 +52,17 @@ export const getDialogChoice = (dialogChoiceId: number): DialogChoice => {
     return dialogs[dialogChoiceId] as DialogChoice;
 };
 
-export const dialogChain = writable<number[]>();
+export const npc = writable<Npc>();
 
-export const dialog = derived(dialogChain, function (dialogChain: number[]): Dialog {
-    const dialogsFromChain = dialogChain.map((dialogId) => {
+export const dialog = derived(npc, function (npc: Npc): Dialog {
+    const dialogsFromChain = npc.dialogs.map((dialogId) => {
         return dialogs[dialogId];
     });
 
-    const firstDialog = dialogsFromChain[0] as Dialog;
     const lastDialog = dialogsFromChain[dialogsFromChain.length - 1] as DialogChoice;
 
     return {
-        title: firstDialog.title,
+        title: npc.name,
         content: dialogsFromChain.map((dialog) => dialog.content).flat(),
         dialogChoices: lastDialog.dialogChoices ?? []
     };

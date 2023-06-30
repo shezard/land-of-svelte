@@ -1,9 +1,10 @@
 <script lang="ts">
-    import { getDialogChoice, dialog, dialogChain, type DialogChoice } from "$stores/dialogs";
+    import { getDialogChoice, dialog, npc, type DialogChoice } from "$stores/dialogs";
 
     const doAction = (dialogChoice: DialogChoice, dialogChoiceId: number) => () =>  {
-        dialogChain.update((dialogChain) => {
-            return [...dialogChain, dialogChoiceId];
+        npc.update((npc) => {
+            npc.dialogs = [...npc.dialogs, dialogChoiceId]
+            return npc;
         })
         dialogChoice.doAction?.();
     }

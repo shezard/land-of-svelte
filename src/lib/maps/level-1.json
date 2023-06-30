@@ -156,7 +156,7 @@
         {
             "id": 2,
             "type": "npc",
-            "name": "man",
+            "name": "Ted the miner",
             "collision": true,
             "texture": ["npc-1"],
             "dialogs": [1],

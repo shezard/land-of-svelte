@@ -49,8 +49,6 @@ export type Doodad = {
     z?: number;
 } & OrientedPosition;
 
-export type NpcName = 'man' | 'not-found';
-
 export type Npc = {
     id: number;
     type: 'npc';
