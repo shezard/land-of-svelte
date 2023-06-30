@@ -4,7 +4,7 @@
     import { textures } from '$stores/textures';
 	import EditorTexture from './EditorTexture.svelte';
 	import EditorTool from "./EditorTool.svelte";
-	import type { AIName, DoodadName, NpcName } from '../..';
+	import type { AIName, DoodadName } from '../..';
 	import { Level } from '$lib/Level';
 
     const changeLevel = (e: Event) => {
@@ -90,7 +90,7 @@
 
     const aiOptions : AIName[] = ['orc', 'gobelin'];
 
-    const npcOptions : NpcName[] = ['man'];
+    const npcOptions : string[] = ['man'];
 
     const doodadOptions : DoodadName[] = ['door'];
 

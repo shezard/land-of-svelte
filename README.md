@@ -42,9 +42,9 @@ You can preview the production build with `npm run preview`.
 -   [x] Container: fix store not updating
 -   [x] Editor
 -   [ ] Dialog
-    -   [ ] Move npc title into level.json
-    -   [ ] Unify dialog and dialog choice
-    -   [ ] Split answer and response
+    -   [x] Move npc title into level.json
+    -   [x] Unify dialog and dialog choice
+    -   [x] Split answer and response
     -   [ ] Add stats subsystem test
     -   [ ] Dialog editor ?
     -   [ ] Persist/load quest and dialog store state

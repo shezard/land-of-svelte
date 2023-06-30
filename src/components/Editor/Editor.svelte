@@ -9,7 +9,6 @@
         currentAI,
         currentTexture,
         currentDoodad,
-
 		currentNpc
 
     } from '$stores/editor'
