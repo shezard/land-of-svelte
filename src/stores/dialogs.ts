@@ -15,9 +15,9 @@ export interface DialogChoice {
     dialogChoices?: number[];
 }
 
-const minerDialog: Dialog = {
-    title: 'TO REMOVE',
+const minerDialog: DialogChoice = {
     content: ["You've seen Ned ?"],
+    predicate: () => true,
     dialogChoices: [2, 3]
 };
 
@@ -41,7 +41,7 @@ const testDialog4: DialogChoice = {
     }
 };
 
-const dialogs: Record<number, Dialog | DialogChoice> = {
+const dialogs: Record<number, DialogChoice> = {
     1: minerDialog,
     2: testDialog2,
     3: testDialog3,
@@ -49,7 +49,7 @@ const dialogs: Record<number, Dialog | DialogChoice> = {
 };
 
 export const getDialogChoice = (dialogChoiceId: number): DialogChoice => {
-    return dialogs[dialogChoiceId] as DialogChoice;
+    return dialogs[dialogChoiceId];
 };
 
 export const npc = writable<Npc>();
@@ -59,7 +59,7 @@ export const dialog = derived(npc, function (npc: Npc): Dialog {
         return dialogs[dialogId];
     });
 
-    const lastDialog = dialogsFromChain[dialogsFromChain.length - 1] as DialogChoice;
+    const lastDialog = dialogsFromChain[dialogsFromChain.length - 1];
 
     return {
         title: npc.name,
