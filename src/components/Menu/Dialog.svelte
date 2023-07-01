@@ -1,11 +1,11 @@
 <script lang="ts">
     import { getDialogChoice, dialog, npc, getNextStep } from "$stores/dialogs";
-    import type {PlayerDialog} from '$lib/dialogs';
+    import type { PlayerDialog} from '$lib/dialogs';
 
-    const doAction = (playerDialog: PlayerDialog, dialogChoiceId: number) => () =>  {
+    const doAction = (playerDialog: PlayerDialog, dialogChoiceRef: string) => () =>  {
         playerDialog.doAction?.();
         npc.update((npc) => {
-            npc.dialogs = [...npc.dialogs, dialogChoiceId];
+            npc.dialogs = [...npc.dialogs, dialogChoiceRef];
             if(playerDialog.nextStep) {
                 npc.dialogs.push(playerDialog.nextStep);
                 getNextStep(playerDialog.nextStep).doAction?.();
@@ -36,16 +36,16 @@
                     </div>
                 {/each}
             </div>
-            {#each $dialog.dialogChoices as dialogChoiceId}
-                {#if getDialogChoice(dialogChoiceId).predicate()}
+            {#each $dialog.dialogChoices as dialogChoiceRef}
+                {#if getDialogChoice(dialogChoiceRef).predicate()}
                     <div
                         class="action cursor-pointer"
-                        on:click={doAction(getDialogChoice(dialogChoiceId), dialogChoiceId)}
+                        on:click={doAction(getDialogChoice(dialogChoiceRef), dialogChoiceRef)}
                         on:keypress={() => {
                             // no-op
                         }}
                     >
-                        {getDialogChoice(dialogChoiceId).content}
+                        {getDialogChoice(dialogChoiceRef).content}
                     </div>
                 {/if}
             {/each}

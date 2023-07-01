@@ -55,7 +55,7 @@ export type Npc = {
     name: string;
     collision?: boolean;
     texture: string[];
-    dialogs: number[];
+    dialogs: string[];
     color?: number;
 } & OrientedPosition;
 

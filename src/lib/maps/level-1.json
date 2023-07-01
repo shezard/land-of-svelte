@@ -217,7 +217,7 @@
             "name": "Ted the miner",
             "collision": true,
             "texture": ["npc-1"],
-            "dialogs": [1],
+            "dialogs": ["ted"],
             "x": 5,
             "y": 2,
             "t": 0
@@ -231,7 +231,7 @@
             "x": 8,
             "y": 8,
             "t": 0,
-            "dialogs": [7]
+            "dialogs": ["ned"]
         },
         {
             "id": 3,

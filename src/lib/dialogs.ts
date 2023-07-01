@@ -11,96 +11,126 @@ export interface BaseDialog {
 
 export type NpcDialog = BaseDialog & {
     type: 'npc';
-    dialogChoices: number[];
+    dialogChoices: string[];
 };
 
 export type PlayerDialog = BaseDialog & {
     type: 'player';
-    nextStep?: number;
+    nextStep?: string;
 };
 
-const minerDialog: NpcDialog = {
-    type: 'npc',
+interface GraphDialog {
+    content: string;
+    predicate?: () => boolean;
+    doAction?: () => void;
+    dialogChoices?: GraphDialog[] | string[];
+    nextStep?: GraphDialog | string;
+    ref?: string;
+}
+
+const ted: GraphDialog = {
     content: "You've seen my brother Ned ?",
-    predicate: () => true,
-    dialogChoices: [2, 3]
+    dialogChoices: [
+        {
+            content: 'Yes',
+            predicate: () => hasQuestFlag('ned', 'found'),
+            nextStep: {
+                ref: 'thank-you',
+                content: "Thank you ! I've open a shortcut to your left !",
+                doAction: () => {
+                    store.update((store) => {
+                        const ladder = store.levels[store.currentLevelNumber].getScript(
+                            4
+                        ) as Doodad;
+                        ladder.z = 0;
+                        store.levels[store.currentLevelNumber].replaceScript(ladder);
+                        return store;
+                    });
+                }
+            }
+        },
+        {
+            content: 'No',
+            nextStep: {
+                content: 'Come see me if you found him !',
+                dialogChoices: [
+                    {
+                        content: "I've found Ned !",
+                        predicate: () => hasQuestFlag('ned', 'found'),
+                        nextStep: 'thank-you'
+                    }
+                ]
+            }
+        }
+    ]
 };
 
-const testDialog2: PlayerDialog = {
-    type: 'player',
-    content: 'Yes',
-    predicate: () => hasQuestFlag('ned', 'found'),
-    nextStep: 5
-};
-
-const testDialog3: PlayerDialog = {
-    type: 'player',
-    content: 'No',
-    predicate: () => true,
-    nextStep: 4
-};
-
-const testDialog4: NpcDialog = {
-    type: 'npc',
-    content: 'Come see me if you found him !',
-    predicate: () => true,
-    dialogChoices: [6]
-};
-
-const testDialog5: NpcDialog = {
-    type: 'npc',
-    content: "Thank you ! I've open a shortcut to your left !",
-    predicate: () => true,
-    dialogChoices: [],
-    doAction: () => {
-        store.update((store) => {
-            const ladder = store.levels[store.currentLevelNumber].getScript(4) as Doodad;
-            ladder.z = 0;
-            store.levels[store.currentLevelNumber].replaceScript(ladder);
-            return store;
-        });
-    }
-};
-
-const testDialog6: PlayerDialog = {
-    type: 'player',
-    content: "I've found Ned !",
-    predicate: () => hasQuestFlag('ned', 'found'),
-    nextStep: 5
-};
-
-const testDialog7: NpcDialog = {
-    type: 'npc',
+const ned: GraphDialog = {
     content: "Hello, I'm Ned",
-    predicate: () => true,
-    dialogChoices: [8]
+    dialogChoices: [
+        {
+            content: 'Your brother is looking for you !',
+            doAction: () => {
+                setQuestFlag('ned', 'found');
+            },
+            nextStep: {
+                content: "Tell him I'm fine"
+            }
+        }
+    ]
 };
 
-const testDialog8: PlayerDialog = {
-    type: 'player',
-    content: 'Your brother is looking for you !',
-    predicate: () => true,
-    doAction: () => {
-        setQuestFlag('ned', 'found');
-    },
-    nextStep: 9
+const makeDialogs = (graph: GraphDialog, ref = ''): Record<string, NpcDialog | PlayerDialog> => {
+    ref = graph.ref ?? ref;
+    let refIndex = 1;
+
+    let dialogs: Record<string, NpcDialog | PlayerDialog> = {};
+
+    const dialogChoiceRefs: string[] = (graph.dialogChoices ?? []).map((dialogChoice) => {
+        if (typeof dialogChoice === 'string') {
+            return dialogChoice;
+        }
+
+        if (!dialogChoice.ref) {
+            dialogChoice.ref = `${ref}-${refIndex}`;
+            dialogs[dialogChoice.ref] = {
+                type: 'player',
+                content: dialogChoice.content,
+                predicate: dialogChoice.predicate ?? (() => true),
+                doAction: dialogChoice.doAction
+            } as PlayerDialog;
+
+            if (dialogChoice.nextStep) {
+                if (typeof dialogChoice.nextStep === 'string') {
+                    dialogs[dialogChoice.ref].nextStep = dialogChoice.nextStep;
+                } else {
+                    dialogs[dialogChoice.ref].nextStep =
+                        dialogChoice.nextStep.ref ?? `${dialogChoice.ref}-${refIndex}`;
+                    dialogs = {
+                        ...dialogs,
+                        ...makeDialogs(dialogChoice.nextStep, `${dialogChoice.ref}-${refIndex}`)
+                    };
+                }
+            }
+
+            refIndex++;
+        }
+
+        return dialogChoice.ref;
+    });
+
+    dialogs[ref] = {
+        type: 'npc',
+        content: graph.content,
+        predicate: graph.predicate ?? (() => true),
+        doAction: graph.doAction,
+        dialogChoices: dialogChoiceRefs
+    };
+
+    return dialogs;
 };
 
-const testDialog9: NpcDialog = {
-    type: 'npc',
-    content: "Tell him I'm fine",
-    predicate: () => true,
-    dialogChoices: []
-};
-
-export const dialogs: Record<number, NpcDialog | PlayerDialog> = {
-    1: minerDialog,
-    2: testDialog2,
-    3: testDialog3,
-    4: testDialog4,
-    5: testDialog5,
-    6: testDialog6,
-    7: testDialog7,
-    8: testDialog8,
-    9: testDialog9
+export const dialogs: Record<string, NpcDialog | PlayerDialog> = {
+    ...makeDialogs(ted, 'ted'),
+    ...makeDialogs(ned, 'ned')
 };
