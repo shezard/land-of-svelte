@@ -1,3 +1,4 @@
+import type { DoodadName } from '$lib/Doodad';
 import type { Level } from '$lib/Level';
 import type { ColorRepresentation } from 'three';
 
@@ -37,8 +38,6 @@ export interface LevelProp {
     lights: Light[];
     scripts: Script[];
 }
-
-export type DoodadName = 'door' | 'button' | 'ladder' | 'not-found';
 
 export type Doodad = {
     id: number;

@@ -45,6 +45,8 @@ You can preview the production build with `npm run preview`.
     -   [x] Move npc title into level.json
     -   [x] Unify dialog and dialog choice
     -   [x] Split answer and response
+    -   [ ] Add quest reward for Ned / Ted (shortcut to level 2)
+    -   [ ] Save/Load quests
     -   [ ] Add stats subsystem test
     -   [ ] Dialog editor ?
     -   [ ] Persist/load quest and dialog store state

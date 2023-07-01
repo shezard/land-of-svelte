@@ -7,11 +7,10 @@ import type {
     Loot,
     OrientedPosition,
     Light,
-    AIName,
-    DoodadName
+    AIName
 } from '..';
 import { advanceAi, makeAI } from './AI';
-import { makeDoodad } from './Doodad';
+import { makeDoodad, type DoodadName } from './Doodad';
 import { makeNpc } from './Npc';
 
 export class Level {

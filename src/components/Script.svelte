@@ -104,6 +104,7 @@
 	<Box
 		x={script.x + Math.cos(closestWallDirection) * 0.5}
 		y={script.y + Math.sin(closestWallDirection) * 0.5}
+        z={script.z ?? 0}
 		wx={0.1 + Math.abs(0.2 * Math.sin(closestWallDirection))}
 		wy={0.1 + Math.abs(0.2 * Math.cos(closestWallDirection))}
 		{texture}

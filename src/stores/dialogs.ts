@@ -54,7 +54,7 @@ const testDialog4: NpcDialog = {
 
 const testDialog5: NpcDialog = {
     type: 'npc',
-    content: 'Hourrah !',
+    content: "Thank you ! I've open a shortcut to your left !",
     predicate: () => true,
     dialogChoices: []
 };

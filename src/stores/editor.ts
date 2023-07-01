@@ -1,6 +1,7 @@
 import { derived, writable } from 'svelte/store';
 import { store } from './store';
-import type { AIName, DoodadName } from '..';
+import type { AIName } from '..';
+import type { DoodadName } from '$lib/Doodad';
 
 export type ToolName =
     | 'texture'
