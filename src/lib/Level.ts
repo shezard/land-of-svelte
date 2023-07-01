@@ -1,15 +1,5 @@
-import type {
-    AI,
-    Script,
-    LevelProp,
-    Map2d,
-    Store,
-    Loot,
-    OrientedPosition,
-    Light,
-    AIName
-} from '..';
-import { advanceAi, makeAI } from './AI';
+import type { Ai, Script, LevelProp, Map2d, Store, Loot, OrientedPosition, Light } from '..';
+import { advanceAi, makeAi, type AiName } from './Ai';
 import { makeDoodad, type DoodadName } from './Doodad';
 import { makeNpc } from './Npc';
 
@@ -74,21 +64,21 @@ export class Level {
         return level;
     }
 
-    getAis(): AI[] {
+    getAis(): Ai[] {
         return this.scripts.filter((item) => {
             return item.type === 'ai';
-        }) as AI[];
+        }) as Ai[];
     }
 
-    getAiAt(x: number, y: number): AI | undefined {
-        return this.getAis().find((ai: AI) => {
+    getAiAt(x: number, y: number): Ai | undefined {
+        return this.getAis().find((ai: Ai) => {
             return ai.x === x && ai.y === y;
         });
     }
 
-    addAiAt(x: number, y: number, aiName: AIName) {
+    addAiAt(x: number, y: number, aiName: AiName) {
         const id = Math.max(...this.scripts.map((script) => script.id), 0) + 1;
-        this.scripts = [...this.scripts, makeAI(aiName, id, x, y)];
+        this.scripts = [...this.scripts, makeAi(aiName, id, x, y)];
     }
 
     removeAiAt(x: number, y: number): void {

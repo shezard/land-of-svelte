@@ -7,7 +7,7 @@
 	import { currentLevel, store } from '$stores/store';
 	import type { Container, Loot, Npc, Panel, Script, Store } from '..';
 	import { makeItem } from '$lib/Item';
-	import AI from './AI.svelte';
+	import Ai from './Ai.svelte';
 	import { logs } from '$stores/logs';
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
@@ -113,7 +113,7 @@
 {/if}
 
 {#if script.type == 'ai'}
-	<AI ai={script} {texture}/>
+	<Ai ai={script} {texture}/>
 {/if}
 
 {#if script.type == 'npc'}

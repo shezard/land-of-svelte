@@ -1,6 +1,6 @@
 import { derived, writable } from 'svelte/store';
 import { store } from './store';
-import type { AIName } from '..';
+import type { AiName } from '$lib/Ai';
 import type { DoodadName } from '$lib/Doodad';
 
 export type ToolName =
@@ -19,7 +19,7 @@ export const isToolActivated = writable(false);
 
 export const currentTexture = writable<string>('armor-0');
 
-export const currentAI = writable<AIName>('orc');
+export const currentAi = writable<AiName>('orc');
 
 export const currentNpc = writable<string>('man');
 

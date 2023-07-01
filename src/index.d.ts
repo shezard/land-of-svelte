@@ -1,3 +1,4 @@
+import type { AiName } from '$lib/Ai';
 import type { DoodadName } from '$lib/Doodad';
 import type { Level } from '$lib/Level';
 import type { ColorRepresentation } from 'three';
@@ -58,14 +59,13 @@ export type Npc = {
     color?: number;
 } & OrientedPosition;
 
-export type AIName = 'orc' | 'gobelin' | 'not-found';
-export type AIMode = 'idle' | 'attack-on-sight';
+export type AiMode = 'idle' | 'attack-on-sight';
 
-export type AI = {
+export type Ai = {
     id: number;
     type: 'ai';
-    name: string;
-    mode: AIMode;
+    name: AiName;
+    mode: AiMode;
     collision?: boolean;
     texture: string[];
     color?: number;
@@ -101,7 +101,7 @@ export type Container = {
     content: ItemName[];
 } & OrientedPosition;
 
-export type Script = Doodad | AI | Npc | Loot | Panel | Container;
+export type Script = Doodad | Ai | Npc | Loot | Panel | Container;
 
 export interface OrientedPosition {
     x: number;

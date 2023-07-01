@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { store } from '$stores/store';
-	import { currentLevelNumber, currentLevel, currentTexture, currentAI, currentNpc, currentDoodad } from '$stores/editor';
+	import { currentLevelNumber, currentLevel, currentTexture, currentAi, currentNpc, currentDoodad } from '$stores/editor';
     import { textures } from '$stores/textures';
 	import EditorTexture from './EditorTexture.svelte';
 	import EditorTool from "./EditorTool.svelte";
-	import type { AIName } from '../..';
 	import { Level } from '$lib/Level';
     import { doodadOptions } from '$lib/Doodad';
+    import { aiOptions } from '$lib/Ai';
 
     const changeLevel = (e: Event) => {
         if(e.currentTarget === null) {
@@ -89,8 +89,6 @@
         return texture.replace('.png', '');
     });
 
-    const aiOptions : AIName[] = ['orc', 'gobelin'];
-
     const npcOptions : string[] = ['man'];
 
 </script>
@@ -141,8 +139,8 @@
         </EditorTool>
 
         <EditorTool tool="ai">
-            AI
-            <select on:click|stopPropagation bind:value={$currentAI}>
+            Ai
+            <select on:click|stopPropagation bind:value={$currentAi}>
                 {#each aiOptions as ai}
                     <option value="{ai}">{ai}</option>
                 {/each}

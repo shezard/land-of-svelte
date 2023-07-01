@@ -6,7 +6,7 @@
         currentLevelNumber,
         currentLevel,
         isToolActivated,
-        currentAI,
+        currentAi,
         currentTexture,
         currentDoodad,
 		currentNpc
@@ -101,7 +101,7 @@
                 if(ai) {
                     store.levels[$currentLevelNumber].removeAiAt(x, y);
                 } else {
-                    store.levels[$currentLevelNumber].addAiAt(x, y , $currentAI)
+                    store.levels[$currentLevelNumber].addAiAt(x, y , $currentAi)
                 }
 
                 return store;
