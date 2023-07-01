@@ -1,6 +1,7 @@
 import { derived, writable } from 'svelte/store';
 import { hasQuestFlag, setQuestFlag } from './quest';
-import type { Npc } from '..';
+import type { Doodad, Npc } from '..';
+import { store } from './store';
 
 interface Dialog {
     title: string;
@@ -11,6 +12,7 @@ interface Dialog {
 export interface BaseDialog {
     content: string;
     predicate: () => boolean;
+    doAction?: () => void;
 }
 
 export type NpcDialog = BaseDialog & {
@@ -21,7 +23,6 @@ export type NpcDialog = BaseDialog & {
 export type PlayerDialog = BaseDialog & {
     type: 'player';
     nextStep?: number;
-    doAction?: () => void;
 };
 
 const minerDialog: NpcDialog = {
@@ -56,7 +57,15 @@ const testDialog5: NpcDialog = {
     type: 'npc',
     content: "Thank you ! I've open a shortcut to your left !",
     predicate: () => true,
-    dialogChoices: []
+    dialogChoices: [],
+    doAction: () => {
+        store.update((store) => {
+            const ladder = store.levels[store.currentLevelNumber].getScript(4) as Doodad;
+            ladder.z = 0;
+            store.levels[store.currentLevelNumber].replaceScript(ladder);
+            return store;
+        });
+    }
 };
 
 const testDialog6: PlayerDialog = {
@@ -104,6 +113,10 @@ const dialogs: Record<number, NpcDialog | PlayerDialog> = {
 
 export const getDialogChoice = (dialogChoiceId: number): PlayerDialog => {
     return dialogs[dialogChoiceId] as PlayerDialog;
+};
+
+export const getNextStep = (nextStepId: number): NpcDialog => {
+    return dialogs[nextStepId] as NpcDialog;
 };
 
 export const npc = writable<Npc>();

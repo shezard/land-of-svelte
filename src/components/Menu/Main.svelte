@@ -8,6 +8,7 @@
 	import { get } from 'svelte/store';
 	import type { LevelProp, Store } from '../..';
 	import { hasSave } from '$stores/game';
+    import { quests, type Quests } from '$stores/quest';
 
     export let canvas : Canvas;
 
@@ -35,7 +36,6 @@
         );
         player.set(savedPlayer);
 
-
         const localStorageStore : string|null = localStorage.getItem('store');
         if(!localStorageStore) {
             return;
@@ -47,6 +47,14 @@
         });
         store.set(savedStore);
 
+        const localStorageQuests : string|null = localStorage.getItem('quests');
+        if(!localStorageQuests) {
+            return;
+        }
+
+        const savedQuests = JSON.parse(localStorageQuests) as Quests;
+        quests.set(savedQuests);
+
         updateCamera(canvas.ctx.camera, playerProp.position);
 
 		runGame();
@@ -55,6 +63,7 @@
 	const saveGame = () => {
         localStorage.setItem('player', JSON.stringify(get(player)));
         localStorage.setItem('store', JSON.stringify(get(store)));
+        localStorage.setItem('quests', JSON.stringify(get(quests)));
         hasSave.set(true);
     }
 

@@ -6,7 +6,7 @@ interface Quest {
     flag: string;
 }
 
-type Quests = Partial<Record<QuestName, Quest>>;
+export type Quests = Partial<Record<QuestName, Quest>>;
 
 export const quests = writable<Quests>({});
 

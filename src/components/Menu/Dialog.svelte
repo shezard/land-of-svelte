@@ -1,15 +1,16 @@
 <script lang="ts">
-    import { getDialogChoice, dialog, npc, type PlayerDialog } from "$stores/dialogs";
+    import { getDialogChoice, dialog, npc, type PlayerDialog, getNextStep } from "$stores/dialogs";
 
     const doAction = (playerDialog: PlayerDialog, dialogChoiceId: number) => () =>  {
+        playerDialog.doAction?.();
         npc.update((npc) => {
             npc.dialogs = [...npc.dialogs, dialogChoiceId];
             if(playerDialog.nextStep) {
                 npc.dialogs.push(playerDialog.nextStep);
+                getNextStep(playerDialog.nextStep).doAction?.();
             }
             return npc;
         })
-        playerDialog.doAction?.();
     }
 
 </script>
