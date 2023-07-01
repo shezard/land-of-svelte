@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { getDialogChoice, dialog, npc, type PlayerDialog, getNextStep } from "$stores/dialogs";
+    import { getDialogChoice, dialog, npc, getNextStep } from "$stores/dialogs";
+    import type {PlayerDialog} from '$lib/dialogs';
 
     const doAction = (playerDialog: PlayerDialog, dialogChoiceId: number) => () =>  {
         playerDialog.doAction?.();
@@ -51,13 +52,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-    .npc {
-
-    }
-
-    .player {
-
-    }
-</style>
