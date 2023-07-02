@@ -40,6 +40,10 @@ You can preview the production build with `npm run preview`.
 -   [x] Add treasure chest
 -   [x] Pause game while in the menu
 -   [x] Container: fix store not updating
+-   [ ] Cursor
+    -   [x] Click on AI should attack
+    -   [ ] Fix cursor bypassing walls
+    -   [ ] Use custom cursor for each action (fight / interact / talk ?)
 -   [x] Editor
     -   [ ] Add panel
 -   [ ] Dialog
@@ -57,6 +61,5 @@ You can preview the production build with `npm run preview`.
         -   [ ] XP bar
         -   [ ] Level up
         -   [ ] Derived stats
--   [ ] Torch without closest wall should be fixed to the floor
 -   [ ] Better handling of game over
 -   [ ] Gold & shop
