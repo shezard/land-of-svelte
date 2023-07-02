@@ -18,6 +18,7 @@
 	{texture}
 	color={ai.color}
     transparent
+    interactive
     on:click={() => {
         $player.attack()
     }}

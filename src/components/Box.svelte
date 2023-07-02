@@ -27,13 +27,17 @@
 	export let interactive = false;
 
 	const dispatch = createEventDispatcher();
-	const { onPointerEnter, onPointerLeave } = useCursor('pointer', 'default');
+	const { onPointerEnter, onPointerLeave } = useCursor('pointer');
 
-	const enter = () => {
-		interactive && onPointerEnter();
+    const handleClick = (e) => {
+		interactive && e.distance < 3 && dispatch('click');
+    }
+
+	const handleEnter = (e) => {
+		interactive && e.distance < 3 && onPointerEnter();
 	};
 
-	const leave = () => {
+	const handleLeave = () => {
 		interactive && onPointerLeave();
 	};
 
@@ -51,9 +55,9 @@
 	rotation={[rx, rz, ry]}
 	{receiveShadow}
 	{castShadow}
-	on:click={() => dispatch('click')}
-	on:pointerenter={enter}
-	on:pointerleave={leave}
+	on:click={handleClick}
+	on:pointerenter={handleEnter}
+	on:pointerleave={handleLeave}
 >
 	<T.BoxGeometry args={[wx, wz, wy]} />
 	{#if texture.length < 2}
