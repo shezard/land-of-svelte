@@ -6,6 +6,11 @@ export const makeItem = function (itemName: ItemName): Item {
             name: 'sword',
             texture: 'sword-0',
             slot: 'mainHand',
+            baseStats: {
+                strength: 0,
+                dexterity: 0,
+                intelligence: 0,
+            },
             stats: {
                 hp: 0,
                 maxHp: 0,
@@ -24,6 +29,11 @@ export const makeItem = function (itemName: ItemName): Item {
             name: 'armor',
             texture: 'armor-0',
             slot: 'armor',
+            baseStats: {
+                strength: 0,
+                dexterity: 0,
+                intelligence: 0,
+            },
             stats: {
                 hp: 0,
                 maxHp: 0,
@@ -42,6 +52,11 @@ export const makeItem = function (itemName: ItemName): Item {
             name: 'shield',
             texture: 'shield-0',
             slot: 'offHand',
+            baseStats: {
+                strength: 0,
+                dexterity: 0,
+                intelligence: 0,
+            },
             stats: {
                 hp: 0,
                 maxHp: 0,
@@ -60,6 +75,11 @@ export const makeItem = function (itemName: ItemName): Item {
             name: 'key',
             texture: 'key-0',
             slot: 'none',
+            baseStats: {
+                strength: 0,
+                dexterity: 0,
+                intelligence: 0,
+            },
             stats: {
                 hp: 0,
                 maxHp: 0,
@@ -77,6 +97,11 @@ export const makeItem = function (itemName: ItemName): Item {
         name: 'not-found',
         texture: 'not-found-0',
         slot: 'armor',
+        baseStats: {
+            strength: 0,
+            dexterity: 0,
+            intelligence: 0,
+        },
         stats: {
             hp: 0,
             maxHp: 0,

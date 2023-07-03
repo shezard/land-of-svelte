@@ -1,4 +1,4 @@
-import type { Inventory, OrientedPosition, Stats, Item } from '..';
+import type { Inventory, OrientedPosition, BaseStats, Stats, Item } from '..';
 import type { Level } from './Level';
 import { fight } from './fight';
 import { logs } from '$stores/logs';
@@ -6,20 +6,23 @@ import { store } from '$stores/store';
 import { player } from '$stores/player';
 
 export class Player {
-    xp: number;
-    level: number;
     position: OrientedPosition;
+    baseStats: BaseStats;
     stats: Stats;
     inventory: Inventory;
+    xp: number;
+    level: number;
 
     constructor(
         position: OrientedPosition,
+        baseStats: BaseStats,
         stats: Stats,
         inventory: Inventory,
-        xp: number,
-        level: number
+        xp: number = 0,
+        level: number = 1
     ) {
         this.position = position;
+        this.baseStats = baseStats;
         this.stats = stats;
         this.inventory = inventory;
         this.xp = xp;
@@ -162,6 +165,25 @@ export class Player {
 
             return store;
         });
+    }
+
+    getNeededXp() : number {
+        return 5 * this.level - 2;
+    }
+
+    getBaseStats() : BaseStats {
+        return [this.inventory.mainHand, this.inventory.offHand, this.inventory.armor].reduce(
+            function (stats, item: Item | null) {
+                if (item) {
+                    stats.strength += item.baseStats.strength;
+                    stats.dexterity += item.baseStats.dexterity;
+                    stats.intelligence += item.baseStats.intelligence;
+                }
+
+                return stats;
+            },
+            { ...this.baseStats }
+        );
     }
 
     getStats(): Stats {

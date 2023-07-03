@@ -42,7 +42,7 @@
 				class="border-4 border-dark-color w-[160px] h-[35px] m-[10px] grid items-center justify-items-center text-white"
 				style="background: linear-gradient(to left, rgba(0, 0, 0, 0) {hpPercent}%, #D1B000 {hpPercent}%)"
 			>
-				{$player.xp} / {$player.level}
+				{$player.xp} / {$player.getNeededXp()}
 			</div>
 		</div>
 		<div class="w-20" />

@@ -57,8 +57,8 @@ You can preview the production build with `npm run preview`.
 -   [x] Saving / Loading
 -   [ ] Level 2
     -   [ ] XP / Leveling
+        -   [x] Derived stats
         -   [ ] XP bar
         -   [ ] Level up
-        -   [ ] Derived stats
 -   [ ] Better handling of game over
 -   [ ] Gold & shop

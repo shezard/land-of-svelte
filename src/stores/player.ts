@@ -4,6 +4,11 @@ import { writable } from 'svelte/store';
 const initialPlayer = new Player(
     { x: 2, y: 10, t: 0 },
     {
+        strength: 0,
+        dexterity: 0,
+        intelligence: 0
+    },
+    {
         hp: 10,
         maxHp: 10,
         ac: 3,
@@ -16,9 +21,7 @@ const initialPlayer = new Player(
         offHand: null,
         armor: null,
         bag: []
-    },
-    0,
-    1
+    }
 );
 
 export const player = writable<Player>(initialPlayer);

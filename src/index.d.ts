@@ -109,6 +109,12 @@ export interface OrientedPosition {
     t: number;
 }
 
+export interface BaseStats {
+    strength: number;
+    dexterity: number;
+    intelligence: number;
+}
+
 export interface Stats {
     hp: number;
     maxHp: number;
@@ -131,6 +137,7 @@ export interface Item {
     name: ItemName;
     texture: string;
     slot: 'mainHand' | 'offHand' | 'armor' | 'none';
+    baseStats: BaseStats;
     stats: Stats;
     cooldown: number;
     lastAttackTimestamp: number;

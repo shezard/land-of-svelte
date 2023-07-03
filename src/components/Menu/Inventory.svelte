@@ -21,16 +21,22 @@
     $: offHand = $player.inventory.offHand;
     $: armor = $player.inventory.armor;
 
+    $: baseStats = $player.getBaseStats();
     $: stats = $player.getStats();
 </script>
 
 <div class="menu text-white">
     <div class="text-3xl">Stats</div>
 
-    <div class="grid grid-cols-3 text-2xl">
+    <div class="grid grid-cols-4 text-2xl">
         <div class="pl-10">
             Level : {$player.level} <br />
-            XP : {$player.xp} <br />
+            XP : {$player.xp} / {$player.getNeededXp()} <br />
+        </div>
+        <div>
+            Strength : {baseStats.strength} <br />
+            Dexterity : {baseStats.dexterity} <br />
+            Intelligence : {baseStats.intelligence} <br />
         </div>
         <div>
             AC : {stats.ac} <br />
@@ -43,7 +49,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-2 mt-5">
         <div>
             <div class="text-3xl">Inventory</div>
                 <div class="grid grid-inventory text-2xl pl-10">
