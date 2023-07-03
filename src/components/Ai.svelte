@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { AI } from '..';
+	import type { Ai } from '..';
 	import Box from './Box.svelte';
 	import { player } from '$stores/player';
 	import type * as THREE from 'three';
 
-	export let ai: AI;
+	export let ai: Ai;
 	export let texture: THREE.Texture[];
 
 	$: ratio = ai.stats.hp / ai.stats.maxHp;
@@ -18,6 +18,10 @@
 	{texture}
 	color={ai.color}
     transparent
+    interactive
+    on:click={() => {
+        $player.attack()
+    }}
 />
 
 <Box

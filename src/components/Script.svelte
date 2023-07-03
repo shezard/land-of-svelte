@@ -7,7 +7,7 @@
 	import { currentLevel, store } from '$stores/store';
 	import type { Container, Loot, Npc, Panel, Script, Store } from '..';
 	import { makeItem } from '$lib/Item';
-	import AI from './AI.svelte';
+	import Ai from './Ai.svelte';
 	import { logs } from '$stores/logs';
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
@@ -104,6 +104,7 @@
 	<Box
 		x={script.x + Math.cos(closestWallDirection) * 0.5}
 		y={script.y + Math.sin(closestWallDirection) * 0.5}
+        z={script.z ?? 0}
 		wx={0.1 + Math.abs(0.2 * Math.sin(closestWallDirection))}
 		wy={0.1 + Math.abs(0.2 * Math.cos(closestWallDirection))}
 		{texture}
@@ -112,7 +113,7 @@
 {/if}
 
 {#if script.type == 'ai'}
-	<AI ai={script} {texture}/>
+	<Ai ai={script} {texture}/>
 {/if}
 
 {#if script.type == 'npc'}

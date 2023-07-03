@@ -1,4 +1,7 @@
-import type { Doodad, DoodadName } from '..';
+import type { Doodad } from '..';
+
+export const doodadOptions = ['door', 'ladder', 'button'] as const;
+export type DoodadName = (typeof doodadOptions)[number] | 'not-found';
 
 export const makeDoodad = function (
     doodadName: DoodadName,
@@ -12,6 +15,18 @@ export const makeDoodad = function (
             type: 'door',
             collision: true,
             texture: ['door-0'],
+            x,
+            y,
+            t: 0
+        };
+    }
+
+    if (doodadName === 'ladder') {
+        return {
+            id,
+            type: 'ladder',
+            collision: false,
+            texture: ['ladder-0', 'ladder-1', 'ladder-1', 'ladder-1', 'ladder-1', 'ladder-1'],
             x,
             y,
             t: 0

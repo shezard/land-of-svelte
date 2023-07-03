@@ -23,7 +23,7 @@
 	:global(.menu) {
 		position: relative;
 		width: 60vw;
-		height: 40vh;
+		height: 60vh;
 	}
 
     :global(.action::before) {

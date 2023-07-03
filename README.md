@@ -40,24 +40,26 @@ You can preview the production build with `npm run preview`.
 -   [x] Add treasure chest
 -   [x] Pause game while in the menu
 -   [x] Container: fix store not updating
+-   [ ] Cursor
+    -   [x] Click on AI should attack
+    -   [ ] Fix cursor bypassing walls
+    -   [ ] Use custom cursor for each action (fight / interact / talk ?)
 -   [x] Editor
+    -   [ ] Add panel
 -   [ ] Dialog
     -   [x] Move npc title into level.json
     -   [x] Unify dialog and dialog choice
     -   [x] Split answer and response
+    -   [x] Save/Load quests
+    -   [x] Persist/load quest and dialog store state
+    -   [ ] Add quest reward for Ned / Ted (shortcut to level 2)
     -   [ ] Add stats subsystem test
     -   [ ] Dialog editor ?
-    -   [ ] Persist/load quest and dialog store state
-    -   [ ] Add panel
 -   [x] Saving / Loading
--   [ ] Fix door animation !
 -   [ ] Level 2
     -   [ ] XP / Leveling
         -   [ ] XP bar
         -   [ ] Level up
         -   [ ] Derived stats
--   [ ] Torch without closest wall should be fixed to the floor
 -   [ ] Better handling of game over
--   [ ] Gold
--   [ ] Try to fix alpha transparency showing canvas background
--   [ ] FPS improvement
+-   [ ] Gold & shop
