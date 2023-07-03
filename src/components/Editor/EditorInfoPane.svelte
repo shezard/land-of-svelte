@@ -118,6 +118,7 @@
         <div class="text-2xl">
             Tools
         </div>
+
         <EditorTool tool="collision+">
             + Collision
         </EditorTool>
@@ -125,36 +126,44 @@
             - Collision
         </EditorTool>
 
-        <EditorTool tool="texture">
-            Texture
-            <select on:click|stopPropagation bind:value={$currentTexture}>
-                {#each textureOptions as texture}
-                    <option value="{texture}">{texture}</option>
-                {/each}
-            </select>
-        </EditorTool>
+        <div class="mb-2">
+            <EditorTool tool="texture">
+                Texture
+                <select on:click|stopPropagation bind:value={$currentTexture}>
+                    {#each textureOptions as texture}
+                        <option value="{texture}">{texture}</option>
+                    {/each}
+                </select>
+            </EditorTool>
+        </div>
 
-        <EditorTool tool="light">
-            Light
-        </EditorTool>
+        <div>
+            <EditorTool tool="light">
+                Light
+            </EditorTool>
+        </div>
 
-        <EditorTool tool="ai">
-            Ai
-            <select on:click|stopPropagation bind:value={$currentAi}>
-                {#each aiOptions as ai}
-                    <option value="{ai}">{ai}</option>
-                {/each}
-            </select>
-        </EditorTool>
+        <div>
+            <EditorTool tool="ai">
+                Ai
+                <select on:click|stopPropagation bind:value={$currentAi}>
+                    {#each aiOptions as ai}
+                        <option value="{ai}">{ai}</option>
+                    {/each}
+                </select>
+            </EditorTool>
+        </div>
 
-        <EditorTool tool="npc">
-            NPC
-            <select on:click|stopPropagation bind:value={$currentNpc}>
-                {#each npcOptions as npc}
-                    <option value="{npc}">{npc}</option>
-                {/each}
-            </select>
-        </EditorTool>
+        <div>
+            <EditorTool tool="npc">
+                NPC
+                <select on:click|stopPropagation bind:value={$currentNpc}>
+                    {#each npcOptions as npc}
+                        <option value="{npc}">{npc}</option>
+                    {/each}
+                </select>
+            </EditorTool>
+        </div>
 
         <EditorTool tool="doodad">
             Doodad
@@ -164,8 +173,19 @@
                 {/each}
             </select>
         </EditorTool>
+
+        <div>
+            <EditorTool tool="panel">
+                Panel
+            </EditorTool>
+        </div>
     </div>
+
     <div class=" mt-5">
+        <div class="text-2xl">
+            Export
+        </div>
+
         <a
             href="{exportURI}"
             class="inline-block border border-1 rounded px-2"

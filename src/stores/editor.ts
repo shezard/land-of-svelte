@@ -11,6 +11,7 @@ export type ToolName =
     | 'ai'
     | 'npc'
     | 'doodad'
+    | 'panel'
     | null;
 
 export const activatedTool = writable<ToolName>(null);

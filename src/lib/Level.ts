@@ -2,6 +2,7 @@ import type { Ai, Script, LevelProp, Map2d, Store, Loot, OrientedPosition, Light
 import { advanceAi, makeAi, type AiName } from './Ai';
 import { makeDoodad, type DoodadName } from './Doodad';
 import { makeNpc } from './Npc';
+import { makePanel } from './Panel';
 
 export class Level {
     width: number;
@@ -147,6 +148,11 @@ export class Level {
     addDoodadAt(x: number, y: number, doodadName: DoodadName): void {
         const id = Math.max(...this.scripts.map((script) => script.id), 0) + 1;
         this.scripts = [...this.scripts, makeDoodad(doodadName, id, x, y)];
+    }
+
+    addPanelAt(x: number, y: number): void {
+        const id = Math.max(...this.scripts.map((script) => script.id), 0) + 1;
+        this.scripts = [...this.scripts, makePanel(id, x, y)];
     }
 
     getLoots(): Loot[] {

@@ -45,7 +45,6 @@ You can preview the production build with `npm run preview`.
     -   [ ] Fix cursor bypassing walls
     -   [ ] Use custom cursor for each action (fight / interact / talk ?)
 -   [x] Editor
-    -   [ ] Add panel
 -   [ ] Dialog
     -   [x] Move npc title into level.json
     -   [x] Unify dialog and dialog choice

@@ -101,7 +101,7 @@
                 if(ai) {
                     store.levels[$currentLevelNumber].removeAiAt(x, y);
                 } else {
-                    store.levels[$currentLevelNumber].addAiAt(x, y , $currentAi)
+                    store.levels[$currentLevelNumber].addAiAt(x, y , $currentAi);
                 }
 
                 return store;
@@ -114,7 +114,7 @@
                 if(ai) {
                     store.levels[$currentLevelNumber].removeScriptAt(x, y);
                 } else {
-                    store.levels[$currentLevelNumber].addNpcAt(x, y , $currentNpc)
+                    store.levels[$currentLevelNumber].addNpcAt(x, y , $currentNpc);
                 }
 
                 return store;
@@ -127,7 +127,20 @@
                 if(doodad) {
                     store.levels[$currentLevelNumber].removeScriptAt(x, y);
                 } else {
-                    store.levels[$currentLevelNumber].addDoodadAt(x, y , $currentDoodad)
+                    store.levels[$currentLevelNumber].addDoodadAt(x, y , $currentDoodad);
+                }
+
+                return store;
+            });
+        }
+
+        if($activatedTool === 'panel' && e.type === 'mousedown') {
+            store.update((store) => {
+                const panel = store.levels[$currentLevelNumber].getScriptAt(x, y);
+                if(panel) {
+                    store.levels[$currentLevelNumber].removeScriptAt(x, y);
+                } else {
+                    store.levels[$currentLevelNumber].addPanelAt(x, y);
                 }
 
                 return store;
