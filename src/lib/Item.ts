@@ -9,7 +9,7 @@ export const makeItem = function (itemName: ItemName): Item {
             baseStats: {
                 strength: 0,
                 dexterity: 0,
-                intelligence: 0,
+                intelligence: 0
             },
             stats: {
                 hp: 0,
@@ -32,7 +32,7 @@ export const makeItem = function (itemName: ItemName): Item {
             baseStats: {
                 strength: 0,
                 dexterity: 0,
-                intelligence: 0,
+                intelligence: 0
             },
             stats: {
                 hp: 0,
@@ -55,7 +55,7 @@ export const makeItem = function (itemName: ItemName): Item {
             baseStats: {
                 strength: 0,
                 dexterity: 0,
-                intelligence: 0,
+                intelligence: 0
             },
             stats: {
                 hp: 0,
@@ -78,7 +78,7 @@ export const makeItem = function (itemName: ItemName): Item {
             baseStats: {
                 strength: 0,
                 dexterity: 0,
-                intelligence: 0,
+                intelligence: 0
             },
             stats: {
                 hp: 0,
@@ -100,7 +100,7 @@ export const makeItem = function (itemName: ItemName): Item {
         baseStats: {
             strength: 0,
             dexterity: 0,
-            intelligence: 0,
+            intelligence: 0
         },
         stats: {
             hp: 0,

@@ -18,8 +18,8 @@ export class Player {
         baseStats: BaseStats,
         stats: Stats,
         inventory: Inventory,
-        xp: number = 0,
-        level: number = 1
+        xp = 0,
+        level = 1
     ) {
         this.position = position;
         this.baseStats = baseStats;
@@ -167,11 +167,11 @@ export class Player {
         });
     }
 
-    getNeededXp() : number {
+    getNeededXp(): number {
         return 5 * this.level - 2;
     }
 
-    getBaseStats() : BaseStats {
+    getBaseStats(): BaseStats {
         return [this.inventory.mainHand, this.inventory.offHand, this.inventory.armor].reduce(
             function (stats, item: Item | null) {
                 if (item) {

@@ -9,6 +9,6 @@ export const makePanel = function (id: number, x: number, y: number): Panel {
         texture: ['panel-1', 'panel-1', 'panel-1', 'panel-1', 'panel-0', 'panel-1'],
         x: x,
         y: y,
-        t: 0,
+        t: 0
     };
 };

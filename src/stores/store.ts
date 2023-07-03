@@ -1,7 +1,8 @@
 import { derived, writable } from 'svelte/store';
 
-import level0 from '$lib/maps/level-0.json';
-import level1 from '$lib/maps/level-1.json';
+import level0 from '$maps/level-0.json';
+import level1 from '$maps/level-1.json';
+import level2 from '$maps/level-2.json';
 
 import { Level } from '../lib/Level';
 import type { LevelProp, Store } from '..';
@@ -14,7 +15,11 @@ const initialStoreState: Store = {
         running: 'newGame',
         isLoading: true
     },
-    levels: [new Level(level0 as LevelProp), new Level(level1 as LevelProp)],
+    levels: [
+        new Level(level0 as LevelProp),
+        new Level(level1 as LevelProp),
+        new Level(level2 as LevelProp)
+    ],
     currentLevelNumber: 0,
     screen: {
         shaking: false,

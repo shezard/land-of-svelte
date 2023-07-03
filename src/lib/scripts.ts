@@ -93,6 +93,64 @@ export const scripts = [
                     return player;
                 });
             }
+        },
+        {
+            x: 4,
+            y: 1,
+            doWalk: () => {
+                store.update((store) => {
+                    store.currentLevelNumber = 2;
+                    return store;
+                });
+                player.update((player) => {
+                    player.position.t = Math.PI / 2;
+                    return player;
+                });
+            }
+        },
+        {
+            x: 9,
+            y: 4,
+            doWalk: () => {
+                store.update((store) => {
+                    store.currentLevelNumber = 2;
+                    return store;
+                });
+                player.update((player) => {
+                    player.position.t = Math.PI / 2;
+                    return player;
+                });
+            }
+        }
+    ],
+    [
+        {
+            x: 4,
+            y: 1,
+            doWalk: () => {
+                store.update((store) => {
+                    store.currentLevelNumber = 1;
+                    return store;
+                });
+                player.update((player) => {
+                    player.position.t = Math.PI / 2;
+                    return player;
+                });
+            }
+        },
+        {
+            x: 10,
+            y: 4,
+            doWalk: () => {
+                store.update((store) => {
+                    store.currentLevelNumber = 1;
+                    return store;
+                });
+                player.update((player) => {
+                    player.position.t = Math.PI / 2;
+                    return player;
+                });
+            }
         }
     ]
 ];

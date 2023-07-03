@@ -18,6 +18,7 @@
 			url('textures/${mainHandTexture}.png')`;
 
 	$: hpPercent = (1 - stats.hp / stats.maxHp) * 100;
+	$: xpPercent = (1 - $player.xp / $player.getNeededXp()) * 100;
 </script>
 
 <div class="grid absolute w-full h-[100px] z-10 bottom-0 border-4 border-dark border-dark-color">
@@ -40,7 +41,7 @@
 
             <div
 				class="border-4 border-dark-color w-[160px] h-[35px] m-[10px] grid items-center justify-items-center text-white"
-				style="background: linear-gradient(to left, rgba(0, 0, 0, 0) {hpPercent}%, #D1B000 {hpPercent}%)"
+				style="background: linear-gradient(to left, rgba(0, 0, 0, 0) {xpPercent}%, #D1B000 {xpPercent}%)"
 			>
 				{$player.xp} / {$player.getNeededXp()}
 			</div>

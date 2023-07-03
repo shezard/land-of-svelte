@@ -51,13 +51,16 @@ You can preview the production build with `npm run preview`.
     -   [x] Split answer and response
     -   [x] Save/Load quests
     -   [x] Persist/load quest and dialog store state
-    -   [ ] Add quest reward for Ned / Ted (shortcut to level 2)
+    -   [x] Add quest reward for Ned / Ted (shortcut to level 2)
     -   [ ] Add stats subsystem test
     -   [ ] Dialog editor ?
 -   [x] Saving / Loading
 -   [ ] Level 2
+    -   [x] Move levels to maps folder
+    -   [ ] Auto-import levels from level folder
     -   [ ] XP / Leveling
         -   [x] Derived stats
+        -   [ ] Stats subsystem test
         -   [ ] XP bar
         -   [ ] Level up
 -   [ ] Better handling of game over

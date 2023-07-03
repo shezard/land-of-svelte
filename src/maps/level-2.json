@@ -1,17 +1,20 @@
 {
-    "width": 9,
+    "width": 12,
     "height": 12,
     "floor": "floor-0",
     "ceiling": "floor-1",
     "collisionMap": [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-        [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-        [1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1],
-        [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ],
     "textureMap": [
@@ -34,21 +37,7 @@
             "wall-0",
             "wall-0",
             "wall-0",
-            "wall-4",
             "wall-0",
-            "wall-0",
-            "wall-0",
-            "wall-4",
-            "wall-0",
-            "wall-0",
-            "wall-0"
-        ],
-        [
-            "wall-0",
-            "wall-0",
-            "wall-0",
-            "wall-0",
-            "wall-4",
             "wall-0",
             "wall-0",
             "wall-0",
@@ -62,39 +51,11 @@
             "wall-0",
             "wall-0",
             "wall-0",
-            "wall-4",
-            "wall-0",
-            "wall-0",
-            "wall-0",
-            "wall-4",
-            "wall-0",
-            "wall-0",
-            "wall-0"
-        ],
-        [
-            "wall-0",
-            "wall-4",
-            "wall-0",
-            "wall-4",
-            "wall-4",
-            "wall-0",
-            "wall-0",
-            "wall-0",
-            "wall-4",
-            "wall-4",
-            "wall-4",
-            "wall-0"
-        ],
-        [
             "wall-0",
             "wall-0",
             "wall-0",
             "wall-0",
-            "wall-4",
             "wall-0",
-            "wall-0",
-            "wall-0",
-            "wall-4",
             "wall-0",
             "wall-0",
             "wall-0"
@@ -118,11 +79,95 @@
             "wall-0",
             "wall-0",
             "wall-0",
-            "wall-4",
             "wall-0",
             "wall-0",
             "wall-0",
-            "wall-4",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0"
+        ],
+        [
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0"
+        ],
+        [
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0"
+        ],
+        [
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0"
+        ],
+        [
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0"
+        ],
+        [
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0"
+        ],
+        [
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
+            "wall-0",
             "wall-0",
             "wall-0",
             "wall-0"
@@ -145,117 +190,73 @@
     "lights": [
         {
             "id": 1,
-            "x": 2,
-            "y": 1
-        },
-        {
-            "id": 4,
-            "x": 2,
-            "y": 10,
+            "x": 5,
+            "y": 2,
             "t": 0
         },
         {
-            "id": 5,
-            "x": 1,
-            "y": 6,
-            "t": 0
-        },
-        {
-            "id": 6,
-            "x": 6,
+            "id": 2,
+            "x": 8,
             "y": 1,
             "t": 0
         },
         {
-            "id": 7,
-            "x": 7,
-            "y": 9,
+            "id": 4,
+            "x": 2,
+            "y": 1,
+            "t": 0
+        },
+        {
+            "id": 5,
+            "x": 2,
+            "y": 10,
             "t": 0
         }
     ],
     "scripts": [
         {
-            "id": 0,
-            "type": "door",
-            "collision": true,
-            "texture": ["door-0"],
-            "x": 2,
-            "y": 8
-        },
-        {
             "id": 1,
-            "type": "button",
-            "collision": false,
-            "texture": [],
-            "color": "333333",
-            "x": 1,
-            "y": 9,
-            "t": 4.7123
-        },
-        {
-            "id": 2,
             "type": "ladder",
             "collision": false,
             "texture": ["ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
-            "x": 1,
-            "y": 2
+            "x": 4,
+            "y": 1,
+            "t": 0
+        },
+        {
+            "id": 2,
+            "type": "door",
+            "collision": true,
+            "texture": ["door-0"],
+            "x": 4,
+            "y": 3,
+            "t": 0
         },
         {
             "id": 3,
-            "type": "ai",
-            "name": "gobelin",
-            "collision": true,
-            "texture": ["gobelin-idle"],
-            "x": 6,
-            "y": 2,
-            "t": 0,
-            "stats": {
-                "hp": 3,
-                "maxHp": 3,
-                "ac": 0,
-                "hit": 0,
-                "pDefense": 0,
-                "pAttack": 1
-            },
-            "xp": 3,
-            "loot": "key"
+            "type": "ladder",
+            "collision": false,
+            "texture": ["ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "x": 10,
+            "y": 4,
+            "t": 0
         },
         {
             "id": 4,
             "type": "door",
             "collision": true,
             "texture": ["door-0"],
-            "x": 4,
-            "y": 2
+            "x": 6,
+            "y": 6,
+            "t": 0
         },
         {
             "id": 5,
-            "type": "panel",
+            "type": "ladder",
             "collision": false,
-            "texture": ["panel-1", "panel-1", "panel-1", "panel-1", "panel-0", "panel-1"],
-            "x": 3,
-            "y": 9,
-            "t": 4.7123,
-            "content": ["Tips: Some items are clickable"]
-        },
-        {
-            "id": 6,
-            "type": "container",
-            "name": "treasure chest",
-            "collision": true,
-            "texture": ["chest-1", "chest-1", "chest-1", "chest-1", "chest-0", "chest-1"],
-            "x": 6,
-            "y": 10,
-            "t": 1.5,
-            "content": ["sword"]
-        },
-        {
-            "id": 7,
-            "type": "door",
-            "collision": true,
-            "texture": ["door-0"],
-            "x": 6,
-            "y": 4,
+            "texture": ["ladder-1", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "x": 1,
+            "y": 1,
             "t": 0
         }
     ]

@@ -59,7 +59,7 @@ export const makeAi = function (
                 pDefense: 0,
                 pAttack: 1
             },
-            xp: 3,
+            xp: 1,
             loot: loot
         };
     }
