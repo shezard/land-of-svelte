@@ -25,82 +25,77 @@
 </script>
 
 <div class="menu text-white">
-    <div class="grid grid-cols-1">
-        <div class="text-3xl">Stats</div>
+    <div class="text-3xl">Stats</div>
 
-        <div class="grid grid-cols-3 text-2xl">
-            <div class="pl-10">
-                Level : {$player.level} <br />
-                XP : {$player.xp} <br />
-            </div>
-            <div>
-                AC : {stats.ac} <br />
-                Hit : {stats.hit} <br />
-                HP : {stats.hp} <br />
-            </div>
-            <div>
-                Attack : {stats.pAttack} <br />
-                Defense : {stats.pDefense} <br />
-            </div>
+    <div class="grid grid-cols-3 text-2xl">
+        <div class="pl-10">
+            Level : {$player.level} <br />
+            XP : {$player.xp} <br />
+        </div>
+        <div>
+            AC : {stats.ac} <br />
+            Hit : {stats.hit} <br />
+            HP : {stats.hp} <br />
+        </div>
+        <div>
+            Attack : {stats.pAttack} <br />
+            Defense : {stats.pDefense} <br />
         </div>
     </div>
 
-    <div class="grid grid-cols-1">
-
-        <div class="grid grid-cols-2">
-            <div>
-                <div class="text-3xl">Inventory</div>
-                    <div class="flex flex-col pl-10">
-                        <div class="text-2xl inline-flex h-[48px] mb-2">
-                            Main Hand
-                            <span class="item ml-2">
-                                <div class="placeholder">
-                                    {#if mainHand}
-                                        <MenuItem item={mainHand} on:click={toBag(mainHand)} />
-                                    {/if}
-                                </div>
-                            </span>
+    <div class="grid grid-cols-2">
+        <div>
+            <div class="text-3xl">Inventory</div>
+                <div class="grid grid-inventory text-2xl pl-10">
+                    <div>
+                        Main Hand
+                    </div>
+                    <div class="item ml-2">
+                        <div class="placeholder">
+                            {#if mainHand}
+                                <MenuItem item={mainHand} on:click={toBag(mainHand)} />
+                            {/if}
                         </div>
+                    </div>
 
-                        <div class="text-2xl inline-flex h-[48px] mb-2">
-                            Off Hand
-                            <span class="item ml-2">
-                                <div class="placeholder">
-                                    {#if offHand}
-                                        <MenuItem item={offHand} on:click={toBag(offHand)} />
-                                    {/if}
-                                </div>
-                            </span>
+                    <div>
+                        Off Hand
+                    </div>
+                    <div class="item ml-2">
+                        <div class="placeholder">
+                            {#if offHand}
+                                <MenuItem item={offHand} on:click={toBag(offHand)} />
+                            {/if}
                         </div>
+                    </div>
 
-                        <div class="text-2xl inline-flex h-[48px] mb-2">
-                            Armor
-                            <span class="item ml-2">
-                                <div class="placeholder">
-                                    {#if armor}
-                                        <MenuItem item={armor} on:click={toBag(armor)} />
-                                    {/if}
-                                </div>
-                            </span>
+                    <div>
+                        Armor
+                    </div>
+                    <div class="item ml-2">
+                        <div class="placeholder">
+                            {#if armor}
+                                <MenuItem item={armor} on:click={toBag(armor)} />
+                            {/if}
                         </div>
                     </div>
                 </div>
+            </div>
 
-            <div class="flex flex-col">
-                <div class="text-3xl">Bag</div>
+        <div class="flex flex-col">
+            <div class="text-3xl">Bag</div>
 
-                <div class="grid items-grid">
-                    {#each [...Array(8).keys()] as index}
-                        <div class="placeholder">
-                            {#if $player.inventory.bag[index]}
-                                <MenuItem
-                                    item={$player.inventory.bag[index]}
-                                    on:click={toInventory($player.inventory.bag[index], index)}
-                                />
-                            {/if}
-                        </div>
-                    {/each}
-                </div>
+            <div class="grid grid-bag">
+                {#each [...Array(8).keys()] as index}
+                    <div class="placeholder">
+                        {#if $player.inventory.bag[index]}
+                            <MenuItem
+                                item={$player.inventory.bag[index]}
+                                on:click={toInventory($player.inventory.bag[index], index)}
+                            />
+                        {/if}
+                    </div>
+                {/each}
             </div>
         </div>
     </div>
@@ -118,7 +113,16 @@
         height: 48px;
     }
 
-    .items-grid {
+    .grid-inventory {
+        grid-template-columns: 128px 48px;
+        grid-gap: 10px;
+    }
+
+    .grid-inventory div {
+        line-height: 48px;
+    }
+
+    .grid-bag {
         grid-template-columns: 48px 48px 48px 48px;
         grid-template-rows: 48px 48px 48px 48px;
         grid-gap: 10px;
