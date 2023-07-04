@@ -42,7 +42,7 @@ You can preview the production build with `npm run preview`.
 -   [x] Container: fix store not updating
 -   [ ] Cursor
     -   [x] Click on AI should attack
-    -   [ ] Fix cursor bypassing walls
+    -   [x] Fix cursor bypassing walls
     -   [ ] Use custom cursor for each action (fight / interact / talk ?)
 -   [x] Editor
 -   [ ] Dialog
