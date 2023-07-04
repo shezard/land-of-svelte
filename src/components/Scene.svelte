@@ -19,7 +19,7 @@
 	import { updateCamera } from '$lib/camera';
 	import { get } from 'svelte/store';
 	import { player } from '$stores/player';
-    import { hasPointer } from '$stores/cursor';
+    import { INTERACTIVITY_DISTANCE, hasPointer } from '$stores/cursor';
 
 	const { camera, scene } = useThrelte();
 
@@ -157,7 +157,7 @@
         const intersects = raycaster.intersectObjects(scene.children, false);
 
         if(intersects.length) {
-            hasPointer.set(intersects[0].object.name === 'interactive' && intersects[0].distance < 1.6);
+            hasPointer.set(intersects[0].object.name === 'interactive' && intersects[0].distance < INTERACTIVITY_DISTANCE);
         }
     }
 </script>

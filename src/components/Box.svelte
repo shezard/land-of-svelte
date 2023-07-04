@@ -4,6 +4,7 @@
 	import type * as THREE from 'three';
 	import { T } from '@threlte/core';
 	import { colorCache } from '$lib/color';
+    import { INTERACTIVITY_DISTANCE } from '$stores/cursor';
 
 	export let texture: THREE.Texture[] = [];
 	export let color: number | undefined = undefined;
@@ -28,7 +29,7 @@
 	const dispatch = createEventDispatcher();
 
     const handleClick = (e : THREE.Event) => {
-		interactive && e.distance < 1.6 && dispatch('click');
+		interactive && e.distance < INTERACTIVITY_DISTANCE && dispatch('click');
     }
 
     const onAttach = (parent : THREE.Mesh, self : THREE.MeshLambertMaterial) : void => {
