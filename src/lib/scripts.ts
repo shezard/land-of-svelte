@@ -117,7 +117,8 @@ export const scripts = [
                     return store;
                 });
                 player.update((player) => {
-                    player.position.t = Math.PI / 2;
+                    player.position.x = 10;
+                    player.position.t = 3 * Math.PI / 2;
                     return player;
                 });
             }
@@ -147,7 +148,8 @@ export const scripts = [
                     return store;
                 });
                 player.update((player) => {
-                    player.position.t = Math.PI / 2;
+                    player.position.x = 9;
+                    player.position.t = 0;
                     return player;
                 });
             }
