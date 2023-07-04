@@ -28,7 +28,7 @@
 	const dispatch = createEventDispatcher();
 
     const handleClick = (e : THREE.Event) => {
-		interactive && e.distance < 3 && dispatch('click');
+		interactive && e.distance < 1.6 && dispatch('click');
     }
 
     const onAttach = (parent : THREE.Mesh, self : THREE.MeshLambertMaterial) : void => {

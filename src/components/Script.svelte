@@ -126,8 +126,8 @@
         on:click={handleNpc(script)}
         {texture}
         color={script.color}
-        transparent
         interactive
+        transparent
     />
 {/if}
 
@@ -141,8 +141,8 @@
 		rz={script.t}
 		on:click={handleLoot(script)}
 		{texture}
-        transparent
 		interactive
+        transparent
 	/>
 {/if}
 
@@ -170,7 +170,7 @@
 		rz={Math.PI}
 		on:click={handleContainer(script)}
 		{texture}
-        transparent
 		interactive
+        transparent
 	/>
 {/if}

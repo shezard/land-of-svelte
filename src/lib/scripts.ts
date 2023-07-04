@@ -118,7 +118,7 @@ export const scripts = [
                 });
                 player.update((player) => {
                     player.position.x = 10;
-                    player.position.t = 3 * Math.PI / 2;
+                    player.position.t = (3 * Math.PI) / 2;
                     return player;
                 });
             }

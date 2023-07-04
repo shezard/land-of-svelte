@@ -155,7 +155,10 @@
         raycaster.setFromCamera(pointer, $camera);
 
         const intersects = raycaster.intersectObjects(scene.children, false);
-        hasPointer.set(intersects?.[0].object.name === 'interactive');
+
+        if(intersects.length) {
+            hasPointer.set(intersects[0].object.name === 'interactive' && intersects[0].distance < 1.6);
+        }
     }
 </script>
 

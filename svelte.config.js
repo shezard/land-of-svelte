@@ -20,7 +20,7 @@ const config = {
         adapter: adapter(),
         alias: {
             '$stores/*': 'src/stores/*',
-            '$maps/*': 'src/maps/*',
+            '$maps/*': 'src/maps/*'
         }
     }
 };

@@ -174,12 +174,11 @@ export class Player {
         return 5 * this.level - 2;
     }
 
-    addXp(xp: number) : Player {
-
-        while(xp > 0) {
+    addXp(xp: number): this {
+        while (xp > 0) {
             const xpToNextLevel = this.getNeededXp() - this.xp;
 
-            if(xpToNextLevel > xp) {
+            if (xpToNextLevel > xp) {
                 this.xp += xp;
                 xp = 0;
             } else {
