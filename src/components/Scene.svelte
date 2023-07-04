@@ -19,8 +19,9 @@
 	import { updateCamera } from '$lib/camera';
 	import { get } from 'svelte/store';
 	import { player } from '$stores/player';
+    import { hasPointer } from '$stores/cursor';
 
-	const { camera } = useThrelte();
+	const { camera, scene } = useThrelte();
 
 	interactivity();
 	gameTick();
@@ -133,9 +134,29 @@
 		if (e.code === $keyboard.inventory) {
 			store.navigateTo('inventory');
 		}
+
+        updateCursor();
 	};
 
 	onMount(() => updateCamera(camera, get(player).position));
+
+    const pointer = new THREE.Vector2();
+    const raycaster = new THREE.Raycaster();
+
+    const updatePointer = (e : MouseEvent) => {
+        pointer.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+        pointer.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+
+        updateCursor();
+    }
+
+    const updateCursor = () => {
+        $camera.updateMatrixWorld();
+        raycaster.setFromCamera(pointer, $camera);
+
+        const intersects = raycaster.intersectObjects(scene.children, false);
+        hasPointer.set(intersects?.[0].object.name === 'interactive');
+    }
 </script>
 
 <Ceiling texture={$textures[`${$currentLevel.ceiling}.png`]} />
@@ -161,4 +182,4 @@
 
 <T.AmbientLight args={[new THREE.Color(0x404040)]}></T.AmbientLight>
 
-<svelte:window on:keypress={keyPress} on:keyup={keyUp} />
+<svelte:window on:keypress={keyPress} on:keyup={keyUp} on:mousemove={updatePointer} />

@@ -3,7 +3,6 @@
 
 	import type * as THREE from 'three';
 	import { T } from '@threlte/core';
-	import { useCursor } from '@threlte/extras';
 	import { colorCache } from '$lib/color';
 
 	export let texture: THREE.Texture[] = [];
@@ -27,19 +26,10 @@
 	export let interactive = false;
 
 	const dispatch = createEventDispatcher();
-	const { onPointerEnter, onPointerLeave } = useCursor('pointer');
 
-    const handleClick = (e) => {
+    const handleClick = (e : THREE.Event) => {
 		interactive && e.distance < 3 && dispatch('click');
     }
-
-	const handleEnter = (e) => {
-		interactive && e.distance < 3 && onPointerEnter();
-	};
-
-	const handleLeave = () => {
-		interactive && onPointerLeave();
-	};
 
     const onAttach = (parent : THREE.Mesh, self : THREE.MeshLambertMaterial) : void => {
         parent.material = texture.map((texture) => {
@@ -55,9 +45,8 @@
 	rotation={[rx, rz, ry]}
 	{receiveShadow}
 	{castShadow}
+    name={interactive ? 'interactive' : ''}
 	on:click={handleClick}
-	on:pointerenter={handleEnter}
-	on:pointerleave={handleLeave}
 >
 	<T.BoxGeometry args={[wx, wz, wy]} />
 	{#if texture.length < 2}
