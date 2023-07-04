@@ -63,7 +63,7 @@ You can preview the production build with `npm run preview`.
         -   [x] XP bar
         -   [x] Level up
         -   [x] Level add free base point to add
-        -   [ ] Add BaseStatsPointName
+        -   [x] Add BaseStatsName
         -   [ ] Derived stats calculation
         -   [ ] Stats subsystem test
 -   [ ] Better handling of game over

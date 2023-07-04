@@ -1,6 +1,6 @@
 <script lang="ts">
     import { player } from '$stores/player';
-    import type { Item } from '../..';
+    import type { BaseStatsName, Item } from '../..';
     import MenuItem from './Item.svelte';
 
     const toBag = (item: Item) => () => {

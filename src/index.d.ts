@@ -115,6 +115,8 @@ export interface BaseStats {
     intelligence: number;
 }
 
+export type BaseStatsName = keyof BaseStats;
+
 export interface Stats {
     hp: number;
     maxHp: number;
