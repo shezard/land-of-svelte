@@ -12,6 +12,7 @@ export class Player {
     inventory: Inventory;
     xp: number;
     level: number;
+    freeBaseStatsPoint: number;
 
     constructor(
         position: OrientedPosition,
@@ -19,7 +20,8 @@ export class Player {
         stats: Stats,
         inventory: Inventory,
         xp = 0,
-        level = 1
+        level = 1,
+        freeBaseStatsPoint = 0
     ) {
         this.position = position;
         this.baseStats = baseStats;
@@ -27,6 +29,7 @@ export class Player {
         this.inventory = inventory;
         this.xp = xp;
         this.level = level;
+        this.freeBaseStatsPoint = freeBaseStatsPoint;
     }
 
     moveForward(level: Level) {
@@ -182,6 +185,7 @@ export class Player {
             } else {
                 // XP overflow
                 this.level++;
+                this.freeBaseStatsPoint++;
                 this.xp += xpToNextLevel;
                 xp -= xpToNextLevel;
             }

@@ -23,6 +23,14 @@
 
     $: baseStats = $player.getBaseStats();
     $: stats = $player.getStats();
+
+    const addBaseStats = (baseStatsName : BaseStatsName) => () => {
+        player.update((player) => {
+            player.baseStats[baseStatsName]++;
+            player.freeBaseStatsPoint--;
+            return player;
+        });
+    }
 </script>
 
 <div class="menu text-white">
@@ -34,9 +42,15 @@
             XP : {$player.xp} / {$player.getNeededXp()} <br />
         </div>
         <div>
-            Strength : {baseStats.strength} <br />
-            Dexterity : {baseStats.dexterity} <br />
-            Intelligence : {baseStats.intelligence} <br />
+            Strength : {baseStats.strength} {#if $player.freeBaseStatsPoint > 0}
+                <span on:click={addBaseStats('strength')}>+</span>
+            {/if}<br />
+            Dexterity : {baseStats.dexterity}  {#if $player.freeBaseStatsPoint > 0}
+                <span on:click={addBaseStats('dexterity')}>+</span>
+            {/if}<br />
+            Intelligence : {baseStats.intelligence}  {#if $player.freeBaseStatsPoint > 0}
+                <span on:click={addBaseStats('intelligence')}>+</span>
+            {/if}<br />
         </div>
         <div>
             AC : {stats.ac} <br />

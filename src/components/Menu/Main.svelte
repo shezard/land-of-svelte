@@ -33,7 +33,8 @@
             playerProp.stats,
             playerProp.inventory,
             playerProp.xp,
-            playerProp.level
+            playerProp.level,
+            playerProp.freeBaseStatsPoint
         );
         player.set(savedPlayer);
 
