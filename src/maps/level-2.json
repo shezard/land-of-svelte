@@ -218,7 +218,7 @@
             "id": 1,
             "type": "ladder",
             "collision": false,
-            "texture": ["ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "texture": ["ladder-0", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
             "x": 4,
             "y": 1,
             "t": 0
@@ -236,7 +236,7 @@
             "id": 3,
             "type": "ladder",
             "collision": false,
-            "texture": ["ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "texture": ["ladder-0", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
             "x": 10,
             "y": 4,
             "t": 0
@@ -254,7 +254,7 @@
             "id": 5,
             "type": "ladder",
             "collision": false,
-            "texture": ["ladder-1", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "texture": ["ladder-0", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
             "x": 1,
             "y": 1,
             "t": 0

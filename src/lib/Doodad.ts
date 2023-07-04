@@ -26,7 +26,7 @@ export const makeDoodad = function (
             id,
             type: 'ladder',
             collision: false,
-            texture: ['ladder-0', 'ladder-1', 'ladder-1', 'ladder-1', 'ladder-1', 'ladder-1'],
+            texture: ['ladder-0', 'ladder-0', 'ladder-1', 'ladder-1', 'ladder-1', 'ladder-1'],
             x,
             y,
             t: 0
