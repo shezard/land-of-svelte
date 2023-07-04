@@ -29,6 +29,7 @@
         const playerProp = JSON.parse(localStoragePlayer) as Player;
         const savedPlayer = new Player(
             playerProp.position,
+            playerProp.baseStats,
             playerProp.stats,
             playerProp.inventory,
             playerProp.xp,

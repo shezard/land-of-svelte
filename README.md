@@ -60,8 +60,10 @@ You can preview the production build with `npm run preview`.
     -   [ ] Auto-import levels from level folder
     -   [ ] XP / Leveling
         -   [x] Derived stats
+        -   [x] XP bar
+        -   [x] Level up
+        -   [ ] Level add free base point to add
+        -   [ ] Derived stats calculation
         -   [ ] Stats subsystem test
-        -   [ ] XP bar
-        -   [ ] Level up
 -   [ ] Better handling of game over
 -   [ ] Gold & shop

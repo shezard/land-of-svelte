@@ -148,7 +148,7 @@ export class Player {
                         return logs;
                     });
                     player.update((player) => {
-                        player.xp += ai.xp;
+                        player = player.addXp(ai.xp);
                         return player;
                     });
                 }
@@ -169,6 +169,26 @@ export class Player {
 
     getNeededXp(): number {
         return 5 * this.level - 2;
+    }
+
+    addXp(xp: number) : Player {
+
+        while(xp > 0) {
+            const xpToNextLevel = this.getNeededXp() - this.xp;
+
+            if(xpToNextLevel > xp) {
+                this.xp += xp;
+                xp = 0;
+            } else {
+                // XP overflow
+                this.level++;
+                this.xp += xpToNextLevel;
+                xp -= xpToNextLevel;
+            }
+        }
+
+        this.xp += xp;
+        return this;
     }
 
     getBaseStats(): BaseStats {
