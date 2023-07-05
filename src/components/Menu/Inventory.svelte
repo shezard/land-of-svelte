@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { noop } from '$lib/helpers';
     import { player } from '$stores/player';
     import type { BaseStatsName, Item } from '../..';
     import MenuItem from './Item.svelte';
@@ -43,13 +44,13 @@
         </div>
         <div>
             Strength : {baseStats.strength} {#if $player.freeBaseStatsPoint > 0}
-                <span on:click={addBaseStats('strength')}>+</span>
+                <span on:click={addBaseStats('strength')} on:keypress={noop}>+</span>
             {/if}<br />
             Dexterity : {baseStats.dexterity}  {#if $player.freeBaseStatsPoint > 0}
-                <span on:click={addBaseStats('dexterity')}>+</span>
+                <span on:click={addBaseStats('dexterity')} on:keypress={noop}>+</span>
             {/if}<br />
             wisdom : {baseStats.wisdom}  {#if $player.freeBaseStatsPoint > 0}
-                <span on:click={addBaseStats('wisdom')}>+</span>
+                <span on:click={addBaseStats('wisdom')} on:keypress={noop}>+</span>
             {/if}<br />
         </div>
         <div>

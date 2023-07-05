@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { makeItem } from '$lib/Item';
+    import { noop } from '$lib/helpers';
 	import { container } from '$stores/container';
 	import { player } from '$stores/player';
 	import type { Item, ItemName } from '../..';
@@ -62,9 +63,7 @@
 			<div
 				class="text-3xl cursor-pointer flex flex-col items-center"
 				on:click={transfertAll($container.content)}
-				on:keypress={() => {
-					//no-op
-				}}
+				on:keypress={noop}
 			>
 				<div>Transfer all</div>
 				<div>&lt;</div>

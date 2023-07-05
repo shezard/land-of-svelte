@@ -4,6 +4,8 @@ import { fight } from './fight';
 import { logs } from '$stores/logs';
 import { store } from '$stores/store';
 import { player } from '$stores/player';
+import type { GraphTest } from './dialogs';
+import { dice } from './dice';
 
 export class Player {
     position: OrientedPosition;
@@ -211,8 +213,7 @@ export class Player {
     }
 
     getStats(): Stats {
-
-        let stats = this.stats;
+        const stats = this.stats;
 
         stats.pAttack += Math.floor(this.baseStats.strength / 2);
         stats.hit += Math.floor(this.baseStats.dexterity / 2);
@@ -233,6 +234,24 @@ export class Player {
             },
             { ...stats }
         );
+    }
+
+    testStats(graphTest: GraphTest): boolean {
+        let isSuccess = true;
+        if (graphTest.strength) {
+            isSuccess = dice`1d6` + this.getBaseStats().strength > graphTest.strength;
+        }
+
+        if (graphTest.dexterity) {
+            isSuccess =
+                isSuccess && dice`1d6` + this.getBaseStats().dexterity > graphTest.dexterity;
+        }
+
+        if (graphTest.wisdom) {
+            isSuccess = isSuccess && dice`1d6` + this.getBaseStats().wisdom > graphTest.wisdom;
+        }
+
+        return isSuccess;
     }
 
     equip(item: Item, itemIndex: number): Inventory {

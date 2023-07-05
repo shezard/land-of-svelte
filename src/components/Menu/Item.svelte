@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { noop } from '$lib/helpers';
 	import type { Item } from '../..';
 	import ItemTooltip from './ItemTooltip.svelte';
 
@@ -29,9 +30,7 @@
 	on:mouseenter={showTooltip(item)}
 	on:mouseleave={hideTooltip}
 	on:mousemove={moveTooltip}
-	on:keypress={() => {
-		//no-op
-	}}
+	on:keypress={noop}
 />
 
 {#if tooltip}

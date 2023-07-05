@@ -1,17 +1,18 @@
 <script lang="ts">
     import { getDialogChoice, dialog, npc, getNextStep } from "$stores/dialogs";
     import type { PlayerDialog} from '$lib/dialogs';
+    import { player } from "$stores/player";
+    import { get } from "svelte/store";
 
     const doAction = (playerDialog: PlayerDialog, dialogChoiceRef: string) => () =>  {
 
         let isSuccess = false;
+
         if(playerDialog.test) {
-            // TODO : run test
-            isSuccess = true;
-            playerDialog.doAction?.(isSuccess);
-        } else {
-            playerDialog.doAction?.();
+            isSuccess = get(player).testStats(playerDialog.test);
         }
+
+        playerDialog.doAction?.();
 
         npc.update((npc) => {
             npc.dialogs = [...npc.dialogs, dialogChoiceRef];

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clickOutside } from "$lib/helpers";
+	import { clickOutside, noop } from "$lib/helpers";
 	import { createEventDispatcher } from "svelte";
 
     export let texture : string;
@@ -20,9 +20,7 @@
     on:click={() => {
         active = true;
     }}
-    on:keypress={() => {
-        // no-op
-    }}
+    on:keypress={noop}
 />
 
 <div class="mt-2 hidden rounded absolute border grid-cols-4 grid-flow backdrop-blur" class:active>
@@ -38,9 +36,7 @@
             on:clickoutside={() => {
                 active = false;
             }}
-            on:keypress={() => {
-                //no-op
-            }}
+            on:keypress={noop}
         />
     {/each}
 </div>

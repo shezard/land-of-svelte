@@ -32,3 +32,7 @@ export function clickOutside(node: HTMLElement) {
         }
     };
 }
+
+export const noop = () => {
+    // no-op
+};

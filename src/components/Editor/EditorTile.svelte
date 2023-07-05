@@ -2,6 +2,7 @@
 	import type { Tile } from '../..';
     import {currentLevel} from '$stores/store';
 	import { getClosestWall } from '$lib/helpers';
+    import { noop } from '$lib/helpers';
 
 	export let tile: Tile;
 
@@ -18,17 +19,13 @@
     on:click
     on:mouseenter
     on:mousedown
-    on:keypress={() => {
-        // no-op
-    }}
+    on:keypress={noop}
 >
     <img
         src={texture}
         class:sized
         alt=""
-        on:dragstart|preventDefault={() => {
-            // no-op
-        }}
+        on:dragstart|preventDefault={noop}
     />
 
     {#if tile.light}
