@@ -225,6 +225,7 @@
             "type": "door",
             "collision": true,
             "texture": ["door-0"],
+            "interactive": true,
             "x": 4,
             "y": 2
         },

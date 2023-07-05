@@ -44,6 +44,7 @@ export type Doodad = {
     id: number;
     type: DoodadName;
     collision?: boolean;
+    interactive?: boolean;
     texture: string[];
     color?: ColorRepresentation;
     z?: number;

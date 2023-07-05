@@ -81,7 +81,7 @@
 		z={script.z ?? 0}
 		{texture}
 		on:click={handleClick(script)}
-		interactive
+		interactive={script.interactive}
 		castShadow
         receiveShadow
 	/>
