@@ -16,5 +16,5 @@
 	{texture}
 	color={npc.color}
     transparent
-    interactive
+    cursorName='interact'
 />

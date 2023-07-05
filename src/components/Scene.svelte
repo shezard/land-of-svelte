@@ -19,7 +19,7 @@
 	import { updateCamera } from '$lib/camera';
 	import { get } from 'svelte/store';
 	import { player } from '$stores/player';
-    import { INTERACTIVITY_DISTANCE, hasPointer } from '$stores/cursor';
+    import { INTERACTIVITY_DISTANCE, pointer } from '$stores/cursor';
 
 	const { camera, scene } = useThrelte();
 
@@ -140,24 +140,37 @@
 
 	onMount(() => updateCamera(camera, get(player).position));
 
-    const pointer = new THREE.Vector2();
+    const pointerPosition = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
 
     const updatePointer = (e : MouseEvent) => {
-        pointer.x = ( e.clientX / window.innerWidth ) * 2 - 1;
-        pointer.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+        pointerPosition.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+        pointerPosition.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
 
         updateCursor();
     }
 
     const updateCursor = () => {
         $camera.updateMatrixWorld();
-        raycaster.setFromCamera(pointer, $camera);
+        raycaster.setFromCamera(pointerPosition, $camera);
 
         const intersects = raycaster.intersectObjects(scene.children, false);
 
         if(intersects.length) {
-            hasPointer.set(intersects[0].object.name === 'interactive' && intersects[0].distance < INTERACTIVITY_DISTANCE);
+
+            let cursor = null;
+
+            if(intersects[0].distance < INTERACTIVITY_DISTANCE) {
+                if(intersects[0].object.name === 'interact') {
+                    cursor = 'interact';
+                }
+
+                if(intersects[0].object.name === 'attack') {
+                    cursor = 'attack';
+                }
+            }
+
+            pointer.set(cursor);
         }
     }
 </script>

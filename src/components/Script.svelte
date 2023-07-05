@@ -81,7 +81,7 @@
 		z={script.z ?? 0}
 		{texture}
 		on:click={handleClick(script)}
-		interactive={script.interactive}
+		cursorName={script.interactive ? 'interact' : null}
 		castShadow
         receiveShadow
 	/>
@@ -96,7 +96,7 @@
 		wz={0.05}
 		on:click={handleClick(script)}
 		color={0xffffff}
-		interactive
+		cursorName='interact'
 	/>
 {/if}
 
@@ -126,7 +126,7 @@
         on:click={handleNpc(script)}
         {texture}
         color={script.color}
-        interactive
+		cursorName='interact'
         transparent
     />
 {/if}
@@ -141,7 +141,7 @@
 		rz={script.t}
 		on:click={handleLoot(script)}
 		{texture}
-		interactive
+		cursorName='interact'
         transparent
 	/>
 {/if}
@@ -155,7 +155,7 @@
 		wz={0.3}
 		on:click={showText(script)}
 		{texture}
-		interactive
+		cursorName='interact'
 	/>
 {/if}
 
@@ -170,7 +170,7 @@
 		rz={Math.PI}
 		on:click={handleContainer(script)}
 		{texture}
-		interactive
+		cursorName='interact'
         transparent
 	/>
 {/if}

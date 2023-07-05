@@ -44,6 +44,7 @@ You can preview the production build with `npm run preview`.
     -   [x] Click on AI should attack
     -   [x] Fix cursor bypassing walls
     -   [ ] Use custom cursor for each action (fight / interact / talk ?)
+    -   [ ] Move interactive name on mesh in userData ?
 -   [x] Editor
 -   [ ] Dialog
     -   [x] Move npc title into level.json

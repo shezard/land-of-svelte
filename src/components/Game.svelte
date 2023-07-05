@@ -2,7 +2,7 @@
 	import { Canvas } from '@threlte/core';
 
 	import { store } from '$stores/store';
-	import { hasPointer } from '$stores/cursor';
+	import { pointer } from '$stores/cursor';
 
 	import Scene from './Scene.svelte';
 	import UI from './UI.svelte';
@@ -16,7 +16,6 @@
 	import Editor from './Editor/Editor.svelte';
 
 	$: shaking = $store.screen.shaking;
-    $: pointer = $hasPointer;
 
     let canvas : Canvas;
 </script>
@@ -49,9 +48,8 @@
 			<UI />
 		{/if}
 		<div
-            class="absolute z-0 w-full h-full bg-stone-800 overflow-hidden"
+            class="absolute z-0 w-full h-full bg-stone-800 overflow-hidden {$pointer}"
             class:shaking
-            class:pointer
         >
 			<Canvas rendererParameters={{ antialias: false }} bind:this={canvas}>
 				<Scene />
@@ -65,7 +63,11 @@
 		animation: shake 0.45s;
 	}
 
-    .pointer {
+    .attack {
+        cursor: pointer;
+    }
+
+    .interact {
         cursor: pointer;
     }
 </style>

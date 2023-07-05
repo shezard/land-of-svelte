@@ -18,7 +18,7 @@
 	{texture}
 	color={ai.color}
     transparent
-    interactive
+    cursorName='attack'
     on:click={() => {
         $player.attack()
     }}

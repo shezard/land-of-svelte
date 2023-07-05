@@ -4,7 +4,7 @@
 	import type * as THREE from 'three';
 	import { T } from '@threlte/core';
 	import { colorCache } from '$lib/color';
-    import { INTERACTIVITY_DISTANCE } from '$stores/cursor';
+    import { INTERACTIVITY_DISTANCE, type CursorName } from '$stores/cursor';
 
 	export let texture: THREE.Texture[] = [];
 	export let color: number | undefined = undefined;
@@ -24,12 +24,12 @@
 	export let receiveShadow = false;
 	export let castShadow = false;
 	export let transparent = false;
-	export let interactive = false;
+	export let cursorName : CursorName = null;
 
 	const dispatch = createEventDispatcher();
 
     const handleClick = (e : THREE.Event) => {
-		interactive && e.distance < INTERACTIVITY_DISTANCE && dispatch('click');
+		cursorName && e.distance < INTERACTIVITY_DISTANCE && dispatch('click');
     }
 
     const onAttach = (parent : THREE.Mesh, self : THREE.MeshLambertMaterial) : void => {
@@ -46,7 +46,7 @@
 	rotation={[rx, rz, ry]}
 	{receiveShadow}
 	{castShadow}
-    name={interactive ? 'interactive' : ''}
+    name={cursorName}
 	on:click={handleClick}
 >
 	<T.BoxGeometry args={[wx, wz, wy]} />
