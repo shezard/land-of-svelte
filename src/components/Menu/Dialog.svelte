@@ -3,13 +3,35 @@
     import type { PlayerDialog} from '$lib/dialogs';
 
     const doAction = (playerDialog: PlayerDialog, dialogChoiceRef: string) => () =>  {
-        playerDialog.doAction?.();
+
+        let isSuccess = false;
+        if(playerDialog.test) {
+            // TODO : run test
+            isSuccess = true;
+            playerDialog.doAction?.(isSuccess);
+        } else {
+            playerDialog.doAction?.();
+        }
+
         npc.update((npc) => {
             npc.dialogs = [...npc.dialogs, dialogChoiceRef];
             if(playerDialog.nextStep) {
                 npc.dialogs.push(playerDialog.nextStep);
                 getNextStep(playerDialog.nextStep).doAction?.();
             }
+
+            if(playerDialog.successStep && isSuccess) {
+                npc.dialogs.push(playerDialog.successStep);
+                getNextStep(playerDialog.successStep).doAction?.();
+            }
+
+
+            if(playerDialog.failureStep && !isSuccess) {
+                npc.dialogs.push(playerDialog.failureStep);
+                getNextStep(playerDialog.failureStep).doAction?.();
+            }
+
+
             return npc;
         })
     }

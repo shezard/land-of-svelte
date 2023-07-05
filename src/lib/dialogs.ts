@@ -6,7 +6,7 @@ import type { Doodad } from '..';
 export interface BaseDialog {
     content: string;
     predicate: () => boolean;
-    doAction?: () => void;
+    doAction?: (isSuccess? : boolean) => void;
 }
 
 export type NpcDialog = BaseDialog & {
@@ -16,15 +16,27 @@ export type NpcDialog = BaseDialog & {
 
 export type PlayerDialog = BaseDialog & {
     type: 'player';
-    nextStep?: string;
+    test? : GraphTest;
+    nextStep? : string;
+    successStep? : string;
+    failureStep? : string;
 };
+
+interface GraphTest {
+    stenght?: string,
+    dexterity?: string,
+    wisdowm?: string,
+}
 
 interface GraphDialog {
     content: string;
+    test? : GraphTest;
     predicate?: () => boolean;
-    doAction?: () => void;
+    doAction?: (isSuccess? : boolean) => void;
     dialogChoices?: GraphDialog[] | string[];
     nextStep?: GraphDialog | string;
+    successStep?: GraphDialog | string;
+    failureStep?: GraphDialog | string;
     ref?: string;
 }
 
@@ -80,6 +92,31 @@ const ned: GraphDialog = {
     ]
 };
 
+const lockedDoor: GraphDialog = {
+    content: 'A locked door',
+    dialogChoices: [
+        {
+            content: 'Try to pick the lock',
+            test: {
+                dexterity: '3+'
+            },
+            doAction: (isSuccess) => {
+                if(isSuccess) {
+                    console.log('ok');
+                } else {
+                    console.log('no')
+                }
+            },
+            successStep: {
+                content: 'The door opened'
+            },
+            failureStep: {
+                content: 'The door stays put'
+            }
+        }
+    ]
+}
+
 const makeDialogs = (graph: GraphDialog, ref = ''): Record<string, NpcDialog | PlayerDialog> => {
     ref = graph.ref ?? ref;
     let refIndex = 1;
@@ -113,6 +150,32 @@ const makeDialogs = (graph: GraphDialog, ref = ''): Record<string, NpcDialog | P
                 }
             }
 
+            if (dialogChoice.successStep) {
+                if (typeof dialogChoice.successStep === 'string') {
+                    dialogs[dialogChoice.ref].successStep = dialogChoice.successStep;
+                } else {
+                    dialogs[dialogChoice.ref].successStep =
+                        dialogChoice.successStep.ref ?? `${dialogChoice.ref}-s-${refIndex}`;
+                    dialogs = {
+                        ...dialogs,
+                        ...makeDialogs(dialogChoice.successStep, `${dialogChoice.ref}-s-${refIndex}`)
+                    };
+                }
+            }
+
+            if (dialogChoice.failureStep) {
+                if (typeof dialogChoice.failureStep === 'string') {
+                    dialogs[dialogChoice.ref].failureStep = dialogChoice.failureStep;
+                } else {
+                    dialogs[dialogChoice.ref].failureStep =
+                        dialogChoice.failureStep.ref ?? `${dialogChoice.ref}-f-${refIndex}`;
+                    dialogs = {
+                        ...dialogs,
+                        ...makeDialogs(dialogChoice.failureStep, `${dialogChoice.ref}-f-${refIndex}`)
+                    };
+                }
+            }
+
             refIndex++;
         }
 
@@ -132,5 +195,6 @@ const makeDialogs = (graph: GraphDialog, ref = ''): Record<string, NpcDialog | P
 
 export const dialogs: Record<string, NpcDialog | PlayerDialog> = {
     ...makeDialogs(ted, 'ted'),
-    ...makeDialogs(ned, 'ned')
+    ...makeDialogs(ned, 'ned'),
+    ...makeDialogs(lockedDoor, 'locked-door')
 };
