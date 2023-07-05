@@ -58,7 +58,7 @@ You can preview the production build with `npm run preview`.
 -   [x] Saving / Loading
 -   [ ] Level 2
     -   [x] Move levels to maps folder
-    -   [X] XP / Leveling
+    -   [x] XP / Leveling
     -   [ ] Level 2 npc
     -   [ ] Auto-import levels from level folder
 -   [ ] Better handling of game over

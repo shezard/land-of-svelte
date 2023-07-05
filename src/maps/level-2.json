@@ -225,12 +225,14 @@
         },
         {
             "id": 2,
-            "type": "door",
+            "type": "npc",
+            "name": "Locked door",
             "collision": true,
             "texture": ["door-0"],
             "x": 4,
             "y": 3,
-            "t": 0
+            "t": 0,
+            "dialogs": ["locked-door"]
         },
         {
             "id": 3,
