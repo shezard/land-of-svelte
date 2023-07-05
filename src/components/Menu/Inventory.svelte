@@ -48,8 +48,8 @@
             Dexterity : {baseStats.dexterity}  {#if $player.freeBaseStatsPoint > 0}
                 <span on:click={addBaseStats('dexterity')}>+</span>
             {/if}<br />
-            Intelligence : {baseStats.intelligence}  {#if $player.freeBaseStatsPoint > 0}
-                <span on:click={addBaseStats('intelligence')}>+</span>
+            wisdom : {baseStats.wisdom}  {#if $player.freeBaseStatsPoint > 0}
+                <span on:click={addBaseStats('wisdom')}>+</span>
             {/if}<br />
         </div>
         <div>

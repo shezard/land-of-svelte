@@ -113,7 +113,7 @@ export interface OrientedPosition {
 export interface BaseStats {
     strength: number;
     dexterity: number;
-    intelligence: number;
+    wisdom: number;
 }
 
 export type BaseStatsName = keyof BaseStats;

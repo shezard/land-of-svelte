@@ -184,6 +184,7 @@ export class Player {
             } else {
                 // XP overflow
                 this.level++;
+                this.stats.hp = this.stats.maxHp;
                 this.freeBaseStatsPoint++;
                 this.xp += xpToNextLevel;
                 xp -= xpToNextLevel;
@@ -200,7 +201,7 @@ export class Player {
                 if (item) {
                     stats.strength += item.baseStats.strength;
                     stats.dexterity += item.baseStats.dexterity;
-                    stats.intelligence += item.baseStats.intelligence;
+                    stats.wisdom += item.baseStats.wisdom;
                 }
 
                 return stats;
@@ -210,6 +211,13 @@ export class Player {
     }
 
     getStats(): Stats {
+
+        let stats = this.stats;
+
+        stats.pAttack += Math.floor(this.baseStats.strength / 2);
+        stats.hit += Math.floor(this.baseStats.dexterity / 2);
+        stats.ac += Math.floor(this.baseStats.wisdom / 2);
+
         return [this.inventory.mainHand, this.inventory.offHand, this.inventory.armor].reduce(
             function (stats, item: Item | null) {
                 if (item) {
@@ -223,7 +231,7 @@ export class Player {
 
                 return stats;
             },
-            { ...this.stats }
+            { ...stats }
         );
     }
 
