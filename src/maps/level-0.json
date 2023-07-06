@@ -258,6 +258,16 @@
             "x": 6,
             "y": 4,
             "t": 0
+        },
+        {
+            "id": 8,
+            "type": "panel",
+            "content": ["Press I to access the inventory"],
+            "collision": false,
+            "texture": ["panel-1", "panel-1", "panel-1", "panel-0", "panel-0", "panel-0"],
+            "x": 5,
+            "y": 10,
+            "t": 1.5957
         }
     ]
 }
