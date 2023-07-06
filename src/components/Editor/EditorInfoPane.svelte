@@ -178,6 +178,9 @@
             <EditorTool tool="panel">
                 Panel
             </EditorTool>
+            <EditorTool tool="container">
+                Container
+            </EditorTool>
         </div>
     </div>
 

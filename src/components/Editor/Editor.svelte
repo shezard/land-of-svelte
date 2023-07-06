@@ -2,14 +2,10 @@
     import { JSONEditor } from 'svelte-jsoneditor'
 	import { store } from '$stores/store';
 	import {
-        activatedTool,
         currentLevelNumber,
         currentLevel,
         isToolActivated,
-        currentAi,
-        currentTexture,
-        currentDoodad,
-		currentNpc
+        applyTool,
 
     } from '$stores/editor'
 	import type { Script, Tile } from '../..';
@@ -53,99 +49,6 @@
             store.levels[$currentLevelNumber].replaceScript(newScript.json);
             return store;
         });
-    }
-
-    const applyTool = (x: number, y: number) => (e : Event) => {
-
-        if(!$isToolActivated) {
-            return;
-        }
-
-        if($activatedTool === 'texture') {
-            store.update((store) => {
-                store.levels[$currentLevelNumber].textureMap[x][y] = $currentTexture;
-                return store;
-            });
-        }
-
-        if($activatedTool === 'collision+') {
-            store.update((store) => {
-                store.levels[$currentLevelNumber].collisionMap[x][y] = 1;
-                return store;
-            });
-        }
-
-        if($activatedTool === 'collision-') {
-            store.update((store) => {
-                store.levels[$currentLevelNumber].collisionMap[x][y] = 0;
-                return store;
-            });
-        }
-
-        if($activatedTool === 'light' && e.type === 'mousedown') {
-            store.update((store) => {
-                const light = store.levels[$currentLevelNumber].getLightAt(x, y);
-                if(light) {
-                    store.levels[$currentLevelNumber].removeLightAt(x, y);
-                } else {
-                    store.levels[$currentLevelNumber].addLightAt(x, y);
-                }
-
-                return store;
-            });
-        }
-
-        if($activatedTool === 'ai' && e.type === 'mousedown') {
-            store.update((store) => {
-                const ai = store.levels[$currentLevelNumber].getAiAt(x, y);
-                if(ai) {
-                    store.levels[$currentLevelNumber].removeAiAt(x, y);
-                } else {
-                    store.levels[$currentLevelNumber].addAiAt(x, y , $currentAi);
-                }
-
-                return store;
-            });
-        }
-
-        if($activatedTool === 'npc' && e.type === 'mousedown') {
-            store.update((store) => {
-                const ai = store.levels[$currentLevelNumber].getScriptAt(x, y);
-                if(ai) {
-                    store.levels[$currentLevelNumber].removeScriptAt(x, y);
-                } else {
-                    store.levels[$currentLevelNumber].addNpcAt(x, y , $currentNpc);
-                }
-
-                return store;
-            });
-        }
-
-        if($activatedTool === 'doodad' && e.type === 'mousedown') {
-            store.update((store) => {
-                const doodad = store.levels[$currentLevelNumber].getScriptAt(x, y);
-                if(doodad) {
-                    store.levels[$currentLevelNumber].removeScriptAt(x, y);
-                } else {
-                    store.levels[$currentLevelNumber].addDoodadAt(x, y , $currentDoodad);
-                }
-
-                return store;
-            });
-        }
-
-        if($activatedTool === 'panel' && e.type === 'mousedown') {
-            store.update((store) => {
-                const panel = store.levels[$currentLevelNumber].getScriptAt(x, y);
-                if(panel) {
-                    store.levels[$currentLevelNumber].removeScriptAt(x, y);
-                } else {
-                    store.levels[$currentLevelNumber].addPanelAt(x, y);
-                }
-
-                return store;
-            });
-        }
     }
 
     const handleChangeTileTexture = (tile: Tile) => (e : CustomEvent<string>) : void => {
