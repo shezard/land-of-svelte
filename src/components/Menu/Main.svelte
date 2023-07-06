@@ -81,6 +81,7 @@
 <div class="text-3xl text-white">Land Of Svelte</div>
 
 {#if $store.game.running === 'newGame'}
+    <br />
     <div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
         New Game
     </div>
@@ -93,6 +94,7 @@
 {/if}
 
 {#if $store.game.running === 'continue'}
+    <br />
     <div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
         Back to game
     </div>
