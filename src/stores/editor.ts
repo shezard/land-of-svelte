@@ -128,4 +128,17 @@ export const applyTool = (x: number, y: number) => (e: Event) => {
             return store;
         });
     }
+
+    if (get(activatedTool) === 'container' && e.type === 'mousedown') {
+        store.update((store) => {
+            const panel = store.levels[$currentLevelNumber].getScriptAt(x, y);
+            if (panel) {
+                store.levels[$currentLevelNumber].removeScriptAt(x, y);
+            } else {
+                store.levels[$currentLevelNumber].addContainerAt(x, y);
+            }
+
+            return store;
+        });
+    }
 };
