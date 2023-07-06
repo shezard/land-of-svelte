@@ -167,7 +167,7 @@
 		wx={0.6}
 		wy={0.6}
 		wz={0.6}
-		rz={Math.PI}
+		rz={script.t}
 		on:click={handleContainer(script)}
 		{texture}
 		cursorName='interact'

@@ -247,7 +247,7 @@
             "texture": ["chest-1", "chest-1", "chest-1", "chest-1", "chest-0", "chest-1"],
             "x": 6,
             "y": 10,
-            "t": 1.5,
+            "t": 3.1415,
             "content": ["sword"]
         },
         {

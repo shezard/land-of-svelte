@@ -89,15 +89,21 @@
             Continue
         </div>
     {/if}
+    <br />
 {/if}
 
 {#if $store.game.running === 'continue'}
     <div class="text-2xl text-white cursor-pointer action" on:click={runGame} on:keypress={runGame}>
-        Continue
+        Back to game
+    </div>
+    <br />
+    <div class="text-2xl text-white cursor-pointer action" on:click={loadGame} on:keypress={loadGame}>
+        Load
     </div>
     <div class="text-2xl text-white cursor-pointer action" on:click={saveGame} on:keypress={saveGame}>
 		Save
     </div>
+    <br />
 {/if}
 
 <div
