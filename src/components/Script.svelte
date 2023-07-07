@@ -121,8 +121,9 @@
     <Box
         x={script.x}
         y={script.y}
-        wx={Math.abs(Math.cos($player.position.t))}
-        wy={Math.abs(Math.sin($player.position.t))}
+        wx={script.depth ?? 0}
+        wy={1}
+        rz={script.t}
         on:click={handleNpc(script)}
         {texture}
         color={script.color}

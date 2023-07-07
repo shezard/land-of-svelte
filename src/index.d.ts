@@ -58,6 +58,7 @@ export type Npc = {
     texture: string[];
     dialogs: string[];
     color?: number;
+    depth?: number;
 } & OrientedPosition;
 
 export type AiMode = 'idle' | 'attack-on-sight';

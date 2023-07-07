@@ -238,6 +238,7 @@
             "x": 4,
             "y": 3,
             "t": 0,
+            "depth": 1,
             "dialogs": ["locked-door"]
         },
         {

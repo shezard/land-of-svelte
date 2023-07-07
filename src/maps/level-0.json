@@ -262,7 +262,7 @@
         {
             "id": 8,
             "type": "panel",
-            "content": ["Press I to access the inventory"],
+            "content": ["Tips: Press I to access the inventory"],
             "collision": false,
             "texture": ["panel-1", "panel-1", "panel-1", "panel-0", "panel-0", "panel-0"],
             "x": 5,

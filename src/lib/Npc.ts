@@ -10,6 +10,7 @@ export const makeNpc = function (npcName: string, id: number, x: number, y: numb
         x: x,
         y: y,
         t: 0,
+        depth: 0,
         dialogs: []
     };
 };
