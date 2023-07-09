@@ -98,6 +98,14 @@ export const scripts = [
             x: 4,
             y: 1,
             doWalk: () => {
+
+                const currentStore = get(store);
+                const ladder = currentStore.levels[currentStore.currentLevelNumber].getScript(4) as Doodad;
+
+                if((ladder.z ?? 0) > 0) {
+                    return;
+                }
+
                 store.update((store) => {
                     store.currentLevelNumber = 2;
                     return store;

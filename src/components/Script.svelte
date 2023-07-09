@@ -113,6 +113,18 @@
 	/>
 {/if}
 
+
+{#if script.type == 'half-block'}
+	<Box
+		x={script.x}
+		y={script.y}
+        z={-0.5}
+        wz={0.8}
+		{texture}
+	/>
+{/if}
+
+
 {#if script.type == 'ai'}
 	<Ai ai={script} {texture}/>
 {/if}

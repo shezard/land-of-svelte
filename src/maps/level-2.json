@@ -11,10 +11,10 @@
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+        [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+        [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+        [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ],
     "textureMap": [
@@ -195,12 +195,6 @@
             "t": 0
         },
         {
-            "id": 2,
-            "x": 8,
-            "y": 1,
-            "t": 0
-        },
-        {
             "id": 4,
             "x": 2,
             "y": 1,
@@ -213,7 +207,19 @@
             "t": 0
         },
         {
-            "id": 6,
+            "id": 7,
+            "x": 8,
+            "y": 4,
+            "t": 0
+        },
+        {
+            "id": 8,
+            "x": 10,
+            "y": 8,
+            "t": 0
+        },
+        {
+            "id": 9,
             "x": 8,
             "y": 10,
             "t": 0
@@ -276,8 +282,90 @@
             "texture": ["chest-1", "chest-1", "chest-1", "chest-1", "chest-0", "chest-1"],
             "x": 5,
             "y": 1,
+            "t": 4.7123,
+            "content": ["armor"]
+        },
+        {
+            "id": 7,
+            "type": "container",
+            "name": "treasure chest",
+            "collision": true,
+            "texture": ["chest-1", "chest-1", "chest-1", "chest-1", "chest-0", "chest-1"],
+            "x": 10,
+            "y": 10,
             "t": 0,
             "content": []
+        },
+        {
+            "id": 8,
+            "type": "container",
+            "name": "treasure chest",
+            "collision": true,
+            "texture": ["chest-1", "chest-1", "chest-1", "chest-1", "chest-0", "chest-1"],
+            "x": 9,
+            "y": 10,
+            "t": 0,
+            "content": []
+        },
+        {
+            "id": 9,
+            "type": "npc",
+            "name": "man",
+            "collision": true,
+            "texture": ["npc-4"],
+            "x": 8,
+            "y": 10,
+            "t": 0,
+            "depth": 0,
+            "dialogs": []
+        },
+        {
+            "id": 10,
+            "type": "npc",
+            "name": "man",
+            "collision": true,
+            "texture": ["npc-3"],
+            "x": 10,
+            "y": 8,
+            "t": 0,
+            "depth": 0,
+            "dialogs": []
+        },
+        {
+            "id": 12,
+            "type": "half-block",
+            "collision": true,
+            "texture": ["ladder-0", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "x": 7,
+            "y": 9,
+            "t": 0
+        },
+        {
+            "id": 13,
+            "type": "half-block",
+            "collision": true,
+            "texture": ["ladder-0", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "x": 8,
+            "y": 9,
+            "t": 0
+        },
+        {
+            "id": 14,
+            "type": "half-block",
+            "collision": true,
+            "texture": ["ladder-0", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "x": 9,
+            "y": 9,
+            "t": 0
+        },
+        {
+            "id": 15,
+            "type": "half-block",
+            "collision": true,
+            "texture": ["ladder-0", "ladder-0", "ladder-1", "ladder-1", "ladder-1", "ladder-1"],
+            "x": 10,
+            "y": 9,
+            "t": 0
         }
     ]
 }
