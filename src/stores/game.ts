@@ -1,5 +1,4 @@
+import { isBrowser } from '$lib/helpers';
 import { writable } from 'svelte/store';
 
-const isBrowser = typeof window !== 'undefined';
-
-export const hasSave = writable(isBrowser && 'player' in localStorage);
+export const hasSave = writable(isBrowser() && 'player' in localStorage);

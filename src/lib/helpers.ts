@@ -33,6 +33,10 @@ export function clickOutside(node: HTMLElement) {
     };
 }
 
+export function isBrowser() : boolean {
+    return typeof window !== 'undefined';
+}
+
 export const noop = () => {
     // no-op
 };

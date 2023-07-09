@@ -20,6 +20,7 @@
 	import { get } from 'svelte/store';
 	import { player } from '$stores/player';
     import { INTERACTIVITY_DISTANCE, pointer } from '$stores/cursor';
+    import Debug from './Debug.svelte';
 
 	const { camera, scene } = useThrelte();
 
@@ -199,3 +200,5 @@
 <T.AmbientLight args={[new THREE.Color(0x404040)]}></T.AmbientLight>
 
 <svelte:window on:keypress={keyPress} on:keyup={keyUp} on:mousemove={updatePointer} />
+
+<Debug />
